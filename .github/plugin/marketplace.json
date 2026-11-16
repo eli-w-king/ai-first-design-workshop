@@ -1,0 +1,18 @@
+{
+	"name": "ai-first-design-workshop",
+	"owner": {
+		"name": "Eli King"
+	},
+	"metadata": {
+		"description": "Skills for the AI-First Design Workshop with UXPA Seattle.",
+		"version": "0.1.0"
+	},
+	"plugins": [
+		{
+			"name": "design-workshop",
+			"source": "./plugins/design-workshop",
+			"description": "Design with agents: a safe setup, three directions side by side, a walkthrough of each, a partner test, and a page on GitHub Pages.",
+			"version": "0.1.0"
+		}
+	]
+}

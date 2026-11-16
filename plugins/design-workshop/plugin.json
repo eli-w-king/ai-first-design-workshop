@@ -1,0 +1,13 @@
+{
+	"$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+	"name": "design-workshop",
+	"version": "0.1.0",
+	"description": "Design with agents: a safe setup, three directions side by side, a walkthrough of each, a partner test, and a page on GitHub Pages.",
+	"author": {
+		"name": "Eli King",
+		"url": "https://github.com/eli-w-king"
+	},
+	"homepage": "https://eli-w-king.github.io/ai-first-design-workshop/",
+	"repository": "https://github.com/eli-w-king/ai-first-design-workshop",
+	"keywords": ["design", "prototyping", "variations", "portfolio", "github-pages"]
+}
