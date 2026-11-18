@@ -99,6 +99,7 @@ jobs:
         run: npx --yes "$PNPM" lint:type
 
       - name: Build for a project site at /skola/
+        if: runner.os != 'Windows'
         shell: bash
         working-directory: skola
         env:
@@ -107,6 +108,19 @@ jobs:
           start=$SECONDS
           npx --yes "$PNPM" build
           echo "build_seconds=$((SECONDS - start))" >> "$GITHUB_ENV"
+
+      # Git Bash on Windows rewrites /skola/ into a Windows path before Node sees it, so Windows builds in
+      # PowerShell, the default terminal in VS Code on Windows, exactly as the kit tells attendees to.
+      - name: Build for a project site at /skola/ (PowerShell)
+        if: runner.os == 'Windows'
+        shell: pwsh
+        working-directory: skola
+        run: |
+          $start = Get-Date
+          $env:BASE_PATH = '/skola/'
+          npx.cmd --yes pnpm@10.28.2 build
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          "build_seconds=$([int]((Get-Date) - $start).TotalSeconds)" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
 
       - name: Check the build uses the project path
         shell: bash
