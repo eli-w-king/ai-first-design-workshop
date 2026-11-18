@@ -1,15 +1,16 @@
 diff --git a/AGENTS.md b/AGENTS.md
 new file mode 100644
-index 0000000..c454c3e
+index 0000000..206df6a
 --- /dev/null
 +++ b/AGENTS.md
-@@ -0,0 +1,11 @@
+@@ -0,0 +1,12 @@
 +# Workshop guardrails
 +
 +This is a local-first workshop fork of Skola. These instructions guide agents. They do not enforce permissions.
 +
++- Pull requests go to this fork, never to the original project. In a fork's clone, the GitHub CLI targets the parent repository by default. Right after cloning, with approval, run `gh repo set-default OWNER/REPO` for the attendee's own fork, then check it with `gh repo set-default --view`.
 +- Before any GitHub write, show the target owner/repo and ask for approval. Work only in the attendee's chosen fork. Check `git remote -v`; stop if the target is unclear.
-+- Never open pull requests, issues, comments or stars on `h16nning/skola`, or on a prepared parent fork. Never rely on a fork's default PR target.
++- Never open pull requests, issues, comments or stars on `h16nning/skola`, or on a prepared parent fork. Even with the default set, pass the destination explicitly.
 +- For a PR, use an explicit destination: `gh pr create --repo OWNER/REPO --base main --head BRANCH`. Confirm both repositories belong to the attendee's fork before creating it. Do not merge without approval.
 +- Never enable Dexie Cloud, sign in to it, call its service or add its service worker. Keep the app local-only. Preserve existing local data.
 +- Keep `LICENSE`, original notices, the dated modification note and the link to this fork's complete source. Update the name, date and URL in `src/workshop.ts` and README before publishing. Label the result "my fork of Skola", not official or endorsed.
