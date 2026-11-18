@@ -41,6 +41,8 @@ Copy only the approved skill files, not notes, screenshots, review notes or hist
 
 ## Timing and undo
 
+Keep the workshop automation local. Cloud automations are not available for public forks, and this workflow must not upload the workspace as a repository.
+
 The [weekly template](../../automations/keep-my-taste-current.automation.md) creates and enables nothing on installation. For the first run the person chooses a **Manual** trigger and **Run now**. They review the result before deliberately enabling a weekly schedule.
 
 Scheduled local runs require the laptop to be awake and the agent to be running. A run waiting for approval holds back the next one. This is not an always-on service or a promise of weekly updates.

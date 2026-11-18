@@ -4,6 +4,8 @@ For the workshop taste exercise, use [Keep my taste current](../automations/keep
 
 A small synthetic taste trial on November 17, 2026 used **8.15 AI credits** for a first draft from three short notes and **11.66 credits** for an update after a fourth note, on GPT-6.2 Sol. That is about $0.08 and $0.12 of usage value at the credit conversion below, not necessarily an extra bill. These runs used no screenshots. Longer notes, images, retries or other models can cost more; they are examples, not promised prices.
 
+These are local workshop templates. Keep **Run in the Cloud** off. Local scheduled runs and Send Later require an awake laptop and a running local host; they do not wake the machine. Send Later also needs the checked setting from [Get ready](https://eli-w-king.github.io/ai-first-design-workshop/get-ready/) and is a one-time prompt, not this weekly schedule. Cloud automations require eligible private repositories and are not available for public forks. A one-off Cloud task is separate.
+
 ## Weekly roles digest
 
 The [template](../automations/weekly-roles-digest.automation.md) does nothing when this plugin is installed. It starts as a **manual** template. There is no schedule, enabled state, workspace, model or permission grant hidden in it.
@@ -20,7 +22,7 @@ The [template](../automations/weekly-roles-digest.automation.md) does nothing wh
 
 There is no fixed price per digest. Each run uses input, output and cached tokens at your chosen model's rates. Public pages cost no subscription here, but the AI calls consume your plan's allowance or your separately configured provider balance. Do not buy credits, enable paid overage or increase a budget to make this template run.
 
-For Copilot, one AI credit currently represents $0.01 USD of usage value. A 30-credit per-run cap represents $0.30 of usage value, not necessarily an extra charge if you have included allowance. This is an example cap, not an estimate that every digest will finish within it. Check the [current rates](https://docs.github.com/en/copilot/reference/copilot-billing/models-and-pricing) and [billing explanation](https://docs.github.com/en/copilot/concepts/billing-and-usage/individuals/billing), then set your own limit. Include any separate Cloud compute cost before choosing that execution target.
+For Copilot, one AI credit currently represents $0.01 USD of usage value. A 30-credit per-run cap represents $0.30 of usage value, not necessarily an extra charge if you have included allowance. This is an example cap, not an estimate that every digest will finish within it. Check the [current rates](https://docs.github.com/en/copilot/reference/copilot-billing/models-and-pricing) and [billing explanation](https://docs.github.com/en/copilot/concepts/billing-and-usage/individuals/billing), then set your own limit. Do not move this template to a Cloud automation on a public fork. Separately approved one-off Cloud tasks still require their own compute and usage review.
 
 The prompt cannot enforce billing by itself. After a supervised run, use the host's actual receipt to estimate later runs. Weekly usage is roughly the measured per-run usage times the number of runs, with margin for longer pages, retries and changed prices. Report unavailable cost as unavailable, never as zero.
 

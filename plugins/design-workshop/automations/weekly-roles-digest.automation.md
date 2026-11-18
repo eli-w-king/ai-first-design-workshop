@@ -6,7 +6,7 @@ description: "Draft a private role digest from public pages you choose. Manual u
 schedule:
   kind: manual
 ---
-Use the job-search skill to draft a roles digest. This template does not enable a schedule.
+Use the job-search skill to draft a roles digest. This template does not enable a schedule. Keep it local, with Run in the Cloud off; Cloud automations are not available for public forks.
 
 Role and experience to match: <fill in>.
 Location and working arrangement: <fill in>.

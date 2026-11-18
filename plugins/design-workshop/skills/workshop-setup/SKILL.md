@@ -25,13 +25,23 @@ Report each item as **ready**, **needs a check**, **missing** or **optional**:
 1. VS Code Insiders opens, and its Copilot chat is available.
 2. The person is signed in to their own GitHub account and can see their Copilot access and usage.
 3. The current session uses Manual permissions. Explain that previously approved actions may still run automatically.
-4. **Placeholder: paste the checked workshop settings from the site's Get ready page when they are supplied.** Explain their changes and undo before the person applies them. Do not invent, duplicate or edit settings keys. Check supported sandboxing separately; sandboxing and approvals are different controls.
+4. Use the checked two-entry settings snippet on [Get ready](https://eli-w-king.github.io/ai-first-design-workshop/get-ready/). It offers Computer Use and Send Later, both experimental; it grants no tool approval and schedules nothing. Do not keep another copy in this plugin or edit the person's settings on your own. Follow the merge and undo steps below. Check supported sandboxing separately.
 5. The workshop plugin shows all nine skills in a fresh session. Follow [the install guide](../../README.md), not an automatic clone or sync.
 6. The built-in browser can open the person's local page and take a screenshot. Do not install an external browser server for this check.
 7. Git is optional until the person wants branches or a pull request. GitHub CLI is optional; the GitHub website is a supported alternative.
 8. Node and recording tools are optional until a real video is requested. Node alone cannot record one. Use [the recording guide](../demo-walkthrough/references/recording.md).
 
 Do not guess promotional-code redemption, renewal or card requirements. A free month of GitHub Copilot Max does not mean unlimited usage. Have the person review the terms shown to them; no purchase or plan change is part of setup.
+
+## Settings, mode and permissions
+
+Prefer the person-led settings merge on Get ready. Use the checked page as the source, not a remembered snippet. If it is unavailable, stop this step rather than inventing settings.
+
+If the person specifically asks the agent to add the settings, show the two exact entries from that page and the merge steps first. Confirm the Default Profile user-settings file, preserve every unrelated entry, update an existing key instead of adding a duplicate, and explain the comma/braces changes. Get an explicit okay, make an approved private backup first, then edit only those two entries. Never paste or publish the full settings file or its backup. Record each key's previous value or absence. Ask before a restart. Undo also requires a reviewed scope, a backup of current settings if needed, and an explicit okay; restore only the original values and leave later edits intact.
+
+For the Copilot harness, **Interactive**, **Plan** and **Autopilot** are modes. Interactive can carry out work; Plan proposes an approach first. Autopilot continues and auto-approves tools, so it is not the safe workshop default. **Manual**, **Assisted** and **Allow all** are permission levels. Manual follows existing approval rules, Assisted uses a model judgment that can be wrong, and Allow all skips confirmations. **New Worktree sessions always use Allow all.** Keep first practice in an ordinary workspace with Manual permissions. None of these choices is a sandbox, and the settings snippet does not choose them.
+
+Send Later is a one-time scheduled prompt, not a recurring automation. It needs `sessions.sendLater.enabled` from the checked snippet, an awake laptop and a running local host. Local automations need the same awake-host conditions. Neither wakes a sleeping laptop, and disabling a setting does not cancel accepted schedules. Use the request's cancel controls and verify it is gone. Cloud automations are not available for public forks; a separately approved one-off Cloud task is a different workflow.
 
 ## Make one approved change
 

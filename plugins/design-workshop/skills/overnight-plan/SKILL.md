@@ -27,7 +27,7 @@ Ask for approval of the filled agreement. Before any install, send, publish, spe
 
 Keep the laptop plugged in with its lid open. If the person wants a wake lock, explain the temporary change and ask. On macOS, a bounded `caffeinate -i -t 3600` prevents idle system sleep for one hour; keep its process id and stop only that process early if the run finishes. Do not change system sleep settings or install a utility automatically. On other systems, let the person use their power settings and record the original values for restoration.
 
-**A Cloud session, optionally:** check the host's supported execution targets and account access. Explain which repository files are uploaded, whether a branch or PR is created, and the current AI credit and compute costs. Cloud is an execution location, not a model. Ask before starting it. If upload or spend permission is missing, leave a draft handoff instead. Do not provision machines or remote hosts.
+**A Cloud session, optionally:** check the host's supported execution targets and account access. Explain which repository files are uploaded, whether a branch or PR is created, and the current AI credit and compute costs. Cloud is an execution location, not a model. A one-off Cloud task is not a Cloud automation: Cloud automations require eligible private repositories and do not work on public forks. Keep workshop recurring automations local. Ask before starting it. If upload or spend permission is missing, leave a draft handoff instead. Do not provision machines or remote hosts.
 
 ## Set an enforceable budget
 

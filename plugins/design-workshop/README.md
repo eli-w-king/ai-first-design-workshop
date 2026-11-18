@@ -42,10 +42,10 @@ Use VS Code Insiders for the workshop, with Copilot selected as the harness. Oth
 1. Run **Chat: Open Customizations** from the Command Palette.
 2. In **Browse**, open the source menu, then **Configure Marketplaces > Add Marketplace**. Enter `eli-w-king/ai-first-design-workshop#plugin/design-workshop`.
 3. Browse that marketplace, select **design-workshop**, review this README and its contents, then choose **Install** and approve the trust prompt if you agree.
-4. If that preview UI is unavailable, use **Plugins > Browse Marketplace** if offered. For a checked-out copy, **Chat: Install Plugin from Source** can install the local `plugins/design-workshop` folder. If neither route is offered, use the supported CLI route below rather than inventing settings.
+4. If that preview UI is unavailable, use **Plugins > Browse Marketplace** if offered, or the documented local-source or CLI route below. If you choose the Settings route, **append** the workshop source to `chat.plugins.marketplaces`; never replace its array. Preserve every existing entry, including the default `github/awesome-copilot#marketplace`, and avoid duplicates. If the setting is absent, retain that default when adding the workshop source. Show the proposed change and get approval before editing.
 5. Start a fresh session. Open the installed plugin's **Skills** list or type `/` to find its skills. Ask it to list the nine workshop skills, then try the read-only setup check.
 
-If plugin support is disabled, review the host's explanation before changing anything. Workshop setup settings will come from the checked Get ready page, not from this plugin. No global script or private fork is needed.
+If plugin support is disabled, review the host's explanation before changing anything. The checked [Get ready page](https://eli-w-king.github.io/ai-first-design-workshop/get-ready/) owns the workshop's two experimental settings, Computer Use and Send Later. This plugin links to that snippet rather than copying it. For a checked-out copy, use **Chat: Install Plugin from Source** and select its `plugins/design-workshop` folder. No global script or private fork is needed.
 
 ### After a default-branch release
 

@@ -19,6 +19,8 @@ Public documentation checked on November 17, 2026. Features, labels, rates and a
 - [Pages publishing sources](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site) and [custom Pages workflows](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages): branch folders, build artifacts, deployment permissions and the real returned URL.
 - [Local automations](https://code.visualstudio.com/docs/agents/run/automations): first Manual run, enabled state, awake-host requirements and serialized runs.
 
+- [Workshop Get ready](https://eli-w-king.github.io/ai-first-design-workshop/get-ready/): the checked two-entry settings snippet and controls guidance are maintained there, not duplicated in this plugin. Native chat Mark Up is source-checked; clean-account UI rehearsal remains separate.
+
 ## Public source methods
 
 This set adapts the methods in [Eli King's public autonomous output skills](https://github.com/eli-w-king/autonomous-output-skills), reviewed at commit `a5ae7612b1c111dbb8b77990458de6408ad4de0d`:

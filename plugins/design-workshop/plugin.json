@@ -1,7 +1,7 @@
 {
 	"$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
 	"name": "design-workshop",
-	"version": "0.2.0",
+	"version": "0.2.1",
 	"description": "Nine approval-first design skills: setup, variations, real demos, prototypes, small user tests, personal taste, longer-run plans, Pages and portfolio drafts.",
 	"author": {
 		"name": "Eli King",

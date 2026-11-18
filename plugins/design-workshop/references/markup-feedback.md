@@ -8,7 +8,11 @@ Use this loop from prototypes or variations. The designer makes the visual mocku
 2. Draw arrows, circle parts, add short notes, or crop and rearrange pieces to show the intended design.
 3. Paste or attach that image in the chat with the current project open.
 
-Built-in options need no installation: **Screenshot and Markup on macOS**, or **Snipping Tool on Windows** for capture and annotations. Cropping and moving pieces can use an editor the person already has. Do not promise that every built-in tool supports every rearrangement. The workshop's exact markup tool is not yet selected.
+Try the chat's native markup when available: select the **unsent image** in the input, open **Images Preview**, choose **Mark Up**, then **Done** before sending. The source-checked tools include **Arrow**, **Rectangle**, **Ellipse**, **Text**, **Crop** and **Select / Move**, plus drawing and undo. Select / Move moves added annotations, not the original screenshot's pixels. Escape applies and finishes markup; it is not discard. This path is checked in public source, not a completed clean-account UI test.
+
+If Mark Up is unavailable, use **Screenshot and Markup on macOS** or **Snipping Tool on Windows**. These built-in capture and annotation tools need no extra installation. Keep an unedited original and attach the edited image, not just its filename. For cropping and rearranging original pieces, use an editor the person already has that actually supports it; neither native annotation movement nor Snipping Tool proves a layered collage workflow.
+
+Use a vision-capable model and confirm that the image reached it by asking it to identify the real marks. If it cannot, stop for the image or supported tool instead of swapping in text-only feedback. Screenshot capture permission, image attachment, sharing a browser tab and Computer Use activation are separate things. See the [Get ready controls guidance](https://eli-w-king.github.io/ai-first-design-workshop/get-ready/) for current availability and permissions.
 
 ## The agent's part
 

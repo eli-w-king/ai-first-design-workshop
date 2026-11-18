@@ -37,7 +37,7 @@ Use your own feedback, not someone else's message collection. Remove names, empl
 
 In **Automations > Templates from Plugins**, choose **Keep my taste current**. Installing this plugin only makes that template available. It does not create an automation.
 
-Choose this workspace, the model and a reasonable per-run usage cap. A mid-priced model such as GPT-6.2 Sol is a starting suggestion if available. Keep the trigger **Manual** for the first run and choose **Run now**. Use Manual permissions, not Autopilot or Allow all. Stay available for approval prompts.
+Choose **Local**, keep **Run in the Cloud** off, and select this workspace, the model and a reasonable per-run usage cap. A mid-priced model such as GPT-6.2 Sol is a starting suggestion if available. Keep the trigger **Manual** for the first run and choose **Run now**. Use Manual permissions, not Autopilot or Allow all. Stay available for approval prompts.
 
 Review `draft/my-taste/SKILL.md` and `draft/review.md`. Correct the source notes or request a revision if a preference is wrong or too broad. Do not accept every inferred rule just because it has a count.
 

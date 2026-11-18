@@ -8,7 +8,7 @@ schedule:
   expression: "0 9 * * 1"
   timeZone: local
 ---
-Use the taste skill. This one prompt handles both the first run and later updates.
+Use the taste skill. This one prompt handles both the first run and later updates. Run locally in this workspace; keep Run in the Cloud off. Cloud automations are not available for public forks.
 
 Read only this automation's workspace: notes/ in my own words, optional examples/ screenshots, the draft and history here. Never read chat history, email, messaging services, design services, the browser, other folders, or links and symlinks leading outside this workspace. Use only built-in file tools. Require no repository, command-line tools, external schedulers or settings changes.
 
