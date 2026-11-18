@@ -1,7 +1,8 @@
 export const GUIDED_MODULES = [
   {
     number: 1, id: 'module-1', title: 'Set up like me', time: '6:10 PM', end: '6:20 PM',
-    action: 'Paste the checked settings, open the Agents window, make a Workshop folder, and choose GPT-6.2 Sol at medium effort. Keep approvals on and dictate the prompt below. The agent turns sync off in your fork before starting it. Approve each command. While it installs, open skola.cards in the browser, make a deck and try to add a card.',
+    model: "GPT-6.1 Terra, medium",
+    action: 'Paste the checked settings, open the Agents window, make a Workshop folder, and choose GPT-6.1 Terra at medium effort. Keep approvals on and dictate the prompt below. The agent turns sync off in your fork before starting it. Approve each command. While it installs, open skola.cards in the browser, make a deck and try to add a card.',
     prompts: [{ label: 'Dictate or copy this prompt', text: 'Fork h16nning/skola to my GitHub, clone my fork into this folder, make my fork the default for pull requests, turn off its cloud sync so everything stays on my laptop, install it, and start it so I can try it.' }],
     wow: 'You talk to your laptop, and it forks a real open-source app, installs it and runs it. Your copy is on your GitHub.',
     learn: 'Settings, the Agents window, dictation, approvals and the terminal.',
@@ -10,6 +11,7 @@ export const GUIDED_MODULES = [
   },
   {
     number: 2, id: 'module-2', title: 'The brief', time: '6:20 PM', end: '6:23 PM',
+    model: "Read together, no model needed",
     action: 'Read the fictional practice brief together. Connect the Add Card problem to the changes we will make. This is a workshop exercise, not evidence about real retention or the maintainer\'s roadmap.',
     prompts: [], kind: 'brief',
     wow: 'Every change tonight has a reason.',
@@ -19,6 +21,7 @@ export const GUIDED_MODULES = [
   },
   {
     number: 3, id: 'module-3', title: 'Fix it and prove it', time: '6:23 PM', end: '6:31 PM',
+    model: "GPT-6.1 Terra, medium (GPT-6.2 Sol if it stalls)",
     action: 'Once the local-only baseline and task boundaries are checked, review what Autopilot and Allow all permit, then choose them deliberately. Ask for the Add Card fix and a regression test. While it works, use Add to Queue for the deck request, not Steer.',
     prompts: [
       { label: 'Fix and test', text: "New people can't create cards. Reproduce it in the browser, find the cause, fix it, and add a test so it stays fixed." },
@@ -28,11 +31,13 @@ export const GUIDED_MODULES = [
     learn: 'Autopilot, Allow all, the built-in browser, and Add to Queue versus Steer.',
     fallback: 'Leave the fix in its own branch and move on. File import works in the prepared baseline even while the manual Add Card fix is unfinished, so Module 4 can start from the supplied deck.',
     further: 'Reload and study the newly saved card. Inspect the failing-before, passing-after test rather than relying on a summary.',
+    tip: 'Queuing the deck here re-reads the whole bug fix and costs more. To save, start a fresh chat in your fork on GPT-6.1 Terra at low effort instead.',
   },
   {
     number: 4, id: 'module-4', title: '40 cards in a minute', time: '6:31 PM', end: '6:34 PM',
-    action: 'Let the queued message run, then open the deck and check its fronts and backs. The title is the intended quick win, not a measured completion-time promise. Use the supplied practice deck if generation is still running.',
-    prompts: [{ label: 'The queued deck request', text: 'Next, make a 40-card deck of UX laws and principles as a file Skola can import, and import it.' }],
+    model: "GPT-6.1 Terra, low",
+    action: 'Let the queued message run, or send the deck request in a fresh chat on GPT-6.1 Terra at low effort instead. Choose one path, not both. Open the deck and check its fronts and backs. The title is the intended quick win, not a measured completion-time promise. Use the supplied practice deck if generation is still running.',
+    prompts: [{ label: 'The deck request', text: 'Next, make a 40-card deck of UX laws and principles as a file Skola can import, and import it.' }],
     wow: 'Forty accurate cards from one sentence, in a plain file you own.',
     learn: 'Queued work and files as inputs.',
     fallback: 'Download the checked 40-card practice file below. In the prepared app, create a deck, open its Menu, choose Import Cards > From Plain Text, keep the tab separator, select Import and Add Cards, then Close.',
@@ -41,6 +46,7 @@ export const GUIDED_MODULES = [
   },
   {
     number: 5, id: 'module-5', title: 'Redesign from a screenshot', time: '6:34 PM', end: '6:42 PM',
+    model: "GPT-6.1 Terra, medium",
     action: 'Screenshot the real study screen, attach it to the current chat input, select the unsent image and choose Mark Up. Use arrows, circles, notes and crop, then Done and Send. Select / Move moves your added marks, not pieces of the original image. Rearranging original pixels is still being checked.',
     prompts: [{ label: 'Send with your marked image', text: 'Make it look like my markup. Keep it calm and readable.' }],
     wow: 'Your scribble becomes a real redesign in code, live in the browser next to the chat.',
@@ -50,6 +56,7 @@ export const GUIDED_MODULES = [
   },
   {
     number: 6, id: 'module-6', title: 'A feature and three directions', time: '6:42 PM', end: '6:52 PM',
+    model: "Listen mode: GPT-6.2 Sol, medium. Today: GPT-6.1 Terra, medium, in each of three sessions. Synthesis: GPT-6.1 Terra, medium.",
     action: 'Use Plan for Listen mode, review the plan, then build it. Start three Today directions in separate sessions while the feature runs. Schedule the README request for 7:05 PM with Send Later, checking this device\'s time zone. Then attach the six fictional notes and ask for a synthesis.',
     prompts: [
       { label: 'Plan Listen mode', text: "Add Listen mode: a button that reads the side of the card I'm looking at out loud, with a voice already on this device. Never read the side I'm trying to remember. Plan it first." },
@@ -65,6 +72,7 @@ export const GUIDED_MODULES = [
   },
   {
     number: 7, id: 'module-7', title: 'Show it off', time: '6:52 PM', end: '6:55 PM',
+    model: "GPT-6.1 Terra, medium",
     action: 'Start a real 30-second narrated recording of the completed Listen flow on a saved copy. Review the recording tools, voice and any install or cost first. Let it run while the room moves to the next independent task.',
     prompts: [{ label: 'Record the demo', text: 'Record a 30-second demo of Listen mode with a voiceover.' }],
     wow: 'A narrated demo video, made on your laptop.',
@@ -74,6 +82,7 @@ export const GUIDED_MODULES = [
   },
   {
     number: 8, id: 'module-8', title: 'Let it use your app', time: '6:55 PM', end: '7:01 PM',
+    model: "GPT-6.2 Sol, medium",
     action: 'Install your prepared Skola fork as an app where supported, then start Computer Use and grant your own OS permissions. Ask it to import the practice Spanish deck with the real file picker and use Listen mode. Keep Skola cloud sync off and do not sign in.',
     prompts: [{ label: 'Use the real app', text: 'Open my Skola app, import the Spanish travel deck from the Workshop folder with the file picker, and play the first card with Listen mode.' }],
     wow: 'It drives a real desktop app, file picker included, and you hear the feature you just built.',
@@ -84,6 +93,7 @@ export const GUIDED_MODULES = [
   },
   {
     number: 9, id: 'module-9', title: 'Ship it', time: '7:01 PM', end: '7:10 PM',
+    model: "GPT-6.1 Terra (PR and Pages), GPT-6.2 Sol in Cloud",
     action: 'Choose your Today direction and replace <name> in the prompt with its name. Inspect the diff and what will become public before sending. Confirm the PR base is your own fork. Use the checked local-only, attribution and project-Pages prep. While it deploys, delegate the fictional research\'s top next step to a bounded Cloud session in your fork, after checking access and separate Cloud costs. The scheduled README message is due at 7:05.',
     prompts: [{ label: 'Only after reviewing publication', text: 'Bring the <name> direction into my home screen, and make tonight\'s changes the default, with no flags. Then open a PR in my fork with everything from tonight, merge it, and publish it to GitHub Pages. Give me both links.' }],
     wow: 'A live link to your Skola 2.0, a repo for your portfolio, and a PR that an agent finishes while you eat.',
@@ -95,8 +105,34 @@ export const GUIDED_MODULES = [
 ];
 
 export const FREE_MODULES = [
-  { number: 10, title: 'Keep my taste current', text: 'Run the draft automation manually on notes you choose. Review the first taste draft before adopting it; a weekly schedule is a separate choice.', target: 'make-skills-yours' },
-  { number: 11, title: 'Make it a habit', text: 'Plan ten new cards each morning from what you are learning. Test one Manual run first and return the trigger to Manual after the workshop so no scheduled runs keep using credits.', target: 'daily-cards' },
-  { number: 12, title: 'Go deeper on a direction', text: 'Choose a Today direction, merge it only within your own fork, then polish the real screen from a fresh markup.', target: 'parallel-sessions' },
-  { number: 13, title: 'Overnight, take-home', text: 'Plan variations from the fictional research findings, with scope, costs, checkpoints and a stop rule. Do not start unattended work until you approve the plan.', target: 'cloud-and-overnight' },
+  {
+    number: 10, title: 'Keep my taste current', model: 'GPT-6.1 Terra, medium',
+    text: 'Open Templates from Plugins, then Keep my taste current. In the dialog, choose GPT-6.1 Terra at medium effort, keep the trigger Manual, then Run now. Review the first taste draft before adopting it; a weekly schedule is a separate choice.',
+    target: 'make-skills-yours',
+  },
+  {
+    number: 11, title: 'Make it a habit', model: 'GPT-6.1 Terra, low',
+    text: 'Make ten new cards from what you are learning.',
+    steps: [
+      'Make the automation from chat.',
+      'Open it under Automations, set GPT-6.1 Terra at low effort and Save before the first Run now.',
+    ],
+    notes: [
+      "An automation made from chat does not keep the chat's model. Otherwise it runs on the account default, which can cost more.",
+      'Use a tab-separated .txt: one card per line, front, Tab, back, with no header and no quotes. Import it with Import Cards > From Plain Text.',
+      'A quoted CSV imports 0 cards there and still says "Success". Check the card count.',
+      'Set the trigger back to Manual after the workshop so no scheduled runs keep using credits.',
+    ],
+    target: 'daily-cards',
+  },
+  {
+    number: 12, title: 'Go deeper on a direction', model: 'GPT-6.1 Terra, medium (workshop default)',
+    text: 'Choose a Today direction, merge it only within your own fork, then polish the real screen from a fresh markup.',
+    target: 'parallel-sessions',
+  },
+  {
+    number: 13, title: 'Overnight, take-home', model: 'GPT-6.1 Terra, medium',
+    text: 'Plan variations from the fictional research findings, with scope, costs, checkpoints and a stop rule. Do not start unattended work until you approve the plan.',
+    target: 'cloud-and-overnight',
+  },
 ];
