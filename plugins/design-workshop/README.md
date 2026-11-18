@@ -105,6 +105,8 @@ VS Code can discover CLI-installed plugins. Avoid a duplicate installation just 
 
 ## Update or remove
 
+**Moving to 0.3.5:** skills no longer ask the agent to intercept requests in VS Code's built-in browser, where a failing route handler can hang the page. They check the local-only setup in the code and verify requests with the network log. Start a fresh session after updating.
+
 **Moving to 0.3.4:** publish-pages now also checks root-based image paths and links, keeps one manifest and one service worker, and tests the production build at the project path before publishing. Start a fresh session after updating.
 
 **Moving to 0.3.3:** recording tools now use the shared per-user cache and an installed browser. Prepare them before the workshop. An older in-project `.workshop-recording` folder is not moved or deleted automatically; leave it out of app commits and review removal separately. Existing created automations still keep their own saved prompt and model.

@@ -142,7 +142,14 @@ export async function recordWalkthrough({ plan, output, runtime, packageName = '
     context = await browser.newContext({ viewport, serviceWorkers: 'block', acceptDownloads: false });
     const origin = new URL(plan.url).origin;
     await context.route('**/*', route => {
-      if (requestAllowed(route.request().url(), route.request().method(), origin)) return route.continue();
+      // A handler that throws never continues or aborts the request and hangs the page, so fail closed.
+      let allowed = false;
+      try {
+        allowed = requestAllowed(route.request().url(), route.request().method(), origin);
+      } catch {
+        allowed = false;
+      }
+      if (allowed) return route.continue();
       errors.push('Blocked an outside-origin request or a non-read-only request.');
       return route.abort('blockedbyclient');
     });

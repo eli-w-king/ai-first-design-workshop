@@ -45,7 +45,7 @@ If a preparation patch fails before this step, check [patch-file line endings](.
 
 Use the actual project and its pinned package manager, approved dependency install and documented build. Do not substitute a tiny HTML facsimile for the real app. Use an existing local preview tool that serves the built output at the real project prefix. Do not assume its preview server's SPA fallback is available on Pages.
 
-Before any navigation, confirm the approved local-only preparation and block upstream service destinations. Then check:
+Before any navigation, confirm the approved local-only preparation from the code: sync removed, and any content-security policy limiting requests to the app. Verify requests with the network log, not with request interception. In VS Code's built-in browser, `runPlaywrightCode` has no `URL` global, and a route handler that throws leaves the page and every later browser call hanging. Then check:
 
 1. The entry URL, with its trailing slash, loads the real app and all assets.
 2. Navigate to a deeper screen, copy its URL, open it in a fresh tab, then reload. Check the server response too, not only the screen left open from earlier navigation.
