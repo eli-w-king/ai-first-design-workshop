@@ -323,10 +323,6 @@ html:not(.js) .lock-form { display: none; }
 @media (max-width: 600px) { .sample-figure img { aspect-ratio: 390 / 844; } }
 
 .module-meta { display: flex; flex-wrap: wrap; gap: 8px 24px; color: var(--muted); font: 13px/1.5 var(--mono); margin-bottom: 14px; }
-.module-meta span { color: var(--accent); }
-.video-slot { border: 1px dashed var(--edge); border-radius: 8px; background: var(--code-bg); min-height: 132px; padding: 22px; margin-top: 24px; display: grid; align-content: center; gap: 8px; }
-.video-slot strong { font-size: 15px; font-weight: 500; }
-.video-slot p { color: var(--muted); font-size: 14px; margin: 0; }
 .practice-brief { padding: 4px 0 16px; }
 .practice-brief > h3 { font-size: 26px; }
 .practice-brief h4 { font-size: 20px; }

@@ -1,12 +1,12 @@
 export const GUIDED_MODULES = [
   {
     number: 1, id: 'module-1', title: 'Set up like me', time: '6:10 PM', end: '6:20 PM',
-    action: 'Paste the checked settings, open the Agents window, make a Workshop folder, and choose GPT-6.2 Sol at medium effort. Keep approvals on and dictate the prompt below. Approve commands one at a time. While it installs, inspect the prepared local baseline or its screenshots, not the upstream live app. Apply the verified sync-off prep before starting your copy.',
+    action: 'Paste the checked settings, open the Agents window, make a Workshop folder, and choose GPT-6.2 Sol at medium effort. Keep approvals on and dictate the prompt below. The agent turns sync off in your fork before starting it. Approve each command. While it installs, open skola.cards in the browser, make a deck and try to add a card.',
     prompts: [{ label: 'Dictate or copy this prompt', text: 'Fork h16nning/skola to my GitHub, clone my fork into this folder, make my fork the default for pull requests, turn off its cloud sync so everything stays on my laptop, install it, and start it so I can try it.' }],
     wow: 'You talk to your laptop, and it forks a real open-source app, installs it and runs it. Your copy is on your GitHub.',
     learn: 'Settings, the Agents window, dictation, approvals and the terminal.',
-    fallback: 'Keep setup running and join the brief from the screenshots. Use a prepared local-only checkpoint for the next task if one is supplied. Do not start an unprepared copy or claim a fallback is your completed setup.',
-    further: 'Check the fork owner, local folder and default PR destination yourself. The original project stays read-only.',
+    fallback: 'Keep setup running and join the brief from the public app or the checked screenshots. Sync still goes off in your fork before it starts. Ask a host for help if setup stalls.',
+    further: 'Check the fork owner, local folder and default PR destination yourself. The original GitHub repository stays read-only.',
   },
   {
     number: 2, id: 'module-2', title: 'The brief', time: '6:20 PM', end: '6:23 PM',
