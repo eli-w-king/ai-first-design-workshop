@@ -2,6 +2,13 @@ export const SITE_URL = 'https://eli-w-king.github.io/ai-first-design-workshop/'
 export const BASE = '/ai-first-design-workshop/';
 export const DOCS = {
   insiders: 'https://code.visualstudio.com/insiders/',
+  skola: 'https://github.com/h16nning/skola',
+  skolaLicense: 'https://github.com/h16nning/skola/blob/main/LICENSE',
+  node: 'https://nodejs.org/en/download',
+  nodeInstall: 'https://docs.npmjs.com/downloading-and-installing-node-js-and-npm/',
+  npmCache: 'https://docs.npmjs.com/cli/v11/commands/npm-cache/',
+  pwa: 'https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps',
+  viteBase: 'https://vite.dev/guide/build#public-base-path',
   profiles: 'https://code.visualstudio.com/docs/configure/profiles',
   settingsGuide: 'https://code.visualstudio.com/docs/configure/settings',
   agentsConfiguration: 'https://code.visualstudio.com/docs/agents/run/agents-window-configuration',
@@ -69,7 +76,12 @@ export const WORD_GROUPS = [
   { id: 'github', title: 'GitHub and your files', intro: 'The words you will see when saving, reviewing and sharing a change.', terms: [
     ['repository', 'Repository', 'A project folder with its files and change history. A repository, or repo, can live on your laptop and have a shared copy on GitHub.', DOCS.glossary],
     ['clone', 'Clone', 'Download a working copy of a repository and its history. You can edit that local copy without changing the shared one until you push.', DOCS.glossary],
-    ['fork', 'Fork', 'A copy of someone else\'s repository under your own GitHub account. It lets you explore or propose changes without editing their original.', DOCS.glossary],
+    ['fork', 'Fork', 'A copy of a repository under your own GitHub account. Your fork of Skola is your workspace; the original h16nning/skola repository is upstream and stays untouched.', DOCS.glossary],
+    ['upstream', 'Upstream', 'The original repository a fork came from. Treat Skola upstream as read-only in this workshop: every pull request targets your own fork, never the original project.', DOCS.skola],
+    ['open-source-license', 'Open-source license (AGPL)', 'A license sets the conditions for using, changing and sharing a project. Skola uses AGPL-3.0: keep its license and notices, mark your changes and provide access to the corresponding source of your modified version.', DOCS.skolaLicense],
+    ['local-first', 'Local-first', 'The app keeps its working data on your device first. Skola uses browser storage; cloud sync must stay disabled for the workshop.', DOCS.skola],
+    ['pwa', 'PWA', 'A progressive web app can be installed and can cache resources for offline use. What works offline depends on the resources and data already available on that device.', DOCS.pwa],
+    ['base-path', 'Base path', 'The path prefix a site lives under, such as /skola/ on GitHub Pages. Assets, links and app startup paths need to match it; use the checked publishing recipe rather than guessing.', DOCS.viteBase],
     ['branch', 'Branch', 'A separate line of work inside a repository. Use one to try a design while keeping the main version unchanged.', DOCS.glossary],
     ['commit', 'Commit', 'A named checkpoint in your project\'s history. It records the changes you choose, with a short message about what changed.', DOCS.glossary],
     ['push', 'Push', 'Send your local commits to a remote repository, often on GitHub. On a public repository, those files and their history are visible to everyone.', DOCS.glossary],

@@ -313,3 +313,5 @@ html:not(.js) .lock-form { display: none; }
 .control-list dd { margin: 0; }
 .control-list dd span { display: block; color: var(--muted); margin-top: 5px; font-size: 13px; }
 @media (max-width: 600px) { .control-list > div { grid-template-columns: 1fr; gap: 7px; } }
+
+.project-credit { grid-column: 1 / -1; margin: -12px 0 0; }
