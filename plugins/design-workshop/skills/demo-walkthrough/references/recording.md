@@ -1,112 +1,109 @@
-# A real local video
+# A small reusable recorder
 
-Use VS Code's built-in browser tools to rehearse and inspect first. They support interaction and screenshots without an external server plugin. Do not assume they can export a video. This optional route records an actual browser viewport to WebM using Playwright. The capture helper does not record desktop apps or microphone audio. Add approved system speech or a chosen audio file with [the narration guide](narration.md) to meet the workshop's narrated-video goal.
+Use the browser already on the laptop, not another full browser download. The recorder uses Playwright Core with `channel: 'chrome'` or `channel: 'msedge'`, a fresh headless profile and the small capture encoder. A separate full ffmpeg supplies narration and MP4; ffprobe is not required. No extension, sign-in or existing browser tab is needed.
 
-## Check what already exists
+## Before Thursday
 
-Inspect only the current project's tools. You need Node 22 or later, Playwright or Playwright Core, a compatible browser, and Playwright's video encoder. Node alone is not enough. An existing standalone ffmpeg is not automatically a replacement for the encoder Playwright expects.
+Have Node and an installed Chrome on Mac, or Edge on Windows. The plugin is installed during prework too. In chat, this exact request is enough:
 
-If these tools already work, use them with the helper's `--runtime`, `--package`, `--browser` or `--channel` options. Do not search another person's folders, download a browser on failure, or borrow a signed-in profile. The helper uses a fresh headless context and never opens a visible app window.
+> Use demo-walkthrough to prepare the shared recorder with the bundled prepare-recorder installer. Use my installed Chrome or Edge and my configured npm registry. I approve the small recorder install in its per-user cache, outside my project. Do not download another browser or change settings.
 
-## Ask before the optional setup
+The explicit okay covers that recipe. Do not ask again for each package. A new browser, different download size, microphone, voice service or changed scope still needs its own decision. Host/OS permission prompts are separate and must not be bypassed.
 
-Explain this proposal and wait for approval:
-
-> Add Playwright 1.65.1 in a new `.workshop-recording` folder for this project, then separately download its browser and video encoder there. The downloads can use several hundred MB and need internet access. This does not change your app's dependencies, install a browser extension, or grant access to existing browser tabs. We can later remove that one folder, keeping the video files.
-
-The pinned version is the public stable release checked for this guide. Review it before adoption; do not silently use `latest`. If the folder exists, inspect it and choose a new folder instead of overwriting it. Ask before adding an ignore entry for recording tools and private output to an existing repository.
-
-With approval for the package, on macOS or Linux:
+The [standalone installer](../scripts/prepare-recorder.mjs) is ordinary Node code. Review it, then run its installed or downloaded copy:
 
 ```sh
-npm install --prefix .workshop-recording --cache .workshop-recording/npm-cache --registry=https://registry.npmjs.org --save-exact --ignore-scripts playwright@1.65.1
+node PATH_TO_SKILL/scripts/prepare-recorder.mjs --install
 ```
 
-On Windows PowerShell, use the same arguments with `npm.cmd`:
+Without `--install`, it prints the plan and changes nothing. It preserves npm's configured registry, proxy and certificates, disables automatic package scripts, then runs only the reviewed encoder installer. A network/registry failure stops setup; it never switches to public npm. An unrelated or differently pinned existing cache manifest is left unchanged.
 
-```powershell
-npm.cmd install --prefix .workshop-recording --cache .workshop-recording/npm-cache --registry=https://registry.npmjs.org --save-exact --ignore-scripts playwright@1.65.1
+The resulting layout is:
+
+```text
+design-workshop/
+  tools/       packages, private npm/download caches, capture encoder
+  t/           temporary profiles owned by the recorder
+  demos/       plans, narration, raw takes and final videos, separate from tools
 ```
 
-Then, with separate approval for the browser and encoder download, macOS or Linux:
+Locations: macOS `~/Library/Caches/design-workshop`, Windows `%LOCALAPPDATA%\design-workshop`, Linux `~/.cache/design-workshop`. Every project reuses these tools. No `.workshop-recording` folder is created in the app repo. Keep videos outside the repo by default, or in a separately approved ignored folder. Never automatically commit them.
+
+## Measured download sizes
+
+Checked November 18, 2026 with **playwright-core 1.65.0**, **ffmpeg-static 5.3.0**, encoder release **b6.1.1**, and Playwright capture encoder **1013**. The previously documented Core 1.65.1 pin was unavailable in the configured registry; the stable 1.65.0 pin was checked instead, without changing registries.
+
+| Target | Node package payloads | Full encoder and notices | Capture encoder | Total payload |
+| --- | ---: | ---: | ---: | ---: |
+| Mac ARM64 | 3,468,505 bytes | 19,252,384 bytes | 1,430,308 bytes | **24,151,197 bytes (24.16 MB rounded up)** |
+| Windows x64 | 3,468,505 bytes | 29,655,948 bytes | 1,663,577 bytes | **34,788,030 bytes (34.79 MB rounded up)** |
+
+These are compressed package/encoder payloads, not an estimate from the installed folder. Registry metadata and transport overhead are extra. Windows payloads were downloaded and inspected on Mac, not installed or timed on a Windows machine. Other architectures need their own measurement. The first cold Mac install took **9.35 seconds** and used about **107 MB** for tools plus their caches. Those are this connection's measurements, not promises for venue Wi-Fi. No browser was downloaded. The Mac full encoder reports FFmpeg 6.0; the release tag alone is not its executable version.
+
+Use existing suitable media tools when already available. This small standalone route avoids a separate ffprobe binary and a system-wide package-manager install. Keep its bundled license/README files. Do not treat it as a license to process untrusted media indiscriminately or claim the binary is the latest ffmpeg release.
+
+## Exact manual setup, if wanted
+
+The installer above handles these steps. This is the Mac equivalent, with normal npm configuration retained:
 
 ```sh
-PLAYWRIGHT_BROWSERS_PATH="$PWD/.workshop-recording/browsers" node .workshop-recording/node_modules/playwright/cli.js install chromium
+RECORDER="$HOME/Library/Caches/design-workshop"
+mkdir -p "$RECORDER/tools"
+npm install --prefix "$RECORDER/tools" --cache "$RECORDER/tools/npm-cache" --save-exact --ignore-scripts playwright-core@1.65.0 ffmpeg-static@5.3.0
+HOME="$RECORDER/tools/download-home" node "$RECORDER/tools/node_modules/ffmpeg-static/install.js"
+PLAYWRIGHT_BROWSERS_PATH="$RECORDER/tools/browsers" node "$RECORDER/tools/node_modules/playwright-core/cli.js" install ffmpeg
 ```
 
-Windows PowerShell, for this terminal only:
+Only the encoder child's HOME is changed, to contain its cache. npm still uses the person's real configuration. The standalone installer applies equivalent child-only HOME/LOCALAPPDATA/XDG_CACHE_HOME values on Windows and Linux, avoiding permanent environment edits. On Windows, `node PATH_TO_SKILL/scripts/prepare-recorder.mjs --install` uses the installed npm CLI through Node, so it does not require changing PowerShell execution policy.
 
-```powershell
-$env:PLAYWRIGHT_BROWSERS_PATH = "$PWD/.workshop-recording/browsers"
-node .workshop-recording/node_modules/playwright/cli.js install chromium
-```
+Never add a `--registry` override or change certificate/proxy settings as a workaround. If a project's local npm configuration would select a different registry from the cache install, the installer stops for review instead of copying credentials or choosing a registry silently.
 
-If the person prefers an already installed supported Chrome, install only Playwright's encoder with the same command ending in `install ffmpeg`, and use `--channel chrome` when recording. Test this route; browser-version compatibility is not guaranteed. Do not install system dependencies or run an administrator command on failure. Explain the missing item and ask again.
+## Use the installed browser
 
-The [Playwright video documentation](https://playwright.dev/docs/videos) explains `recordVideo` and why the context must close before a file is complete. These commands do not run on plugin installation.
+Chrome is the Mac default; Edge is the Windows default. An already installed alternative channel is fine. If neither works, inspect the specific failure, not another person's browser or profile. A browser download is a separate choice: use the pinned CLI's `install chromium --no-shell --dry-run` to identify the exact archive, check its published byte size, explain it, then obtain a clear okay. Download only that approved browser, not both a browser and a headless shell. Do not install system dependencies or run an administrator command on failure.
 
-Before recording while other work continues, follow [the frozen-target and 30-second guide](thirty-second-demo.md). The helper cannot detect every external source edit, so the caller must supply a stable, isolated target rather than a live-reloading shared page.
+The helper has no installer or automatic browser-download fallback. Its `--browser` option is only for an existing, explicitly approved executable. Browser-version compatibility still needs the actual run. Keep `chromiumSandbox: true`; do not disable it to get past a launch failure.
 
-## Make the plan
+## Rehearse and record
 
-Use the [JSON example](recording-plan.example.json), replacing every label and value with the real local prototype. The example is a format, not a supplied application. Rehearse all steps first. Use a localhost URL owned by this task, an existing local server, or the project's documented start command. Starting a server needs its normal approval; record its process id and preserve an ongoing user-facing preview across queued follow-ups. Stop that preview when the person is done or asks, never a process someone else started.
+Use the [JSON example](recording-plan.example.json), replacing every label with the real controls and the exact approved URL. HTTPS live links and localhost builds are supported. A live-link request records that deployed site, not a rebuilt localhost substitute. Check a completed stable deployment, keep other tasks from publishing during the take, and record its revision when available. The helper also checks the initial document hash afterward, but that does not verify every unversioned asset.
 
-The helper supports `click`, `fill`, `press`, `expect` and a short `wait`. Targets use an exact accessible role and name, or exact visible text. The `ready` and `finish` targets must match visible elements. Use at most 12 steps, no real accounts and no production data. The helper permits only GET and HEAD requests to the chosen localhost origin, blocks service workers and WebSockets, and fails on outside requests, errors, dialogs or new tabs. A prototype that needs a live backend is outside this route.
+For a local request, supply a frozen build with no watcher or hot reload. Rehearse first and use harmless sample data. Keep upstream sync and account services inert. The helper allows only GET/HEAD to the selected origin, blocks workers and sockets, and fails on outside requests, errors, dialogs, downloads or new tabs. It is not a recorder for signed-in accounts or an unrestricted backend workflow.
 
-Choose a new output directory. The helper refuses an existing output folder and writes only under the current working folder. It puts browser scratch state inside that new folder and closes the context and browser even when recording fails. It never installs dependencies, opens an upload destination or deletes prior takes.
+Use `durationSeconds: 30` for a 30-second goal. Choose a final ready control, not an early placeholder. The helper waits for fonts, visible opacity and finite entrance animations before starting capture, not initial blank-page loading. It supports up to 12 bounded real input steps, then holds the final state. A flow that cannot leave final reading time fails rather than cutting actions. The pointer and blue click ring follow real input; app content is never replaced.
 
-Replace `PATH_TO_SKILL` with the actual `demo-walkthrough` directory shown by the installed skill. From the project folder, macOS or Linux:
+Run from the cache root on every invocation. Create a fresh `demos/RUN/` parent and put the plan and narration there. The take folder itself must not exist:
 
 ```sh
-PLAYWRIGHT_BROWSERS_PATH="$PWD/.workshop-recording/browsers" node "PATH_TO_SKILL/scripts/record-walkthrough.mjs" --runtime .workshop-recording --plan recording-plan.json --output demo-take-01
+cd "$HOME/Library/Caches/design-workshop"
+PLAYWRIGHT_BROWSERS_PATH="$PWD/tools/browsers" node "PATH_TO_SKILL/scripts/record-walkthrough.mjs" --runtime tools --channel chrome --plan demos/RUN/plan.json --output demos/RUN/take
+node "PATH_TO_SKILL/scripts/add-narration.mjs" --runtime tools --video demos/RUN/take/walkthrough.webm --audio demos/RUN/narration.aiff --output demos/RUN/tour.mp4 --duration 30 --recording-result demos/RUN/take/result.json
 ```
 
-Windows PowerShell, in the same terminal as the browser-path setting:
+In Windows PowerShell, set the current directory to `$env:LOCALAPPDATA\design-workshop`, set `PLAYWRIGHT_BROWSERS_PATH` for that process/terminal to its `tools\browsers`, use `--channel msedge` and a chosen WAV narration file. Restore a changed terminal variable afterward. All other helper arguments are the same; quote paths containing spaces.
 
-```powershell
-node "PATH_TO_SKILL/scripts/record-walkthrough.mjs" --runtime .workshop-recording --plan recording-plan.json --output demo-take-01
-```
+The optional duration export checks the raw video's checksum and successful recording receipt, leaves at least 2.5 seconds after all actions, and refuses to cut narration. It trims only surplus final idle and retains the original WebM. A receipt or metadata edit is not a substitute for re-recording a failed take.
 
-With an existing Playwright Core installation, pass its project folder as `--runtime`, `--package playwright-core`, and `--browser` with an approved existing browser executable. Do not copy machine-specific paths into the plan or public project.
+## Review and hand off
 
-## What the helper leaves
+The folder contains the actual WebM, start/finish stills, result JSON and, after approved narration, the MP4. Failed captures remain marked failed. Inspect duration, streams, complete decoding, visible pointer, text, timing and full playback. Say what was not checked. The file captures **narration only, not the app's own speech/system audio**, even if the tour includes a Listen button.
 
-- `walkthrough.webm`: a continuous real capture, only when flow checks passed. It still needs visual review.
-- `start.png` and `finish.png`: the actual start and final state when reached.
-- `result.json`: status, source URL, dimensions, video filename, flow checks and any failures.
-- An owned browser-state folder, normally empty after browser shutdown.
+Show the output in VS Code's integrated browser/media preview or return its file path. Never open external Chrome, another app or someone else's browser window to display it. Close owned capture contexts and completed helpers. Do not stop a continuing user-facing dev preview or another session's process.
 
-On failure, a partial video is named `failed-take.webm` when one can be finalized. It is not a finished deliverable. A new take needs a new folder. Do not hide a failed check by editing the JSON or relabeling the file.
+Check the app project's Git status before/after. Tool caches and recordings stay out of an app-only PR, including when someone says "everything". The workshop limit is 1 MB, not 5 MB; a person's stricter limit wins. Committing a video needs separate explicit inclusion approval.
 
-The helper's pointer is an overlay driven by the real input events. It is the only visual annotation. It never changes application content or invokes private app methods to force a result. Read the script before running it.
+## Undo, only with approval
 
-## Optional MP4, only if needed
-
-WebM is a real video and does not require a separate ffmpeg install. If MP4 is needed, prefer an existing ffmpeg. Otherwise ask before installing it: `brew install ffmpeg` with an existing Homebrew on macOS, or `winget install --id Gyan.FFmpeg --exact` with an existing winget on Windows. Explain that these install a shared command-line tool and may add dependencies. Without those package managers, offer the official [ffmpeg download options](https://ffmpeg.org/download.html), not an automatic package-manager install.
-
-Convert without overwriting an existing file:
+Stop active owned captures first. Removing `tools/` removes the shared packages and their private download caches for every project, but preserves `demos/`. From the cache root, the exact tools-only removal is:
 
 ```sh
-ffmpeg -n -i demo-take-01/walkthrough.webm -c:v libx264 -pix_fmt yuv420p -crf 20 -movflags +faststart demo-take-01/walkthrough.mp4
+node -e "require('node:fs').rmSync('tools', { recursive: true })"
 ```
 
-With existing media tools, inspect and decode the file:
+Review the path and shared use before running it. Remove a downloaded installer separately if wanted. Delete no narration or take without its own review. Do not remove pre-existing global ffmpeg, browser installations or unrelated caches. Plugin removal does not remove this cache or any video.
 
-```sh
-ffprobe -v error -show_entries stream=codec_name,width,height:format=duration -of json demo-take-01/walkthrough.webm
-ffmpeg -v error -i demo-take-01/walkthrough.webm -f null -
-```
+## Current-code checks and sources
 
-Play the entire export too. Do not claim a visual review from metadata or selected stills alone. Record any narration or conversion limitation, and the actual tools and versions tested.
+A prewritten real HTTPS plan, including cold setup, speech and export, took 59.25 seconds on the test Mac; a prepared repeat took 47.62 seconds. Final sandbox-preserving capture/export took 48.32 seconds with the voice file already generated. These do not include agent planning or human listening review and are not an app-tour timing promise. The final media was 30.00 seconds, H.264/AAC, 1280x800/30 fps, fully decoded with non-silent narration; the recorded website's source clone stayed Git-clean.
 
-## Undo, only when asked
-
-For an explicitly requested cleanup, first stop the recorder and only the server you own that the person is done with. Do not interrupt an active development preview or queued follow-up. Review the exact files. To remove the newly created recording setup on either platform, this command removes only its named folder, including its private npm cache, packages and browser downloads:
-
-```sh
-node -e "require('node:fs').rmSync('.workshop-recording', { recursive: true })"
-```
-
-Ask before running it. Do not use it if the folder existed before this setup or contains files the person wants. It does not remove `demo-take-01` or the plan. Those are separate deletion decisions. Remove only the ignore entries you added, and restore any previous terminal environment value. In a fresh PowerShell terminal no variable persists; if there was no prior value, `Remove-Item Env:PLAYWRIGHT_BROWSERS_PATH` clears it in the current terminal.
-
-If this setup newly installed standalone ffmpeg, offer `brew uninstall ffmpeg` or `winget uninstall --id Gyan.FFmpeg --exact` after checking other projects do not need it. Never run a broad dependency cleanup. Uninstalling tools does not delete videos or recall any copy shared separately.
+Sources: [installed browser channels](https://playwright.dev/docs/browsers#google-chrome--microsoft-edge), [the screencast API](https://playwright.dev/docs/api/class-screencast), and [pinned encoder release assets](https://github.com/eugeneware/ffmpeg-static/releases/tag/b6.1.1). Keep the selected source stable and verify the actual export; these docs and measurements do not prove another machine's result.

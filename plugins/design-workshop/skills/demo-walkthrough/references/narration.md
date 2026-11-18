@@ -1,10 +1,10 @@
 # Add narration without a voice account
 
-The workshop goal is a short narrated video, not a silent fallback. Use a local system voice or an audio file the person chooses. Ask which they want. Never clone a voice, start a microphone recording, download a voice, or send text to a speech service without separate approval.
+The workshop goal is a short narrated video, not a silent fallback. Use a local system voice or an audio file the person chooses. Use a voice/file already requested. For a generic narrated tour with an up-front okay, choose an installed local voice and state it rather than stopping for another question. Never clone a voice, start a microphone recording, download a voice, or send text to a speech service without separate approval.
 
 ## Plan the words against the real flow
 
-Draft two or three short spoken sentences about the outcome. Use only behavior the prototype really demonstrates. Get the person's okay for the words and voice. Save `narration.txt` in the agreed folder, without overwriting an earlier script.
+Draft two or three short spoken sentences about the outcome. Use only behavior the prototype really demonstrates. Reuse approval for the requested narrated tour; ask once only if the voice, script scope or recording action is not covered. Save `narration.txt` in the agreed folder, without overwriting an earlier script.
 
 Generate or obtain audio before the final capture so its duration is known. Add deliberate reading holds to the recording plan where needed. Keep the final outcome visible while the last sentence finishes. Do not speak over an unrelated state, speed speech up to hide a mismatch or cut words off to fit.
 
@@ -44,23 +44,23 @@ Use a normal audio export such as WAV, AIFF, M4A or MP3 that the existing media 
 
 ## Combine it with the video
 
-The recorder's bundled encoder is for video capture and might not support audio mixing. Prefer an existing full `ffmpeg` and `ffprobe`. If absent, explain and ask before the small [optional media-tool install](recording.md). No additional account or JavaScript package is needed.
+The recorder's bundled encoder is for video capture and might not support audio mixing. Use the shared cache's full ffmpeg, or an approved existing one. The helper measures durations by decoding, so no separate ffprobe download is needed; an existing ffprobe is optional. The [small setup](recording.md) uses ffmpeg-static alongside Core, with no voice account or system-wide package-manager install.
 
-Use the [narration helper](../scripts/add-narration.mjs). Replace `PATH_TO_SKILL` with the installed `demo-walkthrough` directory. From the project folder, on macOS, with a generated AIFF:
+Use the [narration helper](../scripts/add-narration.mjs). Replace `PATH_TO_SKILL` with the installed `demo-walkthrough` directory. From the approved cache root, not the app project, with a new run folder and a generated AIFF:
 
 ```sh
-node "PATH_TO_SKILL/scripts/add-narration.mjs" --video demo-take-01/walkthrough.webm --audio narration.aiff --output demo-take-01/narrated.mp4
+node "PATH_TO_SKILL/scripts/add-narration.mjs" --runtime tools --video demos/RUN/take/walkthrough.webm --audio demos/RUN/narration.aiff --output demos/RUN/tour.mp4 --duration 30 --recording-result demos/RUN/take/result.json
 ```
 
 On Windows use `--audio narration.wav`. For the person's own recorded voice, use that chosen file with the same `--audio` argument. Paths with spaces need quotes. The helper works with either source; it does not generate or clone a voice itself.
 
 The default starts the narration 1.2 seconds into the video. Use `--delay-ms` for an agreed offset. The helper checks measured durations and refuses audio that would run past the video, an input video that already has audio, or an existing output file. Shorten the script or add real holds and record again if needed. Do not silently discard existing audio or replace it.
 
-Play the full MP4 with sound. Check that the right sentence lands on the right action, the voice is intelligible, the pointer remains visible and the ending is not clipped. Decode the whole file and inspect both audio and video streams. A successful mux is not proof of good narration.
+Review the full MP4 with sound in VS Code's integrated preview, or give its file path for the person to open. Never launch an external app or reuse another Chrome/Edge window to display it. Check that the right sentence lands on the right action, the voice is intelligible, the pointer remains visible and the ending is not clipped. Decode the whole file and inspect both audio and video streams. A successful mux is not proof of good narration.
 
 ## Work on something else while it runs
 
-Follow [the frozen 30-second capture plan](thirty-second-demo.md). Serve an immutable snapshot of the real built app from an owned server with no hot reload; do not capture another session's changing development page. A separate browser context alone does not freeze files or sample data. The person can do a separate task in another folder while a bounded recorder or encode runs through the host's supported background-task facility. Verify the process starts and the local page responds; keep its process id and output path. Do not edit the app, rebuild it or reuse the same preview process mid-take.
+Follow [the frozen 30-second capture plan](thirty-second-demo.md). For a live-link request, record the actual stable HTTPS deployment and prevent a new deployment during the take; do not rebuild localhost as a substitute. For a local request, serve an immutable real build from an owned server with no hot reload. Do not capture another session's changing page. A separate browser context alone does not freeze files or sample data. The person can do a separate task in another folder while a bounded recorder or encode runs through the host's supported background-task facility. Verify the process starts and the local page responds; keep its process id and output path. Do not edit the app, rebuild it or reuse the same preview process mid-take.
 
 Return to inspect the actual result and finish the recording/encoding tasks. Clean up capture-only helpers when no longer needed, not the person's ongoing development preview. Keep a development preview you started running while the person is still working in the session or queued follow-ups need it. Give its URL, port, owning terminal/process and how to stop it (Ctrl+C in that terminal or the host's stop control). One completed request is not the end of the session. Stop the preview when the person is done or asks, and never kill a process you did not start. Do not start another agent, buy more capacity or enable a schedule to claim parallel work. If the host cannot continue another task while recording, state that limit.
 

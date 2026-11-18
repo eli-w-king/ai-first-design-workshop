@@ -9,6 +9,8 @@ Write short, plain sentences. Do not use em or en dashes.
 
 The complete default workflow is here. Do not open linked plugin files to start, complete or verify it. Use optional detail only when the person explicitly asks for it. Normal approvals for their files, tools and consequential actions still apply.
 
+A clear request or an explicit okay approves the named actions, targets and scope. Do not ask again for the same approval. State the plan briefly and proceed; ask only about a genuinely missing consequential detail or a changed scope. This does not bypass host/OS permission prompts, change permission levels, authorize unrelated installs or new charges, or grant access to another account.
+
 ## Scope and safety
 
 Read the current project and supplied material. Set one question, audience/task, unchanged surroundings, content, count and work budget. Default to three new directions if no count is given. Name each idea first; replace near copies. A different color is not a different design approach. Do not promise unrehearsed timing.
@@ -40,7 +42,7 @@ Use `baseline: null` if absent, or `kind: reference-image` for a still. Document
 
 ## Parallel sessions when requested
 
-For three directions in separate sessions, get approval for the count, model/cost and ownership. In the Agents window, start three **New Session > This Computer** sessions using the same approved folder and already selected **Branch**, not an automatic New Worktree. Inspect permissions; worktrees can use Allow all. Start all three without waiting for one to finish, and record their identities and states.
+If the person already says to start three local sessions, use that approval and start exactly three without asking again. Keep the current/requested model and permissions, use the approved project and define exclusive files in each brief. Ask only if the scope, provider or additional charges would change. Without an existing request or okay for extra sessions, obtain it first. In the Agents window, start three **New Session > This Computer** sessions using the same approved folder and already selected **Branch**, not an automatic New Worktree. Inspect permissions; worktrees can use Allow all. Start all three without waiting for one to finish, and record their identities and states.
 
 Give each the whole brief and one exclusive file set. The current coordinator owns baseline, shared data/routes and the comparison page. Shared-folder sessions do not isolate files: workers do not switch branches, stage, commit, edit dependencies/shared files or stop each other's processes. Serialize overlapping work or agree on separate source copies. Do not label sequential work or one-chat subagents as three sessions. Use the approved model, or suggest GPT-6.1 Terra at medium effort (low for simple file generation, like a deck file). Switch to GPT-6.2 Sol when the job is hard or Terra stalls. Get approval before changing the agreed model or budget.
 

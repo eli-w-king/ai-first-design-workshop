@@ -9,6 +9,8 @@ Write short, plain sentences. Do not use em or en dashes.
 
 The complete default workflow is here. Do not open linked plugin files to start, complete or verify it. Use optional detail only when the person explicitly asks for it. Normal approvals for their files, tools and consequential actions still apply.
 
+A clear request or an explicit okay approves the named actions, targets and scope. Do not ask again for the same approval. State the plan briefly and proceed; ask only about a genuinely missing consequential detail or a changed scope. This does not bypass host/OS permission prompts, change permission levels, authorize unrelated installs or new charges, or grant access to another account.
+
 ## Draft-only boundaries
 
 Use only selected prototype/notes in an agreed workspace. Never recruit, contact, book, record, launch a study, send or spend. Ask before installs, publishing or deleting. Use participant codes rather than names. Explain model processing and keep real notes out of public repos; if a private workspace is needed, ask the person to choose one rather than writing outside the current workspace yourself.

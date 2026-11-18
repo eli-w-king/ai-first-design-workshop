@@ -1,8 +1,9 @@
-import { readFile, mkdir, realpath, rename, writeFile } from 'node:fs/promises';
+import { readFile, mkdir, realpath, rename, stat, writeFile } from 'node:fs/promises';
 import { resolve, dirname, relative, isAbsolute, sep } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { createRequire } from 'node:module';
 import { parseArgs } from 'node:util';
+import { createHash } from 'node:crypto';
 
 const viewport = { width: 1280, height: 800 };
 const keys = new Set(['Enter', 'Tab', 'Space', 'Escape', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight']);
@@ -22,8 +23,12 @@ function checkTarget(target) {
 export function validatePlan(plan) {
   if (!plan || typeof plan !== 'object' || Array.isArray(plan)) throw new Error('The plan must be a JSON object.');
   const url = new URL(plan.url);
-  if (!['http:', 'https:'].includes(url.protocol) || !['localhost', '127.0.0.1', '[::1]'].includes(url.hostname) || url.username || url.password) {
-    throw new Error('Record only an approved localhost prototype, without URL credentials.');
+  const local = ['localhost', '127.0.0.1', '[::1]'].includes(url.hostname);
+  if (!(url.protocol === 'https:' || (local && url.protocol === 'http:')) || url.username || url.password) {
+    throw new Error('Record only the approved HTTPS site or localhost prototype, without URL credentials.');
+  }
+  if (plan.durationSeconds !== undefined && (!Number.isInteger(plan.durationSeconds) || plan.durationSeconds < 5 || plan.durationSeconds > 60)) {
+    throw new Error('A fixed take must be 5 to 60 seconds.');
   }
   checkTarget(plan.ready);
   checkTarget(plan.finish);
@@ -89,11 +94,16 @@ async function glide(page, locator, cursor) {
   Object.assign(cursor, end);
 }
 
-export async function recordWalkthrough({ plan, output, runtime, packageName = 'playwright', browserPath, channel }) {
-  validatePlan(plan);
-  if (!['playwright', 'playwright-core'].includes(packageName)) throw new Error('Use an existing playwright or playwright-core package.');
+export function browserOptions({ browserPath, channel, platform = process.platform } = {}) {
   if (browserPath && channel) throw new Error('Choose a browser path or a channel, not both.');
   if (channel && !['chrome', 'msedge'].includes(channel)) throw new Error('Only an existing chrome or msedge channel is supported.');
+  return browserPath ? { executablePath: browserPath } : { channel: channel ?? (platform === 'win32' ? 'msedge' : 'chrome') };
+}
+
+export async function recordWalkthrough({ plan, output, runtime, packageName = 'playwright-core', browserPath, channel }) {
+  validatePlan(plan);
+  if (!['playwright', 'playwright-core'].includes(packageName)) throw new Error('Use an existing playwright-core or playwright package.');
+  const launchOptions = browserOptions({ browserPath, channel });
   const cwd = await realpath(process.cwd());
   const outputPath = resolve(output);
   const parent = await realpath(dirname(outputPath));
@@ -101,16 +111,17 @@ export async function recordWalkthrough({ plan, output, runtime, packageName = '
     const rel = relative(cwd, path);
     return rel !== '..' && !rel.startsWith(`..${sep}`) && !isAbsolute(rel);
   };
-  if (outputPath === cwd || !inside(outputPath) || !inside(parent)) throw new Error('Choose a new output folder inside the current project.');
+  if (outputPath === cwd || !inside(outputPath) || !inside(parent)) throw new Error('Run from the approved recording cache and choose a new output folder inside it.');
   await mkdir(outputPath); // Refuse existing takes instead of overwriting them.
-  const statePath = resolve(outputPath, 'browser-state');
-  await mkdir(statePath);
+  const statePath = resolve(cwd, 't');
+  await mkdir(statePath, { recursive: true, mode: 0o700 });
   const savedTemp = Object.fromEntries(['TMPDIR', 'TMP', 'TEMP'].map(key => [key, process.env[key]]));
   for (const key of Object.keys(savedTemp)) process.env[key] = statePath;
 
   const errors = [];
-  const result = { status: 'failed', source: plan.url, viewport, video: null, flowChecksPassed: false, errors };
-  let browser, context, video, timer;
+  const result = { status: 'failed', source: plan.url, viewport, video: null, flowChecksPassed: false, browser: launchOptions, appAudioCaptured: false, requestedDurationSeconds: plan.durationSeconds ?? null, errors };
+  const capturePath = resolve(outputPath, 'capture.webm');
+  let browser, context, page, recording = false, timer;
   const abort = reason => {
     errors.push(reason);
     void browser?.close().catch(() => {});
@@ -121,9 +132,14 @@ export async function recordWalkthrough({ plan, output, runtime, packageName = '
   try {
     const require = createRequire(resolve(runtime, 'package.json'));
     const { chromium } = require(packageName);
-    browser = await chromium.launch({ headless: true, executablePath: browserPath, channel, timeout: 30000 });
+    browser = await chromium.launch({ ...launchOptions, headless: true, chromiumSandbox: true, timeout: 30000 });
     timer = setTimeout(() => abort('Recording exceeded its 90-second limit.'), 90000);
-    context = await browser.newContext({ viewport, recordVideo: { dir: outputPath, size: viewport }, serviceWorkers: 'block', acceptDownloads: false });
+    result.browserVersion = browser.version();
+    result.browserSandboxRequested = true;
+    const control = await browser.newBrowserCDPSession();
+    result.browserProcessIds = (await control.send('SystemInfo.getProcessInfo')).processInfo.map(process => process.id);
+    await control.detach();
+    context = await browser.newContext({ viewport, serviceWorkers: 'block', acceptDownloads: false });
     const origin = new URL(plan.url).origin;
     await context.route('**/*', route => {
       if (requestAllowed(route.request().url(), route.request().method(), origin)) return route.continue();
@@ -131,12 +147,11 @@ export async function recordWalkthrough({ plan, output, runtime, packageName = '
       return route.abort('blockedbyclient');
     });
     await context.routeWebSocket('**/*', socket => {
-      errors.push('Blocked a WebSocket; this recorder supports local static prototypes.');
-      socket.close();
+      errors.push('Blocked a WebSocket; record a stable static deployment or frozen local build.');
+      void socket.close();
     });
     await context.addInitScript(installPointer);
-    const page = await context.newPage();
-    video = page.video();
+    page = await context.newPage();
     context.on('page', popup => {
       errors.push('The flow opened another tab. Keep the demo in one page.');
       void popup.close().catch(() => {});
@@ -154,10 +169,31 @@ export async function recordWalkthrough({ plan, output, runtime, packageName = '
       errors.push('An unexpected download started.');
       void download.cancel().catch(() => {});
     });
-    await page.goto(plan.url, { waitUntil: 'load', timeout: 15000 });
-    await targetFor(page, plan.ready).waitFor({ state: 'visible' });
+    const response = await page.goto(plan.url, { waitUntil: 'load', timeout: 15000 });
+    if (!response || !response.ok()) throw new Error('The approved page did not load successfully.');
+    const sourceUrl = page.url();
+    const fingerprint = createHash('sha256').update(await response.body()).digest('hex');
+    result.documentSha256 = fingerprint;
+    const ready = targetFor(page, plan.ready);
+    await ready.waitFor({ state: 'visible' });
+    const readyElement = await ready.elementHandle();
+    try {
+      await page.waitForFunction(element => {
+        if (!element?.isConnected || document.fonts.status !== 'loaded') return false;
+        for (let node = element; node instanceof Element; node = node.parentElement) {
+          const style = getComputedStyle(node);
+          if (Number(style.opacity) < 0.98 || style.visibility !== 'visible') return false;
+          if (node.getAnimations().some(animation => animation.playState === 'running' && animation.effect?.getComputedTiming().iterations !== Infinity)) return false;
+        }
+        return true;
+      }, readyElement, { timeout: 10000 });
+    } finally { await readyElement?.dispose(); }
     await page.mouse.move(24, 24);
     await page.screenshot({ path: resolve(outputPath, 'start.png') });
+    if (errors.length) throw new Error('Fix the page errors before recording.');
+    await page.screencast.start({ path: capturePath, size: viewport, fps: 30 });
+    recording = true;
+    const started = performance.now();
     await sleep(2000);
     const cursor = { x: 24, y: 24 };
     for (const step of plan.steps) {
@@ -184,14 +220,25 @@ export async function recordWalkthrough({ plan, output, runtime, packageName = '
       await sleep(800);
     }
     await targetFor(page, plan.finish).waitFor({ state: 'visible' });
-    await sleep(2500);
-    if (errors.length) throw new Error('The take contains errors and is not a finished demo.');
+    result.actionsFinishedSeconds = (performance.now() - started) / 1000;
     await page.screenshot({ path: resolve(outputPath, 'finish.png') });
+    const remaining = plan.durationSeconds === undefined ? 2500 : plan.durationSeconds * 1000 - (performance.now() - started);
+    if (remaining < 2500) throw new Error('The flow leaves too little final reading time. Shorten it and retake; do not cut actions.');
+    await sleep(remaining);
+    await page.screencast.stop();
+    recording = false;
+    result.captureWallSeconds = (performance.now() - started) / 1000;
+    const check = await context.request.get(sourceUrl, { maxRedirects: 0, headers: { 'Cache-Control': 'no-cache' }, timeout: 15000 });
+    if (!check.ok() || createHash('sha256').update(await check.body()).digest('hex') !== fingerprint) {
+      throw new Error('The page document changed during the take. Wait for a stable deployment and retake.');
+    }
+    if (errors.length) throw new Error('The take contains errors and is not a finished demo.');
     result.flowChecksPassed = true;
   } catch (error) {
     errors.push(error.message);
   } finally {
     clearTimeout(timer);
+    if (recording) await page?.screencast.stop().catch(error => errors.push(`Could not finalize the recording: ${error.message}`));
     await context?.close().catch(error => errors.push(`Could not finalize the context: ${error.message}`));
     await browser?.close().catch(error => errors.push(`Could not close the browser: ${error.message}`));
     process.removeListener('SIGINT', interrupt);
@@ -202,15 +249,16 @@ export async function recordWalkthrough({ plan, output, runtime, packageName = '
     }
   }
   if (errors.length) result.flowChecksPassed = false;
-  if (video) {
-    try {
-      const filename = result.flowChecksPassed ? 'walkthrough.webm' : 'failed-take.webm';
-      await rename(await video.path(), resolve(outputPath, filename));
-      result.video = filename;
-    } catch (error) {
-      result.flowChecksPassed = false;
-      errors.push(`Could not finalize the video: ${error.message}`);
-    }
+  try {
+    const info = await stat(capturePath);
+    if (info.size === 0) throw new Error('The recorded file is empty.');
+    const filename = result.flowChecksPassed ? 'walkthrough.webm' : 'failed-take.webm';
+    await rename(capturePath, resolve(outputPath, filename));
+    result.video = filename;
+    result.videoSha256 = createHash('sha256').update(await readFile(resolve(outputPath, filename))).digest('hex');
+  } catch (error) {
+    result.flowChecksPassed = false;
+    errors.push(`Could not finalize the video: ${error.message}`);
   }
   result.status = result.flowChecksPassed && result.video ? 'recorded-needs-visual-review' : 'failed';
   await writeFile(resolve(outputPath, 'result.json'), JSON.stringify(result, null, 2) + '\n', { flag: 'wx' });
@@ -221,11 +269,11 @@ export async function recordWalkthrough({ plan, output, runtime, packageName = '
 async function main() {
   const { values } = parseArgs({ options: {
     plan: { type: 'string' }, output: { type: 'string' }, runtime: { type: 'string' },
-    package: { type: 'string', default: 'playwright' }, browser: { type: 'string' }, channel: { type: 'string' },
+    package: { type: 'string', default: 'playwright-core' }, browser: { type: 'string' }, channel: { type: 'string' },
     help: { type: 'boolean', short: 'h' }
   }});
   if (values.help) {
-    console.log('Record an owned localhost prototype. No installation or upload.\n--plan FILE --output NEW_FOLDER --runtime EXISTING_PROJECT\nOptional: --package playwright-core --browser EXECUTABLE, or --channel chrome\nRead references/recording.md and approve any missing tools first.');
+    console.log('Record the approved HTTPS site or localhost build. No installation or upload.\nRun from the approved outside-repo recording folder.\n--plan FILE --output NEW_FOLDER --runtime TOOL_CACHE\nDefaults: playwright-core and installed Chrome (Edge on Windows).\nOptional: --channel chrome|msedge, or an explicitly approved --browser EXECUTABLE.\nNo app/system audio is captured.');
     return;
   }
   if (!values.plan || !values.output || !values.runtime) throw new Error('Provide --plan, --output and --runtime. Use --help for the contract.');

@@ -1,5 +1,7 @@
 # Let the agent try your app
 
+Computer Use needs **Interactive mode and Manual permissions**, not Autopilot. The first time it touches each app, click **Allow in the native permission panel**, not a chat card. Autopilot can cancel that request; do not keep retrying calls while the panel is unanswered. This is separate from screenshot markup and browser DOM automation.
+
 This is a handoff to the host's supported Computer Use capability, not a bundled desktop-control tool. Keep screenshot markup separate: the person editing an image is not Computer Use.
 
 1. Use the checked [Get ready guide](https://eli-w-king.github.io/ai-first-design-workshop/get-ready/) for availability, activation, any first-use download and the person's own OS permissions. Ask before installing a PWA or any helper. Never grant permissions or change settings on the person's behalf without an explicit okay.

@@ -1,5 +1,7 @@
 # Screenshot markup to a real change
 
+Computer Use needs **Interactive mode and Manual permissions**, not Autopilot. The first time it touches each app, click **Allow in the native permission panel**, not a chat card. Autopilot can cancel that request; do not keep retrying calls while the panel is unanswered. This is separate from screenshot markup and browser DOM automation.
+
 Use this loop from prototypes or variations. The designer makes the visual mockup; the agent edits the real component. Do not call the person's screenshot editing Computer Use.
 
 ## The person's part

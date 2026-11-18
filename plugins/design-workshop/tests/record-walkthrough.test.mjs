@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { validatePlan, requestAllowed } from '../skills/demo-walkthrough/scripts/record-walkthrough.mjs';
+import { validatePlan, requestAllowed, browserOptions } from '../skills/demo-walkthrough/scripts/record-walkthrough.mjs';
 
 const plan = () => ({
   url: 'http://127.0.0.1:4173/',
@@ -9,10 +9,11 @@ const plan = () => ({
   finish: { text: 'Saved locally.' }
 });
 
-test('requires a local unauthenticated URL and visible start and finish targets', () => {
+test('accepts approved HTTPS or local sources but refuses insecure remote and credentialed URLs', () => {
   assert.doesNotThrow(() => validatePlan(plan()));
-  for (const url of ['https://example.com', 'file:///index.html', 'http://user:secret@localhost:4173/', 'http://localhost.example.com/']) {
-    assert.throws(() => validatePlan({ ...plan(), url }), /localhost/);
+  assert.doesNotThrow(() => validatePlan({ ...plan(), url: 'https://example.com/my-fork/', durationSeconds: 30 }));
+  for (const url of ['http://example.com', 'https://user:secret@example.com/', 'file:///index.html', 'http://user:secret@localhost:4173/', 'http://localhost.example.com/']) {
+    assert.throws(() => validatePlan({ ...plan(), url }), /HTTPS|localhost/);
   }
   assert.throws(() => validatePlan({ ...plan(), finish: undefined }), /target/i);
   assert.throws(() => validatePlan({ ...plan(), ready: { role: 'heading', name: 'Notes', text: 'Notes' } }), /Targets/);
@@ -36,4 +37,13 @@ test('allows only reads to the exact approved origin', () => {
     ['https://example.com/', 'GET'],
     ['http://user:secret@127.0.0.1:4173/', 'GET']
   ]) assert.equal(requestAllowed(url, method, origin), false);
+});
+
+test('uses existing browser channels unless an explicit executable was chosen', () => {
+  assert.deepEqual(browserOptions({ platform: 'darwin' }), { channel: 'chrome' });
+  assert.deepEqual(browserOptions({ platform: 'win32' }), { channel: 'msedge' });
+  assert.deepEqual(browserOptions({ browserPath: '/approved/browser' }), { executablePath: '/approved/browser' });
+  assert.throws(() => browserOptions({ browserPath: '/approved/browser', channel: 'chrome' }), /not both/);
+  assert.throws(() => browserOptions({ channel: 'chromium' }), /existing/);
+  for (const durationSeconds of [0, 61, 30.5]) assert.throws(() => validatePlan({ ...plan(), durationSeconds }), /5 to 60/);
 });

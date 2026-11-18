@@ -1,6 +1,8 @@
 # Laptop checklist
 
-Use this as a menu, not an installer. Check only what the selected task needs. Ask before changing anything, show its undo, and wait. Do not remove a tool that was already present.
+Computer Use needs **Interactive mode and Manual permissions**, not Autopilot. The first time it touches each app, click **Allow in the native permission panel**, not a chat card. Autopilot can cancel that request; do not keep retrying calls while the panel is unanswered. This is separate from screenshot markup and browser DOM automation.
+
+Use this as a menu, not an installer. Check only what the selected task needs. Reuse approval for explicitly requested actions; ask only about an unapproved change and show its undo. During setup, do not add tests, lint, production builds or an extra preview build unless requested. Do not remove a tool that was already present.
 
 ## Read-only checks
 
@@ -13,7 +15,7 @@ Use this as a menu, not an installer. Check only what the selected task needs. A
 | Plugin | Open **Chat: Open Customizations > Plugins**, then inspect `design-workshop`. In CLI, `copilot plugin list` and `copilot skill list`. | Use the [plugin installation guide](../../../README.md). Start a new session afterward. |
 | Browser tools | Open a harmless local HTML file in an agent-owned browser tab and take a screenshot. | Check **Configure Tools > Built-in > Browser** if available. Use the checked Get ready instructions; do not add another settings block. An unsupported host remains unsupported. |
 | Git, prework | On macOS, check `xcode-select -p` first so a Git stub does not unexpectedly open an installer. Then `git --version` if installed. On Windows, `Get-Command git` then `git --version`. | Offer a supported installer, not an automatic download. |
-| GitHub CLI, optional | `gh --version`, then `gh auth status` without printing tokens. | Use the website instead, or offer the official CLI install. |
+| GitHub CLI, workshop prework | `gh --version`, then `gh auth status` without printing tokens. The person completes `gh auth login` with HTTPS and Git authentication. | Offer the official CLI install for the fork-and-ship workshop; file-only tasks do not need it. |
 | Node, prework | `node --version`, `npm --version` and `npx --version` in a fresh VS Code terminal. Compare with the current LTS on the official download page and the project's runtime requirements. | Offer the [current LTS](https://nodejs.org/en/download), with approval; preserve other projects' runtime needs. |
 | Project dependencies, in the fork | Read the package-manager pin, lockfile, scripts and workspace scope. | Use the [pinned npx guide](project-dependencies.md) only after explaining and approving the install. |
 | Video tools, optional | Inspect whether the approved recording runtime, browser and video encoder already exist. | Follow the [video guide](../../demo-walkthrough/references/recording.md). Do not infer recording readiness from Node alone. |

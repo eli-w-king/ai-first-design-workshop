@@ -28,11 +28,11 @@ Check the importer's accepted extensions and separator. Some plain-text importer
 
 ## Save and check
 
-Write a new file under `decks/`, such as `decks/cards-YYYY-MM-DD-HHMM.txt`, using a unique suffix if that name exists. Preserve earlier decks and the input notes. If a folder write is not yet approved, present the proposed path and wait.
+Honor an explicitly requested path under the verified project, not the chat's private folder, and the requested count. When no filename was given, write a new file under `decks/`, such as `decks/cards-YYYY-MM-DD-HHMM.txt`, using a unique suffix if that name exists. Preserve earlier decks and the input notes. If a folder write is not yet approved, present the proposed path and wait.
 
 For the default format, check exactly one literal Tab per nonblank line, two nonempty fields, no quotation marks, no duplicate concepts and the requested count: ten lines by default and for Daily cards. Keep a separate short review file with the count, format, source note ids, uncertainties and any importer check still needed. Do not add a third source column unless the importer supports it and the person wants it.
 
-Writing the deck is not permission to import it. If the person explicitly asks to import, confirm the destination is their approved local-only app or fork. Record the destination card count, use its actual file picker or supported import flow, inspect the preview, then verify the count increased by the expected number and sample fronts/backs are correct. Never trust a **Success** message alone; zero imported cards is a failed import. Never sign in to upstream services or automatically re-import after an ambiguous result. If no importer was exercised, say **file checked, import not yet verified**.
+Writing alone is not permission to import, but an explicit request to create and import it already approves both. Reuse the owned browser/page with the person's current deck when available; do not ask again or import twice. If the person explicitly asks to import, confirm the destination is their approved local-only app or fork. Record the destination card count, use its actual file picker or supported import flow, inspect the preview, then verify the count increased by the expected number and sample fronts/backs are correct. Never trust a **Success** message alone; zero imported cards is a failed import. Never sign in to upstream services or automatically re-import after an ambiguous result. If no importer was exercised, say **file checked, import not yet verified**.
 
 ## Repeat only if wanted
 

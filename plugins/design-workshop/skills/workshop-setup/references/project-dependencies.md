@@ -8,7 +8,7 @@ Use the **current LTS** from [nodejs.org](https://nodejs.org/en/download) for th
 
 Open a fresh VS Code terminal and check `node --version`, `npm --version` and `npx --version`. On Windows use `npm.cmd` and `npx.cmd` if PowerShell's script policy blocks the shims; do not relax execution policy as a workaround. Keep the person's own sign-in and administrator prompts in their hands.
 
-Inside the selected fork, inspect `package.json`, its exact `packageManager` version, the lockfile, any workspace definition, registry configuration and install/build scripts. Do not print credential values. A workspace install can affect every package in that workspace. If there is no checked pin or the folder is not the expected project, stop and ask instead of choosing `latest`.
+Inside the selected fork, inspect `package.json`, its exact `packageManager` version, the lockfile, any workspace definition, registry configuration and install/build scripts. Respect the person's configured npm registry, proxy, certificates and settings. Never force `registry.npmjs.org` or silently switch registries after an error. Explain a network/registry failure and ask about the intended configuration; do not print credential values. A workspace install can affect every package in that workspace. If there is no checked pin or the folder is not the expected project, stop and ask instead of choosing `latest`.
 
 ## Explain the proposed command
 
@@ -48,7 +48,7 @@ Do not blindly approve dependency build scripts. A skipped native-tool script is
 
 Without the local-cache flag, `npm config get cache` shows the npm cache location. Its defaults are usually `~/.npm` on macOS and `%LocalAppData%\npm-cache` on Windows. The downloaded runner is not a global pnpm installation, but its cache can remain after the project is deleted. Explain that distinction.
 
-After an approved install, use the same pin and cache options for the project's documented scripts. Verify the actual dev and production build paths, including any skipped-script warning. Before any app launch, confirm [upstream hosted services are inert](../../prototypes/references/fork-guardrails.md). Do not test by signing in or contacting the original project's server. Keep a development preview you started running while the person is still working in the session or queued follow-ups need it. Give its URL, port, owning terminal/process and how to stop it (Ctrl+C in that terminal or the host's stop control). One completed request is not the end of the session. Stop the preview when the person is done or asks, and never kill a process you did not start.
+After an approved install, use the same pin and cache options for the project's documented scripts. During setup, verify only the requested dev-server path and relevant skipped-script warning. Do not run tests, lint, production builds or an extra preview build unless requested. A later fix or shipping task has its own check scope. Before any app launch, confirm [upstream hosted services are inert](../../prototypes/references/fork-guardrails.md). Do not test by signing in or contacting the original project's server. Keep a development preview you started running while the person is still working in the session or queued follow-ups need it. Give its URL, port, owning terminal/process and how to stop it (Ctrl+C in that terminal or the host's stop control). One completed request is not the end of the session. Stop the preview when the person is done or asks, and never kill a process you did not start.
 
 ## Keep shared patches byte for byte
 

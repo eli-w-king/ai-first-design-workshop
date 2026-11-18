@@ -9,6 +9,8 @@ Write short, plain sentences. Do not use em or en dashes.
 
 The complete default workflow is here. Do not open linked plugin files to start, complete or verify it. Use optional detail only when the person explicitly asks for it. Normal approvals for their files, tools and consequential actions still apply.
 
+A clear request or an explicit okay approves the named actions, targets and scope. Do not ask again for the same approval. State the plan briefly and proceed; ask only about a genuinely missing consequential detail or a changed scope. This does not bypass host/OS permission prompts, change permission levels, authorize unrelated installs or new charges, or grant access to another account.
+
 ## Boundaries
 
 Read only the chosen workspace: `notes/`, explained screenshots in `examples/`, `draft/` and `history/`. Never read chat history, accounts, browser pages, other folders or symlinks leading outside. Notes go to the selected model; nothing is published. Use built-in file tools, not command-line setup, a repository, a scheduler or settings changes.

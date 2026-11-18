@@ -80,3 +80,9 @@ Use built-in browser tools first to open the actual URL and exercise the real ap
 ## Take it down
 
 With approval, use **Settings > Pages > Unpublish site**. Restore the recorded prior configuration only if the person wants it restored. Removing a Pages deployment does not remove the public repository, commits, forks, downloads or cached copies. Never delete the repository as a routine undo step. GitHub's [Pages guide](https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site) explains supported sources and account requirements.
+
+For the workshop, use the `workshop` branch and never commit directly on `main` or the default branch. Before any commit/PR, review status, the diff and file sizes; exclude videos, recordings, generated/tool/dependency folders and files over 1 MB unless the person explicitly set another limit. "Everything" does not override an app-only request. A combined own-fork PR, merge and Pages request already approves that sequence, but not a visibility change, sensitive upload or extra charge. A deployment-status-only request makes no file or Git writes.
+
+## Fork workflow registration
+
+Before publishing, check `gh api repos/OWNER/REPO/actions/workflows`. If `total_count` is 0, stop: "Open your fork on GitHub, go to Actions, click 'I understand my workflows, go ahead and enable them', then tell me to continue." That fork opt-in has no API replacement; PUT enable against an unregistered workflow returns 404. Recheck after the click. Do not fall back to a package deploy script, gh-pages push or upstream CNAME. A branch route requires an explicit request and already built files. Pages' Actions source can be configured with an approved `POST .../pages -f build_type=workflow` for a new site, or Settings > Pages > Source: GitHub Actions; it does not replace the fork opt-in.

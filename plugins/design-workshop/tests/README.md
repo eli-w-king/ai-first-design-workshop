@@ -1,5 +1,7 @@
 # Validation
 
+Computer Use needs **Interactive mode and Manual permissions**, not Autopilot. The first time it touches each app, click **Allow in the native permission panel**, not a chat card. Autopilot can cancel that request; do not keep retrying calls while the panel is unanswered. This is separate from screenshot markup and browser DOM automation.
+
 Nothing in this folder runs on installation. These are maintainer checks, not attendee prerequisites.
 
 From the repository root, using an existing Python installation with PyYAML and Node 22 or later:
@@ -10,7 +12,7 @@ python3 -B -m unittest discover -s plugins/design-workshop/tests -p "*_test.py"
 node --test plugins/design-workshop/tests/*.test.mjs
 ```
 
-The first command parses every skill's YAML frontmatter, checks names and description lengths, validates package metadata and all three opt-in automation templates, resolves relative Markdown links and headings, and rejects em and en dashes. The Python unit tests reject missing or duplicate automation identities, hidden execution settings, unreviewed schedules and guide dependencies in default workflows. The Node tests cover recording-plan bounds, localhost-only read requests and narration timing that must not cut off words.
+The first command parses every skill's YAML frontmatter, checks names and description lengths, validates package metadata and all three opt-in automation templates, resolves relative Markdown links and headings, and rejects em and en dashes. The Python unit tests reject missing or duplicate automation identities, hidden execution settings, unreviewed schedules and guide dependencies in default workflows. The Node tests cover recording-plan bounds, approved-origin read requests and narration timing that must not cut off words.
 
 ## Isolated CLI check
 
@@ -22,7 +24,7 @@ A small model trial consumes AI usage. If authorized, use a mid-priced model, a 
 
 ## Recording checks
 
-Use only an existing approved browser and recording runtime, or separately approve a project-local install. Run the helper against a harmless local fixture with one input, one button and a visible result. Verify the actual WebM decodes, its dimensions, the initial and final screenshots, the pointer and the full continuous playback. Also verify a page error is reported as a failed take and that an existing output folder is not overwritten. Stop the fixture server and browser you started.
+Use only an existing approved browser and recording runtime, or use an explicitly approved per-user recorder cache outside the project. Run the helper against a harmless local fixture with one input, one button and a visible result. Verify the actual WebM decodes, its dimensions, the initial and final screenshots, the pointer and the full continuous playback. Also verify a page error is reported as a failed take and that an existing output folder is not overwritten. Stop the fixture server and browser you started.
 
 ## Release limits
 
@@ -78,3 +80,17 @@ A planning probe supplies a goal and off-limits work but leaves other details un
 On November 18, 2026, a new paired **GPT-6.1 Terra, medium effort** check used the same local-live-plugin route for the 0.3.1 baseline and final 0.3.2 candidate. Each baseline skill (taste, variations, overnight-plan) emitted **two Manual permission requests, two denied completions and two denied guide-file calls**. Each final skill emitted **zero**, with no plugin-file calls. The explicit plugin-read deny was still present and there was no broad path approval. These are CLI event counts, not a GUI rehearsal; they differ from the earlier cached-plugin/Sol observation.
 
 All nine Terra trials used **19.33832 credits** together, including baselines and three focused follow-ups. The deck trial used **low effort**, wrote ten valid literal-Tab `.txt` records with a comma-containing answer, excluded prior concepts and correctly left import unverified. The planning-limits probe used medium effort, proposed defaults, asked one essential question and attempted no shell call. The default-change probe preserved a before copy and changed the normal entry file without a hidden flag. Browser and actual GUI Plan-mode checks were not performed.
+
+## Recorder and guided-hour follow-up, November 18, 2026
+
+The 0.3.3 pipeline uses Core 1.65.0 with installed Chrome/Edge, ffmpeg-static 5.3.0 and the small capture encoder. No browser or separate ffprobe is downloaded. Measured compressed payloads are 24,151,197 bytes on Mac ARM64 and 34,788,030 bytes for Windows x64, excluding registry metadata/transport overhead. Windows artifacts were downloaded and checked on Mac, not natively executed. The unavailable Core 1.65.1 pin was replaced with the checked stable pin without changing the configured registry.
+
+An empty-cache standalone setup took 5.87 seconds on the test connection; an earlier manual cold setup took 9.35 seconds. A prewritten real HTTPS capture plan, including cold setup, local speech and export, took 59.25 seconds; its prepared repeat took 47.62 seconds. The final sandbox-preserving capture/export verification took 48.32 seconds with already generated narration. These are mechanical pipeline timings, not total agent planning or a classroom-app tour promise.
+
+The recorded surface was the actual owned workshop HTTPS landing page because the selected app fork had no verified live Pages site. The final file is 30.00 seconds, H.264/AAC, 1280x800 at 30 fps. It fully decoded and had non-silent installed-system-voice narration, with no app/system audio. Full-span contact sheets and opening/middle/ending frames were inspected; human listening review was not performed. The source project clone stayed Git-clean and every output remained outside it.
+
+A changing-document fixture correctly failed the take. A mismatched raw-video checksum could not authorize a trim, existing output could not be overwritten and existing audio could not be silently replaced. The helpers close owned capture browsers; no other window/profile is used to show a file. Nine Node tests cover the recorder boundaries, measured/trimmed timing and cache-manifest protection, alongside the seven Python metadata/read-boundary tests.
+
+A bounded GPT-6.1 Terra medium probe used a local `gh api` stub returning `total_count: 0`. It stopped with the exact manual Actions opt-in instruction, made no fallback or repository write and preserved its inputs. No real fork or repository API request was used. The first fixture permission attempt and successful retry together used 2.36793 credits. This is a mocked gate test, not a live deployment rehearsal.
+
+Computer Use's Interactive/Manual requirement and per-app native Allow panel come from the reference-run finding. This package check did not run native app control. The whole revised guided-hour sequence and Windows-native setup still need their own rehearsal.

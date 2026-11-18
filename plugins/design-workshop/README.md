@@ -1,10 +1,12 @@
 # Design workshop skills
 
+Computer Use needs **Interactive mode and Manual permissions**, not Autopilot. The first time it touches each app, click **Allow in the native permission panel**, not a chat card. Autopilot can cancel that request; do not keep retrying calls while the panel is unanswered. This is separate from screenshot markup and browser DOM automation.
+
 Nine practical skills for designers working on their own laptops and projects. Explore options, fix and test a working prototype, prepare input files, record it and review work to share. Use the [screenshot markup loop](references/markup-feedback.md) to turn your arrows and rearranged pieces into changes in the real code. Each task can start from your own files; none depends on finishing an earlier workshop exercise.
 
 This is a community workshop resource, not an official Microsoft or GitHub product.
 
-**Branch preview:** this version is on `plugin/design-workshop`, not the default branch. Use the preview instructions below until a release is approved. Nothing in this plugin runs on installation.
+**Release status:** this work is on `plugin/design-workshop`, not the default branch yet. After PR #1 merges, attendees use the main-release steps below. Until then, maintainers use the clearly marked preview source. Nothing in this plugin runs on installation.
 
 ## The skills
 
@@ -39,45 +41,59 @@ Only the skill package: instructions, references, a taste-draft structure, optio
 
 These are instructions, not a security sandbox. Review tool requests and keep the host's approval and sandbox controls. Manual permissions still honor earlier approvals. Files stored locally can still be sent as context to the AI provider you selected. Use public, fictional or redacted content you are allowed to share.
 
-## Install in VS Code
+## Install in VS Code before the workshop
 
-Use VS Code Insiders for the workshop, with Copilot selected as the harness. Other supported VS Code releases can load the skills too; check the actual features you need. Plugins are different from extensions.
+Have VS Code Insiders, Node, Git and GitHub CLI ready, and use your own GitHub sign-in. Run `gh auth login`, choose HTTPS, and allow it to authenticate Git when asked. You handle sign-in yourself; do not paste a password or token into chat. Follow [Get ready](https://eli-w-king.github.io/ai-first-design-workshop/get-ready/) for the checked settings and Mac `/computer on` prework. File-only taste/deck tasks do not require a GitHub repository.
 
-### Preview branch
+### Attendees, after PR #1 merges
 
-1. Run **Chat: Open Customizations** from the Command Palette.
-2. In **Browse**, open the source menu, then **Configure Marketplaces > Add Marketplace**. Enter `eli-w-king/ai-first-design-workshop#plugin/design-workshop`.
-3. Browse that marketplace, select **design-workshop**, review this README and its contents, then choose **Install** and approve the trust prompt if you agree.
-4. If that preview UI is unavailable, use **Plugins > Browse Marketplace** if offered, or the documented local-source or CLI route below. If you choose the Settings route, **append** the workshop source to `chat.plugins.marketplaces`; never replace its array. Preserve every existing entry, including the default `github/awesome-copilot#marketplace`, and avoid duplicates. If the setting is absent, retain that default when adding the workshop source. Show the proposed change and get approval before editing.
-5. Start a fresh session. Open the installed plugin's **Skills** list or type `/` to find its skills. Ask it to list the nine workshop skills, then try the read-only setup check.
+1. Open VS Code Insiders with Copilot selected as the harness. Press **Shift+Command+P** on Mac or **Ctrl+Shift+P** on Windows to open the Command Palette.
+2. Run **Chat: Open Customizations**. Open **Plugins**, then **Browse Marketplace** (or Browse), and choose **Configure Marketplaces > Add Marketplace** from the source menu.
+3. Enter `eli-w-king/ai-first-design-workshop` and add it. Keep every marketplace already there; do not replace the list.
+4. Open that marketplace, select **design-workshop**, review it, choose **Install**, and approve trust if you agree. Plugins are not extensions.
+5. Start a fresh chat. Type the installed skill's name or select it from `/`, then try: **"Check my setup. Do not install anything yet."** There should be nine workshop skills.
 
-If plugin support is disabled, review the host's explanation before changing anything. The checked [Get ready page](https://eli-w-king.github.io/ai-first-design-workshop/get-ready/) owns the workshop's two experimental settings, Computer Use and Send Later. This plugin links to that snippet rather than copying it. For a checked-out copy, use **Chat: Install Plugin from Source** and select its `plugins/design-workshop` folder. No global script or private fork is needed.
+If the UI is different, use the host's supported **Chat: Install Plugin from Source** for a checked-out `plugins/design-workshop` folder, or the CLI route below. If using the Settings route, append the source to `chat.plugins.marketplaces`, preserve every existing entry including `github/awesome-copilot#marketplace`, and avoid duplicates. Never replace the array or edit settings without an explicit request and reviewed backup.
 
-### After a default-branch release
+The main-release direct link is `vscode-insiders://chat-plugin/install?source=eli-w-king%2Fai-first-design-workshop&plugin=design-workshop`. It prompts before installing and works only after the marketplace is on the default branch. Use `vscode://` for a supported regular VS Code release; the workshop uses Insiders.
 
-Use the same steps with `eli-w-king/ai-first-design-workshop`, without the branch suffix. The documented direct install link is:
+### Maintainer preview, before the merge
 
-```text
-vscode-insiders://chat-plugin/install?source=eli-w-king%2Fai-first-design-workshop&plugin=design-workshop
+Use the same steps but enter `eli-w-king/ai-first-design-workshop#plugin/design-workshop`. Do not register both preview and main sources for the same marketplace. The preview is not a default-branch release.
+
+The checked [Get ready page](https://eli-w-king.github.io/ai-first-design-workshop/get-ready/) owns the two experimental settings, Computer Use and Send Later. This plugin links to that snippet instead of copying it. Computer Use uses Interactive mode and Manual permissions; allow each app in its native first-use panel, not a chat card. Do not run that flow under Autopilot.
+
+## Before Thursday: prepare the recorder at home
+
+After installing the plugin, paste this in chat:
+
+> Use demo-walkthrough to prepare the shared recorder with the bundled prepare-recorder installer. Use my installed Chrome or Edge and my configured npm registry. I approve the small recorder install in its per-user cache, outside my project. Do not download another browser or change settings.
+
+For a terminal route, download/review [prepare-recorder.mjs](skills/demo-walkthrough/scripts/prepare-recorder.mjs), open a terminal in the folder containing it, then run this same command on Mac or Windows:
+
+```sh
+node prepare-recorder.mjs --install
 ```
 
-Use `vscode://` for the regular VS Code app. This link needs the marketplace to exist on the default branch and prompts before installing. It is not the current preview install route.
+Without `--install`, it prints the plan without changing anything. It uses installed Chrome/Edge, Core 1.65.0, ffmpeg-static 5.3.0 and the small capture encoder. Measured payloads are **24.16 MB on Mac ARM64** or **34.79 MB on Windows x64**, plus registry metadata/transport overhead; no browser is downloaded. The first cold Mac install took **9.35 seconds** on the test connection, not a promise for the room. Windows payload size was measured, not native Windows install time.
+
+Tools go in `design-workshop/tools` under `~/Library/Caches` on Mac, `%LOCALAPPDATA%` on Windows or `~/.cache` on Linux. Plans/videos go separately in `design-workshop/demos`, outside the app repo. Review [exact commands and removal](skills/demo-walkthrough/references/recording.md). With approval and no active capture, remove only `tools/` to undo the setup; keep videos until separately reviewed. The installer never changes npm's registry or global settings.
 
 ## Install in Copilot CLI
 
-If CLI is already installed, for the current branch preview run:
+If Copilot CLI is already installed, after the main release use the commands below. They are separate from the required GitHub CLI (`gh`):
 
 ```sh
-copilot plugin marketplace add 'eli-w-king/ai-first-design-workshop#plugin/design-workshop'
+copilot plugin marketplace add eli-w-king/ai-first-design-workshop
 copilot plugin install design-workshop@ai-first-design-workshop
 copilot plugin list
 copilot skill list
 ```
 
-After a default-branch release, the standard commands are:
+Before the merge, maintainers use the preview source instead:
 
 ```sh
-copilot plugin marketplace add eli-w-king/ai-first-design-workshop
+copilot plugin marketplace add 'eli-w-king/ai-first-design-workshop#plugin/design-workshop'
 copilot plugin install design-workshop@ai-first-design-workshop
 ```
 
@@ -88,6 +104,8 @@ Start a fresh session and confirm all nine skills are available. Skills can load
 VS Code can discover CLI-installed plugins. Avoid a duplicate installation just to make the name appear twice. The Customizations editor and chat `/plugin` commands can use separate inventories, so manage a plugin from the interface where you installed it.
 
 ## Update or remove
+
+**Moving to 0.3.3:** recording tools now use the shared per-user cache and an installed browser. Prepare them before the workshop. An older in-project `.workshop-recording` folder is not moved or deleted automatically; leave it out of app commits and review removal separately. Existing created automations still keep their own saved prompt and model.
 
 **Moving to 0.3.2:** start a fresh session after updating. Automations already created from an older template keep their saved prompt. Review and update that prompt from the new self-contained template, or recreate it with the trigger still Manual. Choose the model in New Automation, or open a chat-created automation under Automations, set the model, Save, then Run now. An old paused run may retain the old instructions; cancel it only with approval and start a fresh run. Do not solve an old guide prompt by granting broad folder access.
 
@@ -111,7 +129,7 @@ Local-path plugins load from their real folder; edits take effect in a new sessi
 
 Uninstalling does not remove projects, video files, personal skills you created, optional tools you installed, or automations you deliberately created from the template. Use the relevant skill's undo steps for those, with approval. Disable a created automation separately before removing it.
 
-Requested design changes become the app's default, with a before image/revision and a way back. Switchers are for explicitly requested alternatives. Agent-owned dev previews stay available while the person and queued follow-ups are still working; the agent gives stop instructions and stops them when the person is done or asks.
+Requested design changes become the app's default, with a before image/revision and a way back. Switchers are for explicitly requested alternatives. App-only PRs exclude recordings, tool files and anything over 1 MB, even when the request says everything. An Actions publish stops for the fork's manual opt-in when its workflow count is zero; it never substitutes a package deploy script or gh-pages push. A deployment-status check is read-only. Agent-owned dev previews stay available while the person and queued follow-ups are still working; the agent gives stop instructions and stops them when the person is done or asks.
 
 ## Fork prework and publishing
 
@@ -131,7 +149,7 @@ A starting suggestion is GPT-6.1 Terra at medium effort (low for simple file gen
 
 The plugin adds no separate service charge. Agent work still consumes your plan's usage or provider balance. A free month of GitHub Copilot Max is not unlimited usage; review your offer's redemption and renewal terms rather than assuming them from this README. Do not enable paid overage for a workshop task. See the [budget guide](skills/overnight-plan/references/budgets.md) for per-run limits and usage receipts.
 
-Browser screenshots need no extra browser server in supported VS Code sessions. A real automatic video needs a verified recorder. The optional [video path](skills/demo-walkthrough/references/recording.md) uses existing tools first, then offers a small project-local Playwright installation only with your approval. It has exact Mac and Windows removal steps. The [narration guide](skills/demo-walkthrough/references/narration.md) covers local system voices and your own recorded audio. Capture and encoding can run while you work on independent files. A screenshot slideshow or a silent fallback is not the narrated-video goal.
+Browser screenshots need no extra browser server in supported VS Code sessions. A real automatic video needs a verified recorder. The optional [video path](skills/demo-walkthrough/references/recording.md) uses existing tools first, then uses the shared outside-repo Core/encoder cache with an installed Chrome or Edge. It reuses an explicit recorder-install okay instead of asking again. It has exact Mac and Windows removal steps. The [narration guide](skills/demo-walkthrough/references/narration.md) covers local system voices and your own recorded audio. Capture and encoding can run while you work on independent files. A screenshot slideshow or a silent fallback is not the narrated-video goal.
 
 ## Scope and sources
 
