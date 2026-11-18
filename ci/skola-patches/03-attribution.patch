@@ -1,0 +1,139 @@
+diff --git a/README.md b/README.md
+index cd125b6..15e39d2 100644
+--- a/README.md
++++ b/README.md
+@@ -1,3 +1,39 @@
++# My fork of Skola
++
++Modified by Eli King on 2026-11-17 for the AI-First Design Workshop.
++This is my fork of Skola, not official Skola. It is not endorsed by the maintainer.
++
++[Source for this fork](https://github.com/eli-w-king/skola).
++The original project is [Skola by h16nning and contributors](https://github.com/h16nning/skola).
++This version remains under [AGPL-3.0](LICENSE), without warranty. Keep the original license and notices.
++
++## Workshop changes
++
++- Removed Dexie Cloud initialization, configuration and sign-in/sync UI. The database name and local schema are unchanged. Cards stay in this browser.
++- Fixed GitHub Pages project paths, the PWA manifest and service-worker scope. Removed the upstream domain and legacy deploy scripts. The deployment still runs the tests.
++- Added source links, a dated modification note and agent guidance for work in your own fork.
++
++Before sharing your own fork, change the name, date and source URL in `src/workshop.ts` and this section. The deployed source link includes the Actions build commit. Do not remove upstream credit.
++
++## Run this fork
++
++Use Node 22.22.1 or a version verified for the workshop. pnpm is pinned; Corepack is not needed.
++
++```sh
++npx pnpm@10.28.2 install --frozen-lockfile
++npx pnpm@10.28.2 start
++npx pnpm@10.28.2 test
++npx pnpm@10.28.2 build
++```
++
++The dev script is `start`, not `dev`. `BASE_PATH` defaults to `/` locally. For a project site, build with `BASE_PATH=/skola/` (PowerShell: `$env:BASE_PATH="/skola/"`). Actions reads the path from Configure Pages. Keep hash routes such as `/skola/#/home`.
++
++Enable Actions in your own fork, set Pages to GitHub Actions, and deploy only reviewed changes from `main`. Every pull request must target your own fork, not h16nning/skola or a prepared parent fork. Never sign in to Skola Cloud Sync.
++
++Use a new local profile for the workshop. If you have existing Skola data, export it before changing this build. This patch is not a migration from an authenticated sync account.
++
++## Original project README
++
+ # Skola
+ _Note: Skola is still in early-ish development. Expect bugs, missing features, and breaking changes. Feedback is very welcome!_
+ 
+diff --git a/src/app/WelcomeView.tsx b/src/app/WelcomeView.tsx
+index e3fc512..c9ebf4b 100644
+--- a/src/app/WelcomeView.tsx
++++ b/src/app/WelcomeView.tsx
+@@ -1,4 +1,5 @@
+ import { Button } from "@/components/ui/Button";
++import { workshop, workshopSourceUrl } from "@/workshop";
+ import { useLocalStorage } from "@/lib/hooks/useLocalStorage";
+ import "./WelcomeView.css";
+ 
+@@ -111,14 +112,15 @@ export default function WelcomeView() {
+             <span className={`${BASE}__footer-name`}>Skola</span>
+           </div>
+           <p className={`${BASE}__footer-text`}>
+-            Still in early development. Expect bugs and evolving features.{" "}
++            My fork of Skola. Modified by {workshop.modifiedBy} on {workshop.modifiedOn}.
++            {" Not official Skola or endorsed by the maintainer. "}
+             <a
+-              href="https://github.com/h16nning/skola"
++              href={workshopSourceUrl}
+               target="_blank"
+               rel="noopener noreferrer"
+               className={`${BASE}__link`}
+             >
+-              Contribute on GitHub
++              Source for this fork
+             </a>
+           </p>
+         </footer>
+diff --git a/src/app/settings/AboutSettingsView.tsx b/src/app/settings/AboutSettingsView.tsx
+index 7a9be6d..1ba914e 100644
+--- a/src/app/settings/AboutSettingsView.tsx
++++ b/src/app/settings/AboutSettingsView.tsx
+@@ -1,3 +1,4 @@
++import { workshop, workshopSourceUrl } from "@/workshop";
+ import { t } from "i18next";
+ import "./AboutSettingsView.css";
+ 
+@@ -6,13 +7,27 @@ const BASE = "about-skola";
+ export default function AboutSettingsView() {
+   return (
+     <div className={BASE}>
++      <h2>My fork of Skola</h2>
++      <p>Modified by {workshop.modifiedBy} on {workshop.modifiedOn}.</p>
++      <p>This is not official Skola and is not endorsed by the maintainer.</p>
++      <p>Cloud sync is off. Cards stay in this browser.</p>
++      <p>
++        <a href={workshopSourceUrl} target="_blank" rel="noopener noreferrer">
++          Source for this fork
++        </a>
++        {". Released under "}
++        <a href={`${workshop.sourceUrl}/blob/main/LICENSE`} target="_blank" rel="noopener noreferrer">
++          AGPL-3.0
++        </a>
++        {", without warranty."}
++      </p>
+       <p>{t("settings.about.description")}</p>
+       <a
+         href="https://www.github.com/h16nning/skola"
+         target="_blank"
+         rel="noopener noreferrer"
+       >
+-        Link to Git Repository
++        Original Skola source
+       </a>
+     </div>
+   );
+diff --git a/src/workshop.ts b/src/workshop.ts
+new file mode 100644
+index 0000000..5b3cac3
+--- /dev/null
++++ b/src/workshop.ts
+@@ -0,0 +1,10 @@
++export const workshop = {
++  modifiedBy: "Eli King",
++  modifiedOn: "2026-11-17",
++  sourceUrl: "https://github.com/eli-w-king/skola",
++};
++
++const revision = import.meta.env.VITE_SOURCE_REVISION;
++export const workshopSourceUrl = revision
++  ? `${workshop.sourceUrl}/tree/${revision}`
++  : workshop.sourceUrl;
+diff --git a/vite.config.ts b/vite.config.ts
+index 22363d6..e26d918 100644
+--- a/vite.config.ts
++++ b/vite.config.ts
+@@ -22,6 +22,7 @@ export default defineConfig({
+     ENABLE_FIREBASE: process.env.ENABLE_FIREBASE || true,
+     PUBLIC_URL: JSON.stringify(base),
+     "import.meta.env.VITE_APP_VERSION": JSON.stringify(pkg.version),
++    "import.meta.env.VITE_SOURCE_REVISION": JSON.stringify(process.env.GITHUB_SHA || ""),
+   },
+   resolve: {
+     alias: {

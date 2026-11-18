@@ -1,0 +1,191 @@
+diff --git a/.github/workflows/deploy.yml b/.github/workflows/deploy.yml
+index 8b7c840..4359269 100644
+--- a/.github/workflows/deploy.yml
++++ b/.github/workflows/deploy.yml
+@@ -25,15 +25,19 @@ jobs:
+       - name: Setup JS
+         uses: actions/setup-node@v4
+         with:
++          node-version: "22.22.1"
+           cache: "pnpm"
+       - name: Install
+         run: pnpm install --frozen-lockfile
+       - name: Test
+         run: pnpm test
++      - name: Configure Pages
++        id: pages
++        uses: actions/configure-pages@v5
+       - name: Build
++        env:
++          BASE_PATH: ${{ steps.pages.outputs.base_path }}/
+         run: pnpm run build
+-      - name: Add custom domain
+-        run: pnpm run add-domain
+       - name: Upload artifact
+         uses: actions/upload-pages-artifact@v3
+         with:
+diff --git a/index.html b/index.html
+index b378816..779ec29 100644
+--- a/index.html
++++ b/index.html
+@@ -31,10 +31,6 @@
+       name="apple-mobile-web-app-status-bar-style"
+       content="black-translucent"
+     />
+-    <link
+-      rel="manifest"
+-      href="/manifest.json"
+-    />
+     <title>Skola</title>
+   </head>
+   <body>
+diff --git a/package.json b/package.json
+index a111e69..34b4f10 100644
+--- a/package.json
++++ b/package.json
+@@ -49,11 +49,7 @@
+     "test:watch": "vitest",
+     "extract": "i18next --config i18next-parser.config.mjs 'src/**/*.{ts,tsx}'",
+     "format": "biome check --apply",
+-    "tauri": "tauri",
+-    "add-domain": "echo https://skola.cards> dist/CNAME",
+-    "predeploy": "pnpm run add-domain && pnpm run build",
+-    "deploy": "gh-pages -d dist",
+-    "build-and-deploy": "pnpm run predeploy && pnpm run deploy"
++    "tauri": "tauri"
+   },
+   "eslintConfig": {
+     "extends": [
+diff --git a/src/app/WelcomeView.tsx b/src/app/WelcomeView.tsx
+index 08e80ee..e3fc512 100644
+--- a/src/app/WelcomeView.tsx
++++ b/src/app/WelcomeView.tsx
+@@ -107,7 +107,7 @@ export default function WelcomeView() {
+ 
+         <footer className={`${BASE}__footer`}>
+           <div className={`${BASE}__footer-branding`}>
+-            <img src="/logo.svg" alt="" className={`${BASE}__footer-logo`} />
++            <img src={`${import.meta.env.BASE_URL}logo.svg`} alt="" className={`${BASE}__footer-logo`} />
+             <span className={`${BASE}__footer-name`}>Skola</span>
+           </div>
+           <p className={`${BASE}__footer-text`}>
+diff --git a/src/app/shell/Sidebar/Sidebar.tsx b/src/app/shell/Sidebar/Sidebar.tsx
+index fb0134d..abecc06 100644
+--- a/src/app/shell/Sidebar/Sidebar.tsx
++++ b/src/app/shell/Sidebar/Sidebar.tsx
+@@ -54,7 +54,7 @@ function Sidebar({ menuOpened, menuHandlers }: SidebarProps) {
+           <header className={`${BASE}__header`}>
+             <div className={`${BASE}__brand`}>
+               <img
+-                src="/logo.svg"
++                src={`${import.meta.env.BASE_URL}logo.svg`}
+                 alt="Skola Logo"
+                 className={`${BASE}__logo`}
+               />
+diff --git a/src/app/statistics/CardHistory.tsx b/src/app/statistics/CardHistory.tsx
+index 08001f4..de41b57 100644
+--- a/src/app/statistics/CardHistory.tsx
++++ b/src/app/statistics/CardHistory.tsx
+@@ -8,7 +8,7 @@ interface CardHistoryProps {
+ export default function CardHistory({}: CardHistoryProps) {
+   return (
+     <p>
+-      Not available at the moment. See <a href="/stats">Statistics</a>
++      Not available at the moment. See <a href="#/stats">Statistics</a>
+     </p>
+   );
+ }
+diff --git a/vite.config.ts b/vite.config.ts
+index 60391b1..22363d6 100644
+--- a/vite.config.ts
++++ b/vite.config.ts
+@@ -7,15 +7,20 @@ import { VitePWA } from "vite-plugin-pwa";
+ import viteTsconfigPaths from "vite-tsconfig-paths";
+ 
+ const pkg = JSON.parse(fs.readFileSync("./package.json", "utf-8"));
++const base = process.env.BASE_PATH || "/";
++
++if (!base.startsWith("/") || !base.endsWith("/")) {
++  throw new Error("BASE_PATH must start and end with /, for example /skola/.");
++}
+ 
+ export default defineConfig({
+-  base: "/",
++  base,
+   css: {
+     modules: {},
+   },
+   define: {
+     ENABLE_FIREBASE: process.env.ENABLE_FIREBASE || true,
+-    PUBLIC_URL: JSON.stringify(process.env.PUBLIC_URL || "/"),
++    PUBLIC_URL: JSON.stringify(base),
+     "import.meta.env.VITE_APP_VERSION": JSON.stringify(pkg.version),
+   },
+   resolve: {
+@@ -33,6 +38,7 @@ export default defineConfig({
+     Checker({ typescript: true }),
+     VitePWA({
+       registerType: "autoUpdate",
++      scope: base,
+       includeAssets: ["logo.svg", "logo256.png", "logo512.png", "fonts/**/*"],
+       manifest: {
+         name: "Skola Cards",
+@@ -42,7 +48,8 @@ export default defineConfig({
+         background_color: "#ffffff",
+         display: "fullscreen",
+         orientation: "portrait-primary",
+-        start_url: "/",
++        start_url: base,
++        scope: base,
+         icons: [
+           {
+             src: "logo256.png",
+@@ -63,6 +70,7 @@ export default defineConfig({
+         ],
+       },
+       workbox: {
++        navigateFallback: `${base}index.html`,
+         maximumFileSizeToCacheInBytes: 3 * 1024 * 1024,
+         globPatterns: ["**/*.{js,css,html,ico,png,svg,woff,woff2}"],
+         runtimeCaching: [
+diff --git a/public/manifest.json b/public/manifest.json
+deleted file mode 100644
+index 0ad3cab..0000000
+--- a/public/manifest.json
++++ /dev/null
+@@ -1,35 +0,0 @@
+-{
+-  "short_name": "Skola",
+-  "name": "Skola Cards",
+-  "icons": [
+-    {
+-      "src": "logo.svg",
+-      "sizes": "64x64 32x32 24x24 16x16",
+-      "type": "image/svg+xml"
+-    },
+-    {
+-      "src": "logo256.png",
+-      "type": "image/png",
+-      "sizes": "256x256"
+-    },
+-    {
+-      "src": "logo512.png",
+-      "type": "image/png",
+-      "sizes": "512x512"
+-    },
+-    {
+-      "src": "logo512.png",
+-      "type": "image/png",
+-      "sizes": "512x512",
+-      "purpose": "maskable"
+-    }
+-  ],
+-  "start_url": "/",
+-  "scope": "/",
+-  "display": "standalone",
+-  "display_override": ["window-controls-overlay"],
+-  "theme_color": "#439C72",
+-  "background_color": "#ffffff",
+-  "orientation": "portrait-primary",
+-  "prefer_related_applications": false
+-}

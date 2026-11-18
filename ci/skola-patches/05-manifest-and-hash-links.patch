@@ -1,0 +1,216 @@
+diff --git a/index.html b/index.html
+index 779ec29..b378816 100644
+--- a/index.html
++++ b/index.html
+@@ -31,6 +31,10 @@
+       name="apple-mobile-web-app-status-bar-style"
+       content="black-translucent"
+     />
++    <link
++      rel="manifest"
++      href="/manifest.json"
++    />
+     <title>Skola</title>
+   </head>
+   <body>
+diff --git a/public/manifest.json b/public/manifest.json
+new file mode 100644
+index 0000000..d274ea4
+--- /dev/null
++++ b/public/manifest.json
+@@ -0,0 +1,37 @@
++{
++  "short_name": "Skola",
++  "name": "Skola Cards",
++  "icons": [
++    {
++      "src": "logo.svg",
++      "sizes": "64x64 32x32 24x24 16x16",
++      "type": "image/svg+xml"
++    },
++    {
++      "src": "logo256.png",
++      "type": "image/png",
++      "sizes": "256x256"
++    },
++    {
++      "src": "logo512.png",
++      "type": "image/png",
++      "sizes": "512x512"
++    },
++    {
++      "src": "logo512.png",
++      "type": "image/png",
++      "sizes": "512x512",
++      "purpose": "maskable"
++    }
++  ],
++  "start_url": "./",
++  "scope": "./",
++  "display": "standalone",
++  "display_override": [
++    "window-controls-overlay"
++  ],
++  "theme_color": "#439C72",
++  "background_color": "#ffffff",
++  "orientation": "portrait-primary",
++  "prefer_related_applications": false
++}
+diff --git a/src/app/DebugCardModal/DebugCardTable.tsx b/src/app/DebugCardModal/DebugCardTable.tsx
+index c67154d..92b72b4 100644
+--- a/src/app/DebugCardModal/DebugCardTable.tsx
++++ b/src/app/DebugCardModal/DebugCardTable.tsx
+@@ -2,6 +2,7 @@ import { Text } from "@/components/ui/Text";
+ import { NoteType } from "@/logic/note/note";
+ import { Rating, State } from "fsrs.js";
+ import { Fragment } from "react";
++import { Link } from "react-router-dom";
+ import { Card } from "../../logic/card/card";
+ import "./DebugCardTable.css";
+ 
+@@ -43,9 +44,9 @@ export default function DebugCardTable({
+           <tr>
+             <th>Decks:</th>
+             <td>
+-              <a href={"/deck/" + card.deck} className={`${BASE}__link`}>
++              <Link to={"/deck/" + card.deck} className={`${BASE}__link`}>
+                 {card.deck}
+-              </a>
++              </Link>
+             </td>
+           </tr>
+         </tbody>
+diff --git a/src/app/deck/DebugDeckModal.tsx b/src/app/deck/DebugDeckModal.tsx
+index 1acd3be..22af1aa 100644
+--- a/src/app/deck/DebugDeckModal.tsx
++++ b/src/app/deck/DebugDeckModal.tsx
+@@ -5,6 +5,7 @@ import { useStatesOf } from "@/logic/card/hooks/useStatesOf";
+ import { useSubDecks } from "@/logic/deck/hooks/useSubDecks";
+ import { useSuperDecks } from "@/logic/deck/hooks/useSuperDecks";
+ import { State } from "fsrs.js";
++import { Link } from "react-router-dom";
+ import { Deck } from "../../logic/deck/deck";
+ import "./DebugDeckModal.css";
+ 
+@@ -41,9 +42,9 @@ function DebugDeckModal({ opened, setOpened, deck }: DebugDeckModalProps) {
+                 <td>
+                   {subDecks?.map((s, index) => (
+                     <span key={s.id}>
+-                      <a href={"/deck/" + s.id} className={`${BASE}__link`}>
++                      <Link to={"/deck/" + s.id} className={`${BASE}__link`}>
+                         {s.name}
+-                      </a>
++                      </Link>
+                       {index < subDecks.length - 1 && ", "}
+                     </span>
+                   ))}
+@@ -54,9 +55,9 @@ function DebugDeckModal({ opened, setOpened, deck }: DebugDeckModalProps) {
+                 <td>
+                   {superDecks?.map((s, index) => (
+                     <span key={s.id}>
+-                      <a href={"/deck/" + s.id} className={`${BASE}__link`}>
++                      <Link to={"/deck/" + s.id} className={`${BASE}__link`}>
+                         {s.name}
+-                      </a>
++                      </Link>
+                       {index < superDecks.length - 1 && ", "}
+                     </span>
+                   ))}
+diff --git a/src/app/statistics/CardHistory.tsx b/src/app/statistics/CardHistory.tsx
+index de41b57..6c66dee 100644
+--- a/src/app/statistics/CardHistory.tsx
++++ b/src/app/statistics/CardHistory.tsx
+@@ -1,4 +1,5 @@
+ import { NoteType } from "@/logic/note/note";
++import { Link } from "react-router-dom";
+ import { Card } from "../../logic/card/card";
+ 
+ interface CardHistoryProps {
+@@ -8,7 +9,7 @@ interface CardHistoryProps {
+ export default function CardHistory({}: CardHistoryProps) {
+   return (
+     <p>
+-      Not available at the moment. See <a href="#/stats">Statistics</a>
++      Not available at the moment. See <Link to="/stats">Statistics</Link>
+     </p>
+   );
+ }
+diff --git a/vite.config.ts b/vite.config.ts
+index e26d918..93f4fce 100644
+--- a/vite.config.ts
++++ b/vite.config.ts
+@@ -40,36 +40,8 @@ export default defineConfig({
+     VitePWA({
+       registerType: "autoUpdate",
+       scope: base,
+-      includeAssets: ["logo.svg", "logo256.png", "logo512.png", "fonts/**/*"],
+-      manifest: {
+-        name: "Skola Cards",
+-        short_name: "Skola",
+-        description: "Skola is a free and open source flash card app.",
+-        theme_color: "#ffffff",
+-        background_color: "#ffffff",
+-        display: "fullscreen",
+-        orientation: "portrait-primary",
+-        start_url: base,
+-        scope: base,
+-        icons: [
+-          {
+-            src: "logo256.png",
+-            sizes: "256x256",
+-            type: "image/png",
+-          },
+-          {
+-            src: "logo512.png",
+-            sizes: "512x512",
+-            type: "image/png",
+-          },
+-          {
+-            src: "logo512.png",
+-            sizes: "512x512",
+-            type: "image/png",
+-            purpose: "maskable",
+-          },
+-        ],
+-      },
++      includeAssets: ["manifest.json", "fonts/**/*"],
++      manifest: false, // Use the single install manifest in public/.
+       workbox: {
+         navigateFallback: `${base}index.html`,
+         maximumFileSizeToCacheInBytes: 3 * 1024 * 1024,
+diff --git a/src/app/statistics/CardHistory.test.tsx b/src/app/statistics/CardHistory.test.tsx
+new file mode 100644
+index 0000000..29992fb
+--- /dev/null
++++ b/src/app/statistics/CardHistory.test.tsx
+@@ -0,0 +1,30 @@
++import { fireEvent, render, screen } from "@testing-library/react";
++import { HashRouter, Route, Routes } from "react-router-dom";
++import { expect, it } from "vitest";
++import CardHistory from "./CardHistory";
++
++it("keeps statistics navigation inside a GitHub Pages project path", async () => {
++  const previousUrl = window.location.href;
++  window.history.replaceState(null, "", "/skola/#/home");
++
++  try {
++    render(
++      <HashRouter>
++        <Routes>
++          <Route path="/home" element={<CardHistory />} />
++          <Route path="/stats" element={<h1>Statistics view</h1>} />
++        </Routes>
++      </HashRouter>
++    );
++
++    fireEvent.click(screen.getByRole("link", { name: "Statistics" }));
++
++    expect(
++      await screen.findByRole("heading", { name: "Statistics view" })
++    ).toBeInTheDocument();
++    expect(window.location.pathname).toBe("/skola/");
++    expect(window.location.hash).toBe("#/stats");
++  } finally {
++    window.history.replaceState(null, "", previousUrl);
++  }
++});

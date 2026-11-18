@@ -1,0 +1,123 @@
+name: Skola workshop check
+
+# Verification only. Clones the upstream Skola project at the pinned commit, applies the workshop's prep patches,
+# then installs from public npm, tests, type-checks and builds for a project site on Windows, macOS and Linux.
+# It never deploys anything and never contacts the upstream project's sync service.
+
+on:
+  push:
+    branches: [ci/skola-check]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    name: ${{ matrix.os }}, Node ${{ matrix.node }}
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, macos-latest, ubuntu-latest]
+        node: ['22', 'lts/*']
+    env:
+      SKOLA_COMMIT: f8d89dafb3878192f53da02f827aa55e00b83e01
+      PNPM: pnpm@10.28.2
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: Versions and registry
+        shell: bash
+        run: |
+          node -v
+          npm -v
+          echo "npm registry: $(npm config get registry)"
+
+      - name: Clone Skola at the pinned commit
+        shell: bash
+        run: |
+          start=$SECONDS
+          git clone --quiet https://github.com/h16nning/skola skola
+          git -C skola checkout --quiet --detach "$SKOLA_COMMIT"
+          echo "clone_seconds=$((SECONDS - start))" >> "$GITHUB_ENV"
+
+      - name: Apply the workshop prep patches
+        shell: bash
+        working-directory: skola
+        run: |
+          for p in ../ci/skola-patches/0*.patch; do
+            echo "Applying $p"
+            git apply --check "$p"
+            git apply "$p"
+          done
+          grep -rIn "dexie-cloud" src package.json || echo "No dexie-cloud references left in src or package.json."
+
+      - name: npx in PowerShell, the way Windows attendees run it
+        if: runner.os == 'Windows'
+        shell: pwsh
+        working-directory: skola
+        run: |
+          Get-ExecutionPolicy -List | Format-Table -AutoSize
+          npx.cmd --yes pnpm@10.28.2 --version
+
+      - name: Cold install from public npm
+        shell: bash
+        working-directory: skola
+        run: |
+          start=$SECONDS
+          npx --yes "$PNPM" install --frozen-lockfile
+          echo "install_seconds=$((SECONDS - start))" >> "$GITHUB_ENV"
+          echo "pnpm store size: $(du -sh "$(npx --yes "$PNPM" store path)" | cut -f1)"
+          echo "node_modules size: $(du -sh node_modules | cut -f1)"
+
+      - name: Tests
+        shell: bash
+        working-directory: skola
+        run: npx --yes "$PNPM" test
+
+      - name: Type check
+        shell: bash
+        working-directory: skola
+        run: npx --yes "$PNPM" lint:type
+
+      - name: Build for a project site at /skola/
+        shell: bash
+        working-directory: skola
+        env:
+          BASE_PATH: /skola/
+        run: |
+          start=$SECONDS
+          npx --yes "$PNPM" build
+          echo "build_seconds=$((SECONDS - start))" >> "$GITHUB_ENV"
+
+      - name: Check the build uses the project path
+        shell: bash
+        working-directory: skola
+        run: |
+          index=$(find . -path ./node_modules -prune -o -name index.html -print | grep -E '/(dist|build)/' | head -1)
+          echo "Built index: $index"
+          test -n "$index"
+          grep -q '/skola/' "$index"
+          echo "The built index.html references /skola/."
+          manifest=$(find "$(dirname "$index")" -maxdepth 1 \( -name 'manifest*.json' -o -name '*.webmanifest' \) | head -1)
+          if [ -n "$manifest" ]; then echo "Manifest $manifest:"; grep -E '"(start_url|scope)"' "$manifest"; fi
+
+      - name: Summary
+        if: always()
+        shell: bash
+        run: |
+          {
+            echo "### ${{ matrix.os }}, Node $(node -v)"
+            echo ""
+            echo "| Step | Seconds |"
+            echo "| --- | --- |"
+            echo "| Clone | ${clone_seconds:-n/a} |"
+            echo "| Cold install (public npm, empty caches) | ${install_seconds:-n/a} |"
+            echo "| Build at /skola/ | ${build_seconds:-n/a} |"
+          } >> "$GITHUB_STEP_SUMMARY"

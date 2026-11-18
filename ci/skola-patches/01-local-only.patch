@@ -1,0 +1,954 @@
+diff --git a/src/App.tsx b/src/App.tsx
+index 0aa555d..afac901 100644
+--- a/src/App.tsx
++++ b/src/App.tsx
+@@ -6,7 +6,6 @@ import { useEffect } from "react";
+ import { I18nextProvider } from "react-i18next";
+ import { Outlet, useLocation } from "react-router-dom";
+ import WelcomeView from "./app/WelcomeView";
+-import LoginUI from "./app/login/LoginUI";
+ import Header from "./app/shell/Header/Header";
+ import Sidebar from "./app/shell/Sidebar/Sidebar";
+ import {
+@@ -100,7 +99,6 @@ function AppContent() {
+               </div>
+             </main>
+           </div>
+-          <LoginUI />
+         </div>
+       ) : (
+         <WelcomeView />
+diff --git a/src/app/settings/SettingsView.tsx b/src/app/settings/SettingsView.tsx
+index 01c84fb..2e8b179 100644
+--- a/src/app/settings/SettingsView.tsx
++++ b/src/app/settings/SettingsView.tsx
+@@ -4,7 +4,6 @@ import { useSetting } from "@/logic/settings/hooks/useSetting";
+ import {
+   IconBolt,
+   IconBraces,
+-  IconCloud,
+   IconDatabase,
+   IconInfoCircle,
+   IconPalette,
+@@ -17,7 +16,6 @@ import { useNavigate, useParams } from "react-router-dom";
+ import { AppHeaderContent } from "../shell/Header/Header";
+ import AboutSettingsView from "./AboutSettingsView";
+ import AppearanceSettingsView from "./AppearanceSettingsView";
+-import CloudSettingsView from "./CloudSettingsView";
+ import DatabaseSettingsView from "./DatabaseSettingsView/DatabaseSettingsView";
+ import EditingSettingsView from "./EditingSettingsView/EditingSettingsView";
+ import GeneralSettingsView from "./GeneralSettingsView";
+@@ -34,10 +32,13 @@ export default function SettingsView() {
+   const [activeSection, setActiveSection] = useState(section || "general");
+ 
+   useEffect(() => {
+-    if (section) {
++    if (section === "cloud") {
++      setActiveSection("general");
++      navigate("/settings/general", { replace: true });
++    } else if (section) {
+       setActiveSection(section);
+     }
+-  }, [section]);
++  }, [section, navigate]);
+ 
+   const handleTabChange = (value: string) => {
+     setActiveSection(value);
+@@ -76,10 +77,6 @@ export default function SettingsView() {
+             <IconDatabase size={18} />
+             {t("settings.database.title")}
+           </Tabs.Tab>
+-          <Tabs.Tab value="cloud">
+-            <IconCloud size={18} />
+-            {t("settings.cloud.title")}
+-          </Tabs.Tab>
+           <Tabs.Tab value="about">
+             <IconInfoCircle size={18} />
+             {t("settings.about.title")}
+@@ -106,9 +103,6 @@ export default function SettingsView() {
+         <Tabs.Panel value="database">
+           <DatabaseSettingsView />
+         </Tabs.Panel>
+-        <Tabs.Panel value="cloud">
+-          <CloudSettingsView />
+-        </Tabs.Panel>
+         <Tabs.Panel value="about">
+           <AboutSettingsView />
+         </Tabs.Panel>
+diff --git a/src/app/shell/Sidebar/Sidebar.tsx b/src/app/shell/Sidebar/Sidebar.tsx
+index 53e236c..fb0134d 100644
+--- a/src/app/shell/Sidebar/Sidebar.tsx
++++ b/src/app/shell/Sidebar/Sidebar.tsx
+@@ -1,4 +1,3 @@
+-import { CloudSyncState } from "@/components/CloudSyncState";
+ import { IconButton } from "@/components/ui/IconButton";
+ import { NavItem } from "@/components/ui/NavItem";
+ import { breakpoints } from "@/lib/breakpoints";
+@@ -112,7 +111,6 @@ function Sidebar({ menuOpened, menuHandlers }: SidebarProps) {
+           <DeckList minimalMode={minimalMode} />
+         </div>
+ 
+-        <CloudSyncState minimal={minimalMode} />
+       </div>
+     </aside>
+   );
+diff --git a/src/index.tsx b/src/index.tsx
+index d5a645c..a9c3c8a 100644
+--- a/src/index.tsx
++++ b/src/index.tsx
+@@ -66,17 +66,6 @@ root.render(
+   </React.StrictMode>
+ );
+ 
+-if ("serviceWorker" in navigator) {
+-  navigator.serviceWorker
+-    .register("/sw.js")
+-    .then((registration) => {
+-      console.log("Service Worker registered with scope:", registration.scope);
+-    })
+-    .catch((error) => {
+-      console.error("Service Worker registration failed:", error);
+-    });
+-}
+-
+ async function persist() {
+   return (
+     navigator.storage &&
+diff --git a/src/logic/db.ts b/src/logic/db.ts
+index 195d859..c3aae30 100644
+--- a/src/logic/db.ts
++++ b/src/logic/db.ts
+@@ -1,6 +1,5 @@
+ import Dexie, { Table } from "dexie";
+ import "dexie-export-import";
+-import dexieCloud from "dexie-cloud-addon";
+ import { Card } from "./card/card";
+ import { Deck } from "./deck/deck";
+ import { NoteType } from "./note/note";
+@@ -16,7 +15,7 @@ export class Database extends Dexie {
+   settings!: Table<Settings<keyof SettingsValues>>;
+ 
+   constructor() {
+-    super("skola_db", { addons: [dexieCloud], cache: "immutable" });
++    super("skola_db", { cache: "immutable" });
+     this.version(22).stores({
+       cards: "id, note, deck",
+       decks: "id, *cards, *notes, *subDecks, *superDecks",
+@@ -29,9 +28,3 @@ export class Database extends Dexie {
+ }
+ 
+ export const db = new Database();
+-
+-db.cloud.configure({
+-  databaseUrl: "https://zo30f12v5.dexie.cloud",
+-  tryUseServiceWorker: true,
+-  customLoginGui: true,
+-});
+diff --git a/dexie-cloud.json b/dexie-cloud.json
+deleted file mode 100644
+index a78ecdc..0000000
+--- a/dexie-cloud.json
++++ /dev/null
+@@ -1,4 +0,0 @@
+-{
+-  "serviceUrl": "https://dexie.cloud",
+-  "dbUrl": "https://zo30f12v5.dexie.cloud"
+-}
+\ No newline at end of file
+diff --git a/public/sw.js b/public/sw.js
+deleted file mode 100644
+index 3f75101..0000000
+--- a/public/sw.js
++++ /dev/null
+@@ -1,2 +0,0 @@
+-console.log("Service worker registered");
+-importScripts("dexie-cloud-addon/dist/umd/service-worker.[min].js)");
+diff --git a/src/app/login/LoginUI.css b/src/app/login/LoginUI.css
+deleted file mode 100644
+index f5fcffa..0000000
+--- a/src/app/login/LoginUI.css
++++ /dev/null
+@@ -1,35 +0,0 @@
+-.login-ui__content {
+-  display: flex;
+-  flex-direction: column;
+-  gap: var(--spacing-lg);
+-}
+-
+-.login-ui__header {
+-  display: flex;
+-  align-items: center;
+-  gap: var(--spacing-sm);
+-}
+-
+-.login-ui__alerts {
+-  display: flex;
+-  flex-direction: column;
+-  gap: var(--spacing-sm);
+-}
+-
+-.login-ui__form {
+-  display: flex;
+-  flex-direction: column;
+-  gap: var(--spacing-lg);
+-}
+-
+-.login-ui__fields {
+-  display: flex;
+-  flex-direction: column;
+-  gap: var(--spacing-md);
+-}
+-
+-.login-ui__actions {
+-  display: flex;
+-  justify-content: flex-end;
+-  gap: var(--spacing-sm);
+-}
+diff --git a/src/app/login/LoginUI.tsx b/src/app/login/LoginUI.tsx
+deleted file mode 100644
+index 24639ee..0000000
+--- a/src/app/login/LoginUI.tsx
++++ /dev/null
+@@ -1,83 +0,0 @@
+-import { Paper } from "@/components/ui";
+-import { Button } from "@/components/ui/Button";
+-import { Modal } from "@/components/ui/Modal";
+-import { TextInput } from "@/components/ui/TextInput";
+-import {
+-  DXCInputField,
+-  DXCUserInteraction,
+-  resolveText,
+-} from "dexie-cloud-addon";
+-import { useObservable } from "dexie-react-hooks";
+-import { useState } from "react";
+-import { db } from "../../logic/db";
+-import "./LoginUI.css";
+-
+-const BASE = "login-ui";
+-
+-export default function LoginUI() {
+-  const [params, setParams] = useState<{ [param: string]: string }>({});
+-
+-  const loginUI: DXCUserInteraction | undefined = useObservable(
+-    db.cloud.userInteraction
+-  );
+-
+-  const content = loginUI ? (
+-    <div className={`${BASE}__content`}>
+-      {loginUI.alerts &&
+-        loginUI.alerts.length > 0 &&
+-        loginUI.alerts.map((alert) => (
+-          <Paper key={alert.messageCode} withBorder>
+-            {resolveText(alert)}
+-          </Paper>
+-        ))}
+-      <form
+-        className={`${BASE}__form`}
+-        onSubmit={(e) => {
+-          e.preventDefault();
+-          loginUI.onSubmit(params);
+-        }}
+-      >
+-        <div className={`${BASE}__fields`}>
+-          {(Object.entries(loginUI.fields) as [string, DXCInputField][]).map(
+-            ([fieldName, field]) => (
+-              <TextInput
+-                key={fieldName}
+-                label={field.label}
+-                autoFocus
+-                placeholder={field.placeholder}
+-                value={params[fieldName] || ""}
+-                onChange={(e) =>
+-                  setParams({ ...params, [fieldName]: e.currentTarget.value })
+-                }
+-              />
+-            )
+-          )}
+-        </div>
+-
+-        <div className={`${BASE}__actions`}>
+-          <Button onClick={loginUI.onCancel} variant="default">
+-            {loginUI.cancelLabel}
+-          </Button>
+-          <Button type="submit" variant="primary">
+-            {loginUI.submitLabel}
+-          </Button>
+-        </div>
+-      </form>
+-    </div>
+-  ) : null;
+-
+-  const title = loginUI ? (
+-    <div className={`${BASE}__header`}>{loginUI.title}</div>
+-  ) : undefined;
+-
+-  return (
+-    <Modal
+-      opened={loginUI !== undefined}
+-      exitOnEscape={false}
+-      onClose={loginUI?.onCancel ?? (() => {})}
+-      title={title}
+-    >
+-      {content}
+-    </Modal>
+-  );
+-}
+diff --git a/src/app/settings/CloudSettingsView.css b/src/app/settings/CloudSettingsView.css
+deleted file mode 100644
+index 337659f..0000000
+--- a/src/app/settings/CloudSettingsView.css
++++ /dev/null
+@@ -1,44 +0,0 @@
+-.cloud-settings-view {
+-  display: flex;
+-  flex-direction: column;
+-  align-items: center;
+-  gap: var(--spacing-md);
+-  width: 100%;
+-}
+-
+-.cloud-settings-view__logged-in {
+-  display: flex;
+-  flex-direction: column;
+-  gap: var(--spacing-md);
+-  width: 100%;
+-  max-width: 600px;
+-}
+-
+-.cloud-settings-view__logged-in > div:first-child {
+-  padding: var(--spacing-sm) var(--spacing-md);
+-  background: var(--theme-neutral-100);
+-  border-radius: var(--radius-md);
+-}
+-
+-.cloud-settings-view__logged-in > div:first-child p:first-child {
+-  font-size: var(--font-size-sm);
+-  font-weight: 500;
+-  color: var(--theme-neutral-600);
+-  margin: 0;
+-}
+-
+-.cloud-settings-view__logged-in > div:first-child p:last-child {
+-  margin: 0;
+-  font-size: var(--font-size-md);
+-}
+-
+-.cloud-settings-view__logged-in > p {
+-  font-size: var(--font-size-sm);
+-  margin: 0;
+-  text-align: center;
+-}
+-
+-.cloud-settings-view article {
+-  margin-top: var(--spacing-lg);
+-  color: var(--theme-neutral-700);
+-}
+diff --git a/src/app/settings/CloudSettingsView.tsx b/src/app/settings/CloudSettingsView.tsx
+deleted file mode 100644
+index 492d3bd..0000000
+--- a/src/app/settings/CloudSettingsView.tsx
++++ /dev/null
+@@ -1,103 +0,0 @@
+-import { Button } from "@/components/ui";
+-import { db } from "@/logic/db";
+-import { IconCloudOff } from "@tabler/icons-react";
+-import { useObservable } from "dexie-react-hooks";
+-import { useCallback } from "react";
+-import "./CloudSettingsView.css";
+-import CloudSyncSignIn from "./CloudSyncSignIn";
+-
+-const BASE = "cloud-settings-view";
+-
+-export default function CloudSettingsView() {
+-  const user = useObservable(db.cloud.currentUser);
+-
+-  const handleLogin = useCallback(async () => {
+-    try {
+-      await db.cloud.login();
+-    } catch (e: unknown) {
+-      if (e instanceof Error && e.name === "AbortError") {
+-        return;
+-      }
+-      console.error("Login failed:", e);
+-    }
+-  }, []);
+-
+-  const handleLogout = useCallback(() => {
+-    db.cloud.logout();
+-  }, []);
+-
+-  return (
+-    <div className={BASE}>
+-      {user?.isLoggedIn ? (
+-        <div className={BASE + "__logged-in"}>
+-          <div>
+-            <p>Signed in as</p>
+-            <p>{user.email}</p>
+-          </div>
+-          <Button
+-            variant="neutral"
+-            onClick={handleLogout}
+-            leftSection={<IconCloudOff />}
+-          >
+-            Disconnect from Cloud Sync
+-          </Button>
+-          <p>
+-            <b>Warning: </b>After disconnecting, your local database will be
+-            cleared. You will need connect to Sync again to access your data. We
+-            advise to export your data before disconnecting, during Beta.
+-          </p>
+-        </div>
+-      ) : (
+-        <CloudSyncSignIn onSignIn={handleLogin} />
+-      )}
+-      <article>
+-        <h2>What is Skola Cloud Sync?</h2>
+-        <p>
+-          By default, Skola saves your data in your browser using IndexedDB
+-          using a library called Dexie. This makes Skola feel fast and enables
+-          offline usage.
+-        </p>
+-        <p>
+-          Skola Cloud Sync allows you to synchronize your data across multiple
+-          devices using cloud storage powered by Dexie Cloud.
+-        </p>
+-        <h3>
+-          The catch <i>(for now)</i>
+-        </h3>
+-        <p>
+-          Skola Cloud Sync is limited to 30 days of active usage. After that you
+-          won't be able to sync between devices, but can still it. Why? Our
+-          number of paying user seats is limited. I, the maintainer of this
+-          project am only a student with limited financial resources. This is a
+-          passion project and I want to keep it free for everyone, but I also
+-          need to cover the costs of the cloud service. If your 30 days of using
+-          Sync have expired, please contact me and I will upgrade your account
+-          to a paying seat, no questions asked.
+-        </p>
+-        <h3>How can this be sustainable going forward?</h3>
+-        <p>
+-          If Skola ever grows large enough that the cost of the cloud service
+-          become a problem, we may need to explore alternatives like a
+-          cost-covering subscription model. Although, I don't want to charge for
+-          Skola or create yet another subscription service.
+-        </p>
+-        <p>
+-          <i>
+-            Needless to say, Skola will always stay open-source, so self-hosting
+-            is a viable option for those who want to keep using the sync
+-            features without any limitations or costs.
+-          </i>
+-        </p>
+-        <h3>Terms of Services</h3>
+-        <p>
+-          By signing in to Skola Cloud Sync, you agree to Skola syncing your
+-          data using Dexie Cloud. Dexie Cloud is a third-party service provided
+-          by the makers of Dexie, the IndexedDB wrapper library used by Skola.
+-          Your data may be stored on Dexie Cloud's servers and is associated
+-          with the email address you use to sign in. Skola doesn't share your
+-          data with any other third parties.
+-        </p>
+-      </article>
+-    </div>
+-  );
+-}
+diff --git a/src/app/settings/CloudSyncSignIn.css b/src/app/settings/CloudSyncSignIn.css
+deleted file mode 100644
+index a625e64..0000000
+--- a/src/app/settings/CloudSyncSignIn.css
++++ /dev/null
+@@ -1,51 +0,0 @@
+-.cloud-sync-sign-in {
+-  background: url("https://images.unsplash.com/photo-1711020023180-3c6569fed486?q=80&w=2350&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+-  background-size: cover;
+-  background-position: center;
+-  border-radius: var(--radius-lg);
+-  width: 100%;
+-  aspect-ratio: 3 / 2;
+-  margin-bottom: var(--spacing-lg);
+-  overflow: hidden;
+-  display: flex;
+-  flex-direction: column;
+-  justify-content: center;
+-  align-items: center;
+-  color: #ffffffcc;
+-}
+-
+-.cloud-sync-sign-in .badge {
+-  background-color: #ffffffcc;
+-  color: var(--color-neutral-700);
+-}
+-
+-.cloud-sync-sign-in h1 {
+-  font-size: var(--font-size-3xl);
+-  text-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+-  font-family: var(--font-serif);
+-  font-weight: 600;
+-  margin: 0;
+-}
+-
+-.cloud-sync-sign-in p {
+-  text-align: center;
+-  font-size: var(--font-size-md);
+-  text-shadow: 0 0 8px rgba(0, 0, 0, 0.9);
+-  font-family: var(--font-sans);
+-  margin-bottom: var(--spacing-3xl);
+-}
+-
+-@media (max-width: 768px) {
+-  .cloud-sync-sign-in {
+-    aspect-ratio: 4 / 3;
+-  }
+-
+-  .cloud-sync-sign-in h1 {
+-    font-size: var(--font-size-2xl);
+-  }
+-
+-  .cloud-sync-sign-in p {
+-    font-size: var(--font-size-sm);
+-    margin-bottom: var(--spacing-xl);
+-  }
+-}
+diff --git a/src/app/settings/CloudSyncSignIn.tsx b/src/app/settings/CloudSyncSignIn.tsx
+deleted file mode 100644
+index c921672..0000000
+--- a/src/app/settings/CloudSyncSignIn.tsx
++++ /dev/null
+@@ -1,29 +0,0 @@
+-import { Badge, Button } from "@/components/ui";
+-import { IconMail } from "@tabler/icons-react";
+-import "./CloudSyncSignIn.css";
+-
+-const BASE = "cloud-sync-sign-in";
+-
+-interface CloudSyncSignInProps {
+-  onSignIn: () => void;
+-}
+-
+-export default function CloudSyncSignIn({ onSignIn }: CloudSyncSignInProps) {
+-  return (
+-    <div className={BASE}>
+-      <Badge variant="filled" color="neutral">
+-        Beta
+-      </Badge>
+-      <h1>Skola Cloud Sync</h1>
+-      <p>Limits and conditions apply. See below for more information.</p>
+-      <Button
+-        variant="white"
+-        size="md"
+-        onClick={onSignIn}
+-        leftSection={<IconMail />}
+-      >
+-        Sign In
+-      </Button>
+-    </div>
+-  );
+-}
+diff --git a/src/app/shell/Sidebar/CloudSection.css b/src/app/shell/Sidebar/CloudSection.css
+deleted file mode 100644
+index 577fd29..0000000
+--- a/src/app/shell/Sidebar/CloudSection.css
++++ /dev/null
+@@ -1,56 +0,0 @@
+-.cloud-section {
+-  display: flex;
+-  flex-direction: column;
+-  gap: var(--spacing-sm);
+-  padding: var(--spacing-sm);
+-  border-top: 1px solid var(--theme-neutral-200);
+-  background-color: var(--theme-neutral-150, var(--theme-neutral-100));
+-  font-size: var(--font-size-sm);
+-  font-family: var(--font-sans);
+-  color: var(--theme-neutral-600);
+-}
+-
+-.cloud-section__info strong {
+-  color: var(--theme-neutral-800);
+-}
+-
+-.cloud-section__button {
+-  display: inline-flex;
+-  align-items: center;
+-  justify-content: center;
+-  border: none;
+-  border-radius: var(--radius-md);
+-  font-size: var(--font-size-sm);
+-  font-weight: 500;
+-  font-family: var(--font-sans);
+-  cursor: pointer;
+-  transition: background-color 0.1s ease, color 0.1s ease;
+-  background-color: var(--theme-primary-600);
+-  color: white;
+-}
+-
+-.cloud-section__button:hover {
+-  background-color: var(--theme-primary-700);
+-}
+-
+-.cloud-section__button:active {
+-  background-color: var(--theme-primary-800);
+-}
+-
+-.cloud-section__button:focus-visible {
+-  outline: 2px solid var(--theme-primary-500);
+-  outline-offset: 2px;
+-}
+-
+-.cloud-section__button--secondary {
+-  background-color: var(--theme-neutral-200);
+-  color: var(--theme-neutral-700);
+-}
+-
+-.cloud-section__button--secondary:hover {
+-  background-color: var(--theme-neutral-300);
+-}
+-
+-.cloud-section__button--secondary:active {
+-  background-color: var(--theme-neutral-400);
+-}
+diff --git a/src/app/shell/Sidebar/CloudSection.tsx b/src/app/shell/Sidebar/CloudSection.tsx
+deleted file mode 100644
+index afd6ba9..0000000
+--- a/src/app/shell/Sidebar/CloudSection.tsx
++++ /dev/null
+@@ -1,43 +0,0 @@
+-import { db } from "@/logic/db";
+-import { useObservable } from "dexie-react-hooks";
+-import "./CloudSection.css";
+-
+-const BASE = "cloud-section";
+-
+-interface CloudSectionProps {
+-  minimalMode: boolean;
+-}
+-
+-export default function CloudSection({ minimalMode }: CloudSectionProps) {
+-  const user = useObservable(db.cloud.currentUser);
+-  const syncState = useObservable(db.cloud.syncState);
+-  const persistedSyncState = useObservable(db.cloud.persistedSyncState);
+-
+-  if (!user || !user.isLoggedIn || minimalMode) {
+-    return null;
+-  }
+-  return (
+-    <section className={BASE}>
+-      <p>{user.email}</p>
+-      <h2>Sync State</h2>
+-      <p>Error Message: {syncState?.error?.message}</p>
+-      <p>License: {syncState?.license}</p>
+-      <p>Phase: {syncState?.phase}</p>
+-      <p>Progresss: {syncState?.progress} / 100</p>
+-      <p>Status: {syncState?.status}</p>
+-      <h2>Persisted Sync State</h2>
+-      <p>Client Identiy: {persistedSyncState?.clientIdentity}</p>
+-      <p>Error: {persistedSyncState?.error}</p>
+-      <p>Initially Synced: {persistedSyncState?.initiallySynced}</p>
+-      <p>
+-        Latest Revision{JSON.stringify(persistedSyncState?.latestRevisions)}
+-      </p>
+-      <p>
+-        Timestamp:{" "}
+-        {persistedSyncState?.timestamp?.toLocaleDateString() +
+-          " " +
+-          persistedSyncState?.timestamp?.toLocaleTimeString()}
+-      </p>
+-    </section>
+-  );
+-}
+diff --git a/src/components/CloudSyncState/CloudSyncState.css b/src/components/CloudSyncState/CloudSyncState.css
+deleted file mode 100644
+index e96fb5c..0000000
+--- a/src/components/CloudSyncState/CloudSyncState.css
++++ /dev/null
+@@ -1,144 +0,0 @@
+-.cloud-sync-state {
+-  display: flex;
+-  align-items: center;
+-  gap: var(--spacing-sm);
+-  padding: var(--spacing-md) var(--spacing-sm);
+-  margin: var(--spacing-sm) var(--spacing-sm);
+-  border-radius: var(--radius-md);
+-  text-decoration: none;
+-  cursor: pointer;
+-  transition: var(--transition-button);
+-}
+-
+-.cloud-sync-state:hover {
+-  background-color: var(--theme-neutral-200);
+-}
+-
+-.cloud-sync-state--minimal {
+-  justify-content: center;
+-  height: calc(var(--sidebar-width) - var(--spacing-sm) * 2);
+-}
+-
+-.cloud-sync-state__indicator {
+-  display: flex;
+-  align-items: center;
+-  justify-content: center;
+-  flex-shrink: 0;
+-}
+-
+-.cloud-sync-state__status-dot {
+-  position: relative;
+-  width: 10px;
+-  height: 10px;
+-  border-radius: var(--radius-full);
+-  display: flex;
+-  align-items: center;
+-  justify-content: center;
+-}
+-
+-.cloud-sync-state__status-dot--lime {
+-  background-color: var(--theme-lime-200);
+-  box-shadow: 0 0 0 1px var(--theme-lime-500);
+-}
+-
+-.cloud-sync-state__status-dot--orange {
+-  background-color: var(--theme-orange-200);
+-  box-shadow: 0 0 0 1px var(--theme-orange-500);
+-  animation: pulse-ring 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+-}
+-
+-.cloud-sync-state__status-dot--red {
+-  background-color: var(--theme-red-200);
+-  box-shadow: 0 0 0 1px var(--theme-red-500);
+-}
+-
+-.cloud-sync-state__status-dot--neutral {
+-  background-color: var(--theme-neutral-200);
+-  box-shadow: 0 0 0 1px var(--theme-neutral-400);
+-}
+-
+-.cloud-sync-state__status-dot-inner {
+-  width: 4px;
+-  height: 4px;
+-  border-radius: var(--radius-full);
+-  background-color: currentColor;
+-}
+-
+-.cloud-sync-state__status-dot--lime .cloud-sync-state__status-dot-inner {
+-  background-color: var(--theme-lime-600);
+-}
+-
+-.cloud-sync-state__status-dot--orange .cloud-sync-state__status-dot-inner {
+-  background-color: var(--theme-orange-600);
+-}
+-
+-.cloud-sync-state__status-dot--red .cloud-sync-state__status-dot-inner {
+-  background-color: var(--theme-red-600);
+-}
+-
+-.cloud-sync-state__status-dot--neutral .cloud-sync-state__status-dot-inner {
+-  background-color: var(--theme-neutral-500);
+-}
+-
+-.cloud-sync-state__content {
+-  display: flex;
+-  flex-direction: column;
+-  gap: var(--spacing-xs);
+-  flex: 1;
+-  min-width: 0;
+-}
+-
+-.cloud-sync-state__labels {
+-  display: flex;
+-  flex-direction: column;
+-  gap: 0;
+-}
+-
+-.cloud-sync-state__status-label {
+-  font-size: var(--font-size-sm);
+-  font-weight: 500;
+-  color: var(--theme-neutral-800);
+-  line-height: 1.2;
+-}
+-
+-.cloud-sync-state__phase-label {
+-  font-size: var(--font-size-xs);
+-  color: var(--theme-neutral-500);
+-  line-height: 1.2;
+-}
+-
+-.cloud-sync-state__phase-icon {
+-  display: flex;
+-  align-items: center;
+-  justify-content: center;
+-  flex-shrink: 0;
+-  color: var(--theme-neutral-500);
+-  width: var(--icon-size-xs);
+-  height: var(--icon-size-xs);
+-}
+-
+-.cloud-sync-state__progress {
+-  width: 100%;
+-  height: 2px;
+-  background-color: var(--theme-neutral-200);
+-  border-radius: var(--radius-full);
+-  overflow: hidden;
+-}
+-
+-.cloud-sync-state__progress-bar {
+-  height: 100%;
+-  background-color: var(--theme-neutral-700);
+-  border-radius: var(--radius-full);
+-  transition: width var(--transition-duration-normal)
+-    var(--transition-timing-ease);
+-}
+-
+-@keyframes pulse-ring {
+-  0%,
+-  100% {
+-    box-shadow: 0 0 0 0px var(--theme-orange-500);
+-  }
+-  50% {
+-    box-shadow: 0 0 0 1px var(--theme-orange-600);
+-  }
+-}
+diff --git a/src/components/CloudSyncState/CloudSyncState.tsx b/src/components/CloudSyncState/CloudSyncState.tsx
+deleted file mode 100644
+index 4c09825..0000000
+--- a/src/components/CloudSyncState/CloudSyncState.tsx
++++ /dev/null
+@@ -1,134 +0,0 @@
+-import { db } from "@/logic/db";
+-import {
+-  IconCloudDownload,
+-  IconCloudOff,
+-  IconCloudUpload,
+-} from "@tabler/icons-react";
+-import { useObservable } from "dexie-react-hooks";
+-import "./CloudSyncState.css";
+-
+-const BASE = "cloud-sync-state";
+-
+-interface CloudSyncStateProps {
+-  minimal?: boolean;
+-}
+-
+-export function CloudSyncState({ minimal = false }: CloudSyncStateProps) {
+-  const syncState = useObservable(db.cloud.syncState);
+-  const user = useObservable(db.cloud.currentUser);
+-
+-  if (!syncState || !user?.isLoggedIn) {
+-    return null;
+-  }
+-
+-  const { status, phase, progress } = syncState;
+-
+-  const getStatusColor = () => {
+-    switch (status) {
+-      case "connected":
+-        return "lime";
+-      case "connecting":
+-        return "orange";
+-      case "error":
+-      case "disconnected":
+-        return "red";
+-      default:
+-        return "neutral";
+-    }
+-  };
+-
+-  const getPhaseIcon = () => {
+-    switch (phase) {
+-      case "pushing":
+-        return <IconCloudUpload />;
+-      case "pulling":
+-        return <IconCloudDownload />;
+-      case "offline":
+-        return <IconCloudOff />;
+-      case "error":
+-        return <IconCloudOff />;
+-      default:
+-        return null;
+-    }
+-  };
+-
+-  const getPhaseLabel = () => {
+-    switch (phase) {
+-      case "pushing":
+-        return "Uploading";
+-      case "pulling":
+-        return "Downloading";
+-      case "offline":
+-        return "Offline";
+-      case "error":
+-        return "Error";
+-      case "not-in-sync":
+-        return "Syncing";
+-      case "in-sync":
+-        return "Synced";
+-      case "initial":
+-        return "Starting";
+-      default:
+-        return "Idle";
+-    }
+-  };
+-
+-  const getStatusLabel = () => {
+-    switch (status) {
+-      case "connected":
+-        return "Connected";
+-      case "connecting":
+-        return "Connecting";
+-      case "disconnected":
+-        return "Disconnected";
+-      case "error":
+-        return "Error";
+-      case "offline":
+-        return "Offline";
+-      default:
+-        return "Not started";
+-    }
+-  };
+-
+-  const statusColor = getStatusColor();
+-  const phaseIcon = getPhaseIcon();
+-  const phaseLabel = getPhaseLabel();
+-  const statusLabel = getStatusLabel();
+-  const showProgress = progress !== undefined;
+-
+-  const classes = [BASE, minimal && `${BASE}--minimal`]
+-    .filter(Boolean)
+-    .join(" ");
+-
+-  return (
+-    <a className={classes} href="#settings/cloud">
+-      <div className={`${BASE}__indicator`}>
+-        <div
+-          className={`${BASE}__status-dot ${BASE}__status-dot--${statusColor}`}
+-        >
+-          <div className={`${BASE}__status-dot-inner`} />
+-        </div>
+-      </div>
+-
+-      {!minimal && (
+-        <div className={`${BASE}__content`}>
+-          <div className={`${BASE}__labels`}>
+-            <span className={`${BASE}__status-label`}>{statusLabel}</span>
+-            <span className={`${BASE}__phase-label`}>{phaseLabel}</span>
+-          </div>
+-
+-          {showProgress && (
+-            <div className={`${BASE}__progress`}>
+-              <div
+-                className={`${BASE}__progress-bar`}
+-                style={{ width: `${progress}%` }}
+-              />
+-            </div>
+-          )}
+-        </div>
+-      )}
+-
+-      {phaseIcon && <div className={`${BASE}__phase-icon`}>{phaseIcon}</div>}
+-    </a>
+-  );
+-}
+diff --git a/src/components/CloudSyncState/index.ts b/src/components/CloudSyncState/index.ts
+deleted file mode 100644
+index 0442180..0000000
+--- a/src/components/CloudSyncState/index.ts
++++ /dev/null
+@@ -1 +0,0 @@
+-export { CloudSyncState } from "./CloudSyncState";
