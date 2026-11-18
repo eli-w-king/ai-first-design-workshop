@@ -89,7 +89,7 @@ export const GUIDED_MODULES = [
     wow: "A live link to your Skola 2.0 and a repo for your portfolio.",
     learn: "PRs in your own fork, GitHub Pages, licenses and credit.",
     fallback: "Module 9 never moves. Ship at 6:59 with what works. If no direction is ready, use the second prompt, then bring in your choice after the first deploy.\n\nIf it says your fork's workflows aren't enabled, open Actions in your fork on GitHub, click 'I understand my workflows, go ahead and enable them', then ask again. Don't use Skola's package deploy script as a workaround: it adds the original project's custom domain.",
-    further: "Open the live link in a fresh browser. Try a card, then follow the source link back to your fork and check the license and credit.",
+    further: "A fresh browser starts with an empty Skola. Create a deck, then use Import Cards > From Plain Text to import kit/decks/UX laws and principles.txt and see your Today home. Try a card, then follow the source link back to your fork and check the license and credit.",
     downloads: 'publish',
   },
   {
