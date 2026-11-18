@@ -31,6 +31,7 @@ export const DOCS = {
   gh: 'https://cli.github.com/',
   ghQuickstart: 'https://docs.github.com/en/github-cli/github-cli/quickstart',
   ghLogin: 'https://cli.github.com/manual/gh_auth_login',
+  commitEmailPrivacy: 'https://docs.github.com/en/account-and-profile/how-tos/email-preferences/setting-your-commit-email-address',
   actionsBilling: 'https://docs.github.com/en/billing/concepts/product-billing/github-actions',
   git: 'https://git-scm.com/book/en/v2/Getting-Started-Installing-Git',
   gitWindows: 'https://gitforwindows.org/',
