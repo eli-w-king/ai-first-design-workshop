@@ -40,7 +40,7 @@ async function buildCourse() {
     for (const heading of ['Goal', 'Steps', 'What it costs', 'How to undo it']) {
       if (!body.includes(`## ${heading}`)) throw new Error(`Missing ${heading} in ${module.source}.`);
     }
-    modules.push(`<article class="module" id="${module.slug}"><p class="eyebrow">MODULE ${String(index + 1).padStart(2, '0')}</p><h2>${escapeHtml(module.title)}</h2>${renderMarkdown(body, module.slug)}</article>`);
+    modules.push(`<article class="module" id="${module.slug}"><p class="eyebrow">GUIDE ${String(index + 1).padStart(2, '0')}</p><h2>${escapeHtml(module.title)}</h2>${renderMarkdown(body, module.slug)}</article>`);
   }
   const nav = `<nav class="side-nav" aria-label="Take-home modules"><p>THE TAKE-HOME</p>${COURSE.map((m, i) => `<a href="#${m.slug}">${String(i + 1).padStart(2, '0')}. ${escapeHtml(m.title)}</a>`).join('')}</nav>`;
   const html = `<div class="page-layout">${nav}<div class="reading">${modules.join('\n')}</div></div>`;
@@ -51,6 +51,18 @@ async function buildCourse() {
     if (unseal(previous, phrase) === plain) return previous;
   } catch { /* A changed credential or absent payload creates a fresh salt and IV. */ }
   return seal(plain, phrase);
+}
+
+async function copyPublicTree(from, to) {
+  await fs.mkdir(to, { recursive: true });
+  for (const entry of await fs.readdir(from, { withFileTypes: true })) {
+    if (entry.name.startsWith('.')) continue;
+    if (entry.isSymbolicLink()) throw new Error('Public kit files must not be symbolic links.');
+    const sourceFile = path.join(from, entry.name);
+    const targetFile = path.join(to, entry.name);
+    if (entry.isDirectory()) await copyPublicTree(sourceFile, targetFile);
+    else await fs.copyFile(sourceFile, targetFile);
+  }
 }
 
 async function main() {
@@ -78,6 +90,7 @@ async function main() {
     await fs.writeFile(target, html);
   }
   await fs.copyFile(path.join(ROOT, 'src', 'downloads', 'workshop-settings.jsonc'), path.join(OUT, 'get-ready', 'workshop-settings.jsonc'));
+  await copyPublicTree(path.join(ROOT, 'src', 'kit'), path.join(OUT, 'kit'));
   await fs.writeFile(lockedFile, JSON.stringify(encrypted));
   await fs.writeFile(path.join(OUT, '.nojekyll'), '');
   await fs.writeFile(path.join(OUT, 'robots.txt'), `User-agent: *\nAllow: /\nSitemap: ${SITE_URL}sitemap.xml\n`);

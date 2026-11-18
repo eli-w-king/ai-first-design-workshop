@@ -1,7 +1,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { BASE, SITE_URL } from '../src/data.mjs';
+import { BASE, COURSE, SITE_URL } from '../src/data.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../docs');
 async function files(dir) {
@@ -41,7 +41,7 @@ for (const [file, { html }] of pages) {
     const target = path.join(ROOT, targetPath);
     links++;
     if (!all.includes(target)) { errors.push(`Missing ${href} from ${relative}`); continue; }
-    if (url.hash && pages.has(target) && !pages.get(target).ids.includes(decodeURIComponent(url.hash.slice(1)))) errors.push(`Missing anchor ${href} from ${relative}`);
+    if (url.hash && pages.has(target) && !(targetPath === 'keep-going/index.html' && COURSE.some(module => module.slug === url.hash.slice(1))) && !pages.get(target).ids.includes(decodeURIComponent(url.hash.slice(1)))) errors.push(`Missing anchor ${href} from ${relative}`);
   }
 }
 if (errors.length) { console.error(errors.join('\n')); process.exitCode = 1; }

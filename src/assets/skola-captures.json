@@ -1,0 +1,43 @@
+{
+  "project": "Skola",
+  "source": "https://github.com/h16nning/skola",
+  "license": "AGPL-3.0",
+  "upstreamCommit": "f8d89dafb3878192f53da02f827aa55e00b83e01",
+  "capturedAt": "2026-11-18T06:06:32.016Z",
+  "build": "Real local-only production build; all four workshop prep patches applied. No visual redesign.",
+  "sample": "UX laws and principles, 40 practice cards",
+  "files": [
+    {
+      "file": "skola-home-desktop-dark.png",
+      "sha256": "434982f11d6e5a298bff03c7776caa7878725429f208ccc98686d293dc4483bf",
+      "width": 1440,
+      "height": 900,
+      "screen": "home",
+      "theme": "dark"
+    },
+    {
+      "file": "skola-home-phone-dark.png",
+      "sha256": "8520e2a6839f761ba07e022c6f909d80d3e6a098118f37d099968802ef304341",
+      "width": 390,
+      "height": 844,
+      "screen": "home",
+      "theme": "dark"
+    },
+    {
+      "file": "skola-study-desktop-dark.png",
+      "sha256": "a39c35bdedc1c6426272b69c529847e84b8ad8e3ba7ccccc5bb79c5c0d39b2eb",
+      "width": 1440,
+      "height": 900,
+      "screen": "study",
+      "theme": "dark"
+    },
+    {
+      "file": "skola-study-phone-dark.png",
+      "sha256": "b3d41370554d934415313bb994ac24c3a006a363ffcb3926ea8b07c4fcf5084c",
+      "width": 390,
+      "height": 844,
+      "screen": "study",
+      "theme": "dark"
+    }
+  ]
+}

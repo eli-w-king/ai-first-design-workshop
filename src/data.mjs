@@ -70,6 +70,7 @@ export const COURSE = [
   { slug: 'models-and-cost', title: 'Choose models and manage cost', source: '09-models-and-cost.md' },
   { slug: 'voice-and-computer', title: 'Try voice and Computer Use', source: '10-voice-and-computer.md' },
   { slug: 'publish-your-version', title: 'Publish your version', source: '11-publish-your-version.md' },
+  { slug: 'daily-cards', title: 'Make cards a habit', source: '12-daily-cards.md' },
 ];
 
 export const WORD_GROUPS = [

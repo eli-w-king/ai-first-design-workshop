@@ -1,0 +1,50 @@
+{
+  "purpose": "Public-safe practice material for the AI-First Design Workshop. The brief and research notes are fictional, not evidence about real Skola users or the maintainer's roadmap.",
+  "files": [
+    {
+      "file": "prd/skola-2-practice-brief.md",
+      "sha256": "dc1ea9fda2029ea98e7b3fa8f9b7414aed8f8e51d0231f2eb7ba511d3d981f73",
+      "classification": "Workshop practice material"
+    },
+    {
+      "file": "prd/skola-2-practice-slide.md",
+      "sha256": "203a294d5ce4b6d2c11faacad8b733827605924f783a743c9a2151761502bd1c",
+      "classification": "Workshop practice material"
+    },
+    {
+      "file": "decks/UX laws and principles.txt",
+      "sha256": "39f8977d7ddcbb0e11223f54571957bbc72022d5c9e1d816a528dc63da7d6362",
+      "classification": "Workshop practice material"
+    },
+    {
+      "file": "research/01-nursing-student.md",
+      "sha256": "a48de3421a7519806dbc42e8ca3776c1df25ba4ee098d1f595cb8e256aead206",
+      "classification": "Fictional practice notes"
+    },
+    {
+      "file": "research/02-designer-learning-japanese.md",
+      "sha256": "82cb383ea31a93202cfc961ff0f2dab8d223c3b6b278fee98586056d64a055d8",
+      "classification": "Fictional practice notes"
+    },
+    {
+      "file": "research/03-high-school-teacher.md",
+      "sha256": "c59cdf0a55056a33d05d52eca156ccae46309f5b495d0f87fed2ef53dc1cdab8",
+      "classification": "Fictional practice notes"
+    },
+    {
+      "file": "research/04-ux-bootcamp-grad.md",
+      "sha256": "8edfe2e78811ce95f45de347c8ae19b67abef584023bf29af130e85642c1b5b3",
+      "classification": "Fictional practice notes"
+    },
+    {
+      "file": "research/05-commuter-learning-spanish.md",
+      "sha256": "4c06d143d0b217f4671237ffdcea2d2f430b90da921cbf79a4119fedf038583d",
+      "classification": "Fictional practice notes"
+    },
+    {
+      "file": "research/06-med-student-anki.md",
+      "sha256": "b5bab16b1cdcbbf703f96483c948db0bec6b507cb4afa05f88ce5ac5bc2c1e38",
+      "classification": "Fictional practice notes"
+    }
+  ]
+}

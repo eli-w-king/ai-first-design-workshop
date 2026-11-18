@@ -1,0 +1,40 @@
+Why is a big, nearby button easier to hit?	Fitts's law: a closer target, or one that's wider along your path, usually takes less time to point to.
+A ticket kiosk offers 24 similar fares. Why might the choice take longer?	Hick's law links choice time to uncertainty. Group fares by trip type so riders can rule out a whole group at once.
+Why put the shopping cart where shoppers expect it?	Jakob's law: people bring habits from other sites. A familiar cart location lets them use what they already know.
+Does Miller's law mean a menu can only have seven items?	No. Miller studied limits of immediate memory, not menu length. Visible options don't all have to be held in memory.
+Why is 415 555 0138 easier to copy than 4155550138?	Chunking breaks a long sequence into groups you can hold in mind while you copy it.
+Two field labels float between two inputs. Where should each label go?	Put each label closer to its own input. By the Gestalt principle of proximity, nearby things tend to look related.
+Why do people assume all the blue underlined words are links?	Similarity: things that look alike tend to be grouped together. Use the same treatment for the same behavior.
+Three shipping options sit inside one outline. What does the border tell you?	Common region: things inside the same boundary tend to look like one group.
+Why do dots moving together look like a flock?	Common fate: elements that move together tend to be seen as one group.
+What makes a dialog stand apart from the page behind it?	Figure and ground: contrast helps the dialog read as the object of attention and the page as its background.
+On a transit map, why does your eye follow one line through a crossing?	Good continuation: we tend to follow a smooth path rather than assume it turns sharply at an intersection.
+Why does a nearly complete ring still look like a circle?	Closure: we often perceive an incomplete shape as a whole.
+One card in a row of gray cards is yellow. Which will you remember?	The yellow one may stand out in memory. The isolation effect depends on a real difference, so highlighting everything defeats it.
+Why might someone recall the first and last items in a list better?	The serial position effect: under many recall conditions, early and late items are remembered better than middle ones.
+Which moments might shape someone's memory of a long support call?	The peak-end rule suggests the most intense moment and the ending can weigh heavily. It doesn't make the rest of the call irrelevant.
+Can a beautiful checkout feel easier even when it takes the same steps?	Yes. The aesthetic-usability effect is about perceived ease. An attractive screen can still have problems in a task test.
+Which makes choosing a saved address easier: a list or an empty field?	A list supports recognition rather than recall. People can recognize an address without remembering exactly how they typed it.
+The photo editor has 30 controls. What should a first-time user see?	Use progressive disclosure: show the common edits first and keep advanced controls one clear step away.
+A door has a flat plate on one side. What tells you to push?	The plate is a signifier: its shape suggests pushing. An affordance is the action the door actually allows.
+Four stove knobs control four burners. How could the layout help?	Natural mapping: arrange the knobs like the burners so their positions suggest which burner each controls.
+Why disable dates before a hotel check-in date in the checkout picker?	A constraint prevents an impossible date range before someone has to recover from an error.
+An upload takes a few seconds. How do you show the click worked?	Give prompt feedback, then show progress or an honest waiting state until the upload finishes.
+Why show both "Draft saved" and the time it was saved?	Visibility of system status: the message shows what happened and the time helps someone judge how current the draft is.
+Someone deletes the wrong photo. What helps if the deletion is reversible?	Offer Undo. User control and freedom means people can recover without starting the task over.
+A form rejects "31 Feb". What should the error message say?	Name the field and the problem, then give a way forward: "February doesn't have 31 days. Choose another date."
+When should a form check whether an email address is missing an @?	Validate when the person has had a chance to finish the field. Inline feedback can save a round trip without interrupting every keystroke.
+Why keep the search icon in the same place across a recipe app?	Consistency lets people transfer a learned action between screens instead of hunting for it each time.
+Why label a transit button "Buy a ticket" rather than "Create entitlement"?	Match the system to the real world. Use the rider's words for the task, not the database's words for the record.
+What makes "Delivery dates by ZIP code" a better link than "More"?	Information scent: the label helps someone predict what they'll find before they open the link.
+What should the first screen of an empty recipe box do?	Explain why it's empty and give one useful next step, such as "Add your first recipe."
+How can you make a long form feel shorter without hiding questions?	Group related fields under meaningful headings. People can scan for the part they need rather than parse one long list.
+Why keep a label visible after someone starts typing?	A placeholder disappears. A persistent label keeps the field's purpose visible during typing and review.
+Two status dots are red and green. What else should they show?	Add text or another non-color cue, such as "Offline" and "Online". Color alone doesn't communicate status to everyone.
+Why does a keyboard user need a visible focus indicator?	It shows which control will receive the next action. Without it, Tab moves through the page with no clear location.
+What should happen to keyboard focus when a settings dialog closes?	Usually return focus to the control that opened it, or to the next logical place if that control no longer exists.
+Is a small trash icon easier to tap if you draw it in bolder ink?	It can be easier to see, but the touch target stays small. Increase the clickable area and keep it clear of nearby targets.
+What should a reduced-motion version of a sliding panel keep?	Keep the final state, content and controls. Reduce nonessential movement without removing the information it conveyed.
+Why let someone paste a whole verification code?	It avoids switching back and forth while holding digits in memory. Input controls should support the task, including paste.
+Which is a better critique: "the layout feels off" or "I couldn't find Undo"?	The second gives the team an observable task problem to investigate rather than a taste judgment to debate.
+You changed a button label. How would you find out whether it helped?	Give people the original task without naming the button. Watch whether they find it and understand what happens next.

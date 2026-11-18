@@ -22,7 +22,9 @@ The site is static. GitHub Pages publishes the committed `docs/` folder from `ma
 ## Edit and build
 
 - `src/pages.mjs`: the six public pages and 404.
-- `src/data.mjs`: public metadata, official documentation links, glossary and module titles.
+- `src/data.mjs`: public metadata, official documentation links, glossary and take-home guide titles.
+- `src/run-sheet.mjs`: the nine draft guided modules and free-work links.
+- `src/kit/`: the supplied fictional practice brief, slide text, six interview notes and public UX deck, copied unchanged after line-by-line review.
 - `src/assets/`: shared styles, browser code, favicon and social image.
 - `src/downloads/workshop-settings.jsonc`: the checked two-key snippet, copied unchanged into `docs/get-ready/`.
 - `templates/page.html`: navigation, metadata, footer and shared page shell.
@@ -54,6 +56,6 @@ The browser decrypts it with WebCrypto. Remembering access is opt-in and stores 
 
 ## Current draft items
 
-Skola is the shared example. The fictional practice brief, detailed run sheet, recording path, Computer Use task and checked Pages recipe are still being finalized. Every change and PR stays in the attendee's own fork, with cloud sync disabled and no Skola sign-in. The settings and controls are checked against VS Code Insiders 1.148 and the docs, but not yet tested on a clean personal account. The public snippet contains only the two approved experimental keys. Free-month redemption, card requirement, renewal and promotional cancellation details need confirmation. The Skills page describes a plugin under separate development; installation is for after release, not an instruction to install an unpublished branch.
+Skola is the shared example. The fictional practice brief and nine-module run sheet are supplied, but the run sheet is still being rehearsed and is not approved by Eli. Public video slots are placeholders, and the Spanish travel deck is not supplied yet. Local Skola prep is verified; a fresh-fork live deployment and clean personal-account Mac/Windows rehearsal remain open. Every change and PR stays in the attendee's own fork, with cloud sync disabled and no Skola sign-in. The settings and controls are checked against VS Code Insiders 1.148 and the docs, but not yet tested on a clean personal account. The public snippet contains only the two approved experimental keys. Free-month redemption, card requirement, renewal and promotional cancellation details need confirmation. The Skills page describes a plugin under separate development; installation is for after release, not an instruction to install an unpublished branch.
 
 Public pages do not include guest data, private links, redemption codes, credentials or a street address. Review content and repository history before publishing.

@@ -7,10 +7,11 @@ export function promptBlock(id, text, label = 'Prompt') {
 }
 
 function inline(text) {
-  const tokens = /(`[^`\n]+`|\[[^\]\n]+\]\([^\s)]+\)|\*\*[^*\n]+\*\*)/g;
+  const tokens = /(`[^`\n]+`|\[[^\]\n]+\]\([^\s)]+\)|\*\*[^*\n]+\*\*|\*[^*\n]+\*)/g;
   return text.split(tokens).map(part => {
     if (part.startsWith('`') && part.endsWith('`')) return `<code>${escapeHtml(part.slice(1, -1))}</code>`;
     if (part.startsWith('**') && part.endsWith('**')) return `<strong>${escapeHtml(part.slice(2, -2))}</strong>`;
+    if (part.startsWith('*') && part.endsWith('*')) return `<em>${escapeHtml(part.slice(1, -1))}</em>`;
     const link = part.match(/^\[([^\]]+)\]\(([^\s)]+)\)$/);
     if (link) {
       if (!/^(https:\/\/|\/(?!\/)|#[a-zA-Z])/.test(link[2])) throw new Error('Unsupported link in course source. Use HTTPS or a site-relative link.');
@@ -21,7 +22,7 @@ function inline(text) {
 }
 
 // The course uses a small, deliberately HTML-free Markdown subset.
-export function renderMarkdown(markdown, prefix = 'lesson') {
+export function renderMarkdown(markdown, prefix = 'lesson', headingOffset = 1) {
   const lines = markdown.replace(/\r\n?/g, '\n').split('\n');
   const output = [];
   let index = 0;
@@ -41,7 +42,7 @@ export function renderMarkdown(markdown, prefix = 'lesson') {
     }
     const heading = line.match(/^(#{1,5})\s+(.+)$/);
     if (heading) {
-      const level = Math.min(6, heading[1].length + 1);
+      const level = Math.min(6, heading[1].length + headingOffset);
       output.push(`<h${level}>${inline(heading[2])}</h${level}>`);
       index++;
       continue;

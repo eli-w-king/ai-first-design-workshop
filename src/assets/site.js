@@ -96,7 +96,15 @@
     document.dispatchEvent(new Event('course:open'));
     if (fromForm) { document.getElementById('course-heading').focus(); announce('The take-home is open.'); }
     if (location.hash) {
-      try { holder.querySelector(`#${CSS.escape(decodeURIComponent(location.hash.slice(1)))}`)?.scrollIntoView(); } catch { /* Invalid fragments do not prevent access. */ }
+      try {
+        const target = holder.querySelector(`#${CSS.escape(decodeURIComponent(location.hash.slice(1)))}`);
+        if (target) {
+          const heading = target.querySelector('h2') || target;
+          heading.tabIndex = -1;
+          heading.focus({ preventScroll: true });
+          target.scrollIntoView();
+        }
+      } catch { /* Invalid fragments do not prevent access. */ }
     }
   };
   const setBusy = value => {

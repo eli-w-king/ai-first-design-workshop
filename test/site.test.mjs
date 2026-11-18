@@ -39,6 +39,7 @@ test('course Markdown gives prompts unique targets and escapes raw HTML', () => 
   assert.match(result, /&lt;script&gt;/);
   assert.doesNotMatch(result, /<script>/);
   assert.match(renderMarkdown('<img src=x onerror=alert(1)>'), /&lt;img/);
+  assert.match(renderMarkdown('# Brief\n\n*Fictional practice*', 'brief', 2), /<h3>Brief<\/h3>[\s\S]*<em>Fictional practice<\/em>/);
 });
 
 test('course Markdown fails closed for unsafe links and unclosed code', () => {
