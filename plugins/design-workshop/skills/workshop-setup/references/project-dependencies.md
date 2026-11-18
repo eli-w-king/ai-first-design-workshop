@@ -50,6 +50,23 @@ Without the local-cache flag, `npm config get cache` shows the npm cache locatio
 
 After an approved install, use the same pin and cache options for the project's documented scripts. Verify the actual dev and production build paths, including any skipped-script warning. Before any app launch, confirm [upstream hosted services are inert](../../prototypes/references/fork-guardrails.md). Do not test by signing in or contacting the original project's server. Stop only the server you started.
 
+## Keep shared patches byte for byte
+
+Git for Windows with `core.autocrlf=true` can replace a tracked patch or diff file's original LF line endings with Windows-style CRLF endings during checkout. That changes the file's bytes. `git apply` can then fail with **patch does not apply**, even when the intended change and target revision are right.
+
+In the repository that **distributes the patch files**, propose these entries in `.gitattributes`, preserving its other rules and asking before the edit:
+
+```gitattributes
+*.patch -text
+*.diff -text
+```
+
+This keeps those files byte-for-byte instead of treating them as source text to convert. Commit the known-good LF patch files with the rule. Adding the rule does not repair a copy that was already changed: obtain a fresh known-good copy after the rule is in place, or use a raw download from the reviewed source so Git does not convert it on checkout. Download the raw file, not the repository's HTML page. Check a supplied checksum when one is available.
+
+A normal Windows clone of the **target project** is fine with LF patches. Do not turn off `core.autocrlf` globally or normalize all project files. Inspect the patch, confirm its expected base revision, and use `git apply --check` before asking to apply it. If it still fails, check paths, revision and whether it was already applied; do not assume every patch failure is a line-ending problem.
+
+For Windows build variables such as a Pages URL prefix, follow [the PowerShell or scoped Git Bash example](../../publish-pages/references/spa-project-sites.md#windows-path-values). A URL-like value can be rewritten before Node reads it; this is separate from patch line endings.
+
 ## Undo with approval
 
 1. Stop the project's running tasks. Review and save the person's wanted changes and media first. Deleting a local folder does not remove a GitHub fork or public site.

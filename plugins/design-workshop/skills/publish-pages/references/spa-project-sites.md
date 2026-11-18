@@ -18,6 +18,29 @@ For an emitted manifest at `/<repo>/manifest.webmanifest`, a straightforward fix
 
 Follow the [Vite project-site guide](https://vite.dev/guide/static-deploy#github-pages), [manifest start URL](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Manifest/Reference/start_url), [manifest scope](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Manifest/Reference/scope) and [service-worker registration rules](https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerContainer/register). Keep existing hash or history behavior unless a change is approved.
 
+## Windows path values
+
+Use PowerShell for path-like build variables on Windows. It is VS Code's default Windows terminal unless the person changed it. Git Bash can rewrite a value such as `BASE_PATH=/repo/` into a Windows filesystem path before Node receives it. That is not the URL prefix the build needs.
+
+First note any existing value in that terminal. In PowerShell, set the value and check what Node sees:
+
+```powershell
+$env:BASE_PATH = '/repo/'
+node -p "process.env.BASE_PATH"
+```
+
+Then run the project's approved, pinned build command in that terminal. Replace `/repo/` with the actual project prefix. `BASE_PATH` is only an example: it works only if the app's build reads it; it is not an automatic Vite setting.
+
+If using Git Bash instead, prefix the affected command with `MSYS_NO_PATHCONV=1`:
+
+```bash
+MSYS_NO_PATHCONV=1 BASE_PATH=/repo/ node -p "process.env.BASE_PATH"
+```
+
+The check should print `/repo/`. Use the same prefix on the actual build command, not only on the check. Keep it scoped to that command rather than changing the person's shell profile or disabling conversion globally. The PowerShell assignment lasts for the current terminal; record and restore any previous value afterward, or use `Remove-Item Env:BASE_PATH` if it was previously absent.
+
+If a preparation patch fails before this step, check [patch-file line endings](../../workshop-setup/references/project-dependencies.md#keep-shared-patches-byte-for-byte). Do not rewrite the whole target project to work around a damaged patch.
+
 ## Check the production build, not a recreation
 
 Use the actual project and its pinned package manager, approved dependency install and documented build. Do not substitute a tiny HTML facsimile for the real app. Use an existing local preview tool that serves the built output at the real project prefix. Do not assume its preview server's SPA fallback is available on Pages.
