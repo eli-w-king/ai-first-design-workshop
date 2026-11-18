@@ -2,7 +2,7 @@
 version: 1
 id: keep-my-taste-current
 name: Keep my taste current
-description: "Create a first taste-skill draft from notes in this workspace, then propose later updates. Nothing is installed or enabled automatically. Use a Manual trigger and Run now for the first supervised run."
+description: "Draft taste rules from workspace notes; no personal installation. First trigger Manual. From a template: choose the model in New Automation. From chat: open Automations, set the model, Save, then Run now. Suggested: GPT-6.1 Terra at medium effort (low for simple file generation, like a deck file). Switch to GPT-6.2 Sol when the job is hard or Terra stalls."
 schedule:
   kind: cron
   expression: "0 9 * * 1"
@@ -38,7 +38,7 @@ Stop at the local draft and review. Never inspect, copy to or overwrite a person
 
 Use built-in file tools and an ordinary local workspace with Manual permissions. No command-line tools, repository, worktree, Autopilot, Allow all, settings changes, installs, sends, publication, purchases or deletion. Keep Run in the Cloud off. If an approval is unavailable, stop without broadening access; a waiting run holds back the next one.
 
-Use my selected model, or suggest a mid-priced option such as GPT-6.2 Sol if offered. If the host offers a per-run cap, use the one I approved. Never raise a budget or enable overage. Report host-provided usage if available, otherwise unavailable; every run consumes usage.
+If the host offers a per-run cap, use the one I approved. Never raise a budget or enable overage. Report host-provided usage if available, otherwise unavailable; every run consumes usage.
 
 For the first run I choose a Manual trigger and Run now. A weekly schedule is a later explicit choice. Local scheduled runs need the laptop awake and its host running. Tell me how to return the trigger to Manual or disable the created automation, and cancel pending runs separately; do not make those changes without approval. Removing the plugin does not remove a created automation or an independently installed personal skill.
 

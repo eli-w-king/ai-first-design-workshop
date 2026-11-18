@@ -1,5 +1,6 @@
 # Longer-run agreement
 
+Planning uses supplied context and built-in file tools, not terminal checks unless the person asks. Ask at most three essential questions for the goal, time or budget limit, and off-limits work. Propose labeled defaults for all other fields; this agreement is not an interview checklist.
 Leave unanswered fields visible. Do not start until the person approves the filled agreement.
 
 ## Scope

@@ -4,11 +4,15 @@ AI usage is not free just because the tools run on your laptop. Included credits
 
 ## Before starting
 
-Check the selected provider's current rate and account allowance. Suggest the current model or a mid-priced option such as GPT-6.2 Sol if available. The best starting model is one the person can afford and verify, not automatically the largest one. Escalating models is another budget decision.
+Check the selected provider's current rate and account allowance. Respect an already selected model; otherwise suggest GPT-6.1 Terra at medium effort (low for simple file generation, like a deck file). Switch to GPT-6.2 Sol when the job is hard or Terra stalls. The best starting model is one the person can afford and verify, not automatically the largest one. Escalating models is another budget decision.
 
 For GitHub Copilot, the current [billing guide](https://docs.github.com/en/copilot/concepts/billing-and-usage/individuals/billing) prices input, output and cached tokens by model, then converts the total to AI credits. One AI credit is $0.01 USD of usage value. A 30-credit cap is $0.30 of usage value, not necessarily a separate charge if included allowance remains. Rates, model availability and included credits can change; use the [live pricing table](https://docs.github.com/en/copilot/reference/copilot-billing/models-and-pricing).
 
 A model using a separate provider account or key can have separate billing. Do not switch providers, buy credits, enable overage or increase an account budget for the person.
+
+Reference-run measurements reported on November 18, 2026: **GPT-6.1 Terra, medium effort**, used **4.69 credits** for a taste first run and **8.15 credits** for an overnight plan. These are individual examples, not fixed prices or a promise for another input.
+
+For an automation, set the actual model before running: select it in **New Automation** when using a template; after creation from chat, open **Automations**, set the model/effort, **Save**, then **Run now**. A model named in a prompt does not set the stored model. An unset choice can use a pricier account default.
 
 ## Use the host's controls
 

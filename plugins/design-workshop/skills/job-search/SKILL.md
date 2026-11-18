@@ -42,7 +42,7 @@ An undated posting is not new this week. A saved copy does not prove the role is
 
 ## Repetition and undo
 
-The optional weekly template is Manual and workspace-only by default: the person stages posting copies and criteria before the run. Keep it manual for the first check. Each run consumes usage; suggest the current or a mid-priced model such as GPT-6.2 Sol if offered, and use an approved cap only if the host offers one. Never buy credits or enable overage.
+The optional weekly template is Manual and workspace-only by default: the person stages posting copies and criteria before the run. From a template, choose the model and effort in the **New Automation** dialog. If created from chat, open it under **Automations**, set the model and effort, **Save**, then **Run now**. Check the saved choice before running; naming a model in the prompt does not select it and an unset model can use the account default. Keep it Manual for the first check. Suggest GPT-6.1 Terra at medium effort (low for simple file generation, like a deck file). Switch to GPT-6.2 Sol when the job is hard or Terra stalls. Each run consumes usage; use an approved cap only if the host offers one. Do not switch a saved model without approval, buy credits or enable overage.
 
 A schedule is a separate deliberate choice; local runs require an awake laptop and running host, and a waiting approval blocks later runs. To stop repetition, the person selects Manual or disables the created automation and separately cancels pending runs. Removing the plugin does not remove created automations. Ask before deleting named draft files; doing so cannot withdraw something sent separately.
 

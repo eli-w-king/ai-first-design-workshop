@@ -40,9 +40,13 @@ Test the requested behavior at the normal app URL, plus keyboard focus, phone la
 
 ## Make an input or deck file only
 
-Confirm the requested count and the actual import format. Use supplied notes or explicitly approved sources, not invented facts. A notes-only automation reads only workspace notes and earlier decks for duplicate checks, with no browser, accounts or outside folders. Explain model processing. If there are too few supported new cards, report the gap rather than pad or lower the count silently.
+Use the requested count, or ten by default, and check any import-format note in the workspace. Use supplied notes or explicitly approved sources, not invented facts. A notes-only automation reads only workspace notes and earlier decks for duplicate checks, with no browser, accounts or outside folders. Explain model processing. If there are too few supported new cards, report the gap rather than pad or lower the count silently.
 
-Write one clear recall question and concise supported answer per card. Default to UTF-8 CSV with **two fields per record, front/back, no header** unless the importer requires one. Quote comma-containing fields, double quotes inside quoted fields, keep one card per line, and include no fences or prose in CSV. Markdown needs the importer's specified Q/A structure. Save a new `decks/cards-<timestamp>.csv` and a separate review with count, source ids, caveats and import status. Check record/field counts, blanks, quoting and duplicates. Preserve notes and older decks. Writing is not permission to import; with an explicit request, use the approved local-only app's picker, inspect preview and verify once without blindly retrying.
+Write one clear recall question and concise supported answer per card. Unless a workspace import-format note specifies otherwise, write UTF-8 tab-separated **.txt**, one card per line: front, one literal Tab (U+0009), back. No header, quotation marks, CSV escaping, or Tab/line break inside either field. Use the actual Tab, not spaces or the two characters `\t`. Do not assume a `.csv` extension means a CSV parser: some importers accept only `.csv`, `.txt` and `.md` yet split on literal Tabs. Tell the person to check accepted extensions/separators; do not use `.tsv` by default.
+
+Save a new `decks/cards-<timestamp>.txt` and a separate review with count, source ids, caveats and import status. Check exactly one Tab per nonblank line, two nonempty fields, no quotation marks or duplicate concepts, and the requested count: **ten lines for the default and Daily cards**. Keep notes and older decks unchanged. No fences or prose belong in the deck.
+
+Writing is not permission to import. With an explicit request, record the destination's count, use the approved local-only app's picker, inspect the preview, import once, then verify the count increased by the expected number and sample fronts/backs are correct. A **Success** message alone is not proof; zero imported cards is a failure. Inspect an ambiguous result before retrying so it cannot create duplicates. Without that check, report **file checked, import not verified**.
 
 ## Review, share and undo
 

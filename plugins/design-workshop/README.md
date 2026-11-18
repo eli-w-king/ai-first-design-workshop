@@ -22,6 +22,8 @@ This is a community workshop resource, not an official Microsoft or GitHub produ
 
 The [Keep my taste current](automations/keep-my-taste-current.automation.md) automation creates a first draft, then proposes updates from your selected workspace notes. It enables nothing on install. Keep its first trigger Manual and press Run now before choosing a weekly schedule. The [daily cards](automations/daily-cards.automation.md) template drafts ten new cards from its workspace notes and starts Manual. The [weekly roles digest](automations/weekly-roles-digest.automation.md) is another opt-in, manual template; its default uses workspace copies of chosen postings so a scheduled run needs no outside file or browser access. Keep or return recurring triggers to Manual after the workshop to avoid unattended usage; Manual runs still consume credits. It never applies or sends. Read its [cost and scheduling guide](references/automation-guide.md) before choosing to run or schedule it.
 
+From a template, choose the model and effort in the **New Automation** dialog. If created from chat, open it under **Automations**, set the model and effort, **Save**, then **Run now**. Check the saved choice before running; naming a model in the prompt does not select it and an unset model can use the account default. Keep the first trigger Manual and review usage after that supervised run. This applies to all three templates.
+
 The [workflow map](references/workshop-workflows.md) covers the guided and free-work modules generically, including red/green fixes, separate parallel sessions, plain deck files, frozen 30-second narrated capture and the host's Computer Use handoff. It does not choose an app or replace the supplied workshop kit.
 
 ## What you install
@@ -87,7 +89,7 @@ VS Code can discover CLI-installed plugins. Avoid a duplicate installation just 
 
 ## Update or remove
 
-**Moving to 0.3.2:** start a fresh session after updating. Automations already created from an older template keep their saved prompt. Review and update that prompt from the new self-contained template, or recreate it with the trigger still Manual, then use Run now. An old paused run may retain the old instructions; cancel it only with approval and start a fresh run. Do not solve an old guide prompt by granting broad folder access.
+**Moving to 0.3.2:** start a fresh session after updating. Automations already created from an older template keep their saved prompt. Review and update that prompt from the new self-contained template, or recreate it with the trigger still Manual. Choose the model in New Automation, or open a chat-created automation under Automations, set the model, Save, then Run now. An old paused run may retain the old instructions; cancel it only with approval and start a fresh run. Do not solve an old guide prompt by granting broad folder access.
 
 **VS Code:** use **Chat: Update Plugins**, or **Check for and Apply Updates** in Customizations. Review changes before adopting them. To remove the plugin, open **Customizations > Plugins > design-workshop > Uninstall**. Remove its marketplace from **Configure Marketplaces** if you no longer want it listed.
 
@@ -125,7 +127,7 @@ All nine main workflows are inline in their `SKILL.md`. Plugin references and bu
 
 The instructions work with any model and can be adapted to any harness. Automatic discovery needs a skills-compatible host; plugin installation, built-in browser tools and automation templates depend on the client. A plain chat can draft a plan but cannot claim to have edited files, run tests or recorded a video. No particular model, paid research account or work account is required by these skills. The taste flow uses only its selected workspace and built-in file tools. Voice can follow the same pattern later; no voice template is included.
 
-Start with your current model or a mid-priced option such as GPT-6.2 Sol if your host offers it. More capable models, extra reasoning, long context and parallel agents can cost more. The skills do not hard-code the most expensive option or change your model settings.
+A starting suggestion is GPT-6.1 Terra at medium effort (low for simple file generation, like a deck file). Switch to GPT-6.2 Sol when the job is hard or Terra stalls. More capable models, extra reasoning, long context and parallel agents can cost more. The skills do not hard-code the most expensive option or change your model settings.
 
 The plugin adds no separate service charge. Agent work still consumes your plan's usage or provider balance. A free month of GitHub Copilot Max is not unlimited usage; review your offer's redemption and renewal terms rather than assuming them from this README. Do not enable paid overage for a workshop task. See the [budget guide](skills/overnight-plan/references/budgets.md) for per-run limits and usage receipts.
 

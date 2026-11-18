@@ -2,7 +2,7 @@
 version: 1
 id: weekly-roles-digest
 name: Weekly roles digest (opt-in)
-description: "Draft a private roles digest from copies of chosen public postings in this workspace. Manual by default; no browser, outside-file reads, applications or sending."
+description: "Draft a private digest from saved public posting copies; no browsing or sending. First trigger Manual. From a template: choose the model in New Automation. From chat: open Automations, set the model, Save, then Run now. Suggested: GPT-6.1 Terra at medium effort (low for simple file generation, like a deck file). Switch to GPT-6.2 Sol when the job is hard or Terra stalls."
 schedule:
   kind: manual
 ---
@@ -20,7 +20,7 @@ Write a uniquely dated digest under digests/ without overwriting earlier files. 
 
 Draft only. Never apply, send, publish, contact anyone, open an application action, install, spend on a service, delete files or change a subscription. Use built-in file tools. Keep the workspace local with Manual permissions and Run in the Cloud off; do not use a worktree, Autopilot or Allow all to bypass a blocker.
 
-Keep the first trigger Manual and use Run now. A weekly schedule is a later deliberate choice. Local runs need the laptop awake and host running; a waiting approval holds back later runs. Every run uses model credits. Use my selected model and an approved cap only if the host offers one. Do not increase budgets or enable overage. Report host-provided usage if available, otherwise unavailable, not zero.
+Keep the first trigger Manual and use Run now. A weekly schedule is a later deliberate choice. Local runs need the laptop awake and host running; a waiting approval holds back later runs. Every run uses model credits. Use an approved cap only if the host offers one. Do not increase budgets or enable overage. Report host-provided usage if available, otherwise unavailable, not zero.
 
 Tell me how to select Manual or disable the created automation and cancel pending runs separately when I want to stop. Make no schedule or cleanup changes without approval. Removing the plugin does not remove created automations or local drafts.
 

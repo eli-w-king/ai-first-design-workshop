@@ -42,7 +42,7 @@ Use `baseline: null` if absent, or `kind: reference-image` for a still. Document
 
 For three directions in separate sessions, get approval for the count, model/cost and ownership. In the Agents window, start three **New Session > This Computer** sessions using the same approved folder and already selected **Branch**, not an automatic New Worktree. Inspect permissions; worktrees can use Allow all. Start all three without waiting for one to finish, and record their identities and states.
 
-Give each the whole brief and one exclusive file set. The current coordinator owns baseline, shared data/routes and the comparison page. Shared-folder sessions do not isolate files: workers do not switch branches, stage, commit, edit dependencies/shared files or stop each other's processes. Serialize overlapping work or agree on separate source copies. Do not label sequential work or one-chat subagents as three sessions. Use the approved model, or suggest a mid-priced option; never choose the most expensive setup by default.
+Give each the whole brief and one exclusive file set. The current coordinator owns baseline, shared data/routes and the comparison page. Shared-folder sessions do not isolate files: workers do not switch branches, stage, commit, edit dependencies/shared files or stop each other's processes. Serialize overlapping work or agree on separate source copies. Do not label sequential work or one-chat subagents as three sessions. Use the approved model, or suggest GPT-6.1 Terra at medium effort (low for simple file generation, like a deck file). Switch to GPT-6.2 Sol when the job is hard or Terra stalls. Get approval before changing the agreed model or budget.
 
 ## Verify and iterate
 

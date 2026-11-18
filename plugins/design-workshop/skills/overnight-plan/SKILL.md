@@ -13,7 +13,9 @@ The complete default workflow is here. Do not open linked plugin files to start,
 
 Use only the selected workspace and supplied feedback. This is advanced take-home planning, not permission to start a run. Keep fictional findings labeled. Write the plan in chat or the requested workspace file; do not read plugin guides to fill it in.
 
-Ask before any install, send, publish, spend or delete. Do not change permissions, create a schedule, start a Cloud session or keep the machine awake on the strength of a plan request. Unknown values stay explicit, not guessed.
+Ask before any install, send, publish, spend or delete. Do not change permissions, create a schedule, start a Cloud session or keep the machine awake on the strength of a plan request. Use supplied context and built-in file tools. **Do not run terminal commands while planning unless the person explicitly asks for those checks.** A missing Git revision or runtime fact stays unverified; do not run preflight commands to fill it in.
+
+Ask **at most three essential questions**, only for missing information: the goal, the time or usage-budget limit, and what is off-limits. If those are supplied, ask none. Propose clear, labeled defaults for everything else: current workspace, one local session, a 30-minute limit if none was given, existing stack, selected inputs only, checkpoints every 15 minutes, two attempts per failing step, and no installs, accounts, publishing or deletion. The person can adjust these. Leave unknown facts marked unverified, not invented; an unapproved budget means supervised work only. Do not turn the agreement below into a question-by-question interview.
 
 ## Fill this agreement
 
@@ -37,7 +39,7 @@ Keep steps independent where possible and verify the actual result, not a comple
 
 Prefer the current local workspace with Manual permissions and supported sandboxing. Manual can still honor saved approvals; a sandbox is not a budget or a complete safety boundary. Do a short supervised check. If a needed approval is unavailable, pause that step and save the blocker. Never solve it with Allow all, Autopilot or broad grants.
 
-Use the selected model or suggest a mid-priced option such as GPT-6.2 Sol. Long context, retries and extra agents can cost more. Included credits are usage too. If the host offers a per-run cap, use the approved one and understand in-flight-call limits. A prompt is not a billing control. Without a usable limit or observable cost, keep paid work supervised rather than promising a bounded unattended run. Never buy credits, enable overage, raise a budget or switch to separately billed access.
+Respect an already selected model. Otherwise suggest GPT-6.1 Terra at medium effort (low for simple file generation, like a deck file). Switch to GPT-6.2 Sol when the job is hard or Terra stalls. Long context, retries and extra agents can cost more. Included credits are usage too. If the host offers a per-run cap, use the approved one and understand in-flight-call limits. A prompt is not a billing control. Without a usable limit or observable cost, keep paid work supervised rather than promising a bounded unattended run. Never buy credits, enable overage, raise a budget or switch to separately billed access.
 
 Local work needs the laptop awake and its host running. If explicitly approved, macOS `caffeinate -i -t 3600` prevents idle system sleep for one hour; record and stop only its own process. On other systems let the person use their power controls and preserve prior values. Do not change global sleep settings or install utilities automatically.
 
