@@ -1,0 +1,20 @@
+¿Dónde está el baño?	Where is the bathroom?
+La cuenta, por favor.	The check, please.
+¿Cuánto cuesta?	How much does it cost?
+Una mesa para dos, por favor.	A table for two, please.
+¿Habla inglés?	Do you speak English?
+No entiendo.	I don't understand.
+¿Puede repetirlo, por favor?	Can you say that again, please?
+Quisiera un café con leche.	I'd like a coffee with milk.
+¿A qué hora sale el tren?	What time does the train leave?
+Un billete de ida y vuelta, por favor.	A round-trip ticket, please.
+¿Dónde está la estación de metro?	Where is the subway station?
+Tengo una reserva.	I have a reservation.
+¿Me puede ayudar?	Can you help me?
+¿Aceptan tarjeta?	Do you take cards?
+A la derecha	To the right
+A la izquierda	To the left
+Todo recto	Straight ahead
+¿Qué me recomienda?	What do you recommend?
+Buen provecho	Enjoy your meal
+¿Está lejos?	Is it far?

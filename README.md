@@ -23,11 +23,12 @@ The site is static. GitHub Pages publishes the committed `docs/` folder from `ma
 
 - `src/pages.mjs`: the six public pages and 404.
 - `src/data.mjs`: public metadata, official documentation links, glossary and take-home guide titles.
-- `src/run-sheet.mjs`: the nine draft guided modules and free-work links.
-- `src/kit/`: the supplied fictional practice brief, slide text, six interview notes and public UX deck, copied unchanged after line-by-line review.
+- `src/run-sheet.mjs`: the timed modules (1 to 6, 9, then 7 and 8 together) and free-work links.
+- `src/kit/`: the reviewed practice brief, slide text, fictional notes (individual and combined), two decks and study screenshot. The build verifies the manifest checksums and writes both individual downloads and `docs/kit.zip`, with `kit/` as its top folder.
 - `src/assets/`: shared styles, browser code, favicon and social image.
 - `src/downloads/workshop-settings.jsonc`: the checked two-key snippet, copied unchanged into `docs/get-ready/`.
 - `templates/page.html`: navigation, metadata, footer and shared page shell.
+- `src/prework.mjs`: the package pre-download commands for macOS/Linux and PowerShell.
 - `tools/build.mjs`: dependency-free static build.
 
 ```sh
@@ -56,7 +57,7 @@ The browser decrypts it with WebCrypto. Remembering access is opt-in and stores 
 
 ## Current draft items
 
-Skola is the shared example. The fictional practice brief and nine-module run sheet are supplied, but the run sheet is still being rehearsed and is not approved by Eli. Reference videos stay local and are not linked from the public Tonight page. The Spanish travel deck is not supplied yet. Skola tests, type checks and builds pass on public-npm Windows, macOS and Linux runners with Node 22 and 26. Personal-laptop UI, permissions, venue Wi-Fi and live deployment remain separate rehearsal checks. Every change and PR stays in the attendee's own fork, with cloud sync disabled and no Skola sign-in. The settings and controls are checked against VS Code Insiders 1.148 and the docs, but not yet tested on a clean personal account. The public snippet contains only the two approved experimental keys. Free-month redemption, card requirement, renewal and promotional cancellation details need confirmation. The Skills page describes a plugin under separate development; installation is for after release, not an instruction to install an unpublished branch.
+Skola is the shared example. The fictional practice brief and nine-module run sheet are supplied, but the run sheet is still being rehearsed and is not approved by Eli. Reference videos stay local and are not linked from the public Tonight page. The kit includes the Spanish travel deck and combined fictional notes. [All nine jobs pass](https://github.com/eli-w-king/ai-first-design-workshop/actions/runs/44287744770): six app checks across Node 22 and 26 and three pre-download and offline-install checks across Windows, macOS and Linux. Personal-laptop UI, permissions, venue Wi-Fi and live deployment remain separate rehearsal checks. Every change and PR stays in the attendee's own fork, with cloud sync disabled and no Skola sign-in. The settings and controls are checked against VS Code Insiders 1.148 and the docs, but not yet tested on a clean personal account. The public snippet contains only the two approved experimental keys. Free-month redemption, card requirement, renewal and promotional cancellation details need confirmation. The Skills page describes a plugin under separate development; installation is for after release, not an instruction to install an unpublished branch.
 
 Public pages do not include guest data, private links, redemption codes, credentials or a street address. Review content and repository history before publishing.
 

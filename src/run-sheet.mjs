@@ -135,11 +135,11 @@ export const FREE_MODULES = [
     target: 'make-skills-yours',
   },
   {
-    number: 11, title: 'Make it a habit', model: 'GPT-6.1 Terra, low',
-    text: 'Make ten new cards from what you are learning.',
+    number: 11, title: 'Make it a habit', model: 'GPT-6 Luna, low',
+    text: 'Make up to ten new cards each morning from what you are learning. Skip ideas already in the deck.',
     steps: [
       'Make the automation from chat.',
-      'Open it under Automations, set GPT-6.1 Terra at low effort and Save before the first Run now.',
+      'Open it under Automations, set GPT-6 Luna at low effort and Save before the first Run now.',
     ],
     notes: [
       "An automation made from chat does not keep the chat's model. Otherwise it runs on the account default, which can cost more.",

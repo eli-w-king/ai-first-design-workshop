@@ -6,6 +6,7 @@ import { PAGES } from '../src/pages.mjs';
 import { BASE, COURSE, SITE_URL } from '../src/data.mjs';
 import { escapeHtml, renderMarkdown } from './render.mjs';
 import { seal, unseal } from './crypto.mjs';
+import { buildKit } from './kit.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const OUT = path.join(ROOT, 'docs');
@@ -53,18 +54,6 @@ async function buildCourse() {
   return seal(plain, phrase);
 }
 
-async function copyPublicTree(from, to) {
-  await fs.mkdir(to, { recursive: true });
-  for (const entry of await fs.readdir(from, { withFileTypes: true })) {
-    if (entry.name.startsWith('.')) continue;
-    if (entry.isSymbolicLink()) throw new Error('Public kit files must not be symbolic links.');
-    const sourceFile = path.join(from, entry.name);
-    const targetFile = path.join(to, entry.name);
-    if (entry.isDirectory()) await copyPublicTree(sourceFile, targetFile);
-    else await fs.copyFile(sourceFile, targetFile);
-  }
-}
-
 async function main() {
   // Finish all private-source work before writing any public output.
   const encrypted = await buildCourse();
@@ -90,7 +79,7 @@ async function main() {
     await fs.writeFile(target, html);
   }
   await fs.copyFile(path.join(ROOT, 'src', 'downloads', 'workshop-settings.jsonc'), path.join(OUT, 'get-ready', 'workshop-settings.jsonc'));
-  await copyPublicTree(path.join(ROOT, 'src', 'kit'), path.join(OUT, 'kit'));
+  await buildKit(path.join(ROOT, 'src', 'kit'), OUT);
   await fs.writeFile(lockedFile, JSON.stringify(encrypted));
   await fs.writeFile(path.join(OUT, '.nojekyll'), '');
   await fs.writeFile(path.join(OUT, 'robots.txt'), `User-agent: *\nAllow: /\nSitemap: ${SITE_URL}sitemap.xml\n`);

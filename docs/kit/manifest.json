@@ -45,6 +45,21 @@
       "file": "research/06-med-student-anki.md",
       "sha256": "b5bab16b1cdcbbf703f96483c948db0bec6b507cb4afa05f88ce5ac5bc2c1e38",
       "classification": "Fictional practice notes"
+    },
+    {
+      "file": "decks/Spanish travel phrases.txt",
+      "sha256": "6699a0ca607bc904810563c460caa45c63b25ce79bf087ea2e5e02c0fc2780f0",
+      "classification": "Workshop practice material"
+    },
+    {
+      "file": "research/All six notes.md",
+      "sha256": "ffc267350d2b60994389a8e0bd3a87486956d63c472e406a0d46f0bf51dc2982",
+      "classification": "Fictional practice notes"
+    },
+    {
+      "file": "screens/04 - Study back.png",
+      "sha256": "a39c35bdedc1c6426272b69c529847e84b8ad8e3ba7ccccc5bb79c5c0d39b2eb",
+      "classification": "Skola study screen with a fictional practice card"
     }
   ]
 }

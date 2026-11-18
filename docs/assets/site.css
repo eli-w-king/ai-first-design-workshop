@@ -333,3 +333,15 @@ html:not(.js) .lock-form { display: none; }
 .free-module-grid p, .free-module-grid li, .free-module-grid a { font-size: 15px; }
 .guided-module .module-model, .free-module-grid .module-model { color: var(--muted); font: 13px/1.6 var(--mono); margin: 0 0 20px; }
 @media (max-width: 600px) { .free-module-grid { grid-template-columns: 1fr; } }
+
+.room-credits { display: block; margin-top: 12px; color: var(--muted); font-size: 15px; }
+#together .guided-module { margin-top: 30px; border-top: 1px solid var(--line); padding-top: 30px; }
+.guided-module .step-heading h3 { margin: 0 0 18px; font-size: 26px; }
+.module-outcomes { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 20px; margin: 22px 0; }
+.module-outcomes > div { border-top: 1px solid var(--line); padding-top: 12px; }
+.module-outcomes dt { color: var(--muted); font-size: 14px; }
+.module-outcomes dd { margin: 7px 0 0; font-size: 15px; }
+.checkpoint strong { font-size: 14px; color: var(--accent); }
+@media (max-width: 600px) { .module-outcomes { grid-template-columns: 1fr; gap: 12px; } }
+.side-nav a:is([href="#together"], [href="#free-work"]) { color: var(--ink); font-weight: 500; }
+@media (max-width: 850px) { .side-nav a:is([href="#together"], [href="#free-work"]) { flex-basis: 100%; margin-top: 6px; } }
