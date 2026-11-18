@@ -85,7 +85,7 @@ export const GUIDED_MODULES = [
   {
     number: 9, id: 'module-9', title: 'Ship it', time: '7:01 PM', end: '7:10 PM',
     action: 'Choose your Today direction and replace <name> in the prompt with its name. Inspect the diff and what will become public before sending. Confirm the PR base is your own fork. Use the checked local-only, attribution and project-Pages prep. While it deploys, delegate the fictional research\'s top next step to a bounded Cloud session in your fork, after checking access and separate Cloud costs. The scheduled README message is due at 7:05.',
-    prompts: [{ label: 'Only after reviewing publication', text: 'Bring the <name> direction into my home screen. Then open a PR in my fork with everything from tonight, merge it, and publish it to GitHub Pages. Give me both links.' }],
+    prompts: [{ label: 'Only after reviewing publication', text: 'Bring the <name> direction into my home screen, and make tonight\'s changes the default, with no flags. Then open a PR in my fork with everything from tonight, merge it, and publish it to GitHub Pages. Give me both links.' }],
     wow: 'A live link to your Skola 2.0, a repo for your portfolio, and a PR that an agent finishes while you eat.',
     learn: 'PRs in your own fork, Cloud and GitHub Pages.',
     fallback: 'This is the priority finish. Use the reviewed prepared version in your fork if another feature is unfinished, and say which work is yours. Ask for help with a failed deploy; never call an unverified URL a working result.',
