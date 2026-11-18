@@ -1,0 +1,2 @@
+# Keep the Skola prep patches byte-for-byte, so they apply on Windows too.
+ci/skola-patches/*.patch -text

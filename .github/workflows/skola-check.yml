@@ -39,11 +39,23 @@ jobs:
           npm -v
           echo "npm registry: $(npm config get registry)"
 
-      - name: Clone Skola at the pinned commit
+      - name: Windows line endings, the default way an attendee clones (information only)
+        if: runner.os == 'Windows'
+        continue-on-error: true
+        shell: bash
+        run: |
+          echo "core.autocrlf: $(git config --get core.autocrlf || echo unset)"
+          git clone --quiet https://github.com/h16nning/skola skola-default
+          git -C skola-default checkout --quiet --detach "$SKOLA_COMMIT"
+          cd skola-default
+          if git apply --check ../ci/skola-patches/01-local-only.patch; then echo "RESULT default clone + plain git apply: applies"; else echo "RESULT default clone + plain git apply: fails"; fi
+          if git apply --3way ../ci/skola-patches/01-local-only.patch; then echo "RESULT default clone + git apply --3way: applies"; else echo "RESULT default clone + git apply --3way: fails"; fi
+
+      - name: Clone Skola at the pinned commit, keeping its LF line endings
         shell: bash
         run: |
           start=$SECONDS
-          git clone --quiet https://github.com/h16nning/skola skola
+          git clone --quiet -c core.autocrlf=false https://github.com/h16nning/skola skola
           git -C skola checkout --quiet --detach "$SKOLA_COMMIT"
           echo "clone_seconds=$((SECONDS - start))" >> "$GITHUB_ENV"
 
