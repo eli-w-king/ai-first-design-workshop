@@ -49,7 +49,7 @@ Before recording while other work continues, follow [the frozen-target and 30-se
 
 ## Make the plan
 
-Use the [JSON example](recording-plan.example.json), replacing every label and value with the real local prototype. The example is a format, not a supplied application. Rehearse all steps first. Use a localhost URL owned by this task, an existing local server, or the project's documented start command. Starting a server needs its normal approval; record its process id and stop only that server afterward.
+Use the [JSON example](recording-plan.example.json), replacing every label and value with the real local prototype. The example is a format, not a supplied application. Rehearse all steps first. Use a localhost URL owned by this task, an existing local server, or the project's documented start command. Starting a server needs its normal approval; record its process id and preserve an ongoing user-facing preview across queued follow-ups. Stop that preview when the person is done or asks, never a process someone else started.
 
 The helper supports `click`, `fill`, `press`, `expect` and a short `wait`. Targets use an exact accessible role and name, or exact visible text. The `ready` and `finish` targets must match visible elements. Use at most 12 steps, no real accounts and no production data. The helper permits only GET and HEAD requests to the chosen localhost origin, blocks service workers and WebSockets, and fails on outside requests, errors, dialogs or new tabs. A prototype that needs a live backend is outside this route.
 
@@ -101,7 +101,7 @@ Play the entire export too. Do not claim a visual review from metadata or select
 
 ## Undo, only when asked
 
-First stop the recorder and the server you own. Review the exact files. To remove the newly created recording setup on either platform, this command removes only its named folder, including its private npm cache, packages and browser downloads:
+For an explicitly requested cleanup, first stop the recorder and only the server you own that the person is done with. Do not interrupt an active development preview or queued follow-up. Review the exact files. To remove the newly created recording setup on either platform, this command removes only its named folder, including its private npm cache, packages and browser downloads:
 
 ```sh
 node -e "require('node:fs').rmSync('.workshop-recording', { recursive: true })"

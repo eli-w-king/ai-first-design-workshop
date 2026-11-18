@@ -5,65 +5,57 @@ description: "Fork a real open-source project and build, fix or review a change 
 
 # Prototypes in your own fork
 
-Write short, plain sentences. Do not use em or en dashes in generated copy.
+Write short, plain sentences. Do not use em or en dashes.
 
-Make a meaningful change in a real open-source project, then leave the person with their own repo link and a reviewable PR. Do not select or name a workshop project for them.
+The complete default workflow is here. Do not open linked plugin files to start, complete or verify it. Use optional detail only when the person explicitly asks for it. Normal approvals for their files, tools and consequential actions still apply.
 
-## Choose the requested path
+## Pick the requested path
 
-For a **deck or other input-file request only**, go directly to [the deck-file workflow](references/deck-files.md). Do not fork, clone, branch, install or edit app code just to write a file. For a **bug**, use the real project and [fix it and prove it](references/fix-and-prove.md). For a redesign or feature, follow the branch and build flow below. If the person asks for a plan first, stop at the proposal until they approve implementation.
+For a **file-only deck request**, use the inline deck steps below and skip Git, installs and app changes. For a **bug**, use the red/green path. For a redesign or feature, use the real project and code path. If asked to plan first, stop at the proposal until approved. Use the supplied brief/kit, not an invented replacement or upstream roadmap.
 
-## Check the project and the change
+Ask before installs, sends, publication, spending or deletion. Keep permissions, unrelated edits and original license/notices intact. A public repo alone is not a reuse license. Label fictional data and simulated behavior. Read only the chosen project/inputs; do not sign in to upstream services or contact its maintainers.
 
-Read the person's selected repository, its license, setup instructions and the screenshot, markup or feature brief. Confirm that the license allows the intended reuse. Keep the LICENSE, copyright notices and required attribution. Publicly visible code is not automatically open source.
+## Fork and prepare code
 
-Turn the supplied brief into explicit goals, constraints and acceptance checks. Keep fictional practice evidence labeled, and do not replace the supplied workshop kit or turn a practice brief into an upstream roadmap. Name the user's task, the real component that owns it, the smallest useful result, and what is out of scope. Use the actual component and existing design tokens. Never recreate the app in a new page instead of changing its code.
+1. Confirm the selected original, allowed reuse, the person's intended fork and visibility. After approval, create or use **their fork**, then clone into an agreed new folder. Inspect scripts before an approved pinned dependency install. Do not choose a workshop app for them.
+2. Check branch, remotes and uncommitted changes. Create the agreed feature branch; do not reset, stash or overwrite others' work. Confirm `origin` is their fork. Right after cloning, with an okay, run `gh repo set-default YOUR_USERNAME/YOUR_FORK`, check `gh repo set-default --view`, and still use an explicit `--repo` on every GitHub write. Record the previous default for undo.
+3. Before launch, inspect config, client initialization, workers and workflows for upstream sync, accounts and analytics. Propose and approve a local-only change that makes clients/background traffic inert, not merely hidden buttons. Block service destinations before the first navigation, then require zero attempted upstream requests. Keep protection active in baseline and new design; do not probe the upstream server.
+4. Offer, never silently add, an `AGENTS.md` section: own-fork writes only; no upstream contact/services; local sample data; ask before installs/publishing/spending/deletion; preserve license and source credit. Merge into existing instructions with approval. This is guidance, not a security boundary.
 
-Ask before any install, send, publish, spend or delete. A public fork exposes your additions too. No production services, real accounts, payment flows or private customer data are part of a design prototype. Label sample data and simulated behavior.
+## Fix it and prove it
 
-## Fork, clone and branch
+Reproduce the exact failure in the real app with built-in browser tools and approved sample data. Record expected/observed behavior and trace the event/state/data flow to its cause. If not reproduced, say so rather than inventing a fix.
 
-Use [the fork and PR guide](references/branch-and-pr.md).
+Add the smallest existing unit/component/browser regression test that asserts the intended behavior. Run it **before the fix** and confirm failure is caused by the bug, not missing tools or broken syntax. Record **Red** with the exact command, assertion and exit status. Make the smallest repair without unrelated redesign, upgrades or a new feature flag. Run the same command **Green**, keep its meaningful assertion, then repeat the original browser steps and relevant neighboring checks.
 
-1. Show the selected upstream repository, intended personal fork and visibility. After approval, create the fork on GitHub, or use one the person already owns. Preserve upstream credit in the README.
-2. Clone **their fork** into a new agreed folder. Inspect the downloaded instructions and scripts before running them. Explain and ask about any required dependency install; do not run setup just because a repository says to.
-3. Inspect the default branch and create a feature branch, such as `design/navigation-idea`. Confirm that `origin` points to the person's fork. If using GitHub CLI, inspect its current default, ask before setting `gh repo set-default YOUR_USERNAME/YOUR_FORK`, and verify it. Still use `--repo YOUR_USERNAME/YOUR_FORK` on every GitHub write. Leave upstream unchanged.
-4. Continue in an ordinary workspace session with the existing permissions. Do not create a worktree session for broader approvals. A branch is a different version of the files, not a privacy boundary.
-
-If continuing an existing clone, inspect its branch, remotes and uncommitted changes first. Never reset, stash or overwrite unrelated work. Ask before fetching, rebasing or changing remotes.
-
-## Keep upstream services out
-
-Before the first app launch or deployment, inspect the source, configuration, install scripts, workers and workflows for hosted sync, accounts, analytics and other upstream endpoints. Do not sign in, send test traffic or probe those services. Show an approved local-only change before running the app: make the service clients and background activity inert, not just their buttons. Keep local storage and the task working without an account. If the change is not approved or verified, leave the app unlaunched.
-
-Use [the fork guardrails](references/fork-guardrails.md) for network verification and an optional short `AGENTS.md` section. Ask before adding or merging that section; preserve existing instructions. It is guidance, not a security boundary. Keep the actual service protections active even when the design toggle is off, and label that safety preparation in before/after evidence.
-
-## Fix a bug and show the proof
-
-Use the built-in browser to reproduce the actual failure, find its cause, add a focused regression test and run it red before changing the behavior. Make the smallest fix, then run the same test green and repeat the original browser steps. Show the actual commands and results; do not fake a run or widen the change. Follow [the full red/green path](references/fix-and-prove.md). A bug repair corrects the existing path rather than hiding behind an experimental toggle.
+Show real red/green output, source state, changed files and the browser result. Never fabricate output or reset a shared folder to manufacture a red run. If a prior fix prevents replay, use an approved disposable baseline copy or state that before-fix proof is unavailable.
 
 ## Redesign or add a feature
 
-- Use [the screenshot markup loop](../../references/markup-feedback.md) when the person provides visual feedback. Read the arrows, circles, notes and rearranged pieces, map them to the real components, ask about unclear marks, then edit the actual code.
-- Keep today's behavior available. Put an experimental interaction behind the project's own opt-in flag or a scoped prototype toggle; document how to turn it off.
-- Make the asked-for change, not a whole-product restyle. Reuse the current stack, components and content. Do not replace working behavior with a static picture.
-- Test the real task, toggle off and on, keyboard focus, phone layout and reduced motion. Run the smallest existing tests that cover the change. Name unrun checks.
-- Capture truthful before/after images of the same state and viewport with [demo-walkthrough](../demo-walkthrough/SKILL.md). For markup feedback, show the original markup beside the real before and after.
+Turn the brief into task, scope and acceptance checks. Locate the real component and reuse its stack, tokens and content. Apply the requested change as the app's default behavior at its normal URL, with no hidden flag or query switch. Preserve a before screenshot and the base branch/revision or an approved reversible change. Add a switcher or flag only when the person asks for options/alternatives or asks to keep the old version available. Do not recreate the app as an image or unrelated page.
 
-## Prepare a PR in the person's own fork
+For markup, read the supplied image, map arrows/circles/notes/crops to actual components, ask about unclear marks, then edit only confirmed parts. Capture the actual before and after at the same viewport/state and show them beside the original markup. Manual markup is not Computer Use, and text-only feedback is not a substitute for this visual loop.
 
-Draft a short PR description: what changed, why, paired images, how to try it, tests, limitations and anything simulated. Credit the original project and distinguish the person's changes from upstream work.
+Test the requested behavior at the normal app URL, plus keyboard focus, phone layout and reduced motion. Test switches only when they were explicitly requested. Use the smallest relevant existing tests and built-in browser checks; name what was not tested. If desktop control is explicitly requested, use only supported approved Computer Use tools on the exact owned app/window and selected file. Import once and verify; stop on sign-in or wider access. Do not touch another session's recording target or call DOM automation native control.
 
-A local commit, a push and a PR are separate actions. Follow the person's request for local commits, stage only named files, and show what will be included. Before a push or PR, confirm the destination fork, base and head branches, visibility and media. A PR can notify people. Publish only after a clear yes to that exact action.
+## Make an input or deck file only
 
-A fork PR targets upstream by default. Set the **base repository to the person's own fork** in GitHub, and use `gh pr create --repo YOUR_USERNAME/YOUR_FORK` with explicit base and head branches in CLI. Verify the destination before submitting and the returned URL afterward. Never open PRs, issues or comments upstream from a workshop, and never star or notify upstream as a test. Merging within the person's fork, force-pushing and assigning reviewers still need separate approval. Inspect state after a timeout before retrying; do not create duplicates.
+Confirm the requested count and the actual import format. Use supplied notes or explicitly approved sources, not invented facts. A notes-only automation reads only workspace notes and earlier decks for duplicate checks, with no browser, accounts or outside folders. Explain model processing. If there are too few supported new cards, report the gap rather than pad or lower the count silently.
 
-If requested, draft a bounded next task for Cloud with its files, checks, cost cap and stop condition using [overnight-plan](../overnight-plan/SKILL.md). Ask separately before starting it or uploading anything.
+Write one clear recall question and concise supported answer per card. Default to UTF-8 CSV with **two fields per record, front/back, no header** unless the importer requires one. Quote comma-containing fields, double quotes inside quoted fields, keep one card per line, and include no fences or prose in CSV. Markdown needs the importer's specified Q/A structure. Save a new `decks/cards-<timestamp>.csv` and a separate review with count, source ids, caveats and import status. Check record/field counts, blanks, quoting and duplicates. Preserve notes and older decks. Writing is not permission to import; with an explicit request, use the approved local-only app's picker, inspect preview and verify once without blindly retrying.
 
-When the person asks the agent to try the finished app through desktop control, use [the Computer Use handoff](../../references/try-with-computer-use.md). This requires the actual supported host tools and their own permission flow; it does not install a client or authorize app control by itself.
+## Review, share and undo
 
-## Hand over the work
+Draft a PR with what/why, actual before/after evidence, opening/toggle steps, tests, limits and upstream credit. Stage only reviewed files and follow the person's request for local commits. A fork PR defaults upstream: choose **their fork as base repository** and use `gh pr create --repo YOUR_USERNAME/YOUR_FORK --draft --base BASE --head BRANCH --title TITLE --body-file FILE` only after approval. Verify the destination and returned URL. Never create workshop PRs, issues, comments, stars or notifications upstream. `--dry-run` may still push; do not use it as a harmless check.
 
-Give the person's fork link, branch, approved PR link or local draft, opening steps, toggle and checks. This repo link can support their portfolio; it does not mean the feature shipped upstream. For a live client-side app, use [publish-pages](../publish-pages/SKILL.md) with its license and public-content checks before enabling a public site.
+Merging inside their fork, publishing media/Pages, assigning reviewers or starting a Cloud task each needs its exact scope approved. Check real results before reporting. Give local paths, fork/approved PR links, checks and gaps. Undo only named changes after review; never reset/clean unrelated work or delete branches automatically. Restore a changed CLI default with approval, or use `gh repo set-default YOUR_USERNAME/YOUR_FORK --unset` when removing this clone's stored choice. Stop one-off checks when finished, not a preview still in use.
 
-Explain how to return to the original branch, turn the idea off or revert a named commit without discarding other work. Ask before removing files, branches or the fork. Stop only processes you started, unless the person explicitly asks to keep a preview running.
+## Keep the preview available
+
+Keep a development preview you started running while the person is still working in the session or queued follow-ups need it. Give its URL, port, owning terminal/process and how to stop it (Ctrl+C in that terminal or the host's stop control). One completed request is not the end of the session. Stop the preview when the person is done or asks, and never kill a process you did not start. Use the host's persistent task/background mechanism when needed so ending a turn does not kill the preview or block the queued follow-up. If the host cannot keep it available, say so and give the exact restart command instead of claiming it is still running.
+
+## Optional detail
+
+None of these files is required above. Open one only for an explicit request for extra detail. Opening it may ask to read a file outside your workspace; that is this plugin's own folder. Check the path and request only that access, never a broad exception. Do not fetch another copy to bypass a denied read.
+
+[Fork/PR detail](references/branch-and-pr.md), [service safeguards](references/fork-guardrails.md), [red/green examples](references/fix-and-prove.md), [deck-file detail](references/deck-files.md), [markup options](../../references/markup-feedback.md), [desktop-control handoff](../../references/try-with-computer-use.md).

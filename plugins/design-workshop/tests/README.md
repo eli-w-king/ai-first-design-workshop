@@ -10,7 +10,7 @@ python3 -B -m unittest discover -s plugins/design-workshop/tests -p "*_test.py"
 node --test plugins/design-workshop/tests/*.test.mjs
 ```
 
-The first command parses every skill's YAML frontmatter, checks names and description lengths, validates package metadata and all three opt-in automation templates, resolves relative Markdown links and headings, and rejects em and en dashes. The Python unit tests reject missing or duplicate automation identities, hidden execution settings and unreviewed schedules. The Node tests cover recording-plan bounds, localhost-only read requests and narration timing that must not cut off words.
+The first command parses every skill's YAML frontmatter, checks names and description lengths, validates package metadata and all three opt-in automation templates, resolves relative Markdown links and headings, and rejects em and en dashes. The Python unit tests reject missing or duplicate automation identities, hidden execution settings, unreviewed schedules and guide dependencies in default workflows. The Node tests cover recording-plan bounds, localhost-only read requests and narration timing that must not cut off words.
 
 ## Isolated CLI check
 
@@ -56,3 +56,13 @@ The Vite, router and PWA guidance is based on the cited documentation. This pack
 - A bounded GPT-6.2 Sol trial followed the daily-cards template with file tools only. An independent CSV parser found ten distinct, two-field, headerless records; earlier concepts were excluded and inputs were unchanged. The review correctly said import was not verified. Usage was 7.26053 credits; no schedule or app import was created.
 - A technical-fixture capture overlapped independent file work while frozen input remained unchanged. Surplus final idle was trimmed from the same continuous take, then a local voiceover was added. The final 30.00-second file fully decoded, and its final frame was inspected. This was not the workshop app, did not capture app/system audio, and is not a full listening review.
 - Parallel Agents-window sessions and Computer Use instructions are documented from the host guidance, not claimed as clean-account UI rehearsals. The supplied kit and actual app remain the reference run's responsibility.
+
+## Self-contained Manual workflows
+
+Every SKILL.md now has its complete default path inline. Relative guide/script links are confined to Optional detail and explicitly require a request for that extra depth. The validator rejects default-path file links and linked automation prompts. All three templates use workspace data only; the roles template uses saved posting copies rather than scheduled live browsing.
+
+The permission check uses real Copilot CLI sessions with isolated homes and tiny workspaces, no allow-all paths/tools and no plugin-folder read grant. An ordinary CLI taste probe read two plugin guides without producing permission events, so it did not reproduce the reported VS Code prompt. A paired fail-closed check therefore explicitly denies built-in file reads under the registered plugin root. Keep that distinction when interpreting the results.
+
+Read each run's persisted events.jsonl. Count permission-request events, permission-denial events, denied tool calls whose path is inside the plugin root, and all plugin-file read attempts separately. The baseline produced two denied guide reads per skill for taste, variations and overnight-plan. The final inline versions made zero plugin-file calls and zero denials while producing the requested outputs. No permission-request events were emitted by this CLI. Do not describe the deny-rule count as a measured VS Code UI-prompt count.
+
+The candidate was registered through the documented local-marketplace route in a throwaway home; it lived outside all test workspaces, under the same explicit read-deny boundary. The published package's skill/template bytes are compared with those tested. A focused prototypes probe also checks that a requested label/spacing change lands directly in the normal entry file, without a hidden script/flag, and that a before copy remains. These file-only checks do not claim a browser or real queued-preview lifetime rehearsal.

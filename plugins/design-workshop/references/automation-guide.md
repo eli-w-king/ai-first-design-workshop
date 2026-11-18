@@ -18,11 +18,13 @@ A morning schedule is a later deliberate choice. Review the local time zone, sou
 
 ## Weekly roles digest
 
+Stage copies of the chosen public job postings and criteria in the automation workspace first. Include source URLs and collection dates. The self-contained scheduled prompt reads those files only, not live pages or plugin guides, and labels current role status unverified. Refresh the copies yourself, or separately request an interactive job-search task with approved public URLs.
+
 The [template](../automations/weekly-roles-digest.automation.md) does nothing when this plugin is installed. It starts as a **manual** template. There is no schedule, enabled state, workspace, model or permission grant hidden in it.
 
 ## Try it once first
 
-1. Read the prompt and choose the role, criteria, public URLs and private output folder. Do not give it access to an inbox or job-site account.
+1. Read the prompt and choose the role, criteria, workspace posting copies and private output folder. Do not give it access to an inbox or job-site account.
 2. In a VS Code version that supports automation templates, open **Automations > Templates from Plugins**, choose **Weekly roles digest**, and review the new-automation dialog. Keep **Enabled** off. In other hosts, paste the prompt into an ordinary supervised chat.
 3. Choose a model already available in your account. A mid-priced model such as GPT-6.2 Sol is a reasonable starting point when offered. More capable models can help difficult matching, but cost more; a digest still needs your review.
 4. Review the actual tool, path and URL permissions. Keep approvals and sandbox protections. Do not enable Allow all or Autopilot to get a digest past an approval request.
@@ -30,7 +32,7 @@ The [template](../automations/weekly-roles-digest.automation.md) does nothing wh
 
 ## What one run costs
 
-There is no fixed price per digest. Each run uses input, output and cached tokens at your chosen model's rates. Public pages cost no subscription here, but the AI calls consume your plan's allowance or your separately configured provider balance. Do not buy credits, enable paid overage or increase a budget to make this template run.
+There is no fixed price per digest. Each run uses input, output and cached tokens at your chosen model's rates. The copied public postings need no new subscription here, but the AI calls consume your plan's allowance or your separately configured provider balance. Do not buy credits, enable paid overage or increase a budget to make this template run.
 
 For Copilot, one AI credit currently represents $0.01 USD of usage value. A 30-credit per-run cap represents $0.30 of usage value, not necessarily an extra charge if you have included allowance. This is an example cap, not an estimate that every digest will finish within it. Check the [current rates](https://docs.github.com/en/copilot/reference/copilot-billing/models-and-pricing) and [billing explanation](https://docs.github.com/en/copilot/concepts/billing-and-usage/individuals/billing), then set your own limit. Do not move this template to a Cloud automation on a public fork. Separately approved one-off Cloud tasks still require their own compute and usage review.
 
@@ -38,7 +40,7 @@ The prompt cannot enforce billing by itself. After a supervised run, use the hos
 
 ## Schedule only after a deliberate choice
 
-If you want repetition, review the workspace, URLs, time zone, run cap, permissions and schedule yourself. A possible weekly schedule is Monday at 8 AM local time (`0 8 * * 1`). This is an example to choose, not a setting this plugin enables. Keep runs bounded to ten pages, ten roles and ten minutes unless you deliberately change those limits.
+If you want repetition, review the workspace, URLs, time zone, run cap, permissions and schedule yourself. A possible weekly schedule is Monday at 8 AM local time (`0 8 * * 1`). This is an example to choose, not a setting this plugin enables. Keep runs bounded to ten supplied postings, ten roles and ten minutes unless you deliberately change those limits.
 
 The automation drafts a local file only. It never applies, sends, contacts people, installs tools or changes a subscription. If a necessary approval is unavailable, it stops and records the blocker rather than seeking broader access.
 

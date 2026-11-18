@@ -62,7 +62,7 @@ Play the full MP4 with sound. Check that the right sentence lands on the right a
 
 Follow [the frozen 30-second capture plan](thirty-second-demo.md). Serve an immutable snapshot of the real built app from an owned server with no hot reload; do not capture another session's changing development page. A separate browser context alone does not freeze files or sample data. The person can do a separate task in another folder while a bounded recorder or encode runs through the host's supported background-task facility. Verify the process starts and the local page responds; keep its process id and output path. Do not edit the app, rebuild it or reuse the same preview process mid-take.
 
-Return to inspect the actual result and stop every owned process. Do not start another agent, buy more capacity or enable a schedule to claim parallel work. If the host cannot continue another task while recording, state that limit.
+Return to inspect the actual result and finish the recording/encoding tasks. Clean up capture-only helpers when no longer needed, not the person's ongoing development preview. Keep a development preview you started running while the person is still working in the session or queued follow-ups need it. Give its URL, port, owning terminal/process and how to stop it (Ctrl+C in that terminal or the host's stop control). One completed request is not the end of the session. Stop the preview when the person is done or asks, and never kill a process you did not start. Do not start another agent, buy more capacity or enable a schedule to claim parallel work. If the host cannot continue another task while recording, state that limit.
 
 ## Undo and checked coverage
 

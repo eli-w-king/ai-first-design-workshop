@@ -1,5 +1,5 @@
 import unittest
-from automation_metadata import validate_automation_metadata
+from automation_metadata import validate_automation_metadata, default_read_dependencies
 
 
 def manual():
@@ -36,6 +36,23 @@ class AutomationMetadataTests(unittest.TestCase):
         for version in [True, '1', 2]:
             with self.subTest(version=version), self.assertRaises(ValueError):
                 validate_automation_metadata({**manual(), 'version': version}, {'kind': 'manual'}, set())
+
+
+class DefaultReadBoundaryTests(unittest.TestCase):
+    def test_skill_guides_are_allowed_only_in_optional_detail(self):
+        link = '[guide](references/guide.md)'
+        self.assertEqual(default_read_dependencies('# Task\nRead ' + link, True), ['references/guide.md'])
+        self.assertEqual(default_read_dependencies('# Task\nInline steps.\n## Optional detail\n' + link, True), [])
+
+    def test_generated_examples_do_not_create_read_dependencies(self):
+        example = '# Task\n```markdown\n[local note](notes/one.md)\n```\nInline instructions.\n'
+        self.assertEqual(default_read_dependencies(example, True), [])
+        self.assertEqual(default_read_dependencies('# Task\n[local](file:///outside/guide.md)', True), ['file:///outside/guide.md'])
+
+    def test_automation_cannot_hide_a_guide_in_an_optional_section(self):
+        prompt = 'Write a draft.\n## Optional detail\n[guide](../skills/taste/references/guide.md)'
+        self.assertEqual(default_read_dependencies(prompt, False), ['../skills/taste/references/guide.md'])
+        self.assertEqual(default_read_dependencies('Read notes/ and write draft/output.md using these inline steps.', False), [])
 
 
 if __name__ == '__main__':

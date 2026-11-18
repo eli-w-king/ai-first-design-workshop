@@ -5,56 +5,65 @@ description: "Record a short narrated walkthrough of the person's working protot
 
 # Demo walkthrough
 
-Write short, plain sentences. Do not use em or en dashes in generated copy.
+Write short, plain sentences. Do not use em or en dashes.
 
-Show one useful task from a clean start to a visible result in the real running prototype.
+The complete default workflow is here. Do not open linked plugin files to start, complete or verify it. Use optional detail only when the person explicitly asks for it. Normal approvals for their files, tools and consequential actions still apply.
 
-## Choose the output
+## Agree on a real result
 
-Confirm the page, the audience, the task, the output folder, and whether the person wants a **video**, **screenshots**, or **before and after**. For a workshop video, make it short and narrated. Agree on duration, the words and whether to use an installed system voice or the person's own recorded audio. A silent clip is only an explicitly chosen fallback, not the narrated-video goal. Do not promise a three-minute turnaround without a tested route.
+Confirm the owned page, audience, one task, output folder, duration and video/screenshots/before-after choice. For a 30-second voiceover request, agree on the words and an installed system voice or the person's chosen recording. Do not substitute stills, a slideshow or silent video without agreement.
 
-Use [the demo brief and review checklist](references/demo-checklist.md). A screenshot sequence, animated webpage or slideshow is not a recorded demo video.
+Ask before installs, sending, uploading, spending or deleting. Never attach to another person's browser or reuse cookies. Keep upstream services inert and block their destinations before navigation. Use real UI and approved sample data, label simulations, fix errors and retake. Never paint over faults, fake terminal output or splice different runs as one take.
 
-## Keep it honest and private
+## Freeze and rehearse
 
-- Ask before any install, send, publish, spend or delete. Recording permission is not upload permission. Use only a page and sample content the person owns or can show.
-- Use the actual interface, from start to finish. Label fictional data and simulated behavior. Never paint over errors, splice different sessions into a fake continuous flow, or show a recreation as the product.
-- Keep a visible pointer and clear clicks, a calm lead-in and ending, no random zoom, and at most two areas competing for attention.
-- Fix errors and retake. Do not present failed states, sign-in prompts, notifications or personal details as a finished demo.
-- Use a new isolated tab or browser context. Never attach to someone else's browser, reuse their cookies, or drive their desktop without a separate explicit request.
+Use built-in browser tools first to test the actual clicks and expected end state. For pairs, capture the same viewport, theme, content and state before/after. A missing baseline stays missing.
 
-For a forked app, confirm [upstream hosted services are inert](../prototypes/references/fork-guardrails.md) before opening it for rehearsal or capture. A fresh browser profile is not a network boundary. Do not load an unprepared app or sign in to upstream services to get a before image.
+For background capture, use an approved frozen snapshot of the **real built app**, a task-owned server/port with no watcher or hot reload, and separate browser/data/output. A new tab or branch name alone does not freeze files. Other work must use independent inputs and processes. If the target cannot be frozen, stop; if it changes unexpectedly, discard no files automatically but mark the take failed and retake.
 
-## Rehearse first
+Plan a clean lead-in, deliberate pointer/clicks, one idea per beat, visible outcome and reading holds. Use no random zoom and at most two focal areas. Write only the selected flow's script in the workspace, not a script that reads helpers from this plugin.
 
-1. Inspect the built-in browser tools the host actually offers. In VS Code, use them to open the local page, reset the flow, click through it, and inspect screenshots and errors. No external browser server is required for these checks.
-2. Write the exact clicks, input and expected final state. Use visible labels rather than fragile coordinates. Keep the screen readable at the intended recording size.
-3. For before/after pairs, capture the same viewport, theme, content and state on both sides. A missing baseline stays missing; do not fabricate one.
+## Record without plugin-file reads
 
-## A 30-second voiceover request
+Prefer a verified existing recorder in the selected workspace or the host's actual recording tool. Built-in screenshots do not prove video export. If no recorder is available, a small workspace-local Playwright script can use Node and a compatible browser/encoder already installed, or separately approved downloads.
 
-Use [the 30-second demo guide](references/thirty-second-demo.md) for "record a 30-second demo with a voiceover". Capture a frozen copy of the real built app or another isolated immutable target, never a shared hot-reloading page that another session is editing. Keep its browser, data, server and output separate from other work. If it cannot be frozen, stop rather than recording a changing target. Measure the final duration instead of claiming the helper guarantees thirty seconds.
+Explain downloads and undo before each install. One reviewed package example is `npm install --prefix .workshop-recording --cache .workshop-recording/npm-cache --save-exact --ignore-scripts playwright@1.65.1` (`npm.cmd` on Windows). This changes the named workspace folder, not app dependencies. Do not silently use `latest`. With separate browser/encoder approval, set `PLAYWRIGHT_BROWSERS_PATH` to that folder's `browsers` subfolder and run `node .workshop-recording/node_modules/playwright/cli.js install chromium`. Missing tools remain blocked if not approved.
 
-## Record a video
+Create the flow script in that local recorder folder so it can load its own package. Essential Playwright sequence:
 
-Built-in interaction and screenshot tools do not, by themselves, establish that video export is available. If this host exposes a recorder, verify its actual saved video and limitations before using it. Otherwise follow [the local recording guide](references/recording.md).
+```js
+const { chromium } = require('playwright');
+const browser = await chromium.launch({ headless: true });
+const context = await browser.newContext({
+  viewport: { width: 1280, height: 800 },
+  recordVideo: { dir: 'NEW_WORKSPACE_TAKE_FOLDER', size: { width: 1280, height: 800 } },
+  serviceWorkers: 'block', acceptDownloads: false
+});
+// Add the approved local-origin request guard before navigation.
+// Open a page, add only a pointer/click overlay driven by real input,
+// perform the rehearsed controls, and assert the visible end state.
+// Keep the page.video() handle. In finally, await context.close()
+// and browser.close(); only then retrieve the finalized video path.
+```
 
-That guide includes a small [recording helper](scripts/record-walkthrough.mjs), a [plan example](references/recording-plan.example.json), exact opt-in installation and removal steps for Playwright, and optional MP4 conversion. Prefer existing tools. If tools are missing, explain the downloads, changed folder and undo, ask, and wait. Never install on the strength of the word "demo" alone.
+This is the API outline to adapt, not a ready-made flow or permission to launch. Use an async function, unique output paths, a finite timeout and `finally` cleanup. Reject unexpected dialogs, downloads, popups, page/console errors and outside or mutating service requests. Wait for actual controls, not arbitrary readiness sleeps; use short holds only for reading. Never manipulate app internals to force success. If no safe automatic route exists, report **video blocked**, not a fabricated completion.
 
-Record one continuous take. The helper adds only a pointer and click indicator to the page; it does not change application state to fake success. It stops on page errors, unexpected dialogs, popups or outside requests. Close the recording context to finish writing the video.
+## Add voiceover and measure
 
-If automatic recording is unavailable or declined, say **video blocked**, give the specific missing capability, and offer manual screen recording as a separate fallback. Do not claim that a fallback met an automatic-video request.
+Approve the script and voice. On macOS, `say -f narration.txt -o narration.aiff` writes local speech; choose only an installed voice. In Windows PowerShell, use `System.Speech.Synthesis.SpeechSynthesizer`, `SetOutputToWaveFile`, `Speak` and `Dispose` to write WAV with an installed voice. Do not install voices, change policy or activate a microphone automatically. A provided audio file needs the person's permission and stays unchanged.
 
-## Add narration and use the wait well
+Measure the audio and video with existing media tools. If full ffmpeg/ffprobe is missing, ask before an install such as `brew install ffmpeg` or `winget install --id Gyan.FFmpeg --exact`; never install a package manager for it silently. Do not assume the capture encoder can mix audio. For an approved silent input and narration that fits, a workspace command can map the video's stream and narration, add an agreed audio delay and trailing silence, encode H.264/AAC, and stop at video length. Use `-n` to refuse overwrites and do not cut off narration. Existing video audio needs a separately reviewed mixing plan, not silent replacement.
 
-Follow [the narration guide](references/narration.md): an installed system voice or the person's own chosen audio file, a short approved script, measured timing, and a real audio/video export. macOS system speech and Windows speech synthesis need no new account; check the actual installed voice rather than downloading one silently. Ask before any microphone recording or media-tool install. Never substitute a silent clip without agreement.
+Aim for the requested 30 seconds, then measure the export. Adjust holds and retake; with approval trim only surplus final idle after all actions and narration are complete, preserving the original. A viewport recording with voiceover does **not** capture app/system audio. If an audible feature's sound is required, use a separately approved verified real-audio route or state that part is blocked.
 
-Start a bounded capture or encode with the host's existing background-task tools when available, verify that it is running, and keep the process id and output path. Another independent task can use a different folder while it finishes. Freeze the app and recording inputs as described above so that later edits cannot change the interface mid-take. Stop and retake if they change unexpectedly. Do not start extra paid agents or a schedule to achieve this.
+## Review, deliver and undo
 
-The supplied browser recorder does not capture app/system audio. A voiceover is not proof that an audio feature actually played; if that sound must be in the demo, require a separately approved real-audio capture and mixing route. Never fake it with narration.
+Run bounded capture/encoding in the background only through supported host tools, verify readiness and keep its process id. Continue independent work, not edits to the recording target. Return to inspect the actual file, duration, dimensions and complete decoding. Watch and listen to the entire take for timing, pointer visibility, legibility, errors and a complete ending; mark any unavailable review honestly.
 
-## Review and hand over
+Give the real file, frozen source/state, checks and limits. Finish recorders/encoders and close the capture context to finalize the file. Clean up disposable capture-only helpers when no longer needed, but do not stop the person's ongoing development preview. Keep a development preview you started running while the person is still working in the session or queued follow-ups need it. Give its URL, port, owning terminal/process and how to stop it (Ctrl+C in that terminal or the host's stop control). One completed request is not the end of the session. Stop the preview when the person is done or asks, and never kill a process you did not start. Upload nothing. Ask before deleting takes or the newly created `.workshop-recording` folder; do not remove pre-existing tools. Restore changed terminal variables and offer only the matching uninstall for tools newly added, without broad dependency cleanup.
 
-Play the entire exported video with its narration, not just its first frame. Listen for intelligible speech, correct timing and a complete ending. Check that the pointer, text, transitions and outcome are visible, with no error state or missing frames. Use existing media tools for duration, dimensions and decoding checks when available. If you cannot watch it, mark it **recorded, visual review needed**.
+## Optional detail
 
-Deliver the actual `.webm` or `.mp4`, the screenshots if requested, and a short note: what is real or simulated, the source revision if known, checks completed and limitations. Keep prior takes until the person approves deletion. Stop every recorder, browser and server you started. Upload nothing.
+None of these files is required above. Open one only for an explicit request for extra detail. Opening it may ask to read a file outside your workspace; that is this plugin's own folder. Check the path and request only that access, never a broad exception. Do not fetch another copy to bypass a denied read.
+
+[Capture setup](references/recording.md), [narration examples](references/narration.md), [30-second planning](references/thirty-second-demo.md), [QA checklist](references/demo-checklist.md). [Bundled recorder](scripts/record-walkthrough.mjs) and [audio helper](scripts/add-narration.mjs) are optional too: reading or executing them needs the normal additional approval.

@@ -5,45 +5,56 @@ description: "Plan a bounded longer or overnight design run with a budget, check
 
 # Overnight plan
 
-Write short, plain sentences. Do not use em or en dashes in generated copy.
+Write short, plain sentences. Do not use em or en dashes.
 
-Advanced take-home only. Agree on a small, testable job before leaving an agent to work. A saved plan is not permission to run it. A research-to-variations plan can use selected findings, but fictional practice notes remain fictional and never become customer evidence. Do not promise this as a live workshop task.
+The complete default workflow is here. Do not open linked plugin files to start, complete or verify it. Use optional detail only when the person explicitly asks for it. Normal approvals for their files, tools and consequential actions still apply.
 
-## Draft the agreement
+## Plan only until approved
 
-Read only the selected project and feedback. Fill in [the run agreement](references/run-agreement.md):
+Use only the selected workspace and supplied feedback. This is advanced take-home planning, not permission to start a run. Keep fictional findings labeled. Write the plan in chat or the requested workspace file; do not read plugin guides to fill it in.
 
-- The outcome, the exact folder and branch, permitted files, and what must remain unchanged.
-- A few independent steps, each with a deliverable and a check that proves it works.
-- A start time, stop time with time zone, maximum duration, model and usage cap.
-- The exact permissions and commands needed, who can approve them, and what happens if an approval is unavailable.
-- Checkpoints, retry limit, process ownership, undo and the morning report path.
+Ask before any install, send, publish, spend or delete. Do not change permissions, create a schedule, start a Cloud session or keep the machine awake on the strength of a plan request. Unknown values stay explicit, not guessed.
 
-Ask for approval of the filled agreement. Before any install, send, publish, spend or delete, ask separately and wait. The default run does none of these. Using included AI credits also consumes an allowance, so agree on its cap before starting.
+## Fill this agreement
 
-## Choose where it runs
+```text
+Outcome and what is out of scope:
+Workspace, owned repository, base revision and working branch:
+Allowed files, inputs and commands; forbidden paths/services:
+Steps: each deliverable, its location and the check proving it works:
+Start/stop time and time zone; maximum elapsed duration:
+Model/effort, number of sessions, approved usage budget:
+Host cap if offered, where usage is observed, and any separate compute cost:
+Permissions and who can approve a blocked action:
+Checkpoint/status path, retry limit and resumption rule:
+Owned processes, preview handoff/lifetime, cleanup, reversible changes and undo:
+Morning report path and the next human decision:
+```
 
-**On this laptop:** prefer the existing workspace session and Manual permissions. A run may pause when it needs an approval. Do not solve that by turning on Allow all, Autopilot or broad auto-approval. Keep the sandbox on where supported, but explain that it is not a budget or a complete safety boundary. Do a short supervised check first.
+Keep steps independent where possible and verify the actual result, not a completed chat message. Defaults: no installs, uploads, services, sends, publication or deletion; two attempts at the same failing step; local commits only if separately authorized; never push as a checkpoint. Show the completed agreement and wait for approval before execution.
 
-Keep the laptop plugged in with its lid open. If the person wants a wake lock, explain the temporary change and ask. On macOS, a bounded `caffeinate -i -t 3600` prevents idle system sleep for one hour; keep its process id and stop only that process early if the run finishes. Do not change system sleep settings or install a utility automatically. On other systems, let the person use their power settings and record the original values for restoration.
+## Runtime, budget and permissions
 
-**A Cloud session, optionally:** check the host's supported execution targets and account access. Explain which repository files are uploaded, whether a branch or PR is created, and the current AI credit and compute costs. Cloud is an execution location, not a model. A one-off Cloud task is not a Cloud automation: Cloud automations require eligible private repositories and do not work on public forks. Keep workshop recurring automations local. Ask before starting it. If upload or spend permission is missing, leave a draft handoff instead. Do not provision machines or remote hosts.
+Prefer the current local workspace with Manual permissions and supported sandboxing. Manual can still honor saved approvals; a sandbox is not a budget or a complete safety boundary. Do a short supervised check. If a needed approval is unavailable, pause that step and save the blocker. Never solve it with Allow all, Autopilot or broad grants.
 
-## Set an enforceable budget
+Use the selected model or suggest a mid-priced option such as GPT-6.2 Sol. Long context, retries and extra agents can cost more. Included credits are usage too. If the host offers a per-run cap, use the approved one and understand in-flight-call limits. A prompt is not a billing control. Without a usable limit or observable cost, keep paid work supervised rather than promising a bounded unattended run. Never buy credits, enable overage, raise a budget or switch to separately billed access.
 
-Use the current model, or suggest a mid-priced model such as GPT-6.2 Sol if it is offered. A smaller model can cost less but may need more checking; longer context, reasoning and parallel sessions can increase usage. No model is required by this skill.
+Local work needs the laptop awake and its host running. If explicitly approved, macOS `caffeinate -i -t 3600` prevents idle system sleep for one hour; record and stop only its own process. On other systems let the person use their power controls and preserve prior values. Do not change global sleep settings or install utilities automatically.
 
-Use [the budget notes](references/budgets.md). Prefer the host's actual session cap, not a sentence that asks the model to stop at a price. Never raise an account budget, enable paid overage, buy credits or switch to a separately billed provider. If there is no enforceable cap or costs cannot be checked, keep the run supervised and do not start an unattended paid run.
+A one-off Cloud task is optional and separate from a Cloud automation. Explain the exact upload, repository, branch/PR effects and current usage/compute charges, then ask. Public forks are not eligible for Cloud automations; keep workshop recurring templates local. Do not provision machines or remote hosts. Without consent or access, leave a handoff draft.
 
 ## During an approved run
 
-- Keep `STATUS.md` in the agreed run folder current at each step and at least every 15 minutes while working. Include verified work, next action, blockers, usage if available, files changed and owned process ids.
-- Stop at the first limit: done, deadline, usage cap, unavailable approval, a secret, unexpected outside access, or two failures of the same step. Save partial results and the exact blocker. Do not expand scope to keep busy.
-- Preserve unrelated edits. Make local commits only if the agreement authorizes them; never push as a checkpoint.
-- On interruption, resume from the last verified checkpoint only after checking whether the previous run or its processes still exist. Never run two copies of the same job.
+Update the agreed `STATUS.md` after each verified step and at least every 15 minutes while working: done, current action, next, blockers, files/commits, usage if exposed and owned process ids. Stop at the first limit: done, deadline, budget, missing approval, secret, unexpected access, or two failures of one step. Do not widen scope to stay busy.
 
-## Finish without waiting for a greeting
+Before resuming, read the last checkpoint and check whether the prior run or owned processes are still active. Do not start a duplicate. Preserve unrelated edits and record any deliberate assumptions.
 
-Write the morning report at the end of the run: links or local paths, what changed, real checks, unfinished work, usage or **unavailable**, and the next decision. Show how to turn off a prototype toggle or revert the run's named commits, with review before any destructive action.
+## Finish and undo
 
-Stop every process you started, including a wake lock, and record cleanup. Do not leave a recurring job behind. Do not email, message or publish the report. The person reads it locally when they return.
+Write the report when work ends, even if early: local paths or already-approved links, changes, real test results, unverified/unfinished work, usage or **unavailable**, cleanup and one next decision. Keep requested design changes visible by default; preserve a before screenshot/revision and show how to revert only this run's named changes after review. Use a switcher only for requested options or requested access to the old version. Stop completed one-off run helpers and the wake lock, and restore approved temporary settings. Keep a development preview you started running while the person is still working in the session or queued follow-ups need it. Give its URL, port, owning terminal/process and how to stop it (Ctrl+C in that terminal or the host's stop control). One completed request is not the end of the session. Stop the preview when the person is done or asks, and never kill a process you did not start. Paid or Cloud services still obey their approved cost and lifetime limits. Do not email, message or publish the report, leave a recurring job, or delete files without approval.
+
+## Optional detail
+
+None of these files is required above. Open one only for an explicit request for extra detail. Opening it may ask to read a file outside your workspace; that is this plugin's own folder. Check the path and request only that access, never a broad exception. Do not fetch another copy to bypass a denied read.
+
+[Longer agreement examples](references/run-agreement.md), [billing background](references/budgets.md).

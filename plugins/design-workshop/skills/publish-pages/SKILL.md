@@ -5,50 +5,48 @@ description: "Prepare and, only with explicit approval, publish a static project
 
 # Publish to GitHub Pages
 
-Write short, plain sentences. Do not use em or en dashes in generated copy.
+Write short, plain sentences. Do not use em or en dashes.
 
-Say this first: **This will put the site on the public internet. On GitHub Free, the repository must also be public.** A private source repository on another plan does not automatically make a Pages site private.
+The complete default workflow is here. Do not open linked plugin files to start, complete or verify it. Use optional detail only when the person explicitly asks for it. Normal approvals for their files, tools and consequential actions still apply.
 
-## Check the fork and license first
+## Public and license check first
 
-For an open-source app, confirm that the selected repository is the person's **public fork** and that its license permits the intended distribution. Keep the LICENSE, copyright notices and required assets' notices. Credit the original project in the fork's README and distinguish the person's changes. A public repo alone is not a reuse license. Stop if permission is unclear; do not change visibility or remove attribution.
+Say: **The site will be public on the internet. GitHub Free also requires a public repository.** A private source repository on another plan does not automatically make the site private.
 
-For AGPL and other copyleft projects, keep all required notices, add a dated "modified by" note, and put a visible source link in the live app to the fork and revision that produced it. Follow the actual license's source-availability and modified-file notice requirements; publishing compiled files alone is not enough. Present it as **my fork**, not official or endorsed. This is a practical checklist, not legal advice. Read the project's license and the [AGPLv3 text](https://www.gnu.org/licenses/agpl-3.0.html), and ask qualified help when requirements are unclear.
+Confirm the exact owned fork/repository, branch, publish folder and authorization. Read its license in the workspace; keep LICENSE, copyright/dependency notices and upstream credit. For copyleft code, preserve required licensing/source availability, add dated modification notices, and link the live app to the fork and deployed source. Present it as **my fork**, not official or endorsed. This is a practical checklist, not legal advice; stop if obligations are unclear.
 
-Before building or opening the app, verify [upstream sync, accounts and analytics are inert](../prototypes/references/fork-guardrails.md). No sign-in or test traffic to the original project's services.
+List both committed files/history and served output. Look for secrets, personal/client data, unapproved assets, raw research, recordings, hidden files, drafts, dependencies and tool caches. Do not print secret values. A cosmetic password box is not access control. If unsafe, propose a reviewed clean export without deleting originals or rewriting history; leaked secrets need revocation, not just file removal.
 
-Check the actual branches. In GitHub's fork dialog, **Copy the DEFAULT branch only** can be selected. With that choice, an upstream `gh-pages` branch is not copied. The [forking docs](https://docs.github.com/en/pull-requests/how-tos/work-with-forks/fork-a-repo) say clearing the option copies all branches. Verify the fork rather than assuming a deploy branch exists.
+Show the repository, visibility, files/history and intended URL, then ask to publish that exact scope. Ask separately for installs, new spending, deletion or a visibility change. Never buy a domain, change billing or contact upstream. Before opening/building the app, make upstream sync/auth/analytics inert through an approved change; block destinations before navigation and treat attempted requests as failures.
 
-## Make a public-content check
+## Choose and prepare the route
 
-1. Confirm the person owns or is authorized to publish the project. Identify the exact site folder, destination account and repository, branch and publish path. Do not guess a remote.
-2. List the files to be committed and the files Pages will serve. These are not always the same: a public repository exposes other tracked files and its history, not just the site folder.
-3. Inspect the candidate content and relevant history for secrets, contact information, private notes, client or employer work, unapproved logos, raw research, recordings and hidden files. Name a sensitive file without printing its secret contents.
-4. Check assets and licenses, relative links, local-only URLs, analytics and forms. A password box in front of downloadable files is not access control. Never include private data behind a cosmetic password screen.
-5. If content is unsafe, stop and propose a clean export of reviewed static files into a separate folder. Do not delete, rewrite history or change repository visibility automatically. For a leaked secret, have the person revoke it; deleting a file is not enough.
-6. Show the exact repo, visibility, file list, public URL shape and irreversible exposure risk. Ask: **"Publish these files and this reviewed history to this public repository and GitHub Pages?"** Wait for a clear yes. Reconfirm if the scope changes.
+- **Built files already committed:** use an existing approved branch and `/ (root)` or `/docs`. Confirm it contains the real app, not unbuilt source. A `dist/` folder is not a branch-source choice. Add `.nojekyll` if appropriate.
+- **A build is needed:** review and approve a Pages workflow using the project's pinned runtime/manager, frozen lockfile, real build command and output directory. Explain scripts, triggers, permissions, artifact contents and possible Actions cost. Upload only static output, not the whole repo.
+- **A backend is required:** state the limitation or an explicitly agreed static subset. Never replace the actual app with a screenshot recreation.
 
-## Publish only the approved scope
+A default-branch-only fork may not include upstream `gh-pages`. Check actual branches. Fork Actions are disabled by default: review inherited workflows, keep unrelated or unsafe jobs disabled, then enable only the approved fork workflow and select **Settings > Pages > Source > GitHub Actions**. With approval, remove inherited CNAME/custom-domain generation from the output/workflow and check the fork's Pages setting. Do not touch upstream DNS.
 
-Ask before any install, send, publish, spend or delete. Do not install Git or GitHub CLI for publishing without separate approval. The GitHub website is a valid route. Do not buy a domain, upgrade a plan or enable paid services.
+An Actions flow checks out the selected revision, runs the approved build, uploads the built folder and deploys to `github-pages`. Use verified official action versions/pins, explicit build/deploy dependency and only needed `contents: read`, `pages: write`, `id-token: write` permissions. Prefer a supervised manual trigger first; adding automatic push deployment needs consent. Do not add credentials or weaken protections to bypass errors.
 
-Follow [the publishing steps](references/publishing.md). Keep a record of the previous Pages configuration and branch before changing them. Choose the route from the actual app:
+## Project paths and Windows
 
-- If the built, runnable files are already committed, use branch publishing from the approved branch, commonly `main`, at `/ (root)` or `/docs`. Verify that those files contain the real app.
-- If a build is needed, propose a GitHub Actions Pages workflow using the existing project's build command and output folder. Explain its commands, permissions, trigger, public artifact and possible usage cost. Add or enable it only after an explicit okay.
-- If a backend is required, do not pretend Pages can host it. Explain the limitation. Never replace the real app with a screenshot recreation to claim publishing worked.
+For `https://USER.github.io/REPO/`, align Vite `base: '/REPO/'` (or verified relative `./`), runtime asset URLs and router base. Preserve an existing hash router. History routing needs a tested deep-link fallback; a local preview's fallback is not automatically available on Pages.
 
-For a Vite or SPA project site, check [base paths, routing and PWA scopes](references/spa-project-sites.md) before publishing. A root-only preview is not a deployment check. Fork Actions are disabled by default: review the inherited workflows, get approval to enable Actions in the fork, select **GitHub Actions** as the Pages source for a build workflow, and remove upstream CNAME or custom-domain steps only through an approved change. Do not enable unrelated workflows.
+Resolve PWA `start_url` and `scope` against the emitted manifest URL and keep both inside the project. Serve/register the service worker within that prefix, not `/`; check precache, icons and launch paths. Manifest scope is not a worker scope or network boundary. Use an isolated context first; never clear another project's workers or storage.
 
-1. Prepare only approved static files. Add `.nojekyll` if the site should be served without Jekyll. Keep drafts and local helpers out of the public copy.
-2. Check the repository-local commit identity. Offer a GitHub noreply address; do not change global identity.
-3. Show the staged file list and diff. Commit and push only the named files to the approved repository and branch. Never use a broad `git add .` for an unreviewed folder.
-4. Enable Pages for the exact branch and source folder, or preserve the repository's existing approved build workflow. Do not overwrite a working workflow to fit this guide.
-5. Read the Pages deployment status and actual returned site URL. Poll with a short limit; a queued build is not a working site. If a result is ambiguous, inspect state before retrying a create or publish action.
-6. Use built-in browser tools first to check that the live URL loads the actual client-side app, including its assets, navigation and main interaction at desktop and phone widths. Check deep-link reloads, PWA launch and service-worker scope where applicable, the visible source link, and zero attempted upstream-service traffic. Watch for project-subpath issues and console errors. An HTTP 200 alone is not enough.
+On Windows, prefer PowerShell for path-like variables: `$env:BASE_PATH = '/repo/'`, then `node -p "process.env.BASE_PATH"` should print `/repo/`. Use the actual prefix and only variables the build reads. In Git Bash, prefix each affected command with `MSYS_NO_PATHCONV=1`; otherwise a URL-like value can become a filesystem path. Restore prior terminal values afterward, not global profiles.
 
-## Hand over the link and the undo
+## Publish and verify
 
-Give both the verified live-app URL and the person's fork URL, plus the published revision, paths, checks completed and anything unverified. Keep upstream attribution visible. If deployment is still pending, say so and give the status page instead of claiming success.
+Record the prior Pages configuration and repository-local commit identity. Show the staged diff and upload only approved files to the exact fork/branch. Use the GitHub UI if CLI is absent. For a new branch-based site, an approved CLI command is `gh api --method POST repos/OWNER/REPO/pages -f 'source[branch]=BRANCH' -f 'source[path]=/'`; do not repeat it for an existing site or mistake a permission-related 404 for absence. A build workflow uses the Actions source instead.
 
-Explain how to use **Settings > Pages > Unpublish site** and how to restore the prior publishing configuration. Ask before doing either. Unpublishing the website does not make the repository or its history private and cannot recall cached copies. Never delete a repository as routine cleanup. Stop your own local preview server.
+Inspect remote state after ambiguous results before retrying. Poll deployment with a short limit and use GitHub's returned URL, not a guessed one. Open the real app with built-in browser tools, check assets, the main task, phone/desktop layout, deep-link reloads, applicable PWA/worker behavior, source/license links and zero upstream-service attempts. HTTP 200 or a successful push alone is insufficient.
+
+Return the verified live URL and fork URL, revision, checks and gaps. If queued or failed, report that rather than success. With approval, **Settings > Pages > Unpublish site** takes it down; restore prior configuration only if wanted. This does not recall copies or privatize repository history. Never delete the repo as routine undo. Keep a development preview you started running while the person is still working in the session or queued follow-ups need it. Give its URL, port, owning terminal/process and how to stop it (Ctrl+C in that terminal or the host's stop control). One completed request is not the end of the session. Stop the preview when the person is done or asks, and never kill a process you did not start.
+
+## Optional detail
+
+None of these files is required above. Open one only for an explicit request for extra detail. Opening it may ask to read a file outside your workspace; that is this plugin's own folder. Check the path and request only that access, never a broad exception. Do not fetch another copy to bypass a denied read.
+
+[Publishing details](references/publishing.md), [expanded SPA/PWA and Windows checks](references/spa-project-sites.md).

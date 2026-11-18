@@ -29,7 +29,7 @@ Do not print a remote containing embedded credentials. If you find one, stop and
 
 Agree on an existing base revision, then create the branch with `git switch -c design/IDEA BASE`. Explain that switching branches changes the files on disk. If there are unrelated edits, stop for the person to choose how to preserve them; never auto-stash, reset or clean.
 
-For a new product idea, use a small local demo. For an existing product, keep its original behavior as the default. Test the new toggle off and on. A prototype flag is not an authorization or security boundary.
+For a new product idea, use a small local demo. In an existing product, apply the requested change as the default at its normal URL, without a hidden flag. Preserve the prior branch/revision and a before screenshot for comparison or an approved revert. Use flags/switchers only for requested options or a request to keep the old version available; they are not security boundaries.
 
 ## Pin the GitHub destination
 
@@ -49,13 +49,13 @@ Never open PRs, issues or comments upstream from a workshop. Do not add upstream
 
 ## Before/after evidence
 
-After the hosted-service protections are verified, capture the real design baseline with those protections active, then the new state at the same size, theme and sample content. Label feature-off versus feature-on images accurately, and disclose the local-only preparation. Never reconnect an upstream service just to capture an original state. Missing evidence stays marked as missing. Keep screenshots outside the proposed commit until their contents and destination are reviewed.
+After the hosted-service protections are verified, capture the real design baseline with those protections active, then the new state at the same size, theme and sample content. Label the original versus the requested change accurately, and disclose the local-only preparation. Label separate variants only when the person requested options. Never reconnect an upstream service just to capture an original state. Missing evidence stays marked as missing. Keep screenshots outside the proposed commit until their contents and destination are reviewed.
 
 Draft the PR in a private local file:
 
 - What changed and why, in two or three sentences.
 - Before and after images of the same state, with plain captions.
-- How to run the project and turn the prototype toggle on and off.
+- The normal opening URL, requested default behavior and way to compare or restore the original. Include switches only if the person requested them.
 - Tests that passed, checks not run and known limitations.
 - Which data or behavior is simulated.
 - The one next design question.
@@ -83,8 +83,12 @@ Verify the returned PR URL, base repository, base and head branches, files, imag
 
 If the person explicitly asks to merge, first verify that the PR's base and head repositories are their own fork, review the final diff and checks, and show the intended merge method and base branch. Get approval for that exact merge if it was not already specified. Use the GitHub interface or an explicit own-fork CLI target; never rely on the inferred upstream default. Do not enable automatic merging, delete the branch or publish a site as a hidden extra action. Pages and a Cloud task have their own approval and verification steps.
 
+## Keep the preview available
+
+Keep a development preview you started running while the person is still working in the session or queued follow-ups need it. Give its URL, port, owning terminal/process and how to stop it (Ctrl+C in that terminal or the host's stop control). One completed request is not the end of the session. Stop the preview when the person is done or asks, and never kill a process you did not start. Use a persistent host task if the preview must survive the end of this request, and verify it responds before handing over.
+
 ## Undo without losing other work
 
-For an uncommitted prototype, turn its toggle off or switch back only after checking for unsaved edits. For a committed change, show a proposed `git revert COMMIT` and its effect before running it. Never recommend `git reset --hard`, `git clean` or deleting the repo as cleanup. Closing a PR does not delete its public history, and removing a local branch does not remove a remote one. Each removal needs its own review.
+For an uncommitted change, review the saved baseline and proposed restoration without discarding other edits. Do not switch a shared folder's branch while another task uses it. Only use a toggle to return to the original if that switch was requested. For a committed change, show a proposed `git revert COMMIT` and its effect before running it. Never recommend `git reset --hard`, `git clean` or deleting the repo as cleanup. Closing a PR does not delete its public history, and removing a local branch does not remove a remote one. Each removal needs its own review.
 
 To undo an approved `gh repo set-default` change, show the prior value and ask before restoring it with `gh repo set-default PREVIOUS_OWNER/PREVIOUS_REPO`. If there was no stored default, `gh repo set-default YOUR_USERNAME/YOUR_FORK --unset` removes this clone's choice. Include the repository argument in noninteractive terminals: the checked CLI rejects a bare `--unset` there. Do not undo it silently or assume that changing this default undoes a PR or push.

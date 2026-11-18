@@ -39,7 +39,8 @@ Keep tasks independent where possible. Do not make an external send, install, pu
 - Local commits allowed: yes or no:
 - Wake lock approved, duration and owned process id if used:
 - Preview server, browser or recorder process ids:
-- How to stop each owned process:
+- Preview handoff/lifetime, URL/port and stop instructions; keep it available while the person or queued work continues:
+- How to stop each owned process when the person is done or asks:
 - How to undo only this run's file changes:
 - How an interrupted run is detected before restarting:
 

@@ -5,46 +5,53 @@ description: "Build exactly N distinct design directions plus the current versio
 
 # Variations
 
-Write short, plain sentences. Do not use em or en dashes in generated copy.
+Write short, plain sentences. Do not use em or en dashes.
 
-Build alternatives a person can use and compare, not three colors of the same layout.
+The complete default workflow is here. Do not open linked plugin files to start, complete or verify it. Use optional detail only when the person explicitly asks for it. Normal approvals for their files, tools and consequential actions still apply.
 
-## Agree on one question
+## Scope and safety
 
-Read the current project and the material the person selected. Ask only for missing essentials: the screen, the user's task, the design question, the count and the work budget. Default to three new directions when no count is given. Do not promise a completion time you have not rehearsed.
+Read the current project and supplied material. Set one question, audience/task, unchanged surroundings, content, count and work budget. Default to three new directions if no count is given. Name each idea first; replace near copies. A different color is not a different design approach. Do not promise unrehearsed timing.
 
-For an annotated screenshot, use [the screenshot markup loop](../../references/markup-feedback.md): map marks to real code, ask about ambiguity, and show the markup with actual before/after captures. Do not turn visual feedback into text-only feedback.
+Ask before installs, sends, publishing, spending, deletion or additional sessions. Keep existing permissions and unrelated work. Use the current stack and components; a new tiny page can use plain HTML/CSS/JS without dependencies. Use approved real content or clearly labeled fictional sample data, never invented research or testimonials. Keep upstream sync, accounts and analytics inert in every direction and baseline. Local storage does not mean local AI processing.
 
-Use [the lab brief](references/lab-brief.md) to record the question, what stays unchanged, input content, and one name and one-line idea per direction. If two ideas describe the same approach, replace one before building.
+## Build one lab
 
-## Keep the work local
+1. Use a new agreed folder such as `labs/<question>/`, or the app's existing variant mechanism. Preserve the app's entry point. Copy/reuse today's real version as **0: Today**, separate from the N new directions. Label a screenshot-only baseline **reference image, not interactive**; never invent a working one.
+2. Give each direction a stable id, name, distinct structural/interaction idea, benefit and trade-off. Keep the task, content and surrounding UI identical. Use separate `v1/`, `v2/` folders or scoped components so styles do not leak.
+3. Make one review page with a named switcher, previous/next buttons, direct `?v=<id>` links, and `[` / `]` navigation that ignores typing, modified keys and embedded mode. Preserve equivalent task state when switching; label resets when flows differ.
+4. Add comparison of two chosen directions at the same logical viewport and task state; stack on narrow screens. `?embed=1` hides review controls, not product controls. `?motion=off` and system reduced motion stop nonessential motion without losing content or actions.
+5. Write brief notes and a manifest using this shape. Include every actual direction; missing stills and an unknown revision stay `null`.
 
-- Ask before any install, send, publish, spend or delete. A request for variations does not authorize extra paid sessions or uploads. Do not change permissions.
-- Use the existing project's stack and components. For a new small page, prefer plain HTML, CSS and JavaScript with no dependencies. Never replace a working app just to make the lab easier.
-- Use approved real project copy and assets. For a fictional prototype, label the supplied sample content as fictional. Never invent customer quotes, usage numbers or testimonials. Ask for safe sample content when it is missing.
-- For an existing fork, use its approved local-only preparation for every direction and the baseline. Follow [the fork guardrails](../prototypes/references/fork-guardrails.md); never reconnect upstream services to show today's design.
-- Keep production data, payments, accounts and outside services out of the prototype. Inputs sent to the AI still use the selected provider; local files do not mean local inference.
-- Work only in a new agreed lab folder or the project's existing variant mechanism. Preserve unrelated edits. Do not start worktree sessions or other agents without approval of their cost and permissions.
+```json
+{
+  "question": "The one design question",
+  "baseline": "0",
+  "picked": null,
+  "sourceRevision": null,
+  "directions": [
+    {"id":"0","name":"Today","kind":"interactive","path":"v0/index.html","idea":"Unchanged baseline","desktopStill":null,"phoneStill":null},
+    {"id":"1","name":"A distinct idea","kind":"interactive","path":"v1/index.html","idea":"What changes and why","desktopStill":null,"phoneStill":null}
+  ]
+}
+```
 
-## Build the set
+Use `baseline: null` if absent, or `kind: reference-image` for a still. Document opening steps, content sources, assumptions, files, checks and integration steps. With screenshot markup, read the image itself, map each mark to the real component, ask about ambiguity, edit only the confirmed parts and show the markup with actual before/after captures. Do not substitute text-only feedback or a recreation.
 
-1. Keep today's working version as **0: Today**, separate from the N new directions. Reuse its real code and surrounding UI. If the only baseline is a screenshot, label it **reference image, not interactive**. Do not invent a working baseline.
-2. Give every direction a stable id, a short name and a different structural or interaction idea. Hold the task, content and surrounding UI constant.
-3. Put files in `labs/<question>/v1/`, `v2/` and so on, or use scoped components in the current app. Keep the current app's entry point unchanged.
-4. Build a single review page with a small named switcher, `?v=`, previous and next buttons, `[` and `]`, and a side-by-side comparison of two chosen directions. See [the lab conventions](references/lab-conventions.md).
-5. Respect `?motion=off` and system reduced motion. `?embed=1` hides review controls, not product controls. Keep the full flow usable by keyboard and touch.
-6. Add a short note per direction: its idea, what it helps, its trade-off and what is simulated. Add a manifest and opening instructions using the conventions reference.
+## Parallel sessions when requested
 
-For "three directions, each in its own session", follow [parallel Agents-window sessions](references/parallel-sessions.md). After the three-session scope and cost are approved, start three distinct sessions concurrently, one direction and one exclusive file set each. Keep the baseline, shared content and single comparison page in the current coordinator session. Do not quietly substitute sequential work or subagents inside one chat and call it three sessions.
+For three directions in separate sessions, get approval for the count, model/cost and ownership. In the Agents window, start three **New Session > This Computer** sessions using the same approved folder and already selected **Branch**, not an automatic New Worktree. Inspect permissions; worktrees can use Allow all. Start all three without waiting for one to finish, and record their identities and states.
 
-Use the person's approved model or suggest a mid-priced option such as GPT-6.2 Sol if offered, not the most expensive model by default. More sessions consume more usage. Shared-folder sessions do not isolate files: workers do not switch branches, stage, commit, change shared files or stop each other's processes.
+Give each the whole brief and one exclusive file set. The current coordinator owns baseline, shared data/routes and the comparison page. Shared-folder sessions do not isolate files: workers do not switch branches, stage, commit, edit dependencies/shared files or stop each other's processes. Serialize overlapping work or agree on separate source copies. Do not label sequential work or one-chat subagents as three sessions. Use the approved model, or suggest a mid-priced option; never choose the most expensive setup by default.
 
-## Check before handing it over
+## Verify and iterate
 
-Use the existing built-in browser tools first. Check each direction and the baseline at 1440, 1280, 820 and 390 CSS pixels wide, normal and reduced motion. Check the main task, keyboard focus, switcher, comparison, wrapping, missing assets and console errors. Save and inspect desktop and phone screenshots. If a browser check is unavailable, name it as unverified, not passed.
+Use available built-in browser tools first. Check each direction and comparison at 1440, 1280, 820 and 390 CSS pixels wide, keyboard/touch, normal and reduced motion. Check the real task, focus, wrapping, assets, console errors, direct links and shortcuts. Save and inspect desktop/phone stills when tools permit. Name unavailable checks instead of claiming a pass.
 
-Give the local path or URL, one sentence per direction, the checks and gaps, and ask which direction to keep. Stop your test server unless the person explicitly asks to keep it running; give its restart command. Removing the lab later requires approval and affects only its named folder, not the original app.
+Give the local path/URL, one sentence per idea, trade-offs and verified gaps. Keep a development preview you started running while the person is still working in the session or queued follow-ups need it. Give its URL, port, owning terminal/process and how to stop it (Ctrl+C in that terminal or the host's stop control). One completed request is not the end of the session. Stop the preview when the person is done or asks, and never kill a process you did not start. Stop completed one-off checks separately. Preserve earlier rounds; new ids carry exact feedback and named picks. Integrate the chosen implementation faithfully only when asked, making that chosen change the app's default unless the person asks to keep alternatives switchable. Ask before removing anything or changing the main product.
 
-## Make another round
+## Optional detail
 
-Carry forward the person's named picks and exact feedback. Keep previous rounds reachable. Add new ids instead of overwriting them. Record what each change answers. When they choose a winner, use [prototypes](../prototypes/SKILL.md) to integrate that exact version, not a new interpretation. Ask before changing the main product or removing any alternatives.
+None of these files is required above. Open one only for an explicit request for extra detail. Opening it may ask to read a file outside your workspace; that is this plugin's own folder. Check the path and request only that access, never a broad exception. Do not fetch another copy to bypass a denied read.
+
+[Lab brief examples](references/lab-brief.md), [expanded conventions](references/lab-conventions.md), [parallel-session background](references/parallel-sessions.md).

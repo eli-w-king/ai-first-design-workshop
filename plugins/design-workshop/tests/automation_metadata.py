@@ -1,5 +1,6 @@
 """Validate the inert metadata of one advertised automation template."""
 import re
+from urllib.parse import urlsplit
 
 
 def validate_automation_metadata(metadata, expected_schedule, seen_ids):
@@ -25,3 +26,17 @@ def validate_automation_metadata(metadata, expected_schedule, seen_ids):
     if metadata['schedule'] != expected_schedule:
         raise ValueError('Automation schedule does not match its reviewed default')
     return identifier
+
+
+def default_read_dependencies(body, allow_optional):
+    """Find links that would make the inline path depend on another resource."""
+    text = re.sub(r'(?ms)^(`{3,}|~{3,})[^\n]*\n.*?^\1\s*$', '', body)
+    if allow_optional:
+        text = re.split(r'^## Optional detail\s*$', text, maxsplit=1, flags=re.M)[0]
+    targets = re.findall(r'\[[^\]\n]+\]\(([^\s)]+)(?:\s+"[^"]*")?\)', text)
+    targets += re.findall(r'^\[[^]]+\]:\s*(\S+)', text, re.M)
+    if not allow_optional:
+        return targets
+    return [target for target in targets
+            if urlsplit(target.strip('<>')).scheme == 'file'
+            or (not urlsplit(target.strip('<>')).scheme and urlsplit(target.strip('<>')).path)]

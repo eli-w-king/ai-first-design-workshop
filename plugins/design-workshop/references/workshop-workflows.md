@@ -1,6 +1,6 @@
 # Workshop workflow map
 
-The workshop supplies the app, brief and kit. This maps reusable capabilities, not a second run sheet, a replacement dataset or a promise about completion time. Keep every example product-agnostic and every independent task able to start from its provided input.
+The workshop supplies the app, brief and kit. Main workflows are inline in each skill; these reference links are optional depth and can ask for access to the plugin's own folder. This maps reusable capabilities, not a second run sheet, a replacement dataset or a promise about completion time. Keep every example product-agnostic and every independent task able to start from its provided input.
 
 | Module | Generic path | What proves it worked |
 | --- | --- | --- |

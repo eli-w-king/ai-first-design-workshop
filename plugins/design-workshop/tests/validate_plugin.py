@@ -5,7 +5,7 @@ import re
 import sys
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
-from automation_metadata import validate_automation_metadata
+from automation_metadata import validate_automation_metadata, default_read_dependencies
 
 try:
     import yaml
@@ -70,7 +70,10 @@ if {path.parent.name for path in skills} != EXPECTED:
     errors.append('The package must contain exactly the nine advertised skills.')
 for path in skills:
     try:
-        metadata = frontmatter(path)
+        metadata, body = frontmatter(path, include_body=True)
+        dependencies = default_read_dependencies(body, allow_optional=True)
+        if dependencies:
+            raise ValueError(f"Default skill path links another plugin file: {dependencies}")
         name = metadata.get('name')
         if name != path.parent.name or not re.fullmatch(r'[a-z0-9]+(?:-[a-z0-9]+)*', str(name)) or len(str(name)) > 64:
             raise ValueError('Skill name must match its folder and use kebab case')
@@ -117,6 +120,8 @@ for path in automations:
             raise ValueError('Automation id must match its advertised filename')
         if not body.strip():
             raise ValueError('Automation template is missing its prompt')
+        if default_read_dependencies(body, allow_optional=False):
+            raise ValueError('Automation prompt must be self-contained, without linked guides')
         seen_automation_ids.add(checked_id)
     except (ValueError, yaml.YAMLError) as exc:
         errors.append(f'{path.relative_to(REPO)}: {exc}')

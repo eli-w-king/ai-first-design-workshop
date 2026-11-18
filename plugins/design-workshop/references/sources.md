@@ -35,7 +35,7 @@ This set adapts the methods in [Eli King's public autonomous output skills](http
 
 - Variations: distinct ideas, today's baseline, shared content, a single comparison surface, responsive checks and preserved rounds.
 - Demos: real UI, a clean complete flow, intentional pointer movement, continuous capture and full-export review.
-- Prototypes: the real component, a reversible toggle, a branch and before/after review.
+- Prototypes: the real component, a reversible requested change, a branch and before/after review. Switchers are for explicitly requested alternatives, not hiding the requested default.
 - Research: consent, actual observation, verbatim evidence and limits on what a small test proves.
 - Longer runs: explicit boundaries, checkpoints, process ownership and a final report.
 - Setup: inspect, explain, approve, change one item, verify, and keep an undo record.

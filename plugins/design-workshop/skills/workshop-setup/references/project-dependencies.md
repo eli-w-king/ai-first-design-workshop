@@ -48,7 +48,7 @@ Do not blindly approve dependency build scripts. A skipped native-tool script is
 
 Without the local-cache flag, `npm config get cache` shows the npm cache location. Its defaults are usually `~/.npm` on macOS and `%LocalAppData%\npm-cache` on Windows. The downloaded runner is not a global pnpm installation, but its cache can remain after the project is deleted. Explain that distinction.
 
-After an approved install, use the same pin and cache options for the project's documented scripts. Verify the actual dev and production build paths, including any skipped-script warning. Before any app launch, confirm [upstream hosted services are inert](../../prototypes/references/fork-guardrails.md). Do not test by signing in or contacting the original project's server. Stop only the server you started.
+After an approved install, use the same pin and cache options for the project's documented scripts. Verify the actual dev and production build paths, including any skipped-script warning. Before any app launch, confirm [upstream hosted services are inert](../../prototypes/references/fork-guardrails.md). Do not test by signing in or contacting the original project's server. Keep a development preview you started running while the person is still working in the session or queued follow-ups need it. Give its URL, port, owning terminal/process and how to stop it (Ctrl+C in that terminal or the host's stop control). One completed request is not the end of the session. Stop the preview when the person is done or asks, and never kill a process you did not start.
 
 ## Keep shared patches byte for byte
 

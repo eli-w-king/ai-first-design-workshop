@@ -13,18 +13,20 @@ This is a community workshop resource, not an official Microsoft or GitHub produ
 | [workshop-setup](skills/workshop-setup/SKILL.md) | Check VS Code Insiders, GitHub, Git and current-LTS Node prework, then explain an approved pinned dependency install and undo. | "Check my setup. Do not install anything yet." |
 | [variations](skills/variations/SKILL.md) | Build N distinct directions plus today's baseline, with one switcher and side-by-side comparison. | "Make three different directions for this screen." |
 | [demo-walkthrough](skills/demo-walkthrough/SKILL.md) | Rehearse a real flow, then record a short narrated video with a local system voice or your own chosen audio. | "Make a short video of this prototype. Ask before adding tools." |
-| [prototypes](skills/prototypes/SKILL.md) | Build or fix the real project with red/green proof, make plain input files, and prepare a PR inside your own fork. | "Build this idea on a branch. Keep the current version available." |
+| [prototypes](skills/prototypes/SKILL.md) | Build or fix the real project with red/green proof, make plain input files, and prepare a PR inside your own fork. | "Apply this change in my fork. Keep a before screenshot and a way to revert." |
 | [pair-test](skills/pair-test/SKILL.md) | Synthesize clearly fictional interview notes for practice, or draft a test you run with a real person. | "Plan a small partner test. Drafts only." |
 | [taste](skills/taste/SKILL.md) | Create a taste-skill draft from your own notes, then propose updates through the opt-in automation or on demand. | "Set up my taste from notes in this workspace." |
 | [overnight-plan](skills/overnight-plan/SKILL.md) | Agree on a longer run's scope, budget, checkpoints, permissions and stop rule before it starts. | "Plan tonight's work. Do not start it yet." |
 | [publish-pages](skills/publish-pages/SKILL.md) | Check a fork's license and public content, choose branch or build-workflow deployment, then verify the real app and repo links. | "Check whether this folder is safe to publish." |
 | [job-search](skills/job-search/SKILL.md) | Draft a truthful case study, tailored introduction or role digest from public pages you choose. | "Turn this work into a portfolio draft." |
 
-The [Keep my taste current](automations/keep-my-taste-current.automation.md) automation creates a first draft, then proposes updates from your selected workspace notes. It enables nothing on install. Keep its first trigger Manual and press Run now before choosing a weekly schedule. The [daily cards](automations/daily-cards.automation.md) template drafts ten new cards from its workspace notes and starts Manual. The [weekly roles digest](automations/weekly-roles-digest.automation.md) is another opt-in, manual template. Keep or return recurring triggers to Manual after the workshop to avoid unattended usage; Manual runs still consume credits. It never applies or sends. Read its [cost and scheduling guide](references/automation-guide.md) before choosing to run or schedule it.
+The [Keep my taste current](automations/keep-my-taste-current.automation.md) automation creates a first draft, then proposes updates from your selected workspace notes. It enables nothing on install. Keep its first trigger Manual and press Run now before choosing a weekly schedule. The [daily cards](automations/daily-cards.automation.md) template drafts ten new cards from its workspace notes and starts Manual. The [weekly roles digest](automations/weekly-roles-digest.automation.md) is another opt-in, manual template; its default uses workspace copies of chosen postings so a scheduled run needs no outside file or browser access. Keep or return recurring triggers to Manual after the workshop to avoid unattended usage; Manual runs still consume credits. It never applies or sends. Read its [cost and scheduling guide](references/automation-guide.md) before choosing to run or schedule it.
 
 The [workflow map](references/workshop-workflows.md) covers the guided and free-work modules generically, including red/green fixes, separate parallel sessions, plain deck files, frozen 30-second narrated capture and the host's Computer Use handoff. It does not choose an app or replace the supplied workshop kit.
 
 ## What you install
+
+Skills may ask to read optional files in this plugin's own folder; that is safe to allow after checking the path, and the default workflows avoid those reads.
 
 Only the skill package: instructions, references, a taste-draft structure, optional recording and narration helpers and three opt-in automation templates. The helpers are inert until you choose to run them. The plugin does not install their dependencies.
 
@@ -85,6 +87,8 @@ VS Code can discover CLI-installed plugins. Avoid a duplicate installation just 
 
 ## Update or remove
 
+**Moving to 0.3.2:** start a fresh session after updating. Automations already created from an older template keep their saved prompt. Review and update that prompt from the new self-contained template, or recreate it with the trigger still Manual, then use Run now. An old paused run may retain the old instructions; cancel it only with approval and start a fresh run. Do not solve an old guide prompt by granting broad folder access.
+
 **VS Code:** use **Chat: Update Plugins**, or **Check for and Apply Updates** in Customizations. Review changes before adopting them. To remove the plugin, open **Customizations > Plugins > design-workshop > Uninstall**. Remove its marketplace from **Configure Marketplaces** if you no longer want it listed.
 
 **CLI:** update the catalog, then the named plugin:
@@ -105,6 +109,8 @@ Local-path plugins load from their real folder; edits take effect in a new sessi
 
 Uninstalling does not remove projects, video files, personal skills you created, optional tools you installed, or automations you deliberately created from the template. Use the relevant skill's undo steps for those, with approval. Disable a created automation separately before removing it.
 
+Requested design changes become the app's default, with a before image/revision and a way back. Switchers are for explicitly requested alternatives. Agent-owned dev previews stay available while the person and queued follow-ups are still working; the agent gives stop instructions and stops them when the person is done or asks.
+
 ## Fork prework and publishing
 
 For the workshop fork, Git, GitHub sign-in and the current Node LTS are prework. [Project dependencies](skills/workshop-setup/references/project-dependencies.md) use the project's exact package-manager pin through `npx`, with a frozen lockfile, no Corepack and no global package-manager install. The guide explains local files, shared or project-local caches, and approved cleanup.
@@ -112,6 +118,8 @@ For the workshop fork, Git, GitHub sign-in and the current Node LTS are prework.
 [Prototypes](skills/prototypes/SKILL.md) keeps PRs in your own fork, sets and verifies the CLI repository choice, and never sends workshop PRs, issues or comments upstream. Make upstream sync, accounts and analytics inert before running the app. An optional short `AGENTS.md` section helps communicate that boundary but does not enforce it.
 
 [Pages publishing](skills/publish-pages/SKILL.md) covers Vite/SPAs, PWA and worker scopes, fork Actions activation and inherited custom domains. Keep license notices, date and describe your modifications, and link the live app to its corresponding source. Present it as your fork, not an official or endorsed project. No particular app is built into these skill rules.
+
+All nine main workflows are inline in their `SKILL.md`. Plugin references and bundled scripts are optional, not startup requirements. All three automation prompts are self-contained and use workspace data only. Their normal workspace-write and tool approvals still apply; the plugin never grants broad access. Live job-page discovery remains an explicitly requested interactive job-search task, not the scheduled template's default.
 
 ## Models, tools and cost
 

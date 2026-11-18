@@ -5,57 +5,56 @@ description: "Check a personal laptop for the design workshop in VS Code Insider
 
 # Workshop setup
 
-Write short, plain sentences. Do not use em or en dashes in generated copy.
+Write short, plain sentences. Do not use em or en dashes.
 
-Get the laptop ready without replacing the person's own setup. Use VS Code Insiders for this workshop. An existing VS Code release is fine for a task if its required features are present; do not promise feature parity from a version number alone.
+The complete default workflow is here. Do not open linked plugin files to start, complete or verify it. Use optional detail only when the person explicitly asks for it. Normal approvals for their files, tools and consequential actions still apply.
 
-## Keep control with the person
+## Check, do not install automatically
 
-- Ask before any install, send, publish, spend, delete, sign-in or settings change. Show the exact action, its scope and its undo, then wait. "Check my setup" is not permission to install.
-- Keep Manual permissions and the existing approval rules. Never select Allow all or Autopilot, disable a sandbox, add broad approvals, or change global defaults.
-- Do not read passwords, tokens, unrelated folders or personal skills. Let the person complete sign-in and any administrator prompt themselves.
-- Add no background jobs, sync, connectors, hooks or recurring automations. Stop only processes you started.
+Use the person's chosen folder and OS. Ask before installs, sends, publication, spending, deletion, sign-in or settings changes; explain the exact scope and undo. Never handle passwords/tokens or administrator prompts. Keep permissions and sandbox protections; add no global defaults, sync, hooks or recurring jobs. Stop completed one-off diagnostics, not the person's ongoing development preview.
 
-## Check first
+Report each item as ready, missing, optional or unverified:
 
-Ask which operating system they use and which task they want to try. Start in a folder they chose. Use the read-only checks in [the laptop checklist](references/laptop-checklist.md). Missing command-line launchers do not prove an app is missing.
+- VS Code Insiders opens and Copilot is available. Inspect Help > About; a missing `code-insiders` launcher does not prove the app is absent.
+- The person confirms their own GitHub sign-in, Copilot access and usage. Never guess code-redemption, card or renewal terms. A free month of GitHub Copilot Max is not unlimited usage.
+- Git and current-LTS Node are prework. On macOS, check `xcode-select -p` before a Git stub can open an installer; then `git --version` if installed. Check `node --version`, `npm --version`, `npx --version` in a fresh terminal. On Windows use `npm.cmd`/`npx.cmd` if policy blocks the shims; do not relax policy.
+- Inspect the selected project's runtime requirements before offering the current LTS from `https://nodejs.org/en/download`. Show the installer, shared runtime/PATH effects and removal limits first. Preserve existing runtimes other projects need.
+- GitHub CLI is optional: `gh --version` and `gh auth status`, never token extraction. The person signs in themselves. GitHub's website is an alternative; do not install CLI automatically.
+- Check the installed plugin and nine skills in a fresh session. In VS Code use Chat: Open Customizations > Plugins; in CLI use `copilot plugin list` and `copilot skill list`.
+- Use available built-in browser tools on a harmless local page. No external browser server is needed for screenshots. Recording and desktop control are separate opt-ins, not proved by Node or a screenshot.
 
-Report each item as **ready**, **needs a check**, **missing** or **optional**:
+## Approved setup actions
 
-1. VS Code Insiders opens, and its Copilot chat is available.
-2. The person is signed in to their own GitHub account and can see their Copilot access and usage.
-3. The current session uses Manual permissions. Explain that previously approved actions may still run automatically.
-4. Use the checked two-entry settings snippet on [Get ready](https://eli-w-king.github.io/ai-first-design-workshop/get-ready/). It offers Computer Use and Send Later, both experimental; it grants no tool approval and schedules nothing. Do not keep another copy in this plugin or edit the person's settings on your own. Follow the merge and undo steps below. Check supported sandboxing separately.
-5. The workshop plugin shows all nine skills in a fresh session. Follow [the install guide](../../README.md), not an automatic clone or sync.
-6. The built-in browser can open the person's local page and take a screenshot. Do not install an external browser server for this check.
-7. Git and the GitHub sign-in are prework for the workshop fork. Check them before the session; install or change nothing without approval. GitHub CLI remains optional, with the GitHub website as the alternative.
-8. Node is prework too: use the **current LTS** from [nodejs.org](https://nodejs.org/en/download), with approval and a check against the project's runtime requirements. Check `node`, `npm` and `npx` in a fresh VS Code terminal. Recording tools remain a separate opt-in; Node alone cannot record a video.
-9. In the person's fork folder, use [the pinned dependency-install guide](references/project-dependencies.md). Explain the downloads, package scripts, changed directories and cleanup, then ask. Run the exact package-manager version through `npx`, with the existing lockfile, no Corepack and no global package-manager install.
+Use official sources and one explained change at a time. VS Code's public download is `https://code.visualstudio.com/insiders/`; Git is `https://git-scm.com/downloads`. With approval, macOS `xcode-select --install` opens the shared developer-tools installer; Windows can use `winget install --id Git.Git --exact` if winget exists. Existing Homebrew can install optional `gh`; Windows can use `winget install --id GitHub.cli --exact`. Do not add package managers or remove shared tools just for convenience.
 
-Do not guess promotional-code redemption, renewal or card requirements. A free month of GitHub Copilot Max does not mean unlimited usage. Have the person review the terms shown to them; no purchase or plan change is part of setup.
+For plugin installation, prefer Configure Marketplaces, add the workshop source and review trust. Preserve existing `chat.plugins.marketplaces` entries, including `github/awesome-copilot#marketplace`; never replace the array. Current preview CLI commands are `copilot plugin marketplace add 'eli-w-king/ai-first-design-workshop#plugin/design-workshop'` and `copilot plugin install design-workshop@ai-first-design-workshop`. Use one route, then a fresh session. Uninstall through that same UI or `copilot plugin uninstall design-workshop@ai-first-design-workshop`; remove the marketplace separately if wanted. This does not remove personal skills, outputs or created automations.
 
-## Settings, mode and permissions
+## Right after cloning a fork
 
-Prefer the person-led settings merge on Get ready. Use the checked page as the source, not a remembered snippet. If it is unavailable, stop this step rather than inventing settings.
+A fork clone's GitHub CLI can target the parent by default. Check the intended owner and `origin`. With an explicit okay, run `gh repo set-default YOUR_USERNAME/YOUR_FORK`, then check `gh repo set-default --view`. Still pass `--repo YOUR_USERNAME/YOUR_FORK` on **every write**. Never open workshop PRs, issues or comments upstream. Record the previous choice for undo; a noninteractive unset can use `gh repo set-default YOUR_USERNAME/YOUR_FORK --unset` with approval. A local branch/default is not a security boundary.
 
-If the person specifically asks the agent to add the settings, show the two exact entries from that page and the merge steps first. Confirm the Default Profile user-settings file, preserve every unrelated entry, update an existing key instead of adding a duplicate, and explain the comma/braces changes. Get an explicit okay, make an approved private backup first, then edit only those two entries. Never paste or publish the full settings file or its backup. Record each key's previous value or absence. Ask before a restart. Undo also requires a reviewed scope, a backup of current settings if needed, and an explicit okay; restore only the original values and leave later edits intact.
+Before launch, inspect and approve a change making upstream sync/accounts/analytics inert, not just hidden. Do not sign in or probe those servers. Keep local-only protections active and verify zero attempts with destinations blocked before navigation.
 
-For the Copilot harness, **Interactive**, **Plan** and **Autopilot** are modes. Interactive can carry out work; Plan proposes an approach first. Autopilot continues and auto-approves tools, so it is not the safe workshop default. **Manual**, **Assisted** and **Allow all** are permission levels. Manual follows existing approval rules, Assisted uses a model judgment that can be wrong, and Allow all skips confirmations. **New Worktree sessions always use Allow all.** Keep first practice in an ordinary workspace with Manual permissions. None of these choices is a sandbox, and the settings snippet does not choose them.
+## Dependencies and Windows
 
-Send Later is a one-time scheduled prompt, not a recurring automation. It needs `sessions.sendLater.enabled` from the checked snippet, an awake laptop and a running local host. Local automations need the same awake-host conditions. Neither wakes a sleeping laptop, and disabling a setting does not cancel accepted schedules. Use the request's cancel controls and verify it is gone. Cloud automations are not available for public forks; a separately approved one-off Cloud task is a different workflow.
+Read the exact package-manager pin, lockfile, workspace scope and scripts in the selected repo. After explaining downloads and script behavior and getting approval, use the pin through npx, for example `npx pnpm@10.28.2 install --frozen-lockfile` only for that pin. No Corepack or global package-manager install, silent `latest`, lockfile rewrite or blanket script approval.
 
-## Make one approved change
+For a fresh clone, approved local caches can use `npx --cache=.workshop-cache/npm pnpm@10.28.2 install --frozen-lockfile --store-dir=.workshop-cache/pnpm-store`. Dependencies live in `node_modules`, the runner in the selected npm cache's `_npx`, and content in the selected pnpm store. Without local flags, caches/stores can be shared outside the project. With approval, preserve wanted work then delete the exact project folder or named local cache/dependency folders. For a shared npx cache, inspect `npm cache npx ls`/`info KEY`, then remove only the approved key with `npm cache npx rm KEY`. Never purge others' caches; Node/Git uninstall is separate.
 
-Show a short plan of only the missing items. For each item: name the official source, exact command or UI steps, download or account access involved, and how to undo it. Wait for a clear yes to that item. Keep existing tools and settings. Do not bundle installs into one command.
+Preserve shared `.patch`/`.diff` bytes with `*.patch -text` and `*.diff -text` in the distributor's approved `.gitattributes`, or obtain a reviewed raw LF file. A normal Windows target clone is fine; use `git apply --check` and do not change global autocrlf or normalize the whole project. For a path-like build variable, PowerShell `$env:BASE_PATH = '/repo/'` avoids Git Bash rewriting it; alternatively prefix each affected Git Bash command with `MSYS_NO_PATHCONV=1`. Use only variables the build reads and restore prior terminal values.
 
-For project dependencies, preserve the package-manager pin and lockfile. Do not use `latest`, regenerate a lockfile, approve blocked scripts wholesale or change global package settings to make an install pass. Stop before launching an app whose upstream hosted services have not been made inert.
+## Settings, controls and readiness
 
-After an approved change, check it again. Ask the person to try one small action, such as "Open my local page in the built-in browser and take a screenshot." If it fails twice, record the error without credentials and move to an independent task.
+The checked settings source is the site's Get ready page: `https://eli-w-king.github.io/ai-first-design-workshop/get-ready/`. Do not copy or invent its snippet. The default check does not need to fetch it. For a requested settings edit, obtain its two current entries, show the merge into the Default Profile user file, get an explicit okay, make a private backup, and change only those keys without duplicates or lost unrelated settings. Never echo/share the whole file. Ask before restart; undo likewise needs approval and restoration of only prior values or newly added entries.
 
-If the person wants the agent to operate their app, follow [the Computer Use handoff](../../references/try-with-computer-use.md) and the separate Get ready activation/permission steps. Availability is not permission to drive the app.
+Interactive, Plan and Autopilot are Copilot modes; Manual, Assisted and Allow all are permission levels. Manual honors saved approvals. Autopilot auto-approves tools; worktree sessions can use Allow all. None is a sandbox. Keep first practice in an ordinary folder with Manual permissions. Send Later and local automations need the laptop awake and local host running; disabling a setting does not cancel accepted schedules. Cloud automations do not run on public forks. A template enables no run itself.
 
-## Leave a readiness note
+For requested Computer Use, the person follows Get ready's activation, first-use download and OS permission steps. Operate only the exact owned app and selected file, import once and verify, stop on wider access, and never label markup/DOM automation native app control. Do not interfere with a recording target.
 
-With agreement on its location, save `Workshop readiness.md` in the chosen folder. Include the date, checks actually run, ready and optional items, blockers, every changed path or setting and its previous value, and each undo step. Do not overwrite an existing note without reviewing it.
+After each approved change, recheck and have the person try it. After two failures record the blocker and move to independent work. With permission, save `Workshop readiness.md` in the workspace: date, tested versus unverified items, changed paths/prior values, undo and blockers. Resume from that note, not a fresh global setup. Keep a development preview you started running while the person is still working in the session or queued follow-ups need it. Give its URL, port, owning terminal/process and how to stop it (Ctrl+C in that terminal or the host's stop control). One completed request is not the end of the session. Stop the preview when the person is done or asks, and never kill a process you did not start. Close only disposable diagnostic tabs/tasks that are no longer in use.
 
-On "continue my setup", read that note, recheck only unfinished items, and skip what already works. Close your test tab and stop your own test server. No background work should remain.
+## Optional detail
+
+None of these files is required above. Open one only for an explicit request for extra detail. Opening it may ask to read a file outside your workspace; that is this plugin's own folder. Check the path and request only that access, never a broad exception. Do not fetch another copy to bypass a denied read.
+
+[Expanded laptop checklist](references/laptop-checklist.md), [dependency/cache detail](references/project-dependencies.md), [plugin installation background](../../README.md), [desktop-control detail](../../references/try-with-computer-use.md).
