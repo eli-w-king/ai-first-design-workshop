@@ -130,7 +130,7 @@ test('the kit archive extracts to the reviewed Workshop/kit paths, with no extra
   }
   assert.deepEqual([...entries.keys()].sort(), ['kit/manifest.json',...files.map(f => 'kit/'+f.file)].sort());
   assert.deepEqual(entries.get('kit/manifest.json'),manifest);
-  for (const name of ['decks/UX laws and principles.txt','decks/Spanish travel phrases.txt','research/All six notes.md','screens/04 - Study back.png']) assert.ok(entries.has('kit/'+name));
+  for (const name of ['decks/UX laws and principles.txt','decks/Spanish travel phrases.txt','research/All six notes.md','screens/04 - Study back.png',"notes/What I'm learning.md"]) assert.ok(entries.has('kit/'+name));
   for (const {file,sha256} of files) {
     const bytes = entries.get('kit/'+file);
     assert.equal(createHash('sha256').update(bytes).digest('hex'),sha256);

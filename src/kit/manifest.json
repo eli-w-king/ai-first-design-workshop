@@ -60,6 +60,11 @@
       "file": "screens/04 - Study back.png",
       "sha256": "a39c35bdedc1c6426272b69c529847e84b8ad8e3ba7ccccc5bb79c5c0d39b2eb",
       "classification": "Skola study screen with a fictional practice card"
+    },
+    {
+      "file": "notes/What I'm learning.md",
+      "sha256": "3ec2039cb0684375300724fcbc5c211b15b8eb792ded1553151fd937c4b3a9ad",
+      "classification": "Workshop practice learning notes"
     }
   ]
 }

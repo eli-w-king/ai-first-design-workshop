@@ -136,7 +136,7 @@ export const FREE_MODULES = [
   },
   {
     number: 11, title: 'Make it a habit', model: 'GPT-6 Luna, low',
-    text: 'Make up to ten new cards each morning from what you are learning. Skip ideas already in the deck.',
+    text: "Make up to ten new cards each morning from what you are learning. Start with the sample in kit/notes/What I'm learning.md, or use your own notes. Skip ideas already in the deck.",
     steps: [
       'Make the automation from chat.',
       'Open it under Automations, set GPT-6 Luna at low effort and Save before the first Run now.',

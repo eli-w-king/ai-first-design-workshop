@@ -26,7 +26,7 @@ export async function buildKit(source, out) {
   const manifest = await fs.readFile(path.join(source, 'manifest.json'));
   const files = new Map([['manifest.json', manifest]]);
   for (const { file, sha256 } of JSON.parse(manifest).files) {
-    if (!/^(decks|prd|research|screens)\/[\w .-]+\.(txt|md|png)$/.test(file) || files.has(file)) throw new Error('Unexpected public kit path.');
+    if (!/^(decks|notes|prd|research|screens)\/[\w .'-]+\.(txt|md|png)$/.test(file) || files.has(file)) throw new Error('Unexpected public kit path.');
     const input = path.join(source, file);
     if (await fs.realpath(input) !== input) throw new Error('Kit inputs must not be symbolic links.');
     const bytes = await fs.readFile(input);

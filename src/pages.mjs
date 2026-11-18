@@ -73,7 +73,7 @@ const prework = [
     ${docs([['User settings', DOCS.settingsGuide], ['Computer Use', DOCS.computer], ['Computer Use permissions', DOCS.computerPermissions], ['Automations', DOCS.automations]])}` },
   { id: 'pre-download', nav: 'Pre-download packages', title: 'Optional: pre-download Skola packages', body: `
     <p>Download about 450 MB at home so the venue Wi-Fi doesn't have to carry 16 copies. The command downloads Skola's package list into a temporary folder, saves the packages to pnpm's store on your laptop, then deletes the folder.</p>
-    <p>You don't need a fork yet. In VS Code, open Terminal > New Terminal and copy the command for your laptop. On the runners the download took under a minute on a Mac and a few minutes on Windows. The win is the Wi-Fi: installing the packages in the room can still take time.</p>
+    <p>You don't need a fork yet. In VS Code, open Terminal > New Terminal and copy the command for your laptop. On a Mac, the download took under a minute. On a Windows test machine, installing Skola took about 5 minutes with nothing downloaded and about 2 and a half minutes with the packages already downloaded. The win is the Wi-Fi.</p>
     <details><summary>Mac or Linux (Terminal)</summary>${promptBlock('prefetch-mac',preloadMac,'Mac or Linux pre-download')}</details>
     <details><summary>Windows (PowerShell)</summary>${promptBlock('prefetch-windows',preloadWindows,'Windows PowerShell pre-download')}<p><code>npx.cmd</code> avoids the PowerShell script shim. You do not need to change your execution policy.</p></details>
     <p class="small muted">On a first run, look for a line like <code>Progress: resolved 985, reused 0, downloaded 985, added 985, done</code>. If you run it again and see <code>reused 985, downloaded 0</code>, you're set. If it fails, leave it for the setup table.</p>
@@ -82,7 +82,7 @@ const prework = [
     <p class="small muted"><a href="${DOCS.skolaCI}">Runner verification: all twelve jobs passed</a>. Six checked the app. Six checked the pre-download on Windows (PowerShell 5.1), macOS and Linux, each with and without a Node project in the home folder. Every pre-download check installed the packages offline in a fresh clone and passed the tests. Personal Windows setup still needs a rehearsal.</p>
     ${docs([['pnpm fetch', 'https://pnpm.io/10.x/cli/fetch'], ['pnpm store', 'https://pnpm.io/10.x/cli/store'], ['npx cache commands', DOCS.npmCache]])}` },
   { id: 'kit', nav: 'Get the kit', title: 'Get the kit into Workshop/kit', body: `
-    <p>One download has the decks, the study screenshot, the brief and the fictional notes. No account needed.</p><p>${kitZip}</p>${kitSteps}
+    <p>One download has the decks, the study screenshot, the brief and the fictional research notes. For Module 11, it includes sample learning notes in <code>kit/notes/What I'm learning.md</code>. No account needed.</p><p>${kitZip}</p>${kitSteps}
     ${detail('Adds practice files in Workshop/kit. Downloading them does not import a deck into Skola or send a file to a chat.', 'Remove the downloaded zip and the extracted kit folder when you are done. Keep any notes or edits you want first. Do not delete your Workshop folder or your Skola fork.')}` },
 ];
 
@@ -108,6 +108,7 @@ const kitFiles = [
   ['decks/Spanish travel phrases.txt', 'Spanish travel phrases'],
   ['research/All six notes.md', 'All six fictional notes'],
   ['screens/04 - Study back.png', 'Study screen for markup'],
+  ["notes/What I'm learning.md", 'Sample learning notes'],
 ];
 const practiceDownloads = kind => {
   if (kind === 'publish') return pagesPrep;
@@ -117,9 +118,16 @@ const practiceDownloads = kind => {
 };
 const practiceCard = `<p><strong>Fictional practice brief.</strong> This isn't the Skola maintainer's roadmap.</p><div class="practice-brief">${renderMarkdown(practiceSlide,'practice-slide',2)}</div>
 <details><summary>Read the full brief</summary>${renderMarkdown(practiceBrief,'practice-brief',2)}</details><details><summary>Copy the full brief</summary>${promptBlock('module-2-brief',practiceBrief,'Practice brief')}</details><p class="small">${kitLink('prd/skola-2-practice-brief.md', 'Download the brief')} · ${kitLink('prd/skola-2-practice-slide.md', 'Download the slide text')}</p>`;
+const withKitLinks = text => {
+  let html = esc(text);
+  for (const [file] of kitFiles) {
+    const label = esc('kit/' + file);
+    html = html.replace(label, () => kitLink(file, `<code>${label}</code>`));
+  }
+  return html;
+};
 const fallback = m => {
-  let text = esc(m.fallback);
-  for (const [file] of kitFiles) text = text.replace('kit/'+file, kitLink(file,'<code>kit/'+esc(file)+'</code>'));
+  const text = withKitLinks(m.fallback);
   return m.number === 1 ? `${text} <a href="${u('get-ready/#kit')}">Get the kit</a>.` : text;
 };
 const renderModule = m => {
@@ -128,7 +136,7 @@ const renderModule = m => {
   const prompts = m.kind === 'brief' ? practiceCard : m.prompts.map((p,i) => promptBlock(`${m.id}-prompt-${i+1}`,p.text,p.label)).join('');
   return `<${tag} class="guided-module" id="${m.id}"><p class="module-meta">${m.time} to ${m.end} PT</p><div class="step-heading"><span class="step-number">${String(m.number).padStart(2,'0')}</span><${heading}>${m.title}</${heading}></div><p class="module-model">${esc(m.model)}</p>${action}${prompts}${m.tip ? `<p class="small muted module-tip">${esc(m.tip)}</p>` : ''}${practiceDownloads(m.downloads)}<dl class="module-outcomes"><div><dt>The wow</dt><dd>${esc(m.wow)}</dd></div><div><dt>What you learn</dt><dd>${esc(m.learn)}</dd></div></dl><div class="checkpoint"><strong>If it stalls</strong>${fallback(m).split('\n\n').map(line => `<p>${line}</p>`).join('')}</div><details><summary>Go further</summary><p>${esc(m.further)}</p></details></${tag}>`;
 };
-const freeCards = FREE_MODULES.map(m => `<article id="${freeId(m)}">${m.number ? `<span class="badge">Module ${m.number}</span>` : '<span class="badge">Optional</span>'}<h3>${m.title}</h3><p class="module-model">${esc(m.model)}</p><p>${esc(m.text)}</p>${m.steps ? `<ol>${m.steps.map(step => `<li>${esc(step)}</li>`).join('')}</ol>` : ''}${(m.notes || []).map(note => `<p>${esc(note)}</p>`).join('')}${m.id === 'cloud' ? docs([['AI credits',DOCS.billing],['Actions minutes',DOCS.actionsBilling],['Sandbox costs',DOCS.cloudBilling]]) : ''}<a href="${u('keep-going/#'+m.target)}">Open the take-home guide →</a></article>`).join('');
+const freeCards = FREE_MODULES.map(m => `<article id="${freeId(m)}">${m.number ? `<span class="badge">Module ${m.number}</span>` : '<span class="badge">Optional</span>'}<h3>${m.title}</h3><p class="module-model">${esc(m.model)}</p><p>${withKitLinks(m.text)}</p>${m.steps ? `<ol>${m.steps.map(step => `<li>${esc(step)}</li>`).join('')}</ol>` : ''}${(m.notes || []).map(note => `<p>${esc(note)}</p>`).join('')}${m.id === 'cloud' ? docs([['AI credits',DOCS.billing],['Actions minutes',DOCS.actionsBilling],['Sandbox costs',DOCS.cloudBilling]]) : ''}<a href="${u('keep-going/#'+m.target)}">Open the take-home guide →</a></article>`).join('');
 const togetherTitle = '7:15, once your link is live: two more wows together';
 const freeWorkTitle = 'About 7:30: free work';
 const tonight = hero('Thursday evening', 'Tonight', `Build your own Skola 2.0. Links go live around 7:15. Open your app and follow its source link back to your fork.<span class="room-credits">${roomCredits}</span>`) + layout([

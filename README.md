@@ -24,7 +24,7 @@ The site is static. GitHub Pages publishes the committed `docs/` folder from `ma
 - `src/pages.mjs`: the six public pages and 404.
 - `src/data.mjs`: public metadata, official documentation links, glossary and take-home guide titles.
 - `src/run-sheet.mjs`: the timed modules (1 to 6, 9, then 7 and 8 together) and free-work links.
-- `src/kit/`: the reviewed practice brief, slide text, fictional notes (individual and combined), two decks and study screenshot. The build verifies the manifest checksums and writes both individual downloads and `docs/kit.zip`, with `kit/` as its top folder.
+- `src/kit/`: the reviewed practice brief, slide text, fictional research notes (individual and combined), sample learning notes for Module 11, two decks and study screenshot. The build verifies the manifest checksums and writes both individual downloads and `docs/kit.zip`, with `kit/` as its top folder.
 - `src/assets/`: shared styles, browser code, favicon and social image.
 - `src/downloads/workshop-settings.jsonc`: the checked two-key snippet, copied unchanged into `docs/get-ready/`.
 - `templates/page.html`: navigation, metadata, footer and shared page shell.
