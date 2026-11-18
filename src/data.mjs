@@ -5,7 +5,7 @@ export const DOCS = {
   skola: 'https://github.com/h16nning/skola',
   skolaLicense: 'https://github.com/h16nning/skola/blob/main/LICENSE',
   node: 'https://nodejs.org/en/download',
-  skolaCI: 'https://github.com/eli-w-king/ai-first-design-workshop/actions/runs/44287744770',
+  skolaCI: 'https://github.com/eli-w-king/ai-first-design-workshop/actions/runs/44290637165',
   nodeInstall: 'https://docs.npmjs.com/downloading-and-installing-node-js-and-npm/',
   npmCache: 'https://docs.npmjs.com/cli/v11/commands/npm-cache/',
   pwa: 'https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps',

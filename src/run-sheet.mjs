@@ -16,7 +16,7 @@ export const GUIDED_MODULES = [
   {
     number: 2, id: 'module-2', title: 'The brief', time: '6:20 PM', end: '6:25 PM',
     model: "Read together, no model needed",
-    action: "Eli reads the practice brief. Where did you get stuck trying to add a card? Now open your fork on GitHub. Under Actions, choose \"I understand my workflows, go ahead and enable them\". Under Settings > Pages > Source, choose GitHub Actions. Don't choose \"Deploy from a branch\": it shows a blank page.",
+    action: "Eli reads the practice brief. Where did you get stuck trying to add a card? Now open your fork on GitHub.\n\n> **Don't skip this.** Without the Actions click, your fork can't publish at 6:59. An agent can't make this first click through the API.\n\n1. Open **Actions** and click **\"I understand my workflows, go ahead and enable them\"**. When it's done, the Actions tab lists your fork's workflows. If they're already listed, you're set.\n2. Under **Settings > Pages > Source**, choose **GitHub Actions**. Don't choose \"Deploy from a branch\": it shows a blank page.",
     prompts: [], kind: 'brief',
     wow: 'Every change tonight has a reason.',
     learn: "Working from a brief, your fork on GitHub.",
@@ -88,7 +88,7 @@ export const GUIDED_MODULES = [
     ],
     wow: "A live link to your Skola 2.0 and a repo for your portfolio.",
     learn: "PRs in your own fork, GitHub Pages, licenses and credit.",
-    fallback: "Module 9 never moves. Ship at 6:59 with what works. If no direction is ready, use the second prompt, then bring in your choice after the first deploy.",
+    fallback: "Module 9 never moves. Ship at 6:59 with what works. If no direction is ready, use the second prompt, then bring in your choice after the first deploy.\n\nIf it says your fork's workflows aren't enabled, open Actions in your fork on GitHub, click 'I understand my workflows, go ahead and enable them', then ask again. Don't use Skola's package deploy script as a workaround: it adds the original project's custom domain.",
     further: "Open the live link in a fresh browser. Try a card, then follow the source link back to your fork and check the license and credit.",
     downloads: 'publish',
   },
@@ -107,7 +107,7 @@ export const GUIDED_MODULES = [
   {
     number: 8, id: 'module-8', title: 'Let it use your app', time: '7:12 PM', end: 'about 7:25 PM', block: 'together',
     model: "GPT-6.2 Sol, medium",
-    action: "Switch to Interactive and Manual permissions first. Install your Skola from your live link as an app. Ask Computer Use to import the Spanish deck with the file picker. Headphones or low volume: 16 laptops will talk at once.",
+    action: "Switch to **Interactive** mode and **Manual** permissions first. Install your Skola from your live link as an app and ask Computer Use to import the Spanish deck with the file picker.\n\n**Watch for the native panel.** The first time Computer Use asks to control your Skola app, click **Allow** for that app. It asks once per app, not in the chat. Autopilot cancels the request, so the task stalls.\n\nHeadphones or low volume: 16 laptops will talk at once.",
     prompts: [
       { label: "Use the installed app", text: "Open my Skola app, import the Spanish travel deck from Workshop/kit with the file picker, and play the first card with Listen mode." },
     ],

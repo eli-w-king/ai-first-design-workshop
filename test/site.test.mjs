@@ -71,6 +71,19 @@ test('Tonight puts the live link at the end of the hour in both the cards and in
   assert.equal(unfinished, "Make tonight's changes the default, with no flags." + picked.slice(picked.indexOf('. Then open')+1));
 });
 
+test('the Actions click and Pages source render as separate steps before the brief', async () => {
+  const { PAGES } = await import('../src/pages.mjs');
+  const html = PAGES.find(page => page.slug === 'tonight').content;
+  const setup = html.split('id="module-2">')[1].split('Fictional practice brief.')[0];
+  const steps = setup.match(/<ol>([\s\S]*?)<\/ol>/)?.[1];
+  assert.ok(steps, 'Show fork setup as an ordered list');
+  const items = [...steps.matchAll(/<li>(.*?)<\/li>/gs)].map(m => m[1]);
+  assert.equal(items.length, 2);
+  assert.match(items[0], /I understand my workflows, go ahead and enable them/);
+  assert.match(items[1], /Settings &gt; Pages &gt; Source/);
+  assert.doesNotMatch(setup, /<details|data-copy=/);
+});
+
 test('Get ready lists the seven steps in the order they are done', async () => {
   const { PAGES } = await import('../src/pages.mjs');
   const html = PAGES.find(page => page.slug === 'get-ready').content;
