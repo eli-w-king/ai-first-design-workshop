@@ -60,7 +60,7 @@ Play the full MP4 with sound. Check that the right sentence lands on the right a
 
 ## Work on something else while it runs
 
-Freeze the recording's app state and files before capture. The person can do a separate task in another folder while a bounded recorder or encode runs through the host's supported background-task facility. Verify the process starts and the local page responds; keep its process id and output path. Do not edit the app, rebuild it or reuse the same preview process mid-take.
+Follow [the frozen 30-second capture plan](thirty-second-demo.md). Serve an immutable snapshot of the real built app from an owned server with no hot reload; do not capture another session's changing development page. A separate browser context alone does not freeze files or sample data. The person can do a separate task in another folder while a bounded recorder or encode runs through the host's supported background-task facility. Verify the process starts and the local page responds; keep its process id and output path. Do not edit the app, rebuild it or reuse the same preview process mid-take.
 
 Return to inspect the actual result and stop every owned process. Do not start another agent, buy more capacity or enable a schedule to claim parallel work. If the host cannot continue another task while recording, state that limit.
 

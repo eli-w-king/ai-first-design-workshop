@@ -31,6 +31,10 @@ For a forked app, confirm [upstream hosted services are inert](../prototypes/ref
 2. Write the exact clicks, input and expected final state. Use visible labels rather than fragile coordinates. Keep the screen readable at the intended recording size.
 3. For before/after pairs, capture the same viewport, theme, content and state on both sides. A missing baseline stays missing; do not fabricate one.
 
+## A 30-second voiceover request
+
+Use [the 30-second demo guide](references/thirty-second-demo.md) for "record a 30-second demo with a voiceover". Capture a frozen copy of the real built app or another isolated immutable target, never a shared hot-reloading page that another session is editing. Keep its browser, data, server and output separate from other work. If it cannot be frozen, stop rather than recording a changing target. Measure the final duration instead of claiming the helper guarantees thirty seconds.
+
 ## Record a video
 
 Built-in interaction and screenshot tools do not, by themselves, establish that video export is available. If this host exposes a recorder, verify its actual saved video and limitations before using it. Otherwise follow [the local recording guide](references/recording.md).
@@ -45,7 +49,9 @@ If automatic recording is unavailable or declined, say **video blocked**, give t
 
 Follow [the narration guide](references/narration.md): an installed system voice or the person's own chosen audio file, a short approved script, measured timing, and a real audio/video export. macOS system speech and Windows speech synthesis need no new account; check the actual installed voice rather than downloading one silently. Ask before any microphone recording or media-tool install. Never substitute a silent clip without agreement.
 
-Start a bounded capture or encode with the host's existing background-task tools when available, verify that it is running, and keep the process id and output path. Another independent task can use a different folder while it finishes. Freeze the app and recording inputs so that later edits cannot change the interface mid-take. Do not start extra paid agents or a schedule to achieve this.
+Start a bounded capture or encode with the host's existing background-task tools when available, verify that it is running, and keep the process id and output path. Another independent task can use a different folder while it finishes. Freeze the app and recording inputs as described above so that later edits cannot change the interface mid-take. Stop and retake if they change unexpectedly. Do not start extra paid agents or a schedule to achieve this.
+
+The supplied browser recorder does not capture app/system audio. A voiceover is not proof that an audio feature actually played; if that sound must be in the demo, require a separately approved real-audio capture and mixing route. Never fake it with narration.
 
 ## Review and hand over
 

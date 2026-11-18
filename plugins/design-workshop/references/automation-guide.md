@@ -6,6 +6,16 @@ A small synthetic taste trial on November 17, 2026 used **8.15 AI credits** for 
 
 These are local workshop templates. Keep **Run in the Cloud** off. Local scheduled runs and Send Later require an awake laptop and a running local host; they do not wake the machine. Send Later also needs the checked setting from [Get ready](https://eli-w-king.github.io/ai-first-design-workshop/get-ready/) and is a one-time prompt, not this weekly schedule. Cloud automations require eligible private repositories and are not available for public forks. A one-off Cloud task is separate.
 
+## Daily cards
+
+The [daily-cards template](../automations/daily-cards.automation.md) is Manual by default. Choose a local learning workspace with `notes/`, review the prompt and format, keep Manual permissions and use **Run now** first. Its [deck-file workflow](../skills/prototypes/references/deck-files.md) writes ten new supported cards as CSV, or a confirmed importer-compatible Markdown format. It reads no other folders, accounts or browser pages and never imports automatically.
+
+Each run uses the selected model's credits. There is no fixed ten-card price: longer notes, old decks, retries and different models change the cost. The taste measurements above are not a price estimate for card generation. Use a host cap if offered and approved, inspect actual usage after the first run, and never enable overage or increase a budget for this template.
+
+A small file-only trial on November 17, 2026 used **7.26 AI credits** (about $0.07 of usage value) on GPT-6.2 Sol to create ten new cards from twelve short test notes, excluding two concepts in an earlier deck. That is a measured example, not a price promise; no app import or schedule was tested.
+
+A morning schedule is a later deliberate choice. Review the local time zone, sources, output and expected recurring usage first. **Set the trigger back to Manual after the workshop so it does not spend credits on recurring runs.** A later Run now still costs usage. Also inspect and cancel any queued or running request you no longer want; changing the trigger does not cancel it. Disabling/deleting a created automation and removing the plugin are separate actions requiring approval.
+
 ## Weekly roles digest
 
 The [template](../automations/weekly-roles-digest.automation.md) does nothing when this plugin is installed. It starts as a **manual** template. There is no schedule, enabled state, workspace, model or permission grant hidden in it.

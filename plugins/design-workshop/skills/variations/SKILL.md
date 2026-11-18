@@ -35,7 +35,9 @@ Use [the lab brief](references/lab-brief.md) to record the question, what stays 
 5. Respect `?motion=off` and system reduced motion. `?embed=1` hides review controls, not product controls. Keep the full flow usable by keyboard and touch.
 6. Add a short note per direction: its idea, what it helps, its trade-off and what is simulated. Add a manifest and opening instructions using the conventions reference.
 
-If parallel work is approved, give each helper exactly one direction and its own files. Keep the baseline, shared content and review page under one owner. Use the current model or a mid-priced option such as GPT-6.2 Sol if offered, not the most expensive model by default. More helpers consume more usage.
+For "three directions, each in its own session", follow [parallel Agents-window sessions](references/parallel-sessions.md). After the three-session scope and cost are approved, start three distinct sessions concurrently, one direction and one exclusive file set each. Keep the baseline, shared content and single comparison page in the current coordinator session. Do not quietly substitute sequential work or subagents inside one chat and call it three sessions.
+
+Use the person's approved model or suggest a mid-priced option such as GPT-6.2 Sol if offered, not the most expensive model by default. More sessions consume more usage. Shared-folder sessions do not isolate files: workers do not switch branches, stage, commit, change shared files or stop each other's processes.
 
 ## Check before handing it over
 

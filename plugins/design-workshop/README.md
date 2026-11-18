@@ -1,6 +1,6 @@
 # Design workshop skills
 
-Nine practical skills for designers working on their own laptops and projects. Explore options, build a working prototype, record it, test with a person and prepare work to share. Use the [screenshot markup loop](references/markup-feedback.md) to turn your arrows and rearranged pieces into changes in the real code. Each task can start from your own files; none depends on finishing an earlier workshop exercise.
+Nine practical skills for designers working on their own laptops and projects. Explore options, fix and test a working prototype, prepare input files, record it and review work to share. Use the [screenshot markup loop](references/markup-feedback.md) to turn your arrows and rearranged pieces into changes in the real code. Each task can start from your own files; none depends on finishing an earlier workshop exercise.
 
 This is a community workshop resource, not an official Microsoft or GitHub product.
 
@@ -13,18 +13,20 @@ This is a community workshop resource, not an official Microsoft or GitHub produ
 | [workshop-setup](skills/workshop-setup/SKILL.md) | Check VS Code Insiders, GitHub, Git and current-LTS Node prework, then explain an approved pinned dependency install and undo. | "Check my setup. Do not install anything yet." |
 | [variations](skills/variations/SKILL.md) | Build N distinct directions plus today's baseline, with one switcher and side-by-side comparison. | "Make three different directions for this screen." |
 | [demo-walkthrough](skills/demo-walkthrough/SKILL.md) | Rehearse a real flow, then record a short narrated video with a local system voice or your own chosen audio. | "Make a short video of this prototype. Ask before adding tools." |
-| [prototypes](skills/prototypes/SKILL.md) | Fork a real open-source project, redesign it on a branch, and prepare a before/after PR inside your own fork. | "Build this idea on a branch. Keep the current version available." |
+| [prototypes](skills/prototypes/SKILL.md) | Build or fix the real project with red/green proof, make plain input files, and prepare a PR inside your own fork. | "Build this idea on a branch. Keep the current version available." |
 | [pair-test](skills/pair-test/SKILL.md) | Synthesize clearly fictional interview notes for practice, or draft a test you run with a real person. | "Plan a small partner test. Drafts only." |
 | [taste](skills/taste/SKILL.md) | Create a taste-skill draft from your own notes, then propose updates through the opt-in automation or on demand. | "Set up my taste from notes in this workspace." |
 | [overnight-plan](skills/overnight-plan/SKILL.md) | Agree on a longer run's scope, budget, checkpoints, permissions and stop rule before it starts. | "Plan tonight's work. Do not start it yet." |
 | [publish-pages](skills/publish-pages/SKILL.md) | Check a fork's license and public content, choose branch or build-workflow deployment, then verify the real app and repo links. | "Check whether this folder is safe to publish." |
 | [job-search](skills/job-search/SKILL.md) | Draft a truthful case study, tailored introduction or role digest from public pages you choose. | "Turn this work into a portfolio draft." |
 
-The [Keep my taste current](automations/keep-my-taste-current.automation.md) automation creates a first draft, then proposes updates from your selected workspace notes. It enables nothing on install. Keep its first trigger Manual and press Run now before choosing a weekly schedule. The [weekly roles digest](automations/weekly-roles-digest.automation.md) is a separate opt-in, manual template. It never applies or sends. Read its [cost and scheduling guide](references/automation-guide.md) before choosing to run or schedule it.
+The [Keep my taste current](automations/keep-my-taste-current.automation.md) automation creates a first draft, then proposes updates from your selected workspace notes. It enables nothing on install. Keep its first trigger Manual and press Run now before choosing a weekly schedule. The [daily cards](automations/daily-cards.automation.md) template drafts ten new cards from its workspace notes and starts Manual. The [weekly roles digest](automations/weekly-roles-digest.automation.md) is another opt-in, manual template. Keep or return recurring triggers to Manual after the workshop to avoid unattended usage; Manual runs still consume credits. It never applies or sends. Read its [cost and scheduling guide](references/automation-guide.md) before choosing to run or schedule it.
+
+The [workflow map](references/workshop-workflows.md) covers the guided and free-work modules generically, including red/green fixes, separate parallel sessions, plain deck files, frozen 30-second narrated capture and the host's Computer Use handoff. It does not choose an app or replace the supplied workshop kit.
 
 ## What you install
 
-Only the skill package: instructions, references, a taste-draft structure, optional recording and narration helpers and two opt-in automation templates. The helpers are inert until you choose to run them. The plugin does not install their dependencies.
+Only the skill package: instructions, references, a taste-draft structure, optional recording and narration helpers and three opt-in automation templates. The helpers are inert until you choose to run them. The plugin does not install their dependencies.
 
 - No hooks, bundled tool servers, global rules, account connections, background jobs or sync.
 - No settings, permission changes, scheduled runs or paid services enabled for you.

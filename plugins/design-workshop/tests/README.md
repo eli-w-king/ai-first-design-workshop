@@ -5,11 +5,12 @@ Nothing in this folder runs on installation. These are maintainer checks, not at
 From the repository root, using an existing Python installation with PyYAML and Node 22 or later:
 
 ```sh
-python3 plugins/design-workshop/tests/validate_plugin.py
+python3 -B plugins/design-workshop/tests/validate_plugin.py
+python3 -B -m unittest discover -s plugins/design-workshop/tests -p "*_test.py"
 node --test plugins/design-workshop/tests/*.test.mjs
 ```
 
-The first command parses every skill's YAML frontmatter, checks names and description lengths, validates package metadata and both opt-in automation templates, resolves relative Markdown links and headings, and rejects em and en dashes. The Node tests cover recording-plan bounds, localhost-only read requests and narration timing that must not cut off words.
+The first command parses every skill's YAML frontmatter, checks names and description lengths, validates package metadata and all three opt-in automation templates, resolves relative Markdown links and headings, and rejects em and en dashes. The Python unit tests reject missing or duplicate automation identities, hidden execution settings and unreviewed schedules. The Node tests cover recording-plan bounds, localhost-only read requests and narration timing that must not cut off words.
 
 ## Isolated CLI check
 
@@ -47,3 +48,11 @@ The fork guidance remains product-agnostic. A later check of the published packa
 Two targeted command checks used disposable fixtures only. `npm cache npx rm CACHE_KEY` on npm 11.21.1, in offline mode, removed one synthetic entry and preserved another; no package was downloaded. With two remotes in a throwaway Git repo, `gh repo set-default`, `--view`, and an explicit-repository `--unset` restored the local config byte for byte. Bare `--unset` failed in the noninteractive terminal, so the guide includes the repository argument. No PR, issue, comment, workflow or deployment was created by these checks.
 
 The Vite, router and PWA guidance is based on the cited documentation. This package check does not claim a cold dependency install, a selected app's network-isolation check, a live Pages deployment or license compliance. Those require the actual approved fork and its rehearsal.
+
+## Module-coverage follow-up
+
+- The package contains nine skills and three automation templates. Daily cards is Manual by default and has no execution configuration in its frontmatter. Four Python unit tests cover template identity, duplicates, forbidden execution fields and reviewed schedules.
+- A real validator regression was replayed in a disposable copy: the same test failed against the earlier validator because an automation without a display name was accepted, then passed with the stricter validator. The shared worktree was never reset or reverted. This verifies the validation fix, not a bug in the workshop app.
+- A bounded GPT-6.2 Sol trial followed the daily-cards template with file tools only. An independent CSV parser found ten distinct, two-field, headerless records; earlier concepts were excluded and inputs were unchanged. The review correctly said import was not verified. Usage was 7.26053 credits; no schedule or app import was created.
+- A technical-fixture capture overlapped independent file work while frozen input remained unchanged. Surplus final idle was trimmed from the same continuous take, then a local voiceover was added. The final 30.00-second file fully decoded, and its final frame was inspected. This was not the workshop app, did not capture app/system audio, and is not a full listening review.
+- Parallel Agents-window sessions and Computer Use instructions are documented from the host guidance, not claimed as clean-account UI rehearsals. The supplied kit and actual app remain the reference run's responsibility.

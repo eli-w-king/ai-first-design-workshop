@@ -52,6 +52,8 @@ For project dependencies, preserve the package-manager pin and lockfile. Do not 
 
 After an approved change, check it again. Ask the person to try one small action, such as "Open my local page in the built-in browser and take a screenshot." If it fails twice, record the error without credentials and move to an independent task.
 
+If the person wants the agent to operate their app, follow [the Computer Use handoff](../../references/try-with-computer-use.md) and the separate Get ready activation/permission steps. Availability is not permission to drive the app.
+
 ## Leave a readiness note
 
 With agreement on its location, save `Workshop readiness.md` in the chosen folder. Include the date, checks actually run, ready and optional items, blockers, every changed path or setting and its previous value, and each undo step. Do not overwrite an existing note without reviewing it.

@@ -5,6 +5,7 @@ import re
 import sys
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
+from automation_metadata import validate_automation_metadata
 
 try:
     import yaml
@@ -37,7 +38,7 @@ def unique_mapping(loader, node, deep=False):
 UniqueLoader.add_constructor(yaml.resolver.BaseResolver.DEFAULT_MAPPING_TAG, unique_mapping)
 
 
-def frontmatter(path):
+def frontmatter(path, include_body=False):
     text = path.read_text(encoding='utf-8')
     match = re.match(r'\A---\r?\n(.*?)\r?\n---(?:\r?\n|\Z)', text, re.S)
     if not match:
@@ -45,7 +46,7 @@ def frontmatter(path):
     value = yaml.load(match.group(1), Loader=UniqueLoader)
     if not isinstance(value, dict):
         raise ValueError('Frontmatter must be a mapping')
-    return value
+    return (value, text[match.end():]) if include_body else value
 
 
 def outside_fences(text):
@@ -96,15 +97,27 @@ else:
     if (REPO / entries[0]['source']).resolve() != PLUGIN or entries[0].get('version') != manifest.get('version'):
         errors.append('Marketplace source or version does not match the package.')
 
-for path in sorted((PLUGIN / 'automations').glob('*.automation.md')):
+expected_automations = {
+    'keep-my-taste-current': {'kind': 'cron', 'expression': '0 9 * * 1', 'timeZone': 'local'},
+    'weekly-roles-digest': {'kind': 'manual'},
+    'daily-cards': {'kind': 'manual'},
+}
+automations = sorted((PLUGIN / 'automations').glob('*.automation.md'))
+if {path.name.removesuffix('.automation.md') for path in automations} != expected_automations.keys():
+    errors.append('The package must contain the three advertised automation templates.')
+seen_automation_ids = set()
+for path in automations:
     try:
-        metadata = frontmatter(path)
-        expected_schedule = ({'kind': 'cron', 'expression': '0 9 * * 1', 'timeZone': 'local'}
-                             if path.name == 'keep-my-taste-current.automation.md' else {'kind': 'manual'})
-        if metadata.get('version') != 1 or metadata.get('schedule') != expected_schedule:
-            raise ValueError('Unexpected automation template schedule')
-        if set(metadata) - {'version', 'id', 'name', 'description', 'schedule'}:
-            raise ValueError('Automation template contains execution configuration')
+        identifier = path.name.removesuffix('.automation.md')
+        if identifier not in expected_automations:
+            raise ValueError('Unexpected automation template file')
+        metadata, body = frontmatter(path, include_body=True)
+        checked_id = validate_automation_metadata(metadata, expected_automations[identifier], seen_automation_ids)
+        if checked_id != identifier:
+            raise ValueError('Automation id must match its advertised filename')
+        if not body.strip():
+            raise ValueError('Automation template is missing its prompt')
+        seen_automation_ids.add(checked_id)
     except (ValueError, yaml.YAMLError) as exc:
         errors.append(f'{path.relative_to(REPO)}: {exc}')
 
@@ -137,4 +150,4 @@ for path in files:
 if errors:
     print('\n'.join(errors))
     sys.exit(1)
-print(f'PASS: {len(skills)} skills, plugin and marketplace metadata, opt-in automations, {links} relative links, and {len(files)} text files without long dashes.')
+print(f'PASS: {len(skills)} skills, plugin and marketplace metadata, {len(automations)} opt-in automations, {links} relative links, and {len(files)} text files without long dashes.')

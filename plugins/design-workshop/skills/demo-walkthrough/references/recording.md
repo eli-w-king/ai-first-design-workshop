@@ -45,6 +45,8 @@ If the person prefers an already installed supported Chrome, install only Playwr
 
 The [Playwright video documentation](https://playwright.dev/docs/videos) explains `recordVideo` and why the context must close before a file is complete. These commands do not run on plugin installation.
 
+Before recording while other work continues, follow [the frozen-target and 30-second guide](thirty-second-demo.md). The helper cannot detect every external source edit, so the caller must supply a stable, isolated target rather than a live-reloading shared page.
+
 ## Make the plan
 
 Use the [JSON example](recording-plan.example.json), replacing every label and value with the real local prototype. The example is a format, not a supplied application. Rehearse all steps first. Use a localhost URL owned by this task, an existing local server, or the project's documented start command. Starting a server needs its normal approval; record its process id and stop only that server afterward.

@@ -5,14 +5,14 @@
 	},
 	"metadata": {
 		"description": "Skills for the AI-First Design Workshop with UXPA Seattle.",
-		"version": "0.2.2"
+		"version": "0.3.0"
 	},
 	"plugins": [
 		{
 			"name": "design-workshop",
 			"source": "./plugins/design-workshop",
 			"description": "Nine approval-first design skills: setup, variations, real demos, prototypes, small user tests, personal taste, longer-run plans, Pages and portfolio drafts.",
-			"version": "0.2.2"
+			"version": "0.3.0"
 		}
 	]
 }

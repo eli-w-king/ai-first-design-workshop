@@ -27,6 +27,8 @@ Public documentation checked on November 17, 2026. Features, labels, rates and a
 - [Node downloads](https://nodejs.org/en/download), [npx](https://docs.npmjs.com/cli/v11/commands/npx), [npm cache controls](https://docs.npmjs.com/cli/v11/commands/npm-cache) and [pnpm 10 install](https://pnpm.io/10.x/cli/install): runtime prework, pinned commands, lockfiles and cache cleanup.
 - [AGPLv3](https://www.gnu.org/licenses/agpl-3.0.html) and [its public summary](https://choosealicense.com/licenses/agpl-3.0/): consult the project's actual license and get qualified advice where needed; this plugin does not give a legal compliance guarantee.
 
+- [Agents window sessions](https://code.visualstudio.com/docs/agents/run/agents-window): starting independent sessions, active-session scope, and the fact that shared-folder sessions do not isolate files. Use the approval guide for the actual permission behavior.
+
 ## Public source methods
 
 This set adapts the methods in [Eli King's public autonomous output skills](https://github.com/eli-w-king/autonomous-output-skills), reviewed at commit `a5ae7612b1c111dbb8b77990458de6408ad4de0d`:

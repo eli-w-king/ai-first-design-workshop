@@ -79,6 +79,10 @@ Do not use `gh pr create --dry-run` as a harmless check: the [CLI reference](htt
 
 Verify the returned PR URL, base repository, base and head branches, files, image links and checks. Give the person the fork URL and the branch URL for their portfolio, with clear upstream credit. Keep incomplete work in draft. Do not merge, mark ready, assign people, force-push or delegate to Cloud without specific approval.
 
+## Merge only an approved own-fork PR
+
+If the person explicitly asks to merge, first verify that the PR's base and head repositories are their own fork, review the final diff and checks, and show the intended merge method and base branch. Get approval for that exact merge if it was not already specified. Use the GitHub interface or an explicit own-fork CLI target; never rely on the inferred upstream default. Do not enable automatic merging, delete the branch or publish a site as a hidden extra action. Pages and a Cloud task have their own approval and verification steps.
+
 ## Undo without losing other work
 
 For an uncommitted prototype, turn its toggle off or switch back only after checking for unsaved edits. For a committed change, show a proposed `git revert COMMIT` and its effect before running it. Never recommend `git reset --hard`, `git clean` or deleting the repo as cleanup. Closing a PR does not delete its public history, and removing a local branch does not remove a remote one. Each removal needs its own review.

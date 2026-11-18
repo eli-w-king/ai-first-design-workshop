@@ -1,6 +1,6 @@
 ---
 name: prototypes
-description: "Fork a real open-source project, clone your fork, work on a branch and build a meaningful redesign or feature in the actual code. Use for \"fork this project\", \"redesign this app\", \"change it from my marked-up screenshot\", or \"prepare a PR in my fork\". Keep attribution and before/after evidence, and ask before publishing, installing or starting a Cloud task."
+description: "Fork a real open-source project and build, fix or review a change in its actual code, or make a plain input/deck file without coding. Use for \"fork this project\", \"fix it and prove it\", \"redesign from my markup\", \"make an importable flashcard deck\", or \"prepare a PR in my fork\". Keep approvals, upstream isolation, attribution and real test evidence."
 ---
 
 # Prototypes in your own fork
@@ -9,11 +9,15 @@ Write short, plain sentences. Do not use em or en dashes in generated copy.
 
 Make a meaningful change in a real open-source project, then leave the person with their own repo link and a reviewable PR. Do not select or name a workshop project for them.
 
+## Choose the requested path
+
+For a **deck or other input-file request only**, go directly to [the deck-file workflow](references/deck-files.md). Do not fork, clone, branch, install or edit app code just to write a file. For a **bug**, use the real project and [fix it and prove it](references/fix-and-prove.md). For a redesign or feature, follow the branch and build flow below. If the person asks for a plan first, stop at the proposal until they approve implementation.
+
 ## Check the project and the change
 
 Read the person's selected repository, its license, setup instructions and the screenshot, markup or feature brief. Confirm that the license allows the intended reuse. Keep the LICENSE, copyright notices and required attribution. Publicly visible code is not automatically open source.
 
-Name the user's task, the real component that owns it, the smallest useful result, and what is out of scope. Use the actual component and existing design tokens. Never recreate the app in a new page instead of changing its code.
+Turn the supplied brief into explicit goals, constraints and acceptance checks. Keep fictional practice evidence labeled, and do not replace the supplied workshop kit or turn a practice brief into an upstream roadmap. Name the user's task, the real component that owns it, the smallest useful result, and what is out of scope. Use the actual component and existing design tokens. Never recreate the app in a new page instead of changing its code.
 
 Ask before any install, send, publish, spend or delete. A public fork exposes your additions too. No production services, real accounts, payment flows or private customer data are part of a design prototype. Label sample data and simulated behavior.
 
@@ -34,6 +38,10 @@ Before the first app launch or deployment, inspect the source, configuration, in
 
 Use [the fork guardrails](references/fork-guardrails.md) for network verification and an optional short `AGENTS.md` section. Ask before adding or merging that section; preserve existing instructions. It is guidance, not a security boundary. Keep the actual service protections active even when the design toggle is off, and label that safety preparation in before/after evidence.
 
+## Fix a bug and show the proof
+
+Use the built-in browser to reproduce the actual failure, find its cause, add a focused regression test and run it red before changing the behavior. Make the smallest fix, then run the same test green and repeat the original browser steps. Show the actual commands and results; do not fake a run or widen the change. Follow [the full red/green path](references/fix-and-prove.md). A bug repair corrects the existing path rather than hiding behind an experimental toggle.
+
 ## Redesign or add a feature
 
 - Use [the screenshot markup loop](../../references/markup-feedback.md) when the person provides visual feedback. Read the arrows, circles, notes and rearranged pieces, map them to the real components, ask about unclear marks, then edit the actual code.
@@ -51,6 +59,8 @@ A local commit, a push and a PR are separate actions. Follow the person's reques
 A fork PR targets upstream by default. Set the **base repository to the person's own fork** in GitHub, and use `gh pr create --repo YOUR_USERNAME/YOUR_FORK` with explicit base and head branches in CLI. Verify the destination before submitting and the returned URL afterward. Never open PRs, issues or comments upstream from a workshop, and never star or notify upstream as a test. Merging within the person's fork, force-pushing and assigning reviewers still need separate approval. Inspect state after a timeout before retrying; do not create duplicates.
 
 If requested, draft a bounded next task for Cloud with its files, checks, cost cap and stop condition using [overnight-plan](../overnight-plan/SKILL.md). Ask separately before starting it or uploading anything.
+
+When the person asks the agent to try the finished app through desktop control, use [the Computer Use handoff](../../references/try-with-computer-use.md). This requires the actual supported host tools and their own permission flow; it does not install a client or authorize app control by itself.
 
 ## Hand over the work
 
