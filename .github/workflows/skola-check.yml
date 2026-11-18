@@ -148,16 +148,19 @@ jobs:
             echo "| Build at /skola/ | ${build_seconds:-n/a} |"
           } >> "$GITHUB_STEP_SUMMARY"
 
-  # The optional "Before Thursday" step on the Get ready page: warm pnpm's store from Skola's lockfile alone, with no
-  # fork or clone yet, then prove it worked by installing a fresh clone in ~/Workshop/skola with --offline.
+  # The optional "Before Thursday" step on the Get ready page: warm pnpm's store from Skola's pinned package.json and
+  # lockfile in a fresh temporary folder, with no fork or clone yet. Then prove it by installing a fresh clone in
+  # ~/Workshop/skola with --offline. The "home project" variant puts a package.json in the home folder first, as many
+  # laptops have: with only the lockfile, pnpm then used the home folder as the project and fetched nothing.
   prefetch:
-    name: Pre-download, ${{ matrix.os }}
+    name: Pre-download, ${{ matrix.os }}, ${{ matrix.home }}
     runs-on: ${{ matrix.os }}
-    timeout-minutes: 20
+    timeout-minutes: 25
     strategy:
       fail-fast: false
       matrix:
         os: [windows-latest, macos-latest, ubuntu-latest]
+        home: [clean home, home project]
     env:
       SKOLA_COMMIT: f8d89dafb3878192f53da02f827aa55e00b83e01
     steps:
@@ -165,25 +168,46 @@ jobs:
         with:
           node-version: 'lts/*'
 
+      - name: Put a Node project in the home folder
+        if: matrix.home == 'home project'
+        shell: bash
+        run: |
+          printf '{ "name": "my-home-project", "version": "1.0.0", "private": true }\n' > ~/package.json
+          cat ~/package.json
+
+      - name: Reproduce the old lockfile-only command fetching nothing (information only)
+        if: matrix.home == 'home project'
+        continue-on-error: true
+        shell: bash
+        run: |
+          mkdir -p ~/old-prefetch && cd ~/old-prefetch && curl -fsSLO "https://raw.githubusercontent.com/h16nning/skola/$SKOLA_COMMIT/pnpm-lock.yaml" && npx --yes pnpm@10.28.2 fetch; cd ~ && rm -rf ~/old-prefetch
+          store="$(npx --yes pnpm@10.28.2 store path)"
+          command -v cygpath >/dev/null && store="$(cygpath -u "$store")"
+          files=$(find "$store" -type f 2>/dev/null | wc -l | tr -d ' ')
+          echo "Files in pnpm's store after the old command: $files"
+          if [ "$files" = "0" ]; then echo "RESULT reproduced: the old command reported success and fetched nothing."; else echo "RESULT not reproduced: the old command fetched $files files."; fi
+          echo "old_command_files=$files" >> "$GITHUB_ENV"
+          rm -rf "$store" && echo "Cleared pnpm's store, so the new command starts empty."
+
       - name: The attendee command on a Mac or Linux
         if: runner.os != 'Windows'
         shell: bash
         run: |
           start=$SECONDS
-          mkdir -p ~/skola-prefetch && cd ~/skola-prefetch && curl -fsSLO https://raw.githubusercontent.com/h16nning/skola/f8d89dafb3878192f53da02f827aa55e00b83e01/pnpm-lock.yaml && npx --yes pnpm@10.28.2 fetch && cd ~ && rm -rf ~/skola-prefetch
+          u=https://raw.githubusercontent.com/h16nning/skola/f8d89dafb3878192f53da02f827aa55e00b83e01; d="$(mktemp -d)" && cd "$d" && curl -fsSL --remote-name-all "$u/package.json" "$u/pnpm-lock.yaml" && npx --yes pnpm@10.28.2 fetch; cd ~ && rm -rf "$d"
           echo "prefetch_seconds=$((SECONDS - start))" >> "$GITHUB_ENV"
-          test ! -e ~/skola-prefetch && echo "The temporary folder is gone."
+          test ! -e "$d" && echo "The temporary folder is gone."
 
       - name: The attendee command on Windows (Windows PowerShell 5.1)
         if: runner.os == 'Windows'
         shell: powershell
         run: |
           $start = Get-Date
-          $d = Join-Path $HOME 'skola-prefetch'; New-Item -ItemType Directory -Force $d | Out-Null; Set-Location $d; Invoke-WebRequest -UseBasicParsing -Uri 'https://raw.githubusercontent.com/h16nning/skola/f8d89dafb3878192f53da02f827aa55e00b83e01/pnpm-lock.yaml' -OutFile 'pnpm-lock.yaml'; npx.cmd --yes pnpm@10.28.2 fetch; Set-Location $HOME; Remove-Item -Recurse -Force $d
+          $u = 'https://raw.githubusercontent.com/h16nning/skola/f8d89dafb3878192f53da02f827aa55e00b83e01'; $d = Join-Path ([IO.Path]::GetTempPath()) ('skola-prefetch-' + [guid]::NewGuid()); New-Item -ItemType Directory $d | Out-Null; Set-Location $d; Invoke-WebRequest -UseBasicParsing "$u/package.json" -OutFile package.json; Invoke-WebRequest -UseBasicParsing "$u/pnpm-lock.yaml" -OutFile pnpm-lock.yaml; npx.cmd --yes pnpm@10.28.2 fetch; Set-Location $HOME; Remove-Item -Recurse -Force $d
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           if (Test-Path $d) { throw 'The temporary folder is still there.' }
           "prefetch_seconds=$([int]((Get-Date) - $start).TotalSeconds)" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
-          "PowerShell $($PSVersionTable.PSVersion)"
+          "PowerShell $($PSVersionTable.PSVersion), temp folder was $d"
 
       - name: Clone into ~/Workshop/skola, as Module 1 does
         shell: bash
@@ -200,7 +224,6 @@ jobs:
           npx --yes pnpm@10.28.2 install --frozen-lockfile --offline
           echo "offline_install_seconds=$((SECONDS - start))" >> "$GITHUB_ENV"
           echo "pnpm store: $(npx --yes pnpm@10.28.2 store path)"
-          echo "pnpm store size: $(du -sh "$(npx --yes pnpm@10.28.2 store path)" | cut -f1)"
 
       - name: Tests on the offline install
         shell: bash
@@ -211,10 +234,11 @@ jobs:
         shell: bash
         run: |
           {
-            echo "### Pre-download, ${{ matrix.os }}, Node $(node -v)"
+            echo "### Pre-download, ${{ matrix.os }}, ${{ matrix.home }}, Node $(node -v)"
             echo ""
-            echo "| Step | Seconds |"
+            echo "| Step | Result |"
             echo "| --- | --- |"
-            echo "| Pre-download from the lockfile (public npm, empty caches) | ${prefetch_seconds:-n/a} |"
-            echo "| Install in ~/Workshop/skola with --offline | ${offline_install_seconds:-n/a} |"
+            echo "| Old lockfile-only command, files fetched | ${old_command_files:-not run} |"
+            echo "| Pre-download, seconds (public npm, empty caches) | ${prefetch_seconds:-n/a} |"
+            echo "| Install in ~/Workshop/skola with --offline, seconds | ${offline_install_seconds:-n/a} |"
           } >> "$GITHUB_STEP_SUMMARY"
