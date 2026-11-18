@@ -3,25 +3,44 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>PAGE TITLE: AI-First Design Workshop</title>
-<meta name="description" content="ONE SENTENCE ABOUT THIS PAGE.">
+<title>{{title}}</title>
+<meta name="description" content="{{description}}">
 <meta name="color-scheme" content="dark">
 <meta name="theme-color" content="#0d1014">
-<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="assets/site.css">
-<script>document.documentElement.classList.add('js');if(/[?&]motion=off\b/.test(location.search))document.documentElement.dataset.motion='off'</script>
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="canonical" href="{{canonical}}">
+<meta property="og:type" content="website">
+<meta property="og:title" content="{{title}}">
+<meta property="og:description" content="{{description}}">
+<meta property="og:url" content="{{canonical}}">
+<meta property="og:image" content="{{siteUrl}}assets/social.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="AI-First Design Workshop with UXPA Seattle. Thursday, Nov 19, 2026. Teal dither on a near-black background.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="{{base}}assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="{{base}}assets/site.css">
+<script>document.documentElement.classList.add('js');if(new URLSearchParams(location.search).get('motion')==='off')document.documentElement.dataset.motion='off';</script>
+<script src="{{base}}assets/site.js" defer></script>
+<script src="{{base}}assets/field.js" defer></script>
 </head>
-<body>
-<header class="page-head">
-	<a href="./">AI-First Design Workshop</a>
-	<nav aria-label="Pages">
-		<!-- One link per page. Mark the current one with aria-current="page". -->
-		<a href="./" >Home</a>
-	</nav>
+<body class="{{bodyClass}}">
+<a class="skip" href="#main">Skip to content</a>
+<header class="top">
+  <div class="top-inner">
+    <a class="brand" href="{{base}}" aria-label="AI-First Design Workshop home"><img src="{{base}}assets/favicon.svg" width="24" height="24" alt=""><span>AI-First Design Workshop</span></a>
+    <button class="menu-toggle" aria-controls="site-nav" aria-expanded="false" hidden>Menu</button>
+    <nav id="site-nav" aria-label="Main navigation">{{nav}}</nav>
+  </div>
 </header>
-<main class="page">
-	<h1>PAGE TITLE</h1>
-	<p>Content goes here.</p>
-</main>
+<main id="main">{{content}}</main>
+<footer class="foot">
+  <div class="foot-inner">
+    <div><p class="foot-title">AI-First Design Workshop</p><p>With UXPA Seattle. Seattle, November 19, 2026.</p></div>
+    <nav aria-label="Footer navigation"><a href="{{base}}get-ready/">Get ready</a><a href="{{base}}tonight/">Tonight</a><a href="{{base}}words/">Words to know</a><a href="{{base}}keep-going/">Keep going</a><a href="{{base}}skills/">Skills</a><a href="https://luma.com/hw3533y5">Event on Luma</a></nav>
+    <p class="disclaimer">An independent community event with UXPA Seattle. It isn't an official Microsoft or GitHub event.</p>
+  </div>
+</footer>
+<div class="sr-only" id="announcement" role="status" aria-live="polite"></div>
 </body>
 </html>

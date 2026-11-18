@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://eli-w-king.github.io/ai-first-design-workshop/sitemap.xml
