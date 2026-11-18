@@ -13,6 +13,10 @@ Say this first: **This will put the site on the public internet. On GitHub Free,
 
 For an open-source app, confirm that the selected repository is the person's **public fork** and that its license permits the intended distribution. Keep the LICENSE, copyright notices and required assets' notices. Credit the original project in the fork's README and distinguish the person's changes. A public repo alone is not a reuse license. Stop if permission is unclear; do not change visibility or remove attribution.
 
+For AGPL and other copyleft projects, keep all required notices, add a dated "modified by" note, and put a visible source link in the live app to the fork and revision that produced it. Follow the actual license's source-availability and modified-file notice requirements; publishing compiled files alone is not enough. Present it as **my fork**, not official or endorsed. This is a practical checklist, not legal advice. Read the project's license and the [AGPLv3 text](https://www.gnu.org/licenses/agpl-3.0.html), and ask qualified help when requirements are unclear.
+
+Before building or opening the app, verify [upstream sync, accounts and analytics are inert](../prototypes/references/fork-guardrails.md). No sign-in or test traffic to the original project's services.
+
 Check the actual branches. In GitHub's fork dialog, **Copy the DEFAULT branch only** can be selected. With that choice, an upstream `gh-pages` branch is not copied. The [forking docs](https://docs.github.com/en/pull-requests/how-tos/work-with-forks/fork-a-repo) say clearing the option copies all branches. Verify the fork rather than assuming a deploy branch exists.
 
 ## Make a public-content check
@@ -34,12 +38,14 @@ Follow [the publishing steps](references/publishing.md). Keep a record of the pr
 - If a build is needed, propose a GitHub Actions Pages workflow using the existing project's build command and output folder. Explain its commands, permissions, trigger, public artifact and possible usage cost. Add or enable it only after an explicit okay.
 - If a backend is required, do not pretend Pages can host it. Explain the limitation. Never replace the real app with a screenshot recreation to claim publishing worked.
 
+For a Vite or SPA project site, check [base paths, routing and PWA scopes](references/spa-project-sites.md) before publishing. A root-only preview is not a deployment check. Fork Actions are disabled by default: review the inherited workflows, get approval to enable Actions in the fork, select **GitHub Actions** as the Pages source for a build workflow, and remove upstream CNAME or custom-domain steps only through an approved change. Do not enable unrelated workflows.
+
 1. Prepare only approved static files. Add `.nojekyll` if the site should be served without Jekyll. Keep drafts and local helpers out of the public copy.
 2. Check the repository-local commit identity. Offer a GitHub noreply address; do not change global identity.
 3. Show the staged file list and diff. Commit and push only the named files to the approved repository and branch. Never use a broad `git add .` for an unreviewed folder.
 4. Enable Pages for the exact branch and source folder, or preserve the repository's existing approved build workflow. Do not overwrite a working workflow to fit this guide.
 5. Read the Pages deployment status and actual returned site URL. Poll with a short limit; a queued build is not a working site. If a result is ambiguous, inspect state before retrying a create or publish action.
-6. Use built-in browser tools first to check that the live URL loads the actual client-side app, including its assets, navigation and main interaction at desktop and phone widths. Watch for project-subpath issues and console errors. An HTTP 200 alone is not enough.
+6. Use built-in browser tools first to check that the live URL loads the actual client-side app, including its assets, navigation and main interaction at desktop and phone widths. Check deep-link reloads, PWA launch and service-worker scope where applicable, the visible source link, and zero attempted upstream-service traffic. Watch for project-subpath issues and console errors. An HTTP 200 alone is not enough.
 
 ## Hand over the link and the undo
 

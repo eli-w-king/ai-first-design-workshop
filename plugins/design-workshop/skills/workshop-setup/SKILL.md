@@ -1,6 +1,6 @@
 ---
 name: workshop-setup
-description: "Check a personal laptop for the design workshop in VS Code Insiders, or another supported VS Code release. Use for \"check my setup\", \"set me up for the workshop\", \"continue my setup\", or \"what does this install?\" Check first, explain each change and its undo, and wait for approval before installing or changing settings."
+description: "Check a personal laptop for the design workshop in VS Code Insiders, with Git, GitHub sign-in and current-LTS Node prework. Use for \"check my setup\", \"set me up for the workshop\", \"continue my setup\", or \"what does this install?\" Check first, explain each change and its undo, and wait for approval before installing or changing settings."
 ---
 
 # Workshop setup
@@ -28,8 +28,9 @@ Report each item as **ready**, **needs a check**, **missing** or **optional**:
 4. Use the checked two-entry settings snippet on [Get ready](https://eli-w-king.github.io/ai-first-design-workshop/get-ready/). It offers Computer Use and Send Later, both experimental; it grants no tool approval and schedules nothing. Do not keep another copy in this plugin or edit the person's settings on your own. Follow the merge and undo steps below. Check supported sandboxing separately.
 5. The workshop plugin shows all nine skills in a fresh session. Follow [the install guide](../../README.md), not an automatic clone or sync.
 6. The built-in browser can open the person's local page and take a screenshot. Do not install an external browser server for this check.
-7. Git is optional until the person wants branches or a pull request. GitHub CLI is optional; the GitHub website is a supported alternative.
-8. Node and recording tools are optional until a real video is requested. Node alone cannot record one. Use [the recording guide](../demo-walkthrough/references/recording.md).
+7. Git and the GitHub sign-in are prework for the workshop fork. Check them before the session; install or change nothing without approval. GitHub CLI remains optional, with the GitHub website as the alternative.
+8. Node is prework too: use the **current LTS** from [nodejs.org](https://nodejs.org/en/download), with approval and a check against the project's runtime requirements. Check `node`, `npm` and `npx` in a fresh VS Code terminal. Recording tools remain a separate opt-in; Node alone cannot record a video.
+9. In the person's fork folder, use [the pinned dependency-install guide](references/project-dependencies.md). Explain the downloads, package scripts, changed directories and cleanup, then ask. Run the exact package-manager version through `npx`, with the existing lockfile, no Corepack and no global package-manager install.
 
 Do not guess promotional-code redemption, renewal or card requirements. A free month of GitHub Copilot Max does not mean unlimited usage. Have the person review the terms shown to them; no purchase or plan change is part of setup.
 
@@ -46,6 +47,8 @@ Send Later is a one-time scheduled prompt, not a recurring automation. It needs 
 ## Make one approved change
 
 Show a short plan of only the missing items. For each item: name the official source, exact command or UI steps, download or account access involved, and how to undo it. Wait for a clear yes to that item. Keep existing tools and settings. Do not bundle installs into one command.
+
+For project dependencies, preserve the package-manager pin and lockfile. Do not use `latest`, regenerate a lockfile, approve blocked scripts wholesale or change global package settings to make an install pass. Stop before launching an app whose upstream hosted services have not been made inert.
 
 After an approved change, check it again. Ask the person to try one small action, such as "Open my local page in the built-in browser and take a screenshot." If it fails twice, record the error without credentials and move to an independent task.
 

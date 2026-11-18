@@ -14,6 +14,10 @@ Inspect the fork's branches. GitHub's **Copy the DEFAULT branch only** option co
 
 A reviewed workflow normally checks out the selected revision, sets up the project's supported runtime, installs from its lockfile, runs its real build, uploads only the built static folder with `actions/upload-pages-artifact`, then deploys with `actions/deploy-pages`. Use current supported action versions or verified commit pins from their official repositories, not guessed versions. Keep build and deploy dependencies explicit with `needs`, use the `github-pages` environment, and request only the required `contents: read`, `pages: write` and `id-token: write` permissions. Explain that these permissions allow deployment.
 
+Forks start with Actions disabled. Before enabling them, review the entire inherited workflow set for upstream domains, sync/auth steps, analytics, scheduled jobs and jobs that comment, publish or deploy elsewhere. Make approved changes to keep unwanted workflows inert first. Then, with explicit approval, open the **Actions** tab of **the person's fork** and enable its reviewed workflow(s), and choose **Settings > Pages > Source > GitHub Actions** for a build-based deployment. Never enable Actions in upstream or silently authorize every inherited job. [GitHub's fork-workflow documentation](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#workflows-in-forked-repositories) describes the default.
+
+Remove any inherited `CNAME` file from the published output, a workflow `cname` input, or a step that writes the original project's custom domain, only after showing the exact change and getting approval. Check the fork's Pages custom-domain setting too. Do not edit the original project's DNS, claim its domain or disable unrelated domain configuration. The fork should use its own approved Pages URL unless the person explicitly owns and chooses another domain.
+
 Start with a manual `workflow_dispatch` trigger if the person wants a supervised first publish. Add push triggers only for the approved branch and with approval, because later pushes would then publish automatically. Do not deploy from arbitrary pull requests, enable unrelated fork workflows, add credentials or weaken protections. Review any runner or Actions usage cost. Once approved, select **GitHub Actions** as the Pages source, run the reviewed workflow and inspect its build and deployment jobs.
 
 If the app needs a server backend, identify what cannot work on static hosting. Do not swap in a fake interface or say the app is fully hosted when only a limited static subset works. Any reduced-scope version must be explicit and separately agreed.
@@ -22,13 +26,21 @@ If the app needs a server backend, identify what cannot work on static hosting. 
 
 Prefer a separate export folder when the project contains private notes, research or old history. Copy only files reviewed for publication; keep originals unchanged. The public copy needs the real app's built entry page, actual assets, LICENSE and required attribution, not a whole workspace, dependency directory or recording-tool cache. Do not sever upstream credit or present the fork as your original application.
 
-Check links with a repository subpath, for example `/my-prototype/`, not just at localhost's root. Root-relative links such as `/styles.css` often break on project Pages sites. Use relative paths or the build tool's existing base-path setting. Do not add a backend to make a static host work.
+Check links with the actual repository subpath, not just localhost's root. For Vite, SPAs and PWAs, use [the project-site checklist](spa-project-sites.md) to align asset base, router behavior, manifest `start_url` and `scope`, and the service worker. Do not add a backend to make a static host work.
 
 If creating a new local repo, confirm its branch name and run `git init -b publish/site` in the clean export folder, not in a parent project. Review repository-local identity and add `.nojekyll` if appropriate. Stage exact approved paths and inspect the diff before a local commit.
 
+## License, changes and source
+
+Keep the original LICENSE and required copyright and dependency notices. For AGPL and other copyleft code, preserve the required license for covered modifications and follow its source-availability terms. A separate export must still keep the relevant notices and access to corresponding source. Do not replace the original license with the workshop plugin's license or present the fork as a wholly original app.
+
+Add a dated modification note, for example **Modified by YOUR_GITHUB_NAME on YYYY-MM-DD. Changes: short factual summary.** Put it in the fork's README and add the modified-file notices the actual license requires. Use the person's chosen public name, not a guessed identity.
+
+Add a visible **Source for this fork** link in the live app that resolves to the fork and deployed revision, including source and build instructions needed to reproduce it. Keep an upstream credit and label the app **my fork**, not the official app; do not imply endorsement. A repository link is useful but does not, by itself, establish license compliance. For AGPL, read the [license text](https://www.gnu.org/licenses/agpl-3.0.html) and its [plain-language summary](https://choosealicense.com/licenses/agpl-3.0/). This is not legal advice; get qualified help if the obligations are unclear.
+
 ## Website route, without more tools
 
-1. On GitHub, the person creates the approved repository and chooses public visibility, understanding that the files and commit history will be visible.
+1. On GitHub, open the already approved public fork. For a separate new project only, create its approved repository and visibility. Do not create a replacement repo that loses upstream attribution or license history by accident.
 2. They upload only the reviewed static files, preserving directories, or use VS Code Source Control to push the approved branch. Do not use a whole-folder upload without checking hidden and unrelated files.
 3. Open **Settings > Pages**. For a plain static site, select **Deploy from a branch**, the approved branch, and `/ (root)` or `/docs`, then save. For an existing build workflow, use its documented route instead.
 4. Read the deployment status and GitHub's actual site URL. Wait for a successful build, then verify the live result.
@@ -39,7 +51,7 @@ Check `git --version`, `gh --version` and `gh auth status` without extracting cr
 
 Inspect an existing repo with `gh repo view OWNER/REPOSITORY --json nameWithOwner,isPrivate,url,defaultBranchRef`. Confirm that it is the person's intended destination. Do not change a private repo to public without a separate full-history review and explicit permission.
 
-Creating a public repository and pushing are separate changes:
+If publishing an existing fork, skip repository creation and remote changes. For an explicitly approved new project only, creating a public repository and pushing are separate changes:
 
 ```sh
 gh repo create OWNER/REPOSITORY --public
@@ -63,7 +75,7 @@ For a configuration change to an existing site, use the [documented update endpo
 
 Read `gh api repos/OWNER/REPOSITORY/pages` and the deployment or Actions status. Use the returned `html_url`, not a guessed address, especially for custom domains and account-level sites. Poll for up to five minutes, not forever. If it is still queued or failed, report that state and its link.
 
-Use built-in browser tools first to open the actual URL and exercise the real app's main task at desktop and phone widths. Record that verified app URL next to the fork URL; a source repo page or static screenshot is not the live application. Verify asset requests, internal links, any `?v=` routes, reduced motion and console errors. Do not say "published and working" based only on a successful push or HTTP 200.
+Use built-in browser tools first to open the actual URL and exercise the real app's main task at desktop and phone widths. Record that verified app URL next to the fork URL; a source repo page or static screenshot is not the live application. Verify asset requests, internal links, the project-path and routing checks, any `?v=` routes, reduced motion, source and license links, and console errors. Keep the upstream-service block in place during validation and require zero attempted upstream requests; blocking an attempt is not a passing application check. Do not say "published and working" based only on a successful push or HTTP 200.
 
 ## Take it down
 

@@ -39,3 +39,11 @@ Use only an existing approved browser and recording runtime, or separately appro
 - Local macOS system speech and a supplied audio-file fixture both produced H.264/AAC narrated MP4s, with complete decoding checks. No microphone or external voice service was used. Full listening review is not claimed.
 - The capture check reused an existing Chromium and Playwright Core 1.66 alpha runtime. Its expected encoder was missing, so the isolated test used an already installed full ffmpeg through a test-local path mapping. No shared cache was changed and no browser or package was installed. This proves the helper's real capture path, not a cold install of the documented stable package.
 - Five focused Node checks and the YAML, metadata, relative-link and punctuation validator pass. Windows speech, clean Mac and Windows installs, the VS Code template UI and real public deployment still need a rehearsal.
+
+## Generic fork follow-up
+
+The fork guidance remains product-agnostic. A later check of the published package must still discover nine skills and resolve the new fork-safety, project-dependency and SPA references. The coordinator's conditional per-run-cap guidance stays unchanged.
+
+Two targeted command checks used disposable fixtures only. `npm cache npx rm CACHE_KEY` on npm 11.21.1, in offline mode, removed one synthetic entry and preserved another; no package was downloaded. With two remotes in a throwaway Git repo, `gh repo set-default`, `--view`, and an explicit-repository `--unset` restored the local config byte for byte. Bare `--unset` failed in the noninteractive terminal, so the guide includes the repository argument. No PR, issue, comment, workflow or deployment was created by these checks.
+
+The Vite, router and PWA guidance is based on the cited documentation. This package check does not claim a cold dependency install, a selected app's network-isolation check, a live Pages deployment or license compliance. Those require the actual approved fork and its rehearsal.

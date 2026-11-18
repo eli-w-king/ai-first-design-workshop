@@ -21,6 +21,12 @@ Public documentation checked on November 17, 2026. Features, labels, rates and a
 
 - [Workshop Get ready](https://eli-w-king.github.io/ai-first-design-workshop/get-ready/): the checked two-entry settings snippet and controls guidance are maintained there, not duplicated in this plugin. Native chat Mark Up is source-checked; clean-account UI rehearsal remains separate.
 
+- [GitHub CLI default repository](https://cli.github.com/manual/gh_repo_set-default) and [PR creation](https://cli.github.com/manual/gh_pr_create): explicit own-fork targeting and the dry-run warning.
+- [Actions in forks](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#workflows-in-forked-repositories): Actions must be enabled deliberately in the fork.
+- [Vite on Pages](https://vite.dev/guide/static-deploy#github-pages), [manifest start URL](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Manifest/Reference/start_url), [manifest scope](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Manifest/Reference/scope) and [worker registration](https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerContainer/register): project paths and separate scope mechanisms.
+- [Node downloads](https://nodejs.org/en/download), [npx](https://docs.npmjs.com/cli/v11/commands/npx), [npm cache controls](https://docs.npmjs.com/cli/v11/commands/npm-cache) and [pnpm 10 install](https://pnpm.io/10.x/cli/install): runtime prework, pinned commands, lockfiles and cache cleanup.
+- [AGPLv3](https://www.gnu.org/licenses/agpl-3.0.html) and [its public summary](https://choosealicense.com/licenses/agpl-3.0/): consult the project's actual license and get qualified advice where needed; this plugin does not give a legal compliance guarantee.
+
 ## Public source methods
 
 This set adapts the methods in [Eli King's public autonomous output skills](https://github.com/eli-w-king/autonomous-output-skills), reviewed at commit `a5ae7612b1c111dbb8b77990458de6408ad4de0d`:

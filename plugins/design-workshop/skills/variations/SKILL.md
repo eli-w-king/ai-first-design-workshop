@@ -22,6 +22,7 @@ Use [the lab brief](references/lab-brief.md) to record the question, what stays 
 - Ask before any install, send, publish, spend or delete. A request for variations does not authorize extra paid sessions or uploads. Do not change permissions.
 - Use the existing project's stack and components. For a new small page, prefer plain HTML, CSS and JavaScript with no dependencies. Never replace a working app just to make the lab easier.
 - Use approved real project copy and assets. For a fictional prototype, label the supplied sample content as fictional. Never invent customer quotes, usage numbers or testimonials. Ask for safe sample content when it is missing.
+- For an existing fork, use its approved local-only preparation for every direction and the baseline. Follow [the fork guardrails](../prototypes/references/fork-guardrails.md); never reconnect upstream services to show today's design.
 - Keep production data, payments, accounts and outside services out of the prototype. Inputs sent to the AI still use the selected provider; local files do not mean local inference.
 - Work only in a new agreed lab folder or the project's existing variant mechanism. Preserve unrelated edits. Do not start worktree sessions or other agents without approval of their cost and permissions.
 

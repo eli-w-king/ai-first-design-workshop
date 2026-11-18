@@ -12,13 +12,15 @@ Use this as a menu, not an installer. Check only what the selected task needs. A
 | Terminal sandbox | Inspect the session's **Sandboxing for terminal** control and effective policy where available. | Use the checked [Get ready instructions](https://eli-w-king.github.io/ai-first-design-workshop/get-ready/). Explain missing sandbox support without changing settings on your own. |
 | Plugin | Open **Chat: Open Customizations > Plugins**, then inspect `design-workshop`. In CLI, `copilot plugin list` and `copilot skill list`. | Use the [plugin installation guide](../../../README.md). Start a new session afterward. |
 | Browser tools | Open a harmless local HTML file in an agent-owned browser tab and take a screenshot. | Check **Configure Tools > Built-in > Browser** if available. Use the checked Get ready instructions; do not add another settings block. An unsupported host remains unsupported. |
-| Git, optional | On macOS, check `xcode-select -p` first so a Git stub does not unexpectedly open an installer. Then `git --version` if installed. On Windows, `Get-Command git` then `git --version`. | Offer a supported installer, not an automatic download. |
+| Git, prework | On macOS, check `xcode-select -p` first so a Git stub does not unexpectedly open an installer. Then `git --version` if installed. On Windows, `Get-Command git` then `git --version`. | Offer a supported installer, not an automatic download. |
 | GitHub CLI, optional | `gh --version`, then `gh auth status` without printing tokens. | Use the website instead, or offer the official CLI install. |
-| Video tools, optional | `node --version`; inspect the chosen project's dependencies and whether its browser and video encoder already exist. | Follow the [video guide](../../demo-walkthrough/references/recording.md). Do not infer recording readiness from Node alone. |
+| Node, prework | `node --version`, `npm --version` and `npx --version` in a fresh VS Code terminal. Compare with the current LTS on the official download page and the project's runtime requirements. | Offer the [current LTS](https://nodejs.org/en/download), with approval; preserve other projects' runtime needs. |
+| Project dependencies, in the fork | Read the package-manager pin, lockfile, scripts and workspace scope. | Use the [pinned npx guide](project-dependencies.md) only after explaining and approving the install. |
+| Video tools, optional | Inspect whether the approved recording runtime, browser and video encoder already exist. | Follow the [video guide](../../demo-walkthrough/references/recording.md). Do not infer recording readiness from Node alone. |
 
 ## Install only the item they approve
 
-Explain the source and scope before running the relevant command. On Windows, run one PowerShell command at a time; `npm.cmd` avoids changing execution policy. Do not install a package manager just to install one small optional tool.
+Explain the source and scope before running the relevant command. On Windows, run one PowerShell command at a time; `npm.cmd` and `npx.cmd` avoid changing execution policy. Do not install a package manager just to install one small optional tool.
 
 | Item | Approved installation route | Undo after checking shared use |
 | --- | --- | --- |
@@ -27,10 +29,12 @@ Explain the source and scope before running the relevant command. On Windows, ru
 | Git on Windows | `winget install --id Git.Git --exact`, if winget is already present. Otherwise use [git-scm.com](https://git-scm.com/downloads). | **Settings > Apps > Installed apps > Git > Uninstall**. Keep repository folders. |
 | GitHub CLI on macOS | `brew install gh`, only if Homebrew is already present. Otherwise use the [official instructions](https://cli.github.com/). | `brew uninstall gh` only for this newly installed package, or the matching installer removal. |
 | GitHub CLI on Windows | `winget install --id GitHub.cli --exact`. | `winget uninstall --id GitHub.cli --exact`, or the app manager. |
-| Node, only for recording | Use the [current LTS installer](https://nodejs.org/en/download). With an existing package manager, inspect its exact package first and show the proposed command. | Use that installer's removal steps. Do not remove a pre-existing Node version or shared package directory. |
+| Node, prework | Use the **current LTS** from the [official download page](https://nodejs.org/en/download), not an unreviewed newer release or a Corepack bootstrap. Explain its shared runtime/PATH changes and ask first. | Use that installer's removal route only after checking other projects. On macOS, leaving a shared runtime installed can be safer than manual file removal. Do not remove pre-existing versions or shared packages. |
 | Copilot CLI, optional | Follow [the official CLI installation guide](https://docs.github.com/en/copilot/how-tos/copilot-cli/cli-getting-started). Prefer VS Code if the person does not want another tool. | Use the matching package manager or installer's removal command. Removing CLI is separate from canceling a Copilot plan. |
 
 After an approved CLI sign-in, `gh auth logout --hostname github.com --user USERNAME` removes that CLI account's local sign-in. Ask before running it; it does not sign the person out everywhere. Never use `gh auth token` to verify setup.
+
+The project dependency install is separate from installing Node. It uses a pinned package manager through `npx`, not Corepack or a global install. [Its guide](project-dependencies.md) lists project files, runner/cache locations and an approved undo that preserves work the person wants.
 
 ## Settings and identity
 

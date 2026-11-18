@@ -23,6 +23,8 @@ Use [the demo brief and review checklist](references/demo-checklist.md). A scree
 - Fix errors and retake. Do not present failed states, sign-in prompts, notifications or personal details as a finished demo.
 - Use a new isolated tab or browser context. Never attach to someone else's browser, reuse their cookies, or drive their desktop without a separate explicit request.
 
+For a forked app, confirm [upstream hosted services are inert](../prototypes/references/fork-guardrails.md) before opening it for rehearsal or capture. A fresh browser profile is not a network boundary. Do not load an unprepared app or sign in to upstream services to get a before image.
+
 ## Rehearse first
 
 1. Inspect the built-in browser tools the host actually offers. In VS Code, use them to open the local page, reset the flow, click through it, and inspect screenshots and errors. No external browser server is required for these checks.

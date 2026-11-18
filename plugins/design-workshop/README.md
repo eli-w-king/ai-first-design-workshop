@@ -10,7 +10,7 @@ This is a community workshop resource, not an official Microsoft or GitHub produ
 
 | Skill | What it helps you do | Try saying |
 | --- | --- | --- |
-| [workshop-setup](skills/workshop-setup/SKILL.md) | Check VS Code Insiders, GitHub and optional tools, with approval and an undo for each change. | "Check my setup. Do not install anything yet." |
+| [workshop-setup](skills/workshop-setup/SKILL.md) | Check VS Code Insiders, GitHub, Git and current-LTS Node prework, then explain an approved pinned dependency install and undo. | "Check my setup. Do not install anything yet." |
 | [variations](skills/variations/SKILL.md) | Build N distinct directions plus today's baseline, with one switcher and side-by-side comparison. | "Make three different directions for this screen." |
 | [demo-walkthrough](skills/demo-walkthrough/SKILL.md) | Rehearse a real flow, then record a short narrated video with a local system voice or your own chosen audio. | "Make a short video of this prototype. Ask before adding tools." |
 | [prototypes](skills/prototypes/SKILL.md) | Fork a real open-source project, redesign it on a branch, and prepare a before/after PR inside your own fork. | "Build this idea on a branch. Keep the current version available." |
@@ -102,6 +102,14 @@ copilot plugin marketplace remove ai-first-design-workshop
 Local-path plugins load from their real folder; edits take effect in a new session. A pinned commit stays pinned until you choose another revision. Review the host's own automatic-update settings if you want manual updates; this plugin adds no updater or sync job.
 
 Uninstalling does not remove projects, video files, personal skills you created, optional tools you installed, or automations you deliberately created from the template. Use the relevant skill's undo steps for those, with approval. Disable a created automation separately before removing it.
+
+## Fork prework and publishing
+
+For the workshop fork, Git, GitHub sign-in and the current Node LTS are prework. [Project dependencies](skills/workshop-setup/references/project-dependencies.md) use the project's exact package-manager pin through `npx`, with a frozen lockfile, no Corepack and no global package-manager install. The guide explains local files, shared or project-local caches, and approved cleanup.
+
+[Prototypes](skills/prototypes/SKILL.md) keeps PRs in your own fork, sets and verifies the CLI repository choice, and never sends workshop PRs, issues or comments upstream. Make upstream sync, accounts and analytics inert before running the app. An optional short `AGENTS.md` section helps communicate that boundary but does not enforce it.
+
+[Pages publishing](skills/publish-pages/SKILL.md) covers Vite/SPAs, PWA and worker scopes, fork Actions activation and inherited custom domains. Keep license notices, date and describe your modifications, and link the live app to its corresponding source. Present it as your fork, not an official or endorsed project. No particular app is built into these skill rules.
 
 ## Models, tools and cost
 
