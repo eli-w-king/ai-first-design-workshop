@@ -77,6 +77,7 @@ async function main() {
     await fs.mkdir(path.dirname(target), { recursive: true });
     await fs.writeFile(target, html);
   }
+  await fs.copyFile(path.join(ROOT, 'src', 'downloads', 'workshop-settings.jsonc'), path.join(OUT, 'get-ready', 'workshop-settings.jsonc'));
   await fs.writeFile(lockedFile, JSON.stringify(encrypted));
   await fs.writeFile(path.join(OUT, '.nojekyll'), '');
   await fs.writeFile(path.join(OUT, 'robots.txt'), `User-agent: *\nAllow: /\nSitemap: ${SITE_URL}sitemap.xml\n`);

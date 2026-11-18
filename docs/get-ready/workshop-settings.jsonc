@@ -1,0 +1,7 @@
+{
+  // (Experimental) (Changes permissions) (Can use credits) Offer desktop app control; you still activate and approve access.
+  "chat.agentHost.computerUse.enabled": true,
+
+  // (Experimental) (Can use credits) Show Send Later for a one-time prompt; nothing runs until you schedule it.
+  "sessions.sendLater.enabled": true
+}
