@@ -1,68 +1,47 @@
 ---
 name: variations
-description: 'Build a few really different design directions of one screen or flow, side by side, in plain HTML with mock data, and a switcher page to step through them. Use when someone asks for variations, directions, options, alternatives, or a lab for a screen, a case study, or a redesign. Also makes round 2 from partner notes.'
-argument-hint: '[how many] directions of [the screen], for [who]'
+description: "Build exactly N distinct design directions plus the current version as a baseline, in the person's existing project. Use for \"make three variations\", \"explore options\", \"compare directions\", \"a lab for this screen\", or \"round two from this feedback\". Include a switcher, side-by-side comparison, real project content, and responsive and reduced-motion checks."
 ---
 
 # Variations
 
-Explore a design question by building a few really different directions of one screen or flow, in real code, so the
-person can click through them side by side and pick.
+Write short, plain sentences. Do not use em or en dashes in generated copy.
 
-## Before you start
+Build alternatives a person can use and compare, not three colors of the same layout.
 
-Get a short brief. Ask for anything that's missing, in one message:
+## Agree on one question
 
-- **The screen or flow:** for example "the checkout page in my case study".
-- **Who it's for, and the job they're doing.**
-- **The question:** what should the directions answer? For example "how do we make the plan comparison easier to
-  scan?"
-- **How many:** default to 3. Build exactly that many.
-- **Their material:** the case study, screenshots, a PDF or an old page, in this folder. Read it first.
+Read the current project and the material the person selected. Ask only for missing essentials: the screen, the user's task, the design question, the count and the work budget. Default to three new directions when no count is given. Do not promise a completion time you have not rehearsed.
 
-## Rules
+For an annotated screenshot, use [the screenshot markup loop](../../references/markup-feedback.md): map marks to real code, ask about ambiguity, and show the markup with actual before/after captures. Do not turn visual feedback into text-only feedback.
 
-1. **Really different ideas, not near copies.** Each direction takes a different approach to the question (layout,
-   structure, interaction), not a different color.
-2. **A design prototype, not a product.** Use mock data. Don't build a backend, a database, sign-in, or real
-   payments. No calls to outside services.
-3. **Plain HTML, CSS and JavaScript.** No build step, no installs, no packages. It must open from the file.
-4. **Each direction in its own folder:** `v1/`, `v2/`, `v3/`. If there's a current version (a screenshot or an old
-   page), rebuild it as `v0/` so people can compare. Never edit another direction's folder.
-5. **Finish in about 10 minutes.** Pick a smaller scope rather than run long. Say what you cut.
-6. **Work in this session.** If you can run helpers in parallel, give each one direction and its own folder. Don't
-   start other sessions.
-7. **Nothing leaves the laptop.** Don't publish, push or send anything. That's the `publish-pages` skill, with the
-   person's okay.
-8. **Respect the person's taste and voice files** if they have them (see `voice-and-taste`).
+Use [the lab brief](references/lab-brief.md) to record the question, what stays unchanged, input content, and one name and one-line idea per direction. If two ideas describe the same approach, replace one before building.
 
-## What to build
+## Keep the work local
 
-For each direction, in its folder:
+- Ask before any install, send, publish, spend or delete. A request for variations does not authorize extra paid sessions or uploads. Do not change permissions.
+- Use the existing project's stack and components. For a new small page, prefer plain HTML, CSS and JavaScript with no dependencies. Never replace a working app just to make the lab easier.
+- Use approved real project copy and assets. For a fictional prototype, label the supplied sample content as fictional. Never invent customer quotes, usage numbers or testimonials. Ask for safe sample content when it is missing.
+- Keep production data, payments, accounts and outside services out of the prototype. Inputs sent to the AI still use the selected provider; local files do not mean local inference.
+- Work only in a new agreed lab folder or the project's existing variant mechanism. Preserve unrelated edits. Do not start worktree sessions or other agents without approval of their cost and permissions.
 
-- `index.html`, a complete flow someone can click through for one task, not a static picture.
-- It works at desktop width (1280) and phone width (390), and with reduced motion.
-- `NOTES.md`: the idea in one line, what it's good at, and what it gives up.
+## Build the set
 
-Then a lab page at the top, `index.html`:
+1. Keep today's working version as **0: Today**, separate from the N new directions. Reuse its real code and surrounding UI. If the only baseline is a screenshot, label it **reference image, not interactive**. Do not invent a working baseline.
+2. Give every direction a stable id, a short name and a different structural or interaction idea. Hold the task, content and surrounding UI constant.
+3. Put files in `labs/<question>/v1/`, `v2/` and so on, or use scoped components in the current app. Keep the current app's entry point unchanged.
+4. Build a single review page with a small named switcher, `?v=`, previous and next buttons, `[` and `]`, and a side-by-side comparison of two chosen directions. See [the lab conventions](references/lab-conventions.md).
+5. Respect `?motion=off` and system reduced motion. `?embed=1` hides review controls, not product controls. Keep the full flow usable by keyboard and touch.
+6. Add a short note per direction: its idea, what it helps, its trade-off and what is simulated. Add a manifest and opening instructions using the conventions reference.
 
-- It shows one direction at a time, full size, with its name in a small label.
-- `?v=1` opens direction 1. The `[` and `]` keys step back and forward, and so do two small buttons.
-- `?v=0` is the current version, if there is one.
+If parallel work is approved, give each helper exactly one direction and its own files. Keep the baseline, shared content and review page under one owner. Use the current model or a mid-priced option such as GPT-6.2 Sol if offered, not the most expensive model by default. More helpers consume more usage.
 
-## Check your work
+## Check before handing it over
 
-1. Open the lab in VS Code's built-in browser.
-2. Step through every direction at 1280 and at 390 wide. Fix anything broken, cut off, or unreadable.
-3. Save a screenshot of each at both widths in `shots/`.
+Use the existing built-in browser tools first. Check each direction and the baseline at 1440, 1280, 820 and 390 CSS pixels wide, normal and reduced motion. Check the main task, keyboard focus, switcher, comparison, wrapping, missing assets and console errors. Save and inspect desktop and phone screenshots. If a browser check is unavailable, name it as unverified, not passed.
 
-## Report
+Give the local path or URL, one sentence per direction, the checks and gaps, and ask which direction to keep. Stop your test server unless the person explicitly asks to keep it running; give its restart command. Removing the lab later requires approval and affects only its named folder, not the original app.
 
-In a few lines: the lab's path (or its local address), and one line per direction with its idea. Then ask which ones
-they want to keep.
+## Make another round
 
-## Round 2
-
-When the person shares notes (from a partner test, or their own), make the next round in new folders (`v4/`, and
-so on). Never overwrite an earlier direction: the history is part of their story. Note in each new `NOTES.md` which
-feedback it answers, quoting the notes word for word.
+Carry forward the person's named picks and exact feedback. Keep previous rounds reachable. Add new ids instead of overwriting them. Record what each change answers. When they choose a winner, use [prototypes](../prototypes/SKILL.md) to integrate that exact version, not a new interpretation. Ask before changing the main product or removing any alternatives.

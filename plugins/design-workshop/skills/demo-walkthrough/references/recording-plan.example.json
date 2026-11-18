@@ -1,0 +1,33 @@
+{
+  "url": "http://127.0.0.1:4173/",
+  "ready": {
+    "role": "heading",
+    "name": "My notes"
+  },
+  "steps": [
+    {
+      "action": "fill",
+      "target": {
+        "role": "textbox",
+        "name": "Note"
+      },
+      "value": "Review the navigation"
+    },
+    {
+      "action": "click",
+      "target": {
+        "role": "button",
+        "name": "Save note"
+      }
+    },
+    {
+      "action": "expect",
+      "target": {
+        "text": "Saved locally."
+      }
+    }
+  ],
+  "finish": {
+    "text": "Saved locally."
+  }
+}

@@ -1,0 +1,41 @@
+# Validation
+
+Nothing in this folder runs on installation. These are maintainer checks, not attendee prerequisites.
+
+From the repository root, using an existing Python installation with PyYAML and Node 22 or later:
+
+```sh
+python3 plugins/design-workshop/tests/validate_plugin.py
+node --test plugins/design-workshop/tests/*.test.mjs
+```
+
+The first command parses every skill's YAML frontmatter, checks names and description lengths, validates package metadata and both opt-in automation templates, resolves relative Markdown links and headings, and rejects em and en dashes. The Node tests cover recording-plan bounds, localhost-only read requests and narration timing that must not cut off words.
+
+## Isolated CLI check
+
+Use a new folder under your chosen local working folder, not your personal configuration. Give the fixture its own Git boundary for the CLI test so discovery does not inherit ancestor project skills; the attendee taste workflow itself needs no Git. Set `HOME`, `COPILOT_HOME` and `COPILOT_CACHE_HOME` to separate paths inside it and set `COPILOT_AUTO_UPDATE=false`. Keep those environment values for every command in the test. Do not change your real settings or copy personal skills or credentials into the test home.
+
+Register the repository's absolute path with `copilot plugin marketplace add`, install `design-workshop@ai-first-design-workshop`, then inspect `copilot plugin list` and `copilot skill list`. Check all nine names, not merely the successful install message. Test update and uninstall through the same interface. Remove only the test folders you created after their scope is reviewed.
+
+A small model trial consumes AI usage. If authorized, use a mid-priced model, a host-enforced cap, no background sync, no account integrations, and narrow read/write permissions in a fresh fixture folder. On the tested CLI, `apply_patch` is the available file-writing tool; filtering tools to nonexistent `create` or `edit` names leaves no writer. CLI 1.0.110-2 requires a session cap of at least 30 AI credits. Save the usage receipt. Never use an allow-all flag or a real project as a shortcut for the trial.
+
+## Recording checks
+
+Use only an existing approved browser and recording runtime, or separately approve a project-local install. Run the helper against a harmless local fixture with one input, one button and a visible result. Verify the actual WebM decodes, its dimensions, the initial and final screenshots, the pointer and the full continuous playback. Also verify a page error is reported as a failed take and that an existing output folder is not overwritten. Stop the fixture server and browser you started.
+
+## Release limits
+
+- A metadata and CLI install check does not prove a VS Code GUI install or an unattended schedule works.
+- A recording on a prepared development machine does not prove clean personal-account Mac or Windows setup, dependency downloads or workshop timing.
+- No real repository is published and no PR, job application, study, paid run or schedule is created by these checks.
+- The branch preview is not a default-branch release. The maintainer reviews the public-content scan, license and workshop rehearsal before approving release.
+
+## Checked on November 17, 2026
+
+- Copilot CLI 1.0.110-2 accepted the local marketplace and installed all nine skills. The tests used isolated configuration and cache directories, not a person's real skill folder.
+- A GPT-6.2 Sol trial generated a draft-only partner-test plan and evidence-limited fictional synthesis. No research service or contact action ran.
+- Two taste trials created the first local draft and a later proposal. The previous draft was preserved byte for byte, source-specific labels and links were excluded from rules, and existing personal-skill sentinels in the throwaway home stayed unchanged. No personal installation was attempted.
+- The headless recorder produced an actual 1280 by 800, 10.64-second WebM. A deliberate page error failed, and an existing take could not be overwritten. Initial and final screenshots and a full-span contact sheet were inspected.
+- Local macOS system speech and a supplied audio-file fixture both produced H.264/AAC narrated MP4s, with complete decoding checks. No microphone or external voice service was used. Full listening review is not claimed.
+- The capture check reused an existing Chromium and Playwright Core 1.66 alpha runtime. Its expected encoder was missing, so the isolated test used an already installed full ffmpeg through a test-local path mapping. No shared cache was changed and no browser or package was installed. This proves the helper's real capture path, not a cold install of the documented stable package.
+- Five focused Node checks and the YAML, metadata, relative-link and punctuation validator pass. Windows speech, clean Mac and Windows installs, the VS Code template UI and real public deployment still need a rehearsal.

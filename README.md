@@ -24,3 +24,9 @@ This is a UXPA Seattle community workshop. It isn't an official Microsoft or Git
 3. Add a link to the new page from the home page and from the nav in every page.
 
 Pages are plain HTML, so there's nothing to install or build. To preview, open `docs/index.html` in a browser, or run `python3 -m http.server --directory docs` and open http://localhost:8000.
+
+## Workshop skills
+
+[Design workshop](plugins/design-workshop/README.md) is a preview plugin with nine skills for your own projects: setup, variations, real demo videos, prototypes and PRs, partner tests, personal taste, longer-run plans, GitHub Pages, and portfolio or role-digest drafts. It installs no tools or background jobs and asks before consequential actions.
+
+The preview lives on `plugin/design-workshop`. Follow the plugin README for branch-specific installation in VS Code or Copilot CLI, updates, removal and cost guidance. Default-branch install links are not ready until the preview is approved for release.
