@@ -20,7 +20,7 @@ Use general words for each rule, with the number of distinct supporting notes an
 
 Stop after writing the local draft and review. Never read, copy to, or overwrite my personal skills folder during an automation run. I review the exact version and approve a separate live copy step. An existing my-taste requires an approved backup and an explicit okay before replacement.
 
-Use Manual permissions and an ordinary workspace, never Autopilot, Allow all or a worktree. Suggest a mid-priced model such as GPT-6.2 Sol if it is available; do not change models or billing settings yourself. Use the host's approved per-run usage cap. If approval is unavailable, stop rather than broadening permissions. A blocked run holds back the next run.
+Use Manual permissions and an ordinary workspace, never Autopilot, Allow all or a worktree. Suggest a mid-priced model such as GPT-6.2 Sol if it is available; do not change models or billing settings yourself. If the host offers a per-run usage cap, use the one I approved. If approval is unavailable, stop rather than broadening permissions. A blocked run holds back the next run.
 
 The person keeps the trigger Manual and presses Run now for the first run. A weekly schedule is an optional later choice, not something this prompt enables. Local scheduled runs happen only while the laptop is awake and the agent is running. Report the draft path, the proposed changes, actual usage if available, and any blocker. Never install, send, publish, buy anything or delete files.
 
