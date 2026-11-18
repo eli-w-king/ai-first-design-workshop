@@ -67,7 +67,7 @@ test('Tonight keeps the scheduled deploy check separate from the live-link hando
   assert.equal(FREE_MODULES[0].id, 'cloud');
   const byNum = n => GUIDED_MODULES.find(m => m.number === n);
   assert.equal(byNum(3).prompts[1].text, byNum(4).prompts[0].text);
-  assert.equal(byNum(6).prompts.find(p => p.text === 'Check my GitHub Pages deployment and give me the live link.')?.label, 'Send Later at 7:10 PM');
+  assert.equal(byNum(6).prompts.find(p => p.text === 'Check my GitHub Pages deployment and give me the live link.')?.label, 'Send Later at 7:15 PM');
   for (const [id,label] of [['together','7:15, once your link is live: two more wows together'], ['free-work','About 7:30: free work']]) {
     assert.ok(nav.includes(`href="#${id}">${label}</a>`));
     assert.ok(html.includes(`id="${id}"><h2>${label}</h2>`));

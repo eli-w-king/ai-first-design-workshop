@@ -65,11 +65,11 @@ export const GUIDED_MODULES = [
   {
     number: 6, id: 'module-6', title: 'A feature and three directions', time: '6:44 PM', end: '6:59 PM',
     model: "Listen mode: GPT-6.2 Sol, medium. Today: GPT-6.1 Terra, medium, in each of three sessions. Synthesis: GPT-6.1 Terra, medium.",
-    action: "Start Listen in Plan mode. Review the plan, then choose Implement Plan. Open a new session on Autopilot for Today. It may ask before starting the three sessions, even with your okay in the prompt. Confirm that they can start and keep everything local. While they work, use Send Later for 7:10 PM. Then use + > Files to attach kit/research/All six notes.md and send the research prompt.",
+    action: "Start Listen in Plan mode. Review the plan, then choose Implement Plan. Open a new session on Autopilot for Today. It may ask before starting the three sessions, even with your okay in the prompt. Confirm that they can start and keep everything local. While they work, use Send Later for 7:15 PM. Then use + > Files to attach kit/research/All six notes.md and send the research prompt.",
     prompts: [
       { label: "Plan Listen mode", text: "Add Listen mode: a button that reads the side of the card I'm looking at out loud, with a voice already on this device. Never read the side I'm trying to remember; after I reveal the answer, Listen can read it. Plan it first." },
       { label: "Today: new session on Autopilot", text: "Design a Today home that tells me what to study now. Make three really different directions, each in its own session, and a page to compare them. You have my okay to start the three sessions. Keep everything local." },
-      { label: "Send Later at 7:10 PM", text: "Check my GitHub Pages deployment and give me the live link." },
+      { label: "Send Later at 7:15 PM", text: "Check my GitHub Pages deployment and give me the live link." },
       { label: "Attach All six notes.md", text: "These are fictional practice notes. What patterns do you see, and what should we build next?" },
     ],
     wow: 'Four agents work at once while you read research.',
@@ -81,7 +81,7 @@ export const GUIDED_MODULES = [
   {
     number: 9, id: 'module-9', title: 'Ship it', time: '6:59 PM', end: 'about 7:15 PM',
     model: "GPT-6.1 Terra, medium",
-    action: "Open the comparison page and pick a Today direction. Replace <name> and <my name> below. Check the files that will go public and make sure the PR targets your own fork, not upstream. Your scheduled message checks the deployment at 7:10. It may still be building.\n\nExpect about 15 minutes from send to live, so links go live around 7:15. While it builds, Eli shows Modules 7 and 8 from the reference run.",
+    action: "Open the comparison page and pick a Today direction. Replace <name> and <my name> below. Check the files that will go public and make sure the PR targets your own fork, not upstream.\n\nExpect about 15 minutes from send to live, so links go live around 7:15. While it builds, Eli shows Modules 7 and 8 from the reference run. At 7:15 your scheduled message checks the deployment and hands you the link.",
     prompts: [
       { label: "Ship your chosen direction", text: "Bring the <name> direction into my home screen, and make tonight's changes the default, with no flags. Then open a PR in my fork with tonight's app changes only (source, tests and the Today page; leave out videos, recordings and anything over 1 MB), merge it, and publish it to GitHub Pages. Keep Skola's license and credit, and add 'My fork of Skola, modified by <my name> on Nov 19, 2026. Not official Skola.' with a link to my repo. Give me both links." },
       { label: "If no Today direction is ready", text: "Make tonight's changes the default, with no flags. Then open a PR in my fork with tonight's app changes only (source, tests and the Today page; leave out videos, recordings and anything over 1 MB), merge it, and publish it to GitHub Pages. Keep Skola's license and credit, and add 'My fork of Skola, modified by <my name> on Nov 19, 2026. Not official Skola.' with a link to my repo. Give me both links." },
