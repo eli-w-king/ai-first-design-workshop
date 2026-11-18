@@ -1,26 +1,58 @@
 # AI-First Design Workshop
 
-Materials for the AI-First Design Workshop, with UXPA Seattle: Thursday, Nov 19, 2026, 5:30 to 8:30 PM PT, in person in Seattle. Hosted by Eli King and Thoa Nguyen.
+A hands-on evening with UXPA Seattle. Thursday, Nov 19, 2026, 5:30 to 8:30 PM PT, in Seattle. Hosted by UXPA Seattle, with Eli King and Thoa Nguyen.
 
-The site: https://eli-w-king.github.io/ai-first-design-workshop/
+- Site: https://eli-w-king.github.io/ai-first-design-workshop/
+- Event: https://luma.com/hw3533y5
 
-Event page: https://luma.com/hw3533y5
+An independent community event with UXPA Seattle. It isn't an official Microsoft or GitHub event.
 
-Materials are coming soon.
+## Preview
 
-This is a UXPA Seattle community workshop. It isn't an official Microsoft or GitHub event.
+Node 22 or later. No packages to install.
 
-## What's here
+```sh
+node tools/serve.mjs --port 4179
+```
 
-- `docs/` is the site, published with GitHub Pages from the `main` branch.
-  - `docs/index.html` is the home page.
-  - `docs/assets/site.css` styles every page. `docs/assets/dither.js` draws the one dithered moment on a page.
-- `templates/page.html` is the starting point for a new page.
+Open http://127.0.0.1:4179/ai-first-design-workshop/. Add `?motion=off` for the designed still frame. Stop the server with Ctrl+C. It serves only `docs/`, including the project path that GitHub Pages uses.
 
-## Add a page
+The site is static. GitHub Pages publishes the committed `docs/` folder from `main`. Work on `site/v1` is a review branch, not the live site. Merging and publishing require the maintainer's approval.
 
-1. Copy `templates/page.html` to `docs/<name>.html`.
-2. Fill in the title, the nav link marked `aria-current`, and the content.
-3. Add a link to the new page from the home page and from the nav in every page.
+## Edit and build
 
-Pages are plain HTML, so there's nothing to install or build. To preview, open `docs/index.html` in a browser, or run `python3 -m http.server --directory docs` and open http://localhost:8000.
+- `src/pages.mjs`: the six public pages and 404.
+- `src/data.mjs`: public metadata, official documentation links, glossary and module titles.
+- `src/assets/`: shared styles, browser code, favicon and social image.
+- `templates/page.html`: navigation, metadata, footer and shared page shell.
+- `tools/build.mjs`: dependency-free static build.
+
+```sh
+node tools/build.mjs
+node --test test/site.test.mjs
+node tools/check.mjs
+```
+
+The full build reads course Markdown and its credential from outside this repository. By default they are in `~/Desktop/AI-First Design Workshop/Takehome-source/` and `~/.config/ai-first-design-workshop/takehome-password`. Set `TAKEHOME_SOURCE` and `TAKEHOME_PASSWORD_FILE` to other outside-repository paths if needed. Never put either input in git or pass a credential as a command-line argument.
+
+Each module supports paragraphs, headings, simple lists, HTTPS links, inline code, bold text and fenced prompts. Raw HTML is escaped. A module needs Goal, Steps, What it costs and How to undo it sections. Keep any media public-safe and outside the course unless it is also encrypted.
+
+If you only have the public repository, preserve the existing encrypted course while rebuilding public pages:
+
+```sh
+node tools/build.mjs --public-only
+```
+
+A full build fails before writing output if private inputs are missing. It never falls back to plaintext. Commit the generated `docs/` along with public source changes. Keep `.nojekyll`.
+
+## The take-home lock
+
+The build derives an AES-256-GCM key with PBKDF2-SHA256 at 600,000 iterations. A fresh encryption uses a random 16-byte salt and a random 12-byte IV. Unchanged content reuses a previous payload only after authenticating and comparing it in memory. The single payload is `docs/keep-going/course.json`.
+
+The browser decrypts it with WebCrypto. Remembering access is opt-in and stores the derived access key in localStorage, not the entered password or lesson text. Forget access clears that key and removes the decrypted lessons from the page. A changed encryption salt invalidates remembered access. This convenience gate is not suitable for confidential material: keep the course safe to share even if access is passed on.
+
+## Current draft items
+
+The live sample kit, exact task order, recording and narration route, Computer Use setup, and taste automation first run are still being finalized. The settings snippet and exact image-attachment controls are pending a checked handoff. Free-month redemption, card requirement, renewal and promotional cancellation details need confirmation. The Skills page describes a plugin under separate development; installation is for after release, not an instruction to install an unpublished branch.
+
+Public pages do not include guest data, private links, redemption codes, credentials or a street address. Review content and repository history before publishing.

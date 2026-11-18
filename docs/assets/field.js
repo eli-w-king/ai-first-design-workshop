@@ -7,8 +7,8 @@
 // switches for comparing, kept for the rest of the visit in that tab.
 // It draws only while it's on screen and the tab is visible. Pause stops it on every page and holds the exact moment
 // until Play (localStorage). Reduced motion, or ?motion=off, draws one complete still frame and hides Pause. The
-// field dims behind the text it sits under, so titles keep their contrast in every frame. Light mode has its own
-// palette: dark points on the light ground, teal accents.
+// field dims behind the text it sits under, so titles keep their contrast in every frame. The workshop uses
+// the poster's dark palette on every device.
 (() => {
 	'use strict';
 
