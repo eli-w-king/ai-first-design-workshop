@@ -48,14 +48,14 @@ test('course Markdown fails closed for unsafe links and unclosed code', () => {
   assert.throws(() => renderMarkdown('```prompt\nunfinished'));
 });
 
-test('Tonight puts the live link at the end of the hour in both the cards and index', async () => {
+test('Tonight keeps the scheduled deploy check separate from the live-link handoff', async () => {
   const { GUIDED_MODULES, FREE_MODULES } = await import('../src/run-sheet.mjs');
   const { PAGES } = await import('../src/pages.mjs');
   const html = PAGES.find(page => page.slug === 'tonight').content;
   const schedule = [
     [1, '6:10 PM', '6:20 PM'], [2, '6:20 PM', '6:25 PM'], [3, '6:25 PM', '6:33 PM'],
     [4, '6:33 PM', '6:36 PM'], [5, '6:36 PM', '6:44 PM'], [6, '6:44 PM', '6:59 PM'],
-    [9, '6:59 PM', '7:10 PM'], [7, '7:10 PM', '7:12 PM'], [8, '7:12 PM', 'about 7:25 PM'],
+    [9, '6:59 PM', 'about 7:15 PM'], [7, '7:15 PM', '7:17 PM'], [8, '7:17 PM', 'about 7:30 PM'],
   ];
   assert.deepEqual(GUIDED_MODULES.map(m => [m.number,m.time,m.end]), schedule);
   assert.deepEqual(GUIDED_MODULES.filter(m => m.block === 'together').map(m => m.number), [7,8]);
@@ -67,6 +67,11 @@ test('Tonight puts the live link at the end of the hour in both the cards and in
   assert.equal(FREE_MODULES[0].id, 'cloud');
   const byNum = n => GUIDED_MODULES.find(m => m.number === n);
   assert.equal(byNum(3).prompts[1].text, byNum(4).prompts[0].text);
+  assert.equal(byNum(6).prompts.find(p => p.text === 'Check my GitHub Pages deployment and give me the live link.')?.label, 'Send Later at 7:10 PM');
+  for (const [id,label] of [['together','7:15, once your link is live: two more wows together'], ['free-work','About 7:30: free work']]) {
+    assert.ok(nav.includes(`href="#${id}">${label}</a>`));
+    assert.ok(html.includes(`id="${id}"><h2>${label}</h2>`));
+  }
   const [picked, unfinished] = byNum(9).prompts.map(p => p.text);
   assert.equal(unfinished, "Make tonight's changes the default, with no flags." + picked.slice(picked.indexOf('. Then open')+1));
 });

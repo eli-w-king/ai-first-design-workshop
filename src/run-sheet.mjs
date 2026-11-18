@@ -79,9 +79,9 @@ export const GUIDED_MODULES = [
     downloads: 'research',
   },
   {
-    number: 9, id: 'module-9', title: 'Ship it', time: '6:59 PM', end: '7:10 PM',
+    number: 9, id: 'module-9', title: 'Ship it', time: '6:59 PM', end: 'about 7:15 PM',
     model: "GPT-6.1 Terra, medium",
-    action: "Open the comparison page and pick a Today direction. Replace <name> and <my name> below. Check the files that will go public and make sure the PR targets your own fork, not upstream. At 7:10 the scheduled message checks the deploy and hands you the link.",
+    action: "Open the comparison page and pick a Today direction. Replace <name> and <my name> below. Check the files that will go public and make sure the PR targets your own fork, not upstream. Your scheduled message checks the deployment at 7:10. It may still be building.\n\nExpect about 15 minutes from send to live, so links go live around 7:15. While it builds, Eli shows Modules 7 and 8 from the reference run.",
     prompts: [
       { label: "Ship your chosen direction", text: "Bring the <name> direction into my home screen, and make tonight's changes the default, with no flags. Then open a PR in my fork with tonight's app changes only (source, tests and the Today page; leave out videos, recordings and anything over 1 MB), merge it, and publish it to GitHub Pages. Keep Skola's license and credit, and add 'My fork of Skola, modified by <my name> on Nov 19, 2026. Not official Skola.' with a link to my repo. Give me both links." },
       { label: "If no Today direction is ready", text: "Make tonight's changes the default, with no flags. Then open a PR in my fork with tonight's app changes only (source, tests and the Today page; leave out videos, recordings and anything over 1 MB), merge it, and publish it to GitHub Pages. Keep Skola's license and credit, and add 'My fork of Skola, modified by <my name> on Nov 19, 2026. Not official Skola.' with a link to my repo. Give me both links." },
@@ -93,7 +93,7 @@ export const GUIDED_MODULES = [
     downloads: 'publish',
   },
   {
-    number: 7, id: 'module-7', title: 'Show it off', time: '7:10 PM', end: '7:12 PM', block: 'together',
+    number: 7, id: 'module-7', title: 'Show it off', time: '7:15 PM', end: '7:17 PM', block: 'together',
     model: "GPT-6.1 Terra, medium",
     action: "Start a narrated tour of your live Skola 2.0. Let it run in the background while Module 8 starts. The recorder can't capture the app's own speech, so narrate what Listen does.",
     prompts: [
@@ -105,7 +105,7 @@ export const GUIDED_MODULES = [
     further: 'Play the exported file from start to finish and check the narration, readable text and actual result before sharing it.',
   },
   {
-    number: 8, id: 'module-8', title: 'Let it use your app', time: '7:12 PM', end: 'about 7:25 PM', block: 'together',
+    number: 8, id: 'module-8', title: 'Let it use your app', time: '7:17 PM', end: 'about 7:30 PM', block: 'together',
     model: "GPT-6.2 Sol, medium",
     action: "Switch to **Interactive** mode and **Manual** permissions first. Install your Skola from your live link as an app and ask Computer Use to import the Spanish deck with the file picker.\n\n**Watch for the native panel.** The first time Computer Use asks to control your Skola app, click **Allow** for that app. It asks once per app, not in the chat. Autopilot cancels the request, so the task stalls.\n\nHeadphones or low volume: 16 laptops will talk at once.",
     prompts: [
