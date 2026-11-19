@@ -795,12 +795,24 @@ function resolveVideo(key) {
 		}
 	}
 	Object.assign(entry, probe(file));
+	if (!entry.duration && Number(conf.duration) > 0) {
+		entry.duration = Number(conf.duration);
+	}
 	entry.bytes = fs.statSync(file).size;
 	report.videos.push({ key, state: 'shown', megabytes: +(entry.bytes / 1e6).toFixed(1), captions: Boolean(entry.captions), poster: Boolean(entry.poster), note: Boolean(conf.note) });
 	if (entry.bytes > 95e6) {
 		report.fixes.push(`${key}: the video is ${(entry.bytes / 1e6).toFixed(0)} MB; GitHub refuses files over 100 MB`);
 	}
 	return entry;
+}
+
+// The AI credits the recorded run used (a number from videos.json), or a line written out as text.
+function creditsLine(credits) {
+	if (typeof credits === 'number' && Number.isFinite(credits) && credits > 0) {
+		const n = Math.round(credits);
+		return credits < 1 ? 'Less than 1 credit in this recording' : `${n.toLocaleString('en-US')} credit${n === 1 ? '' : 's'} in this recording`;
+	}
+	return typeof credits === 'string' ? credits.trim() : '';
 }
 
 function formatDuration(sec) {
@@ -818,8 +830,10 @@ function videoSlot(title, video, transcriptId) {
 	}
 	const ratio = video.width && video.height ? `${video.width} / ${video.height}` : '16 / 9';
 	const real = whatsReal(video);
+	const credits = creditsLine(video.conf?.credits);
 	const meta = [
 		video.duration ? `<span class="video-length">${esc(formatDuration(video.duration))}</span>` : '',
+		credits ? `<span class="video-credits">${esc(credits)}</span>` : '',
 		transcriptId ? `<a href="#${esc(transcriptId)}">Transcript</a>` : '',
 	].filter(Boolean).join('<span class="video-meta-dot" aria-hidden="true">·</span>') + (real ? `<span class="video-real">${esc(real)}</span>` : '');
 	return `<figure class="video" style="--ratio: ${ratio}">

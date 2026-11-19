@@ -1,5 +1,5 @@
 {
-	"_readme": "One entry per page with a video slot: every course module by name, and uninstall. Drop the files in content/videos/ with these names (a poster can sit next to the video as <name>.jpg). Until the .mp4 is there, the page shows nothing where the video goes. note is one line on what is real and what is scripted in it, shown under the video; the .vtt also becomes the transcript at the end of the page.",
+	"_readme": "One entry per page with a video slot: every course module by name, and uninstall. Drop the files in content/videos/ with these names (a poster can sit next to the video as <name>.jpg). Until the .mp4 is there, the page shows nothing where the video goes. note is one line on what is real and what is scripted in it, shown under the video, and credits (a number) is the AI credits the recorded run used; the .vtt also becomes the transcript at the end of the page. tools/import-videos.mjs brings in a delivery folder (with its videos.json) and fills these in.",
 	"posterAt": 2,
 	"videos": {
 		"intro": {

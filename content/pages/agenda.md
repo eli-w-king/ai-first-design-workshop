@@ -183,7 +183,7 @@ Draw a few shapes in the integrated browser to test it. If something's broken, f
 
 **Watch for:** it notices shapes don't stay after a drag, fixes the cause, draws one that stays, and commits.
 
-**If it fails:** "Pick the rectangle tool, drag on the canvas, and check that a rectangle appears. If it doesn't, find out why and fix it."
+**If it fails:** "Pick the rectangle tool, drag on the canvas, and check that the rectangle stays after you let go. If it doesn't, find out why and fix it."
 
 **How long:** 8 min.
 

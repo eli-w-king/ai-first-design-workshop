@@ -64,7 +64,15 @@ Theme through the kit's custom properties (`--hz-*`), which `src/assets/theme.cs
 
 ## Videos
 
-`content/videos.json` maps each module (by name) and `uninstall` to a file in `content/videos/`, with its captions (`.vtt`, which also becomes the transcript at the end of the page) and a note on what's real in it. Until the `.mp4` is there, the page shows nothing where the video goes. Keep each file under 100 MB.
+`content/videos.json` maps each module (by name) and `uninstall` to a file in `content/videos/`, with its captions (`.vtt`, which also becomes the transcript at the end of the page), a poster, a note on what's real in it and the AI credits the recorded run used. Until the `.mp4` is there, the page shows nothing where the video goes. Keep each file under 100 MB.
+
+To bring in a delivery (a folder with `<slug>.mp4`, `<slug>.vtt`, `<slug>-poster.jpg` and a `videos.json` that has each one's sha256, duration, credits and note):
+
+```sh
+node tools/import-videos.mjs <the delivery folder> [--only setup,mark-up]
+```
+
+It checks each video against its sha256, copies the files into `content/videos/` and fills in `content/videos.json`. Then build and check.
 
 ## This in practice
 

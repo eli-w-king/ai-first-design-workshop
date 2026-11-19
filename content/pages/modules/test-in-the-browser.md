@@ -22,7 +22,7 @@ The agent picks tools and drags on the canvas by itself. Something isn't right, 
 
 ## If it doesn't
 
-- **It says everything works.** Say: "Pick the rectangle tool, drag on the canvas, and check that a rectangle appears. If it doesn't, find out why and fix it."
+- **It says everything works.** Say: "Pick the rectangle tool, drag on the canvas, and check that the rectangle stays after you let go. If it doesn't, find out why and fix it."
 - **The browser isn't shared with the agent.** Say: "Open the localhost link in the integrated browser and test it there."
 
 ## On your own work

@@ -16,8 +16,8 @@ Excalidraw is the one project we work on together tonight. It's real, open-sourc
 
 ```figure
 still: intro/excalidraw-toolbar.png
-alt: Excalidraw's toolbar: a lock, the hand and the selection arrow, then the shape, arrow, line, pencil and text tools and the eraser, each with a small letter shortcut, and a menu at the end. Under it: "To move canvas, hold Scroll wheel or Space while dragging, or use the hand tool".
-caption: Today's toolbar, at the top of the canvas.
+alt: Excalidraw's toolbar: a lock, the hand and the selection arrow, then the shape, arrow, line, pencil, text and sticky note tools and the eraser, each with a small letter shortcut, and a menu at the end. Under it: "To move canvas, hold Scroll wheel or Space while dragging, or use the hand tool".
+caption: The toolbar in your copy, at the top of the canvas.
 ```
 
 It's the row of tools at the top of the canvas. It does a lot in a small space: the lock, the hand, selection, a row of drawing tools with letter shortcuts, and a menu. In our practice brief, people testing it got stuck in a few places. You'll read their notes, mark up a screenshot of what confused them, and fix it.
