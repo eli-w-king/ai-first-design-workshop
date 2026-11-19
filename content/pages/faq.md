@@ -25,7 +25,7 @@ The workshop is free. You get a free month of GitHub Copilot Max: you add a paym
 
 A folder in your home folder, `ai-first-workshop`, with your copy of Excalidraw, the workshop skills and resources, plus Git, Node.js and the GitHub CLI if you don't have them. The setup checklist shows every item and its size before you confirm. The [uninstall guide](uninstall.html) takes it all back out.
 
-## Will anything get sent or posted for me?
+## Does anything get sent or posted for me?
 
 No messages, posts or purchases. Your work goes to your own GitHub repo: a pull request you can see, merged when you ask, and a public GitHub Pages link for your copy of Excalidraw.
 
