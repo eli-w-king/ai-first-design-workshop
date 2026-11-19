@@ -1,0 +1,14 @@
+{
+	"name": "ai-first-design-workshop",
+	"private": true,
+	"type": "module",
+	"description": "The site for the AI-First Design Workshop with UXPA Seattle. No dependencies: plain Node builds it.",
+	"engines": { "node": ">=20" },
+	"scripts": {
+		"build": "node build.mjs",
+		"serve": "node tools/serve.mjs --port 4806",
+		"check": "node tools/check.mjs",
+		"refresh-prs": "node tools/refresh-prs.mjs",
+		"export-flow": "node tools/export-flow.mjs"
+	}
+}

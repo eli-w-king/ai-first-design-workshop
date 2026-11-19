@@ -1,0 +1,96 @@
+{
+	"_readme": "One entry per page with a video slot: every course module by name, and uninstall. Drop the files in content/videos/ with these names (a poster can sit next to the video as <name>.jpg). Until the .mp4 is there, the page shows nothing where the video goes. note is one line on what is real and what is scripted in it, shown under the video; the .vtt also becomes the transcript at the end of the page.",
+	"posterAt": 2,
+	"videos": {
+		"intro": {
+			"file": "videos/intro.mp4",
+			"captions": "videos/intro.vtt",
+			"note": ""
+		},
+		"case-study": {
+			"file": "videos/case-study.mp4",
+			"captions": "videos/case-study.vtt",
+			"note": ""
+		},
+		"setup": {
+			"file": "videos/setup.mp4",
+			"captions": "videos/setup.vtt",
+			"note": ""
+		},
+		"open-on-localhost": {
+			"file": "videos/open-on-localhost.mp4",
+			"captions": "videos/open-on-localhost.vtt",
+			"note": ""
+		},
+		"mark-up": {
+			"file": "videos/mark-up.mp4",
+			"captions": "videos/mark-up.vtt",
+			"note": ""
+		},
+		"test-in-the-browser": {
+			"file": "videos/test-in-the-browser.mp4",
+			"captions": "videos/test-in-the-browser.vtt",
+			"note": ""
+		},
+		"parallel-sessions": {
+			"file": "videos/parallel-sessions.mp4",
+			"captions": "videos/parallel-sessions.vtt",
+			"note": ""
+		},
+		"variation-labs": {
+			"file": "videos/variation-labs.mp4",
+			"captions": "videos/variation-labs.vtt",
+			"note": ""
+		},
+		"demo-videos": {
+			"file": "videos/demo-videos.mp4",
+			"captions": "videos/demo-videos.vtt",
+			"note": ""
+		},
+		"page-for-everyone": {
+			"file": "videos/page-for-everyone.mp4",
+			"captions": "videos/page-for-everyone.vtt",
+			"note": ""
+		},
+		"taste": {
+			"file": "videos/taste.mp4",
+			"captions": "videos/taste.vtt",
+			"note": ""
+		},
+		"self-improvement": {
+			"file": "videos/self-improvement.mp4",
+			"captions": "videos/self-improvement.vtt",
+			"note": ""
+		},
+		"automated-research": {
+			"file": "videos/automated-research.mp4",
+			"captions": "videos/automated-research.vtt",
+			"note": ""
+		},
+		"synthesis": {
+			"file": "videos/synthesis.mp4",
+			"captions": "videos/synthesis.vtt",
+			"note": ""
+		},
+		"overnight": {
+			"file": "videos/overnight.mp4",
+			"captions": "videos/overnight.vtt",
+			"note": ""
+		},
+		"another-computer": {
+			"file": "videos/another-computer.mp4",
+			"captions": "videos/another-computer.vtt",
+			"note": ""
+		},
+		"wrap-up": {
+			"file": "videos/wrap-up.mp4",
+			"captions": "videos/wrap-up.vtt",
+			"note": ""
+		},
+		"uninstall": {
+			"file": "videos/uninstall.mp4",
+			"captions": "videos/uninstall.vtt",
+			"note": ""
+		}
+	}
+}

@@ -1,0 +1,1204 @@
+{
+	"_readme": "Made by tools/refresh-prs.mjs. Public repositories only (checked without signing in), open or merged, newest first. The site shows this snapshot as is.",
+	"author": "eli-w-king",
+	"taken": "2026-11-19T07:26:03.326Z",
+	"items": [
+		{
+			"repo": "microsoft/vscode",
+			"number": 349100,
+			"title": "chat: prototype guarded Copilot CLI session handoffs",
+			"url": "https://github.com/microsoft/vscode/pull/349100",
+			"status": "open",
+			"draft": true,
+			"date": "2026-11-18T16:56:12Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 348704,
+			"title": "sessions: polish scheduled-message previews and inline editing",
+			"url": "https://github.com/microsoft/vscode/pull/348704",
+			"status": "merged",
+			"draft": false,
+			"date": "2026-11-17T19:58:30Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 348913,
+			"title": "sessions: prototype Customizations-style Automations",
+			"url": "https://github.com/microsoft/vscode/pull/348913",
+			"status": "open",
+			"draft": true,
+			"date": "2026-11-17T19:37:25Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 347974,
+			"title": "dictation: play a sound when cloud dictation disconnects",
+			"url": "https://github.com/microsoft/vscode/pull/347974",
+			"status": "merged",
+			"draft": false,
+			"date": "2026-11-17T00:12:40Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 347990,
+			"title": "sessions: add Close Others to the chat tab context menu",
+			"url": "https://github.com/microsoft/vscode/pull/347990",
+			"status": "open",
+			"draft": false,
+			"date": "2026-11-12T19:42:30Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 347216,
+			"title": "chat: keep model picker selection motion consistent",
+			"url": "https://github.com/microsoft/vscode/pull/347216",
+			"status": "open",
+			"draft": false,
+			"date": "2026-11-09T23:49:08Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 345942,
+			"title": "sessions: add built-in Koi Light and Koi Dark backgrounds",
+			"url": "https://github.com/microsoft/vscode/pull/345942",
+			"status": "merged",
+			"draft": false,
+			"date": "2026-11-04T01:12:34Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 342699,
+			"title": "chat: load generated images in a square that only grows into the image",
+			"url": "https://github.com/microsoft/vscode/pull/342699",
+			"status": "merged",
+			"draft": false,
+			"date": "2026-10-20T06:32:00Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 339642,
+			"title": "sessions: Premium polish for guided model comparison",
+			"url": "https://github.com/microsoft/vscode/pull/339642",
+			"status": "merged",
+			"draft": false,
+			"date": "2026-10-16T15:33:02Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 340328,
+			"title": "Update Codicons with report-question icon",
+			"url": "https://github.com/microsoft/vscode/pull/340328",
+			"status": "merged",
+			"draft": false,
+			"date": "2026-10-09T21:32:33Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 340329,
+			"title": "Use report-question icon for sessions needing attention",
+			"url": "https://github.com/microsoft/vscode/pull/340329",
+			"status": "merged",
+			"draft": false,
+			"date": "2026-10-09T21:32:30Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 340118,
+			"title": "Use attention terminology for agent sessions",
+			"url": "https://github.com/microsoft/vscode/pull/340118",
+			"status": "merged",
+			"draft": false,
+			"date": "2026-10-07T14:10:46Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 340146,
+			"title": "Rename editor chat surfaces to sessions",
+			"url": "https://github.com/microsoft/vscode/pull/340146",
+			"status": "open",
+			"draft": true,
+			"date": "2026-10-06T21:22:30Z"
+		},
+		{
+			"repo": "microsoft/vscode-codicons",
+			"number": 535,
+			"title": "Add report-question icon",
+			"url": "https://github.com/microsoft/vscode-codicons/pull/535",
+			"status": "merged",
+			"draft": false,
+			"date": "2026-10-06T20:26:50Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 338579,
+			"title": "chat: improve Draw persistent progress animation",
+			"url": "https://github.com/microsoft/vscode/pull/338579",
+			"status": "merged",
+			"draft": false,
+			"date": "2026-09-29T21:32:19Z"
+		},
+		{
+			"repo": "eli-w-king/eli-vscode",
+			"number": 6,
+			"title": "Add VS Code homepage redesign insights deck",
+			"url": "https://github.com/eli-w-king/eli-vscode/pull/6",
+			"status": "merged",
+			"draft": false,
+			"date": "2026-08-21T18:56:30Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 330354,
+			"title": "Explain Auto routing on the chat response footer hover",
+			"url": "https://github.com/microsoft/vscode/pull/330354",
+			"status": "open",
+			"draft": true,
+			"date": "2026-08-11T21:54:17Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 329294,
+			"title": "chat: use command center colors for compact agent control",
+			"url": "https://github.com/microsoft/vscode/pull/329294",
+			"status": "merged",
+			"draft": false,
+			"date": "2026-08-07T22:40:58Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 328484,
+			"title": "chat: paint the dictation mic glow with Voice Mode's listening color",
+			"url": "https://github.com/microsoft/vscode/pull/328484",
+			"status": "merged",
+			"draft": false,
+			"date": "2026-07-31T20:59:53Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 328455,
+			"title": "chat: redesign the Voice Mode ambient glow as a border + rim light",
+			"url": "https://github.com/microsoft/vscode/pull/328455",
+			"status": "merged",
+			"draft": false,
+			"date": "2026-07-31T19:56:08Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 328137,
+			"title": "chat: circular send button, ringed standalone mic / Voice Mode buttons",
+			"url": "https://github.com/microsoft/vscode/pull/328137",
+			"status": "merged",
+			"draft": false,
+			"date": "2026-07-31T17:49:56Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 328070,
+			"title": "chat: replace the dictation shimmer with a static processing color",
+			"url": "https://github.com/microsoft/vscode/pull/328070",
+			"status": "merged",
+			"draft": false,
+			"date": "2026-07-29T20:47:40Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 327853,
+			"title": "voice: introduce Voice Mode with a first-run card above the chat input",
+			"url": "https://github.com/microsoft/vscode/pull/327853",
+			"status": "merged",
+			"draft": false,
+			"date": "2026-07-28T22:41:07Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 327869,
+			"title": "chat: add a first-run dictation introduction with microphone picker",
+			"url": "https://github.com/microsoft/vscode/pull/327869",
+			"status": "merged",
+			"draft": false,
+			"date": "2026-07-28T20:24:44Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 327713,
+			"title": "chat: make the dictation mic glow an ambient inner rim light",
+			"url": "https://github.com/microsoft/vscode/pull/327713",
+			"status": "merged",
+			"draft": false,
+			"date": "2026-07-28T15:52:25Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 327328,
+			"title": "chat: ensure voice pill is visible in all themes",
+			"url": "https://github.com/microsoft/vscode/pull/327328",
+			"status": "merged",
+			"draft": false,
+			"date": "2026-07-24T20:35:41Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 327072,
+			"title": "chat: segmented voice/dictation toggle with hold-to-talk and listen-button styles",
+			"url": "https://github.com/microsoft/vscode/pull/327072",
+			"status": "merged",
+			"draft": false,
+			"date": "2026-07-23T23:01:15Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 320657,
+			"title": "Update welcome sign-in button label to \"Sign in to use GitHub Copilot\"",
+			"url": "https://github.com/microsoft/vscode/pull/320657",
+			"status": "merged",
+			"draft": false,
+			"date": "2026-06-09T20:35:47Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 319062,
+			"title": "Draft: Display configurable context size limits in Language Models table",
+			"url": "https://github.com/microsoft/vscode/pull/319062",
+			"status": "open",
+			"draft": true,
+			"date": "2026-05-29T21:22:58Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 319020,
+			"title": "Polish context size picker wording in chat input",
+			"url": "https://github.com/microsoft/vscode/pull/319020",
+			"status": "merged",
+			"draft": false,
+			"date": "2026-05-29T19:11:03Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 318649,
+			"title": "Fix 2px double border above account panel content in Agents window",
+			"url": "https://github.com/microsoft/vscode/pull/318649",
+			"status": "merged",
+			"draft": false,
+			"date": "2026-05-28T12:58:58Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 318615,
+			"title": "Onboarding: make agent feature cards non-interactive on Build with AI Agents step",
+			"url": "https://github.com/microsoft/vscode/pull/318615",
+			"status": "merged",
+			"draft": false,
+			"date": "2026-05-27T22:58:03Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 318624,
+			"title": "Change \"Inline suggestions quota reached\" to \"Inline suggestions limit reached\"",
+			"url": "https://github.com/microsoft/vscode/pull/318624",
+			"status": "merged",
+			"draft": false,
+			"date": "2026-05-27T20:13:24Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 318603,
+			"title": "Update sign-in text to specify GitHub Copilot",
+			"url": "https://github.com/microsoft/vscode/pull/318603",
+			"status": "merged",
+			"draft": false,
+			"date": "2026-05-27T19:10:53Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 313783,
+			"title": "Eli/browser select",
+			"url": "https://github.com/microsoft/vscode/pull/313783",
+			"status": "open",
+			"draft": true,
+			"date": "2026-05-01T20:16:47Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 311529,
+			"title": "Reorganize onboarding 'Build with AI agents' step",
+			"url": "https://github.com/microsoft/vscode/pull/311529",
+			"status": "merged",
+			"draft": false,
+			"date": "2026-04-23T14:12:11Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 311516,
+			"title": "Restyle /remote success banner as native info notification",
+			"url": "https://github.com/microsoft/vscode/pull/311516",
+			"status": "merged",
+			"draft": false,
+			"date": "2026-04-20T22:29:19Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 311442,
+			"title": "Prototype: Auto Model Routing collapsible card in chat (dev command)",
+			"url": "https://github.com/microsoft/vscode/pull/311442",
+			"status": "open",
+			"draft": true,
+			"date": "2026-04-20T18:36:26Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 310188,
+			"title": "Disable experimental onboarding by default with ExP support",
+			"url": "https://github.com/microsoft/vscode/pull/310188",
+			"status": "merged",
+			"draft": false,
+			"date": "2026-04-15T19:30:41Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 309918,
+			"title": "Mirror welcomeOnboarding SVG glob to esbuild resource lists in build/next/index.ts",
+			"url": "https://github.com/microsoft/vscode/pull/309918",
+			"status": "open",
+			"draft": true,
+			"date": "2026-04-14T17:37:13Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 308577,
+			"title": "Use full-color agent logo in sessions sign-in screen",
+			"url": "https://github.com/microsoft/vscode/pull/308577",
+			"status": "merged",
+			"draft": false,
+			"date": "2026-04-14T00:04:32Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 307262,
+			"title": "vscode onboarding",
+			"url": "https://github.com/microsoft/vscode/pull/307262",
+			"status": "merged",
+			"draft": false,
+			"date": "2026-04-10T23:40:15Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 307717,
+			"title": "Change GHE enterprise sign-in button label from \"GHE.com\" to \"GHE\"",
+			"url": "https://github.com/microsoft/vscode/pull/307717",
+			"status": "merged",
+			"draft": false,
+			"date": "2026-04-06T22:31:33Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 304307,
+			"title": "sessions sign in experience",
+			"url": "https://github.com/microsoft/vscode/pull/304307",
+			"status": "merged",
+			"draft": false,
+			"date": "2026-04-02T23:46:44Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 306920,
+			"title": "Use update.mode to drive title bar update experience; badge falls back when title bar is hidden",
+			"url": "https://github.com/microsoft/vscode/pull/306920",
+			"status": "open",
+			"draft": true,
+			"date": "2026-03-31T19:11:51Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 305759,
+			"title": "add chat import and export icons to agent debug logs",
+			"url": "https://github.com/microsoft/vscode/pull/305759",
+			"status": "merged",
+			"draft": false,
+			"date": "2026-03-27T21:04:50Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 305768,
+			"title": "sessions app first time use (WIP)",
+			"url": "https://github.com/microsoft/vscode/pull/305768",
+			"status": "open",
+			"draft": true,
+			"date": "2026-03-27T18:39:31Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 305721,
+			"title": "Replace agent debug log import/export icons with chat-import and chat-export codicons",
+			"url": "https://github.com/microsoft/vscode/pull/305721",
+			"status": "open",
+			"draft": true,
+			"date": "2026-03-27T16:08:22Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 304890,
+			"title": "fix: proper disposable lifecycle for hint animation timer in UpdateTitleBarEntry",
+			"url": "https://github.com/microsoft/vscode/pull/304890",
+			"status": "open",
+			"draft": true,
+			"date": "2026-03-25T20:12:20Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 304889,
+			"title": "fix: use ****** format for GitHub API auth in fetch.ts",
+			"url": "https://github.com/microsoft/vscode/pull/304889",
+			"status": "open",
+			"draft": true,
+			"date": "2026-03-25T20:12:18Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 304877,
+			"title": "lightweight update button styling",
+			"url": "https://github.com/microsoft/vscode/pull/304877",
+			"status": "open",
+			"draft": true,
+			"date": "2026-03-25T19:34:00Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 304615,
+			"title": "Cherry-pick update indicator styling: remove post-install button and Ready hint",
+			"url": "https://github.com/microsoft/vscode/pull/304615",
+			"status": "merged",
+			"draft": false,
+			"date": "2026-03-25T18:52:41Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 304616,
+			"title": "Remove `always` and `detailed` options from `update.titleBar` setting",
+			"url": "https://github.com/microsoft/vscode/pull/304616",
+			"status": "open",
+			"draft": true,
+			"date": "2026-03-25T00:53:24Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 304602,
+			"title": "Sessions sign-in: resolve outcome promise on dispose, remove dead CSS",
+			"url": "https://github.com/microsoft/vscode/pull/304602",
+			"status": "merged",
+			"draft": false,
+			"date": "2026-03-24T23:55:25Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 304598,
+			"title": "[WIP] Update sessions sign in experience",
+			"url": "https://github.com/microsoft/vscode/pull/304598",
+			"status": "open",
+			"draft": true,
+			"date": "2026-03-24T23:18:53Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 304578,
+			"title": "Sessions walkthrough: fix overlay dismissal, accessibility, and cleanup",
+			"url": "https://github.com/microsoft/vscode/pull/304578",
+			"status": "merged",
+			"draft": false,
+			"date": "2026-03-24T23:10:09Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 304235,
+			"title": "fixes window.title",
+			"url": "https://github.com/microsoft/vscode/pull/304235",
+			"status": "merged",
+			"draft": false,
+			"date": "2026-03-23T21:53:53Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 300560,
+			"title": "Compact agent status",
+			"url": "https://github.com/microsoft/vscode/pull/300560",
+			"status": "merged",
+			"draft": false,
+			"date": "2026-03-20T00:34:22Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 302931,
+			"title": "Eli/then dormouse",
+			"url": "https://github.com/microsoft/vscode/pull/302931",
+			"status": "open",
+			"draft": true,
+			"date": "2026-03-18T18:04:42Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 302564,
+			"title": "Replace eye icon with file icon for read-only agent .md files in mode picker",
+			"url": "https://github.com/microsoft/vscode/pull/302564",
+			"status": "merged",
+			"draft": false,
+			"date": "2026-03-17T23:25:19Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 301223,
+			"title": "Update getting started walkthrough: sign in CTA, new AI features, keyboard mappings step",
+			"url": "https://github.com/microsoft/vscode/pull/301223",
+			"status": "open",
+			"draft": true,
+			"date": "2026-03-12T19:44:28Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 300908,
+			"title": "Compact agent status - review feedback fixes",
+			"url": "https://github.com/microsoft/vscode/pull/300908",
+			"status": "merged",
+			"draft": false,
+			"date": "2026-03-11T21:06:40Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 300591,
+			"title": "Compact agent status: fix review feedback",
+			"url": "https://github.com/microsoft/vscode/pull/300591",
+			"status": "merged",
+			"draft": false,
+			"date": "2026-03-10T23:42:45Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 299634,
+			"title": "steer uses up arrow (same as send default)",
+			"url": "https://github.com/microsoft/vscode/pull/299634",
+			"status": "merged",
+			"draft": false,
+			"date": "2026-03-06T01:35:21Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 299274,
+			"title": "agent status + unified agents bar",
+			"url": "https://github.com/microsoft/vscode/pull/299274",
+			"status": "open",
+			"draft": true,
+			"date": "2026-03-04T19:50:03Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 296307,
+			"title": "Set \"custom\" as the default for `window.menuStyle` (Insiders only)",
+			"url": "https://github.com/microsoft/vscode/pull/296307",
+			"status": "merged",
+			"draft": false,
+			"date": "2026-02-22T15:46:26Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 294686,
+			"title": "Improve chat feedback animations",
+			"url": "https://github.com/microsoft/vscode/pull/294686",
+			"status": "merged",
+			"draft": false,
+			"date": "2026-02-19T23:03:55Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 296312,
+			"title": "Fix window.menuStyle default: gate 'custom' to non-stable builds only",
+			"url": "https://github.com/microsoft/vscode/pull/296312",
+			"status": "open",
+			"draft": true,
+			"date": "2026-02-19T16:17:31Z"
+		},
+		{
+			"repo": "eli-w-king/text-editor-app",
+			"number": 4,
+			"title": "Eli-image-support",
+			"url": "https://github.com/eli-w-king/text-editor-app/pull/4",
+			"status": "merged",
+			"draft": false,
+			"date": "2026-02-19T15:56:24Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 296061,
+			"title": "Add animation setting for needs-input icon in agent sessions list",
+			"url": "https://github.com/microsoft/vscode/pull/296061",
+			"status": "open",
+			"draft": true,
+			"date": "2026-02-18T18:01:18Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 295926,
+			"title": "Change window.menuStyle default to custom",
+			"url": "https://github.com/microsoft/vscode/pull/295926",
+			"status": "open",
+			"draft": true,
+			"date": "2026-02-18T05:05:41Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 295906,
+			"title": "Improve chat queue picker UX and working set integration",
+			"url": "https://github.com/microsoft/vscode/pull/295906",
+			"status": "open",
+			"draft": true,
+			"date": "2026-02-18T02:10:24Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 295231,
+			"title": "Reverts resize panel motion",
+			"url": "https://github.com/microsoft/vscode/pull/295231",
+			"status": "merged",
+			"draft": false,
+			"date": "2026-02-13T20:11:56Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 295011,
+			"title": "non-responsive panel content motion",
+			"url": "https://github.com/microsoft/vscode/pull/295011",
+			"status": "merged",
+			"draft": false,
+			"date": "2026-02-12T19:42:38Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 294021,
+			"title": "side and bottom panel motion",
+			"url": "https://github.com/microsoft/vscode/pull/294021",
+			"status": "merged",
+			"draft": false,
+			"date": "2026-02-12T01:47:47Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 294704,
+			"title": "Refactor quick input animations to use CSS classes instead of inline styles",
+			"url": "https://github.com/microsoft/vscode/pull/294704",
+			"status": "merged",
+			"draft": false,
+			"date": "2026-02-11T22:32:13Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 294261,
+			"title": "Animated show/hide transitions for workbench panels and quick input",
+			"url": "https://github.com/microsoft/vscode/pull/294261",
+			"status": "merged",
+			"draft": false,
+			"date": "2026-02-11T00:17:36Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 293496,
+			"title": "Use CSS custom properties for modal backdrop blur values",
+			"url": "https://github.com/microsoft/vscode/pull/293496",
+			"status": "merged",
+			"draft": false,
+			"date": "2026-02-06T18:09:15Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 293220,
+			"title": "moves share button to the left of command palette",
+			"url": "https://github.com/microsoft/vscode/pull/293220",
+			"status": "merged",
+			"draft": false,
+			"date": "2026-02-05T22:12:37Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 291489,
+			"title": "theme fixes cont.",
+			"url": "https://github.com/microsoft/vscode/pull/291489",
+			"status": "merged",
+			"draft": false,
+			"date": "2026-01-29T10:06:12Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 291448,
+			"title": "merge simple and responsive UI",
+			"url": "https://github.com/microsoft/vscode/pull/291448",
+			"status": "merged",
+			"draft": false,
+			"date": "2026-01-28T23:53:18Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 290624,
+			"title": "2026 theme fixes",
+			"url": "https://github.com/microsoft/vscode/pull/290624",
+			"status": "merged",
+			"draft": false,
+			"date": "2026-01-28T10:25:33Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 289791,
+			"title": "2026 theme refinements",
+			"url": "https://github.com/microsoft/vscode/pull/289791",
+			"status": "merged",
+			"draft": false,
+			"date": "2026-01-23T10:14:07Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 289558,
+			"title": "2026 light experimental theme refinement",
+			"url": "https://github.com/microsoft/vscode/pull/289558",
+			"status": "merged",
+			"draft": false,
+			"date": "2026-01-22T11:15:11Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 288127,
+			"title": "Reduce corner radius of editor hovers",
+			"url": "https://github.com/microsoft/vscode/pull/288127",
+			"status": "open",
+			"draft": true,
+			"date": "2026-01-15T17:49:05Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 287913,
+			"title": "Change dark theme background to pure black",
+			"url": "https://github.com/microsoft/vscode/pull/287913",
+			"status": "open",
+			"draft": true,
+			"date": "2026-01-14T23:42:45Z"
+		},
+		{
+			"repo": "eli-w-king/text-editor-app",
+			"number": 3,
+			"title": "fixed all menu interactions",
+			"url": "https://github.com/eli-w-king/text-editor-app/pull/3",
+			"status": "merged",
+			"draft": false,
+			"date": "2025-12-07T08:46:31Z"
+		},
+		{
+			"repo": "eli-w-king/text-editor-app",
+			"number": 2,
+			"title": "New debug",
+			"url": "https://github.com/eli-w-king/text-editor-app/pull/2",
+			"status": "merged",
+			"draft": false,
+			"date": "2025-12-07T08:46:06Z"
+		},
+		{
+			"repo": "eli-w-king/text-editor-app",
+			"number": 1,
+			"title": "Date added",
+			"url": "https://github.com/eli-w-king/text-editor-app/pull/1",
+			"status": "merged",
+			"draft": false,
+			"date": "2025-12-07T08:45:47Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 278673,
+			"title": "white apple logo for all themes except high contrast white",
+			"url": "https://github.com/microsoft/vscode/pull/278673",
+			"status": "merged",
+			"draft": false,
+			"date": "2025-11-21T05:36:12Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 275920,
+			"title": "revised - updated walkthrough chat panel illustration",
+			"url": "https://github.com/microsoft/vscode/pull/275920",
+			"status": "merged",
+			"draft": false,
+			"date": "2025-11-06T20:23:33Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 275724,
+			"title": "updated walkthrough chat panel illustration",
+			"url": "https://github.com/microsoft/vscode/pull/275724",
+			"status": "merged",
+			"draft": false,
+			"date": "2025-11-06T11:46:47Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 272556,
+			"title": "Agents description placeholder text",
+			"url": "https://github.com/microsoft/vscode/pull/272556",
+			"status": "merged",
+			"draft": false,
+			"date": "2025-10-24T06:17:17Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 272557,
+			"title": "Replace inline chat placeholder text with mode description",
+			"url": "https://github.com/microsoft/vscode/pull/272557",
+			"status": "open",
+			"draft": true,
+			"date": "2025-10-21T21:51:56Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 271399,
+			"title": "revised prompt titles and tile width",
+			"url": "https://github.com/microsoft/vscode/pull/271399",
+			"status": "merged",
+			"draft": false,
+			"date": "2025-10-15T04:40:52Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 269620,
+			"title": "revived new chat button in empty state",
+			"url": "https://github.com/microsoft/vscode/pull/269620",
+			"status": "merged",
+			"draft": false,
+			"date": "2025-10-03T10:18:13Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 269453,
+			"title": "replaced frog with chat sparkle",
+			"url": "https://github.com/microsoft/vscode/pull/269453",
+			"status": "merged",
+			"draft": false,
+			"date": "2025-10-02T15:49:50Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 268998,
+			"title": "suggested prompt style and reposition",
+			"url": "https://github.com/microsoft/vscode/pull/268998",
+			"status": "merged",
+			"draft": false,
+			"date": "2025-09-30T21:40:57Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 268586,
+			"title": "Added section title",
+			"url": "https://github.com/microsoft/vscode/pull/268586",
+			"status": "merged",
+			"draft": true,
+			"date": "2025-09-27T11:47:16Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 268080,
+			"title": "Empty state chat history 2.0",
+			"url": "https://github.com/microsoft/vscode/pull/268080",
+			"status": "merged",
+			"draft": false,
+			"date": "2025-09-27T11:47:14Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 268583,
+			"title": "Revert \"Eli/prompt-tile-style\"",
+			"url": "https://github.com/microsoft/vscode/pull/268583",
+			"status": "merged",
+			"draft": false,
+			"date": "2025-09-27T00:19:44Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 268582,
+			"title": "Eli/prompt-tile-style",
+			"url": "https://github.com/microsoft/vscode/pull/268582",
+			"status": "merged",
+			"draft": false,
+			"date": "2025-09-27T00:08:21Z"
+		},
+		{
+			"repo": "microsoft/vscode-copilot-chat",
+			"number": 1150,
+			"title": "Renamed chat commands",
+			"url": "https://github.com/microsoft/vscode-copilot-chat/pull/1150",
+			"status": "merged",
+			"draft": false,
+			"date": "2025-09-26T20:29:56Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 267167,
+			"title": "Removed 'add context...' from chat input button label",
+			"url": "https://github.com/microsoft/vscode/pull/267167",
+			"status": "merged",
+			"draft": false,
+			"date": "2025-09-24T23:39:43Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 267160,
+			"title": "Remove text label from Add Context button in chat input, show only centered paperclip icon",
+			"url": "https://github.com/microsoft/vscode/pull/267160",
+			"status": "merged",
+			"draft": false,
+			"date": "2025-09-17T07:32:48Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 267162,
+			"title": "Replace chat history header and icon with accessible link in empty state",
+			"url": "https://github.com/microsoft/vscode/pull/267162",
+			"status": "open",
+			"draft": true,
+			"date": "2025-09-17T06:37:40Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 265947,
+			"title": "apple logo placement",
+			"url": "https://github.com/microsoft/vscode/pull/265947",
+			"status": "merged",
+			"draft": false,
+			"date": "2025-09-11T06:58:51Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 265003,
+			"title": "Renamed 'chat history' to 'history'",
+			"url": "https://github.com/microsoft/vscode/pull/265003",
+			"status": "merged",
+			"draft": false,
+			"date": "2025-09-05T10:02:35Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 265252,
+			"title": "resized and middle aligned apple logo",
+			"url": "https://github.com/microsoft/vscode/pull/265252",
+			"status": "merged",
+			"draft": false,
+			"date": "2025-09-05T05:21:47Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 264255,
+			"title": "Eli/history",
+			"url": "https://github.com/microsoft/vscode/pull/264255",
+			"status": "merged",
+			"draft": false,
+			"date": "2025-09-01T02:27:51Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 259881,
+			"title": "updated release notes rendering to support new format",
+			"url": "https://github.com/microsoft/vscode/pull/259881",
+			"status": "merged",
+			"draft": false,
+			"date": "2025-08-05T20:33:07Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 259877,
+			"title": "Revert \"merge main to branch\"",
+			"url": "https://github.com/microsoft/vscode/pull/259877",
+			"status": "merged",
+			"draft": false,
+			"date": "2025-08-05T18:33:28Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 259876,
+			"title": "merge main to branch",
+			"url": "https://github.com/microsoft/vscode/pull/259876",
+			"status": "merged",
+			"draft": false,
+			"date": "2025-08-05T18:32:20Z"
+		},
+		{
+			"repo": "microsoft/vscode-docs",
+			"number": 8713,
+			"title": "merge main to branch",
+			"url": "https://github.com/microsoft/vscode-docs/pull/8713",
+			"status": "merged",
+			"draft": false,
+			"date": "2025-08-05T18:28:52Z"
+		},
+		{
+			"repo": "microsoft/vscode-docs",
+			"number": 8683,
+			"title": "refined release notes",
+			"url": "https://github.com/microsoft/vscode-docs/pull/8683",
+			"status": "merged",
+			"draft": false,
+			"date": "2025-08-05T07:49:10Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 259640,
+			"title": "updated release notes rendering to support new format",
+			"url": "https://github.com/microsoft/vscode/pull/259640",
+			"status": "merged",
+			"draft": false,
+			"date": "2025-08-04T23:47:55Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 259661,
+			"title": "reverted 'Generate Code' to 'Copilot'",
+			"url": "https://github.com/microsoft/vscode/pull/259661",
+			"status": "merged",
+			"draft": false,
+			"date": "2025-08-04T21:09:28Z"
+		},
+		{
+			"repo": "microsoft/vscode-copilot-chat",
+			"number": 446,
+			"title": "changes next edit suggestion to caps",
+			"url": "https://github.com/microsoft/vscode-copilot-chat/pull/446",
+			"status": "merged",
+			"draft": false,
+			"date": "2025-08-04T20:54:42Z"
+		},
+		{
+			"repo": "microsoft/vscode-copilot-chat",
+			"number": 421,
+			"title": "Fixes microsoft/vscode#258501",
+			"url": "https://github.com/microsoft/vscode-copilot-chat/pull/421",
+			"status": "merged",
+			"draft": false,
+			"date": "2025-08-01T17:51:00Z"
+		},
+		{
+			"repo": "microsoft/vscode-copilot-chat",
+			"number": 424,
+			"title": "Fixes microsoft/vscode#258499",
+			"url": "https://github.com/microsoft/vscode-copilot-chat/pull/424",
+			"status": "merged",
+			"draft": false,
+			"date": "2025-07-31T22:21:05Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 258325,
+			"title": "lowercase placeholder text",
+			"url": "https://github.com/microsoft/vscode/pull/258325",
+			"status": "merged",
+			"draft": false,
+			"date": "2025-07-28T21:21:59Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 256554,
+			"title": "Revised chat input placeholder text",
+			"url": "https://github.com/microsoft/vscode/pull/256554",
+			"status": "merged",
+			"draft": false,
+			"date": "2025-07-25T21:32:01Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 256784,
+			"title": "revised chat control, new workspace phrasing and icon",
+			"url": "https://github.com/microsoft/vscode/pull/256784",
+			"status": "merged",
+			"draft": false,
+			"date": "2025-07-25T21:13:22Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 256609,
+			"title": "changed 'ai actions' to 'generate code'",
+			"url": "https://github.com/microsoft/vscode/pull/256609",
+			"status": "merged",
+			"draft": false,
+			"date": "2025-07-25T21:12:52Z"
+		},
+		{
+			"repo": "microsoft/vscode-copilot-chat",
+			"number": 194,
+			"title": "Removed 'copilot' strings",
+			"url": "https://github.com/microsoft/vscode-copilot-chat/pull/194",
+			"status": "merged",
+			"draft": false,
+			"date": "2025-07-09T23:05:00Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 254978,
+			"title": "Removed 'Copilot'",
+			"url": "https://github.com/microsoft/vscode/pull/254978",
+			"status": "merged",
+			"draft": false,
+			"date": "2025-07-09T22:55:44Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 254514,
+			"title": "revised new welcome experience intro slide to use correct color token…",
+			"url": "https://github.com/microsoft/vscode/pull/254514",
+			"status": "merged",
+			"draft": false,
+			"date": "2025-07-07T21:41:25Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 250362,
+			"title": "New Welcome Experience: Last slide and button label",
+			"url": "https://github.com/microsoft/vscode/pull/250362",
+			"status": "merged",
+			"draft": false,
+			"date": "2025-06-09T18:38:14Z"
+		},
+		{
+			"repo": "microsoft/vscode",
+			"number": 250149,
+			"title": "New Welcome Experience Left and Right Arrows",
+			"url": "https://github.com/microsoft/vscode/pull/250149",
+			"status": "merged",
+			"draft": false,
+			"date": "2025-05-31T00:00:19Z"
+		},
+		{
+			"repo": "eli-w-king/onboarding-project",
+			"number": 4,
+			"title": "Final (local) updates",
+			"url": "https://github.com/eli-w-king/onboarding-project/pull/4",
+			"status": "merged",
+			"draft": false,
+			"date": "2025-05-29T16:38:45Z"
+		},
+		{
+			"repo": "eli-w-king/onboarding-project",
+			"number": 3,
+			"title": "Update README.md",
+			"url": "https://github.com/eli-w-king/onboarding-project/pull/3",
+			"status": "merged",
+			"draft": false,
+			"date": "2025-05-14T05:44:46Z"
+		},
+		{
+			"repo": "eli-w-king/onboarding-project",
+			"number": 2,
+			"title": "Version 2.0",
+			"url": "https://github.com/eli-w-king/onboarding-project/pull/2",
+			"status": "merged",
+			"draft": false,
+			"date": "2025-05-14T04:23:43Z"
+		},
+		{
+			"repo": "eli-w-king/onboarding-project",
+			"number": 1,
+			"title": "Stable",
+			"url": "https://github.com/eli-w-king/onboarding-project/pull/1",
+			"status": "merged",
+			"draft": false,
+			"date": "2025-05-13T17:34:17Z"
+		}
+	]
+}

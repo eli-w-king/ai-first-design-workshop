@@ -1,0 +1,30 @@
+{
+	"_readme": "Site-wide settings: the header, the home page's hero, the footer and downloads. basePath is where GitHub Pages serves the site; 404.html uses it so its links work from any address.",
+	"title": "AI-First Design Workshop",
+	"series": "UXPA Seattle",
+	"titleLines": ["AI-First", "Design", "Workshop"],
+	"when": "Thursday, November 19 · 5:30 to 8:30 PM · Seattle",
+	"host": "With Eli King",
+	"description": "A hands-on evening for designers with UXPA Seattle: Thursday, November 19, 5:30 to 8:30 PM in Seattle. Set up VS Code Insiders, then take Excalidraw from a marked-up screenshot to four directions, a demo video and a live link.",
+	"basePath": "/ai-first-design-workshop/",
+	"actions": [
+		{ "label": "Start the setup", "href": "setup.html" },
+		{ "label": "See the course", "href": "module-01.html" }
+	],
+	"nav": [
+		{ "key": "setup", "label": "Setup", "href": "setup.html" },
+		{ "key": "course", "label": "Course", "href": "module-01.html" },
+		{ "key": "cheat-sheets", "label": "Cheat sheets", "href": "cheat-sheets.html" },
+		{ "key": "faq", "label": "FAQ", "href": "faq.html" }
+	],
+	"afterCourse": { "label": "After the course", "href": "after.html" },
+	"footer": [
+		"An independent community event with UXPA Seattle. Not an official Microsoft or GitHub event.",
+		"Excalidraw is open source under the MIT license, and we're not affiliated with the Excalidraw team.",
+		"[After the course](after.html) · [Uninstall](uninstall.html) · [Source on GitHub](https://github.com/eli-w-king/ai-first-design-workshop)"
+	],
+	"copy": [
+		{ "from": "data/workshop-settings.jsonc", "to": "downloads/workshop-settings.jsonc" },
+		{ "from": "data/setup-prompt.txt", "to": "downloads/setup-prompt.txt" }
+	]
+}

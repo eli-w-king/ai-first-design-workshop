@@ -1,0 +1,8 @@
+{
+	"_readme": "The course's order, in three groups. Each name is a module page, content/pages/modules/<name>.md. A module's number, its file name (module-NN.html, or its front matter's out), the sidebar and the pager all follow this list, so moving a line renumbers the course. Pages link to each other by name ((module:demo-videos), {n:demo-videos}), so links survive a reorder.",
+	"groups": [
+		{ "title": "The course", "modules": ["intro", "case-study", "setup"] },
+		{ "title": "The use case", "modules": ["open-on-localhost", "mark-up", "test-in-the-browser", "parallel-sessions", "variation-labs", "demo-videos", "page-for-everyone"] },
+		{ "title": "On your own time", "modules": ["taste", "self-improvement", "automated-research", "synthesis", "overnight", "another-computer", "wrap-up"] }
+	]
+}

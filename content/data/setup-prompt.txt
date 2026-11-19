@@ -1,0 +1,1 @@
+Set me up for "UXPA Seattle: AI-First Design Workshop", hosted by Eli King, in ~/ai-first-workshop. Follow https://github.com/eli-w-king/autonomous-output-skills/blob/main/autonomous-setup/SKILL.md

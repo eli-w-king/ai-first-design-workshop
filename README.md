@@ -1,26 +1,75 @@
 # AI-First Design Workshop
 
-Materials for the AI-First Design Workshop, with UXPA Seattle: Thursday, Nov 19, 2026, 5:30 to 8:30 PM PT, in person in Seattle. Hosted by Eli King and Thoa Nguyen.
+The site for the AI-First Design Workshop with UXPA Seattle: Thursday, November 19, 2026, 5:30 to 8:30 PM, in person in Seattle, with Eli King. The setup, the course (17 modules: the intro, the Excalidraw case study, the setup, the use case and what to do on your own time), cheat sheets, a FAQ and an uninstall guide.
 
-The site: https://eli-w-king.github.io/ai-first-design-workshop/
+Live at **https://eli-w-king.github.io/ai-first-design-workshop/**
 
-Event page: https://luma.com/hw3533y5
+An independent community event with UXPA Seattle. Not an official Microsoft or GitHub event.
 
-Materials are coming soon.
+## Build and preview
 
-This is a UXPA Seattle community workshop. It isn't an official Microsoft or GitHub event.
+Plain static HTML, CSS and a little JavaScript, built by one Node script with no dependencies. Needs Node 20 or newer.
 
-## What's here
+```sh
+node build.mjs                   # build dist/ from content/
+node tools/serve.mjs --port 4806 # preview at http://localhost:4806/
+node tools/check.mjs             # headless checks and screenshots (see below)
+```
 
-- `docs/` is the site, published with GitHub Pages from the `main` branch.
-  - `docs/index.html` is the home page.
-  - `docs/assets/site.css` styles every page. `docs/assets/dither.js` draws the one dithered moment on a page.
-- `templates/page.html` is the starting point for a new page.
+Every build writes `work/build-report.md`: the pages, the videos it found, the wall and anything it left out.
 
-## Add a page
+GitHub Actions builds and publishes `main` to GitHub Pages (`.github/workflows/pages.yml`).
 
-1. Copy `templates/page.html` to `docs/<name>.html`.
-2. Fill in the title, the nav link marked `aria-current`, and the content.
-3. Add a link to the new page from the home page and from the nav in every page.
+## Where things are
 
-Pages are plain HTML, so there's nothing to install or build. To preview, open `docs/index.html` in a browser, or run `python3 -m http.server --directory docs` and open http://localhost:8000.
+| Path | What's there |
+|---|---|
+| `build.mjs` | The generator |
+| `content/pages/` | One Markdown file per page. `index.md` is the home page, `agenda.md` the unlisted run of show |
+| `content/pages/modules/` | The course, one file per module |
+| `content/course.json` | The course's order, in three groups. Numbers, file names, the sidebar and the pager follow it |
+| `content/site.json` | The header, the home page's hero and the footer |
+| `content/videos.json` | The video for each module and the uninstall page |
+| `content/data/` | The workshop settings and the setup prompt (copied as they are into the setup page), and the pull request snapshot |
+| `content/wall/`, `content/intro/` | Images and clips the pages use |
+| `src/assets/theme.css` | Every color, font, size, radius, shadow and motion value |
+| `src/assets/site.css` | The layout. It only uses the theme's values |
+| `src/assets/site.js` | Copy buttons, the phone menu, the wall's clips |
+| `src/flow.mjs` | The "How I work right now" diagram |
+| `tools/` | The preview server, checks, screenshots, the pull request snapshot and the diagram export |
+| `vendor/marked.esm.js` | Markdown parser ([marked](https://github.com/markedjs/marked), MIT) |
+
+## Writing pages
+
+A page is Markdown with front matter (`title`, `description`, and for modules `short`). In a module, `## Why` becomes the lead under the title. Pages link to modules by name, so links survive a reorder: `[Demo videos](module:demo-videos)` links to that module, `{n:demo-videos}` is its number and `{n}` is the page's own. A module can set `out:` for a fixed file name (the setup is `setup.html`).
+
+- ```` ```text ```` is a prompt with a copy button. `label="Prompt 1"` names it, and `file=data/setup-prompt.txt` takes its text from that file, exactly.
+- ```` ```sh ```` and the other code languages are code with a copy button.
+- ```` ```flow ```` draws the diagram (`src/flow.mjs`), with its alt text and legend.
+- ```` ```wall ```` is the wall of tiles on the Intro: `label`, `mark`, `still` or `loop` with its `poster`, `alt`, `text`, `link: url | label`.
+- ```` ```prs ```` lists the pull request snapshot. ```` ```clock ```` is a list of times. ```` ```callout ```` is a short note with a title. ```` ```figure ```` is one screenshot with a caption.
+- `## Heading {#id}` sets a heading's id, and `## Heading {collapsed}` starts a section closed. A `<!-- collapsed: label -->` comment puts the rest of its section in a closed disclosure.
+
+## Videos
+
+`content/videos.json` maps each module (by name) and `uninstall` to a file in `content/videos/`, with its captions (`.vtt`, which also becomes the transcript at the end of the page) and a note on what's real in it. Until the `.mp4` is there, the page shows nothing where the video goes. Keep each file under 100 MB.
+
+## This in practice
+
+The Intro lists Eli's pull requests in public repositories, from `content/data/prs.json`. To refresh it:
+
+```sh
+node tools/refresh-prs.mjs
+```
+
+It searches with the GitHub CLI, then checks every repository without signing in, so only public ones are kept. Pull requests closed without merging are left out.
+
+## Checks
+
+`node tools/check.mjs` opens every page in headless Chromium at 1440x900 and 390x844 and saves full-page screenshots in `work/shots/`. It fails on sideways scrolling, broken images, console errors, a missing link target or anchor, a copy button that copies anything but its block's exact text, low text contrast, any em or en dash, and an agenda page that's listed or indexable. `--external` also checks every outside link.
+
+## Credits
+
+- [Excalidraw](https://github.com/excalidraw/excalidraw) is open source under the MIT license. We're not affiliated with the Excalidraw team.
+- [Inter](https://github.com/rsms/inter), SIL Open Font License 1.1 (`src/assets/fonts/Inter-OFL.txt`).
+- Icons: [Codicons](https://github.com/microsoft/vscode-codicons), CC BY 4.0.
