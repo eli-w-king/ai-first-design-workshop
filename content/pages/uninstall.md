@@ -35,6 +35,8 @@ Keep it open. It says which tools the setup installed, which skills it replaced 
 
 This removes your local copy of Excalidraw, the skills download, the workshop resources, and the tools the setup installed (Git, Node.js and the GitHub CLI when the setup added them, and the demo video tools).
 
+First stop anything still running from it: press <kbd>Control</kbd>+<kbd>C</kbd> in the terminal where the Excalidraw server runs (`npm start`), and close terminals and windows that are open in the folder. Otherwise Windows says the folder is in use (EBUSY or EPERM) and leaves part of it; close what's using it and delete the folder again.
+
 - **Mac:** in Finder, go to your home folder (<kbd>Shift</kbd>+<kbd>Command</kbd>+<kbd>H</kbd>) and drag `ai-first-workshop` to the Trash. Empty the Trash.
 - **Windows:** in File Explorer, go to `%USERPROFILE%`, right-click `ai-first-workshop` and choose **Delete**.
 
