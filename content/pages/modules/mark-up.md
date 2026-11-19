@@ -27,7 +27,7 @@ Designers think in pictures. Instead of describing a problem in a paragraph, cir
 **The quick change.** With the screenshot attached:
 
 ```text label="Prompt 2"
-Here's my marked-up screenshot. Use it and the user testing notes in workshop/brief.md to fix what confused people about the toolbar. Make the change on a new branch, and keep it small so I can see it right away. Keep it small: just the toolbar change for this step. Don't test drawing yet, we'll do that next.
+Here's my marked-up screenshot. Use it and the user testing notes in workshop/brief.md to fix what confused people about the toolbar. Make the change on a new branch. Keep it small, just the toolbar change, so I can see it right away. Don't test drawing yet, we'll do that next.
 ```
 
 ## You should see

@@ -162,7 +162,7 @@ Now open my Excalidraw case study. Move this chat there, run it on localhost and
 **Say:** "Add to Chat, Add Area Screenshot to Chat, box the toolbar. Click the thumbnail, Mark Up. Circle what confused testers, an arrow, a note with your idea, crop. Done."
 
 ```text label="Prompt 2"
-Here's my marked-up screenshot. Use it and the user testing notes in workshop/brief.md to fix what confused people about the toolbar. Make the change on a new branch, and keep it small so I can see it right away. Keep it small: just the toolbar change for this step. Don't test drawing yet, we'll do that next.
+Here's my marked-up screenshot. Use it and the user testing notes in workshop/brief.md to fix what confused people about the toolbar. Make the change on a new branch. Keep it small, just the toolbar change, so I can see it right away. Don't test drawing yet, we'll do that next.
 ```
 
 **Watch for:** the change showing in the browser within a minute or so.
