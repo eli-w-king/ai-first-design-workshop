@@ -1,0 +1,93 @@
+WEBVTT
+
+1
+00:00:04.400 --> 00:00:08.184
+In this video, we'll mark up
+a screenshot of the toolbar,
+
+2
+00:00:08.184 --> 00:00:12.367
+and ask for one small change,
+from the problem, not a solution.
+
+3
+00:00:12.367 --> 00:00:15.222
+This is a real run, with the waits sped up.
+
+4
+00:00:16.100 --> 00:00:20.335
+In the integrated browser,
+Add to Chat takes an area screenshot.
+
+5
+00:00:20.335 --> 00:00:22.321
+Drag a box around the toolbar.
+
+6
+00:00:27.750 --> 00:00:32.101
+The screenshot lands in the chat.
+Open it, and choose Mark Up.
+
+7
+00:00:37.370 --> 00:00:42.493
+Circle what confused people. Testers
+thought this lock locked the whole board.
+
+8
+00:00:47.733 --> 00:00:51.870
+Add an arrow, and a short note
+with your idea: say what this does.
+
+9
+00:00:57.033 --> 00:01:01.288
+Then crop it down to the
+toolbar, and choose Done.
+
+10
+00:01:05.973 --> 00:01:08.460
+Now the marked-up screenshot
+is attached to the prompt.
+
+11
+00:01:12.673 --> 00:01:15.272
+The prompt points at the brief and the marks.
+
+12
+00:01:15.272 --> 00:01:18.796
+It asks for the change on a new
+branch, and to keep it small.
+
+13
+00:01:23.223 --> 00:01:28.592
+VS Code asks once whether you trust this
+folder. It's your own copy, so trust it.
+
+14
+00:01:34.834 --> 00:01:37.501
+The agent reads the brief and the screenshot,
+
+15
+00:01:37.501 --> 00:01:40.997
+finds the lock in the code,
+and changes it on a new branch.
+
+16
+00:01:45.663 --> 00:01:47.926
+The lock now says Keep tool active.
+
+17
+00:01:47.926 --> 00:01:50.771
+It's clear that it keeps your tool ready for
+
+18
+00:01:50.771 --> 00:01:53.616
+the next shape, not that it locks the board.
+
+19
+00:01:54.163 --> 00:01:58.321
+It checked the build and the type check,
+and committed the change on its own branch.
+
+20
+00:02:03.100 --> 00:02:04.908
+And there it is, in the app.

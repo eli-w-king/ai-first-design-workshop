@@ -31,7 +31,10 @@
 		"mark-up": {
 			"file": "videos/mark-up.mp4",
 			"captions": "videos/mark-up.vtt",
-			"note": ""
+			"note": "A real run on GPT-6.2 Sol at High, from one continuous run of the use case recorded for this course. Waits are sped up.",
+			"poster": "videos/mark-up-poster.jpg",
+			"duration": 131.1,
+			"credits": 70.18
 		},
 		"test-in-the-browser": {
 			"file": "videos/test-in-the-browser.mp4",
@@ -62,12 +65,18 @@
 		"page-for-everyone": {
 			"file": "videos/page-for-everyone.mp4",
 			"captions": "videos/page-for-everyone.vtt",
-			"note": ""
+			"note": "A real run on GPT-6.2 Sol at High, from one continuous run of the use case recorded for this course. Waits are sped up. The pull request, the page and the live app are real and public.",
+			"poster": "videos/page-for-everyone-poster.jpg",
+			"duration": 102.16,
+			"credits": 61.69
 		},
 		"taste": {
 			"file": "videos/taste.mp4",
 			"captions": "videos/taste.vtt",
-			"note": ""
+			"note": "A real run on GPT-6.2 Sol at High, recorded for this course. The rules it learns come from practice steers written for this recording. Waits are sped up, and a still question card is cut.",
+			"poster": "videos/taste-poster.jpg",
+			"duration": 73.73,
+			"credits": 45.4
 		},
 		"self-improvement": {
 			"file": "videos/self-improvement.mp4",
