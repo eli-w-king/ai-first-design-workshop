@@ -1,0 +1,173 @@
+WEBVTT
+
+1
+00:00:06.900 --> 00:00:09.758
+In this video, we'll plan an overnight run,
+
+2
+00:00:09.758 --> 00:00:13.148
+keep the laptop awake,
+and check it in the morning.
+
+3
+00:00:13.148 --> 00:00:16.671
+It's a real run, with the
+night compressed: the agent
+
+4
+00:00:16.671 --> 00:00:19.861
+sized the work to finish
+in about eight minutes.
+
+5
+00:00:20.951 --> 00:00:25.419
+In the chat with today's findings,
+ask for a plan first: three new
+
+6
+00:00:25.419 --> 00:00:29.954
+versions of our favorite, a demo
+of each, and a draft pull request.
+
+7
+00:00:31.625 --> 00:00:35.586
+The plan: three versions,
+each tied to a finding.
+
+8
+00:00:35.586 --> 00:00:39.628
+Draw Again, Portrait Dock,
+and Labels + Shortcuts.
+
+9
+00:00:41.957 --> 00:00:45.615
+Then test and record each one,
+update the review page,
+
+10
+00:00:45.615 --> 00:00:49.139
+open one draft pull request,
+and keep a status file.
+
+11
+00:00:49.139 --> 00:00:50.968
+It waits for your go-ahead.
+
+12
+00:00:54.061 --> 00:01:00.657
+At bedtime, switch to Autopilot, so it
+never stops to ask. Allow all stays on.
+
+13
+00:01:03.675 --> 00:01:05.731
+Then: I'm going to sleep.
+
+14
+00:01:05.731 --> 00:01:10.173
+Keep the laptop awake,
+start the plan, run at most two
+
+15
+00:01:10.173 --> 00:01:14.614
+sessions at once, and don't
+merge or publish anything.
+
+16
+00:01:18.635 --> 00:01:22.075
+It starts a helper that keeps
+the laptop awake, writes the
+
+17
+00:01:22.075 --> 00:01:25.693
+status file, and hands one
+version to a background sub-agent.
+
+18
+00:01:25.751 --> 00:01:30.892
+It checkpoints each version in Git as it
+goes, and keeps the status file current.
+
+19
+00:01:31.816 --> 00:01:37.457
+You can read the status file any time:
+what's done, what's in progress, what's next.
+
+20
+00:01:37.457 --> 00:01:39.338
+And what needs you: nothing.
+
+21
+00:01:43.243 --> 00:01:46.497
+Overnight, it builds the
+three versions, checks each
+
+22
+00:01:46.497 --> 00:01:50.003
+one in the browser,
+and records a narrated demo of each.
+
+23
+00:01:50.361 --> 00:01:55.324
+A few of its own checks fail along the
+way. It fixes them, and checks again.
+
+24
+00:01:56.743 --> 00:01:59.858
+Then it opens one draft
+pull request, and stops the
+
+25
+00:01:59.858 --> 00:02:02.851
+keep-awake helper,
+so the laptop can sleep again.
+
+26
+00:02:06.845 --> 00:02:11.800
+Done. Three versions, three demos,
+and nothing merged or published.
+
+27
+00:02:14.645 --> 00:02:18.143
+In the morning, in the same chat:
+what happened overnight?
+
+28
+00:02:21.812 --> 00:02:27.006
+A summary, with links to the review page,
+the morning report, and the pull request.
+
+29
+00:02:27.006 --> 00:02:30.824
+It says what it checked,
+and that nobody has tried these yet.
+
+30
+00:02:33.012 --> 00:02:36.399
+Here's the Draw Again demo
+it recorded, with captions.
+
+31
+00:02:37.512 --> 00:02:40.181
+Each one is under half a minute, recorded in
+
+32
+00:02:40.181 --> 00:02:42.850
+the background, with narration and captions.
+
+33
+00:02:45.264 --> 00:02:47.700
+The review page links the pull request, too.
+
+34
+00:02:49.274 --> 00:02:55.455
+And the draft pull request on GitHub,
+stacked on the one from the synthesis.
+
+35
+00:02:55.455 --> 00:02:58.220
+Nothing goes out until you say so.
+
+36
+00:02:59.074 --> 00:03:03.029
+Next, we'll keep it running on another
+computer, so you can close your laptop.

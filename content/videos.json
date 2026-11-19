@@ -103,12 +103,18 @@
 		"synthesis": {
 			"file": "videos/synthesis.mp4",
 			"captions": "videos/synthesis.vtt",
-			"note": ""
+			"note": "A real run on GPT-6.2 Sol at High, recorded for this course, on the workshop's fictional practice research. Waits are sped up, and a still stretch is cut.",
+			"poster": "videos/synthesis-poster.jpg",
+			"duration": 171.93,
+			"credits": 143.36
 		},
 		"overnight": {
 			"file": "videos/overnight.mp4",
 			"captions": "videos/overnight.vtt",
-			"note": ""
+			"note": "A real run on GPT-6.2 Sol at High, recorded for this course. The night is compressed: the agent sized the work to finish in about eight minutes, and one version went to a background sub-agent. Waits are sped up, and still stretches are cut.",
+			"poster": "videos/overnight-poster.jpg",
+			"duration": 189.07,
+			"credits": 319.63
 		},
 		"another-computer": {
 			"file": "videos/another-computer.mp4",

@@ -1,0 +1,138 @@
+WEBVTT
+
+1
+00:00:06.700 --> 00:00:11.819
+In this video, we'll turn practice
+research into findings with real
+
+2
+00:00:11.819 --> 00:00:17.090
+quotes, then build the next iteration,
+and open a draft pull request.
+
+3
+00:00:17.090 --> 00:00:20.376
+This is a real run, with the waits sped up.
+
+4
+00:00:21.400 --> 00:00:26.856
+Your copy has three practice files:
+study results, a design review, and feedback.
+
+5
+00:00:26.856 --> 00:00:29.887
+They're fictional, written for this workshop.
+
+6
+00:00:33.157 --> 00:00:35.420
+Six people tried a labeled toolbar.
+
+7
+00:00:35.420 --> 00:00:39.881
+Here's how they did, what they said,
+and what the researcher noticed.
+
+8
+00:00:41.876 --> 00:00:45.229
+The prompt asks for the
+top findings, each with
+
+9
+00:00:45.229 --> 00:00:48.724
+real quotes and how many
+of the six it came from.
+
+10
+00:00:48.724 --> 00:00:53.504
+Then the next iteration, a draft
+pull request, and a findings page.
+
+11
+00:00:57.949 --> 00:01:00.589
+It reads all three files, and the review
+
+12
+00:01:00.589 --> 00:01:03.493
+page from earlier, then starts a new branch.
+
+13
+00:01:07.300 --> 00:01:10.020
+The design review picked
+a different direction.
+
+14
+00:01:10.020 --> 00:01:14.246
+It says so, keeps our favorite,
+and applies the strongest findings to it.
+
+15
+00:01:15.466 --> 00:01:18.419
+It writes a findings page, makes the change,
+
+16
+00:01:18.419 --> 00:01:21.574
+and checks it in the browser,
+next to the chat.
+
+17
+00:01:23.444 --> 00:01:27.987
+The findings page is in the browser now,
+with each quote taken from the files.
+
+18
+00:01:32.230 --> 00:01:36.892
+Then the fix: five circles in a row,
+without picking the tool again.
+
+19
+00:01:39.733 --> 00:01:44.013
+It opens a draft pull request,
+and links the findings from the review page.
+
+20
+00:01:45.540 --> 00:01:50.089
+Each finding has quotes from the files,
+and how many of the six it came from.
+
+21
+00:01:50.089 --> 00:01:54.638
+Repeat drawing was the biggest blocker:
+only three of six finished that task.
+
+22
+00:01:56.635 --> 00:02:01.156
+It also says what it tested, and what
+it didn't, like choosing an image file.
+
+23
+00:02:05.165 --> 00:02:08.183
+The findings page sits next
+to your page for everyone,
+
+24
+00:02:08.183 --> 00:02:10.363
+labeled as fictional practice research.
+
+25
+00:02:14.615 --> 00:02:17.830
+It ends with what changed,
+and what to test next.
+
+26
+00:02:22.365 --> 00:02:27.391
+The draft pull request explains why,
+and what changed. Nothing is merged.
+
+27
+00:02:30.865 --> 00:02:34.877
+And the next iteration:
+Keep tool is now Repeat tool,
+
+28
+00:02:34.877 --> 00:02:39.419
+with a clear on and off,
+and Insert image stays in the dock.
+
+29
+00:02:43.327 --> 00:02:45.369
+Next, we'll plan an overnight run.
