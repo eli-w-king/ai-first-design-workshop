@@ -170,18 +170,18 @@ Then the checklist shows each item as it installs, with a **Try it** for each.
 **Computer Use.** Paste the one for your computer:
 
 ```text label="On a Mac"
-Write a short joke in a new note in Notes.
+Use Computer Use to write a short joke in a new note in Notes.
 ```
 
 ```text label="On Windows"
-Write a short joke in a new note in Notepad.
+Use Computer Use to write a short joke in a new note in Notepad.
 ```
 
 - **On a Mac,** the first time, a card asks for permission. Click **Set Up Computer Use**, then **Allow in Settings** for **Accessibility** and for **Screen Recording**. In System Settings, switch on **Copilot Computer Use** for each, then click **Check Again** until both say **Granted**.
 - **On Windows,** there's no permissions dialog. The first time the agent wants an app, it asks: choose **Allow** or **Always allow**.
 - If the agent says Computer Use is off, type `/computer on` and send it.
 
-**Dictation.** Click the microphone in the prompt box, say a sentence, and click it again. Your words show up in the box.
+**Dictation.** Click the microphone in the chat box, say "Dictation works", then send it.
 
 With these settings, dictation sends your voice to Microsoft's cloud speech service, signed in with your GitHub account. If it can't connect, delete the `dictation.model` line from your settings: VS Code then downloads a model and runs dictation on your laptop instead.
 

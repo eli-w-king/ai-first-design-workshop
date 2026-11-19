@@ -122,14 +122,14 @@ Thursday, Nov 19 · 5:30 to 8:30 PM. Slide numbers are the deck's. The coupon co
 **Do:** paste the one for their computer:
 
 ```text label="On a Mac"
-Write a short joke in a new note in Notes.
+Use Computer Use to write a short joke in a new note in Notes.
 ```
 
 ```text label="On Windows"
-Write a short joke in a new note in Notepad.
+Use Computer Use to write a short joke in a new note in Notepad.
 ```
 
-Then click the mic, say a sentence, click again.
+**Dictation:** Click the microphone in the chat box, say "Dictation works", then send it.
 
 **Watch for:** Mac: **Set Up Computer Use**, **Allow in Settings** for Accessibility and Screen Recording, then **Check Again**. Computer Use off: `/computer on`.
 
