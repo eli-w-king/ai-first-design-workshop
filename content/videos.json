@@ -23,7 +23,10 @@
 		"open-on-localhost": {
 			"file": "videos/open-on-localhost.mp4",
 			"captions": "videos/open-on-localhost.vtt",
-			"note": ""
+			"note": "A real run on GPT-6.2 Sol at High, from one continuous run of the use case recorded for this course. Waits are sped up.",
+			"poster": "videos/open-on-localhost-poster.jpg",
+			"duration": 97.99,
+			"credits": 45.63
 		},
 		"mark-up": {
 			"file": "videos/mark-up.mp4",
@@ -33,12 +36,18 @@
 		"test-in-the-browser": {
 			"file": "videos/test-in-the-browser.mp4",
 			"captions": "videos/test-in-the-browser.vtt",
-			"note": ""
+			"note": "A real run on GPT-6.2 Sol at High, from one continuous run of the use case recorded for this course. Waits are sped up. One browser action failed during the run, and the agent drew with a short script instead.",
+			"poster": "videos/test-in-the-browser-poster.jpg",
+			"duration": 80.42,
+			"credits": 74.13
 		},
 		"parallel-sessions": {
 			"file": "videos/parallel-sessions.mp4",
 			"captions": "videos/parallel-sessions.vtt",
-			"note": ""
+			"note": "A real run on GPT-6.2 Sol at High, from one continuous run of the use case recorded for this course. Waits are sped up. The four sessions it starts run on GPT-6.2 Sol at its default effort, Medium.",
+			"poster": "videos/parallel-sessions-poster.jpg",
+			"duration": 79.77,
+			"credits": 109.56
 		},
 		"variation-labs": {
 			"file": "videos/variation-labs.mp4",

@@ -1,0 +1,77 @@
+WEBVTT
+
+1
+00:00:04.300 --> 00:00:09.812
+In this video, we'll move the setup
+chat into the Excalidraw case study,
+
+2
+00:00:09.812 --> 00:00:14.636
+run it on localhost, and open it
+in the browser inside VS Code.
+
+3
+00:00:14.636 --> 00:00:17.928
+This is a real run, with the waits sped up.
+
+4
+00:00:18.200 --> 00:00:22.470
+The setup chat already knows where the
+case study is, so one prompt does it all.
+
+5
+00:00:25.300 --> 00:00:30.819
+It asks how to bring the chat over.
+Use the existing folder, the simplest choice.
+
+6
+00:00:35.282 --> 00:00:37.668
+Now the chat moves out of Chats and into
+
+7
+00:00:37.668 --> 00:00:40.293
+the case study's workspace, history and all.
+
+8
+00:00:40.293 --> 00:00:41.725
+That's a session moving.
+
+9
+00:00:43.800 --> 00:00:46.951
+It starts the app on
+localhost, and opens it in
+
+10
+00:00:46.951 --> 00:00:50.103
+the integrated browser,
+right next to the chat.
+
+11
+00:00:55.837 --> 00:01:01.501
+While it loads, open the practice brief,
+brief.md, in your copy's workshop folder.
+
+12
+00:01:06.787 --> 00:01:11.050
+It's fictional user testing on
+the toolbar: six first-time users,
+
+13
+00:01:11.050 --> 00:01:15.050
+and what tripped them up,
+written as problems, not solutions.
+
+14
+00:01:16.087 --> 00:01:21.638
+Icons without words. A lock nobody understood.
+Tools hidden behind three dots.
+
+15
+00:01:21.638 --> 00:01:25.836
+And after every shape,
+the toolbar jumps back to the arrow.
+
+16
+00:01:28.087 --> 00:01:31.065
+Next, we'll mark up the toolbar,
+and fix the most confusing part.

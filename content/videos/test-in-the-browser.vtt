@@ -1,0 +1,67 @@
+WEBVTT
+
+1
+00:00:04.300 --> 00:00:09.108
+In this video, the agent tests
+the app in the browser by itself,
+
+2
+00:00:09.108 --> 00:00:13.540
+finds a bug, fixes it,
+and proves it with shapes that stay.
+
+3
+00:00:13.540 --> 00:00:16.770
+This is a real run, with the waits sped up.
+
+4
+00:00:17.100 --> 00:00:21.843
+The prompt asks it to draw a few shapes,
+and to fix anything that's broken.
+
+5
+00:00:23.590 --> 00:00:25.842
+It picks tools and drags on the canvas in
+
+6
+00:00:25.842 --> 00:00:28.258
+the integrated browser, like a person would.
+
+7
+00:00:28.831 --> 00:00:32.812
+One browser action fails, so it
+draws with a short script instead.
+
+8
+00:00:36.317 --> 00:00:41.715
+There it is. A rectangle shows up while
+you drag, then vanishes when you let go.
+
+9
+00:00:41.715 --> 00:00:45.765
+A cleanup check was backwards,
+so it threw away real shapes.
+
+10
+00:00:51.642 --> 00:00:55.695
+After the fix, three rectangles
+and an ellipse stay on the canvas.
+
+11
+00:00:56.442 --> 00:00:59.841
+It ran the build and the
+type check, and committed
+
+12
+00:00:59.841 --> 00:01:03.240
+both changes on the branch,
+the label and the fix.
+
+13
+00:01:03.240 --> 00:01:04.532
+Nothing was pushed.
+
+14
+00:01:10.025 --> 00:01:13.731
+Drawing works again, so the next
+step starts from a working app.
