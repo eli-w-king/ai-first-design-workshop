@@ -19,7 +19,7 @@ Thanks for spending your evening with us. Pick one thing to hand off this week, 
 - [Cheat sheets](cheat-sheets.html): the terms and controls that come up most, on one page.
 - [FAQ](faq.html): the questions we expect most.
 - [After the course](after.html): how to keep going, and how to cancel.
-- [Uninstall](uninstall.html): how to take it all back out.
+- [Uninstall](uninstall.html): how to take it all back out, with a video.
 - Every module page stays up, so you can come back to any of them.
 
 ## Questions

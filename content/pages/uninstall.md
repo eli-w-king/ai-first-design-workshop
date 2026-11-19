@@ -3,7 +3,7 @@ title: Uninstall
 key: uninstall
 eyebrow: Take it all back out
 video: uninstall
-description: How to remove everything the workshop setup added, on a Mac or Windows, with one prompt or by hand.
+description: How to remove everything the workshop setup added, on a Mac or Windows, with one prompt or by hand. With a video.
 ---
 
 Everything the setup added lives in one folder, `ai-first-workshop` in your home folder, plus a few small things it put elsewhere: the workshop skills, the setup checklist, one line that lets your computer find the tools, and (if you turned it on) a weekly automation. The setup kept a list of exactly what it added, so you can take it all back out.

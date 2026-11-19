@@ -15,7 +15,10 @@
 		"setup": {
 			"file": "videos/setup.mp4",
 			"captions": "videos/setup.vtt",
-			"note": ""
+			"note": "A real run on GPT-6.2 Sol at High, recorded for this course. Waits are sped up, and the restart and two still waits are cut. The redeem page is shown signed out, with nothing entered. Computer Use and dictation aren't in this recording.",
+			"poster": "videos/setup-poster.jpg",
+			"duration": 251.12,
+			"credits": 131.8
 		},
 		"open-on-localhost": {
 			"file": "videos/open-on-localhost.mp4",
@@ -90,7 +93,10 @@
 		"uninstall": {
 			"file": "videos/uninstall.mp4",
 			"captions": "videos/uninstall.vtt",
-			"note": ""
+			"note": "A real run, recorded for this course and sped up while the agent works. The agent used GPT-6.1 Sol at Medium, the default for a new chat. The manual steps are the ones on this page.",
+			"poster": "videos/uninstall-poster.jpg",
+			"duration": 147.9,
+			"credits": 10.26
 		}
 	}
 }

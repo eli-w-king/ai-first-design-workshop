@@ -1,0 +1,128 @@
+WEBVTT
+
+1
+00:00:04.400 --> 00:00:11.224
+In this video, we'll take the workshop
+setup back out, with one prompt or by hand.
+
+2
+00:00:11.224 --> 00:00:14.802
+This is a real run, with the waits sped up.
+
+3
+00:00:15.000 --> 00:00:19.168
+In a new chat, paste the uninstall
+prompt from the site, and send it.
+
+4
+00:00:20.252 --> 00:00:23.467
+The agent reads the list the
+setup kept of what it added.
+
+5
+00:00:24.867 --> 00:00:28.410
+It shows you everything it
+will remove, the skills,
+
+6
+00:00:28.410 --> 00:00:32.786
+the checklist and the workshop
+folder, and waits for your okay.
+
+7
+00:00:32.786 --> 00:00:33.342
+Say yes.
+
+8
+00:00:35.841 --> 00:00:40.656
+It removes them, checks they're gone,
+and tells you what's left for you.
+
+9
+00:00:41.330 --> 00:00:45.067
+It leaves three things to you:
+the workshop settings,
+
+10
+00:00:45.067 --> 00:00:47.816
+your GitHub repo and your Copilot plan.
+
+11
+00:00:48.534 --> 00:00:52.835
+To remove the settings,
+open your user settings as JSON.
+
+12
+00:00:53.535 --> 00:00:56.527
+Select the 16 workshop lines and delete them.
+
+13
+00:01:01.136 --> 00:01:03.948
+Save, then restart VS Code Insiders.
+
+14
+00:01:08.882 --> 00:01:14.265
+Or do it yourself, with the guide
+on the site, on a Mac or on Windows.
+
+15
+00:01:14.265 --> 00:01:17.034
+It's eight steps, about ten minutes.
+
+16
+00:01:17.882 --> 00:01:21.608
+First, look at the setup's
+own record of what it added.
+
+17
+00:01:21.824 --> 00:01:23.626
+Delete the workshop folder.
+
+18
+00:01:23.626 --> 00:01:28.763
+That takes out the case study,
+the workshop files and the tools it installed.
+
+19
+00:01:30.261 --> 00:01:35.326
+Remove the workshop skills from your skills
+folder, and put back any you had before.
+
+20
+00:01:39.416 --> 00:01:42.005
+Delete the setup checklist's two folders.
+
+21
+00:01:45.491 --> 00:01:49.984
+If you turned on the weekly taste
+automation, delete it in Automations.
+
+22
+00:01:52.394 --> 00:01:55.429
+Remove the workshop settings,
+the way you just saw.
+
+23
+00:01:58.771 --> 00:02:03.776
+If the setup installed Git, Node or
+the GitHub CLI, remove the line that
+
+24
+00:02:03.776 --> 00:02:08.571
+helps your computer find them,
+and the GitHub sign-in helper for Git.
+
+25
+00:02:08.729 --> 00:02:13.702
+Your Excalidraw repo on GitHub
+is yours. Keep it, or delete it.
+
+26
+00:02:14.151 --> 00:02:18.827
+Last, cancel the free month before
+it renews, so you're not charged.
+
+27
+00:02:19.180 --> 00:02:22.220
+The setup never touched anything
+you had before the workshop.
