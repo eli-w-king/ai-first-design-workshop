@@ -1,0 +1,47 @@
+{
+	"_readme": "Written by tools/sync-horizon.mjs. The files in src/assets/horizon/ are the Horizon kit as is.",
+	"version": "1.0.0",
+	"synced": "2026-11-19T08:02:32.834Z",
+	"files": {
+		"fonts/GeistMono-OFL.txt": {
+			"bytes": 4387,
+			"sha256": "1781d2806a07d91c4edf4740b88449fab7d0eadad53f7c351b94cd4d4eb8c00f"
+		},
+		"fonts/Inter-LICENSE.txt": {
+			"bytes": 4380,
+			"sha256": "262481e844521b326f5ecd053e59b98c8b2da78c8ee1bdbb6e8174305e54935a"
+		},
+		"fonts/Inter-Medium.woff2": {
+			"bytes": 114348,
+			"sha256": "0ff3e94614e1493eb556314fd247ae6c4a85a7783b4cc86be539940cf83f2a48"
+		},
+		"fonts/Inter-Regular.woff2": {
+			"bytes": 111268,
+			"sha256": "e06f6b1bc553aaea4e4668023ed0ab0a147129c3107f511bc7d03d361b0ae085"
+		},
+		"fonts/Inter-SemiBold.woff2": {
+			"bytes": 114812,
+			"sha256": "5cb7103e4e605989afebc03d989c79201e54b21b5183db33981f70db9178a301"
+		},
+		"fonts/InterDisplay-Medium.woff2": {
+			"bytes": 113476,
+			"sha256": "f1227907684853882ad00d7f97ce9f64bc17b89a2a291a7d4ec84fccfa442934"
+		},
+		"fonts/InterDisplay-Regular.woff2": {
+			"bytes": 108948,
+			"sha256": "3a9463a58c3e7ba1e3cd65b5dbff91a35c508ff78a104cd1121feff83efeb787"
+		},
+		"fonts/geist-mono-latin.woff2": {
+			"bytes": 23108,
+			"sha256": "5f3d6ad60f29d6cb708414ec6887163d63bf197377ef5417d2483ff31ace6c3b"
+		},
+		"horizon.css": {
+			"bytes": 6874,
+			"sha256": "2e9ccd59585fd60b4e9bce937f9b1d4ce68418377744cade3316ac2ac4a6c07e"
+		},
+		"horizon.js": {
+			"bytes": 38963,
+			"sha256": "d1d21e5b0223131ae4d86362ada8950b9371e25187eb10efea305840de1d215d"
+		}
+	}
+}

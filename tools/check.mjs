@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // Headless checks of the built site (dist/), in Chromium from Playwright:
-//   node tools/check.mjs [--shots work/shots] [--only setup.html] [--external]
+//   node tools/check.mjs [--shots work/shots] [--only setup.html] [--external] [--base https://<published copy>/]
 // Every page at 1440x900 and 390x844: a full-page screenshot in work/shots/, no sideways scrolling, every image and
 // the fonts load, no console errors or failed requests, one h1, and text contrast of at least 4.5:1 (3:1 for large
 // text). Every internal link and #anchor resolves. Every copy button copies exactly its block's text, and blocks made
@@ -50,9 +50,13 @@ const server = http.createServer((req, res) => {
 	res.setHeader('Content-Type', TYPES[path.extname(file)] || 'application/octet-stream');
 	res.end(fs.readFileSync(file));
 });
-await new Promise(r => server.listen(0, '127.0.0.1', r));
-const ORIGIN = `http://localhost:${server.address().port}`;
-const SITE = `${ORIGIN}${BASE_PATH}`;
+// --base checks a published copy instead (the live site), page by page, with the same checks.
+const LIVE = opt('base', null);
+if (!LIVE) {
+	await new Promise(r => server.listen(0, '127.0.0.1', r));
+}
+const SITE = LIVE ? LIVE.replace(/\/?$/, '/') : `http://localhost:${server.address().port}${BASE_PATH}`;
+const ORIGIN = new URL(SITE).origin;
 
 const pages = fs.readdirSync(DIST).filter(f => f.endsWith('.html')).filter(f => !ONLY || f === ONLY).sort();
 const html = new Map(fs.readdirSync(DIST).filter(f => f.endsWith('.html')).map(f => [f, fs.readFileSync(path.join(DIST, f), 'utf8')]));
@@ -254,7 +258,9 @@ for (const size of sizes) {
 	await context.close();
 }
 await browser.close();
-server.close();
+if (!LIVE) {
+	server.close();
+}
 
 // Outside links, without signing in.
 if (argv.includes('--external')) {
@@ -271,7 +277,9 @@ if (argv.includes('--external')) {
 		} catch {
 			code = 'ERR';
 		}
-		if (!/^(200|301|302)$/.test(code)) {
+		// github.com answers a signed-out script with 404 on settings pages and 403 on sign-up, though both are real.
+		const signInWall = /^https:\/\/github\.com\/(settings\/|signup)/.test(url) && /^(403|404)$/.test(code);
+		if (!/^(200|301|302)$/.test(code) && !signInWall) {
 			fail('external', `${code} ${url}`);
 		}
 	}

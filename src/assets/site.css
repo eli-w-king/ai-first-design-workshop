@@ -245,22 +245,44 @@ blockquote {
 
 /* ------------------------------------------------------------ home */
 
-/* The hero: the words on the left, and the Horizon band rising along the bottom (the kit draws it into
-   .hero-horizon, which covers the hero). The bottom padding is the band's room. */
+/* The hero: the words on the left, and the Horizon band rising along the bottom (the kit draws it behind the words,
+   in a canvas it adds to the hero). The bottom padding is the band's room. */
 .hero {
 	position: relative;
 	overflow: hidden;
 }
-.hero-horizon {
+/* The loop keeps moving, so it has a pause button, over the band at the bottom right. */
+.hero-pause {
 	position: absolute;
-	inset: 0;
-	pointer-events: none;
+	right: var(--gutter);
+	bottom: 20px;
+	z-index: 2;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 36px;
+	height: 36px;
+	padding: 0;
+	border: var(--hairline) solid var(--line-2);
+	border-radius: 50%;
+	background: var(--bg);
+	color: var(--heading);
+	box-shadow: var(--shadow-soft);
+	cursor: pointer;
+}
+.hero-pause[hidden] { display: none; }
+.hero-pause:hover { border-color: var(--accent); color: var(--accent); }
+.hero-pause .when-paused,
+.hero-pause[data-state="paused"] .when-playing { display: none; }
+.hero-pause[data-state="paused"] .when-paused { display: block; }
+@media (pointer: coarse) {
+	.hero-pause { width: 44px; height: 44px; }
 }
 .hero-text {
 	position: relative;
 	max-width: var(--page-max);
 	margin: 0 auto;
-	padding: 56px var(--gutter) 230px;
+	padding: 56px var(--gutter) clamp(260px, 34vh, 380px);
 }
 .hero-text > * { max-width: 600px; }
 .hero-series {
@@ -297,7 +319,7 @@ blockquote {
 .hero-lede p:last-child { margin-bottom: 0; }
 
 @media (max-width: 719px) {
-	.hero-text { padding: 32px var(--gutter) 210px; }
+	.hero-text { padding: 32px var(--gutter) 220px; }
 	.hero-series { font-size: 18px; }
 	.hero-when { margin-top: 28px; font-size: 17px; }
 	.hero-lede { font-size: 17px; }
@@ -1157,7 +1179,7 @@ tbody td:first-child { color: var(--heading); font-weight: var(--weight-label); 
 
 @media print {
 	body { font-size: 11pt; }
-	.top, .sidebar, .modules-disclosure, .pager, .foot, .video, .hero-horizon, .page-horizon, .copy, .skip, .actions, .toc, .agenda-jump { display: none !important; }
+	.top, .sidebar, .modules-disclosure, .pager, .foot, .video, .hz-canvas, .hero-pause, .page-horizon, .copy, .skip, .actions, .toc, .agenda-jump { display: none !important; }
 	.section-details > summary .icon { display: none; }
 	.with-sidebar { display: block; }
 	.content { max-width: none; padding: 0; }
@@ -1191,5 +1213,5 @@ html[data-motion="off"] *, html[data-motion="off"] *::before, html[data-motion="
 	.flow-fill, .flow-knockout { fill: Canvas; }
 	.flow-label, .flow-sub, .flow-note, .flow-head, .flow-glyph, .flow-zone-label { fill: CanvasText; }
 	.flow-zone-fill { fill: none; }
-	.hero-horizon, .page-horizon { display: none; }
+	.hz-canvas, .page-horizon { display: none; }
 }

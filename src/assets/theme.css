@@ -1,72 +1,66 @@
-/* The workshop's look, in one place. Every color, font, size, radius, shadow and motion value the site uses is a
-   custom property here; site.css only refers to them. To apply a new identity, change this file. The site is light
-   only.
+/* The site's look, in one place. site.css only uses the custom properties below, and these come from the Horizon
+   kit's tokens (horizon/horizon.css, the kit as is, loaded first), so a change to the kit's identity reaches the whole
+   site. The values after each kit token are fallbacks for a build without the kit. The site is light only.
 
-   Now: Horizon, the light version of the UXPA Seattle poster. Inter Display for big headlines and Inter for text (SIL
-   Open Font License, from the official Inter 4.1 release; see fonts/Inter-OFL.txt), ink on white, one blue accent,
-   and the poster's dithered band on the home page's hero. */
-
-@font-face { font-family: "Inter"; font-style: normal; font-weight: 400; font-display: swap; src: url("fonts/Inter-Regular.woff2") format("woff2"); }
-@font-face { font-family: "Inter"; font-style: normal; font-weight: 500; font-display: swap; src: url("fonts/Inter-Medium.woff2") format("woff2"); }
-@font-face { font-family: "Inter"; font-style: normal; font-weight: 600; font-display: swap; src: url("fonts/Inter-SemiBold.woff2") format("woff2"); }
-@font-face { font-family: "Inter Display"; font-style: normal; font-weight: 400; font-display: swap; src: url("fonts/InterDisplay-Regular.woff2") format("woff2"); }
-@font-face { font-family: "Inter Display"; font-style: normal; font-weight: 500; font-display: swap; src: url("fonts/InterDisplay-Medium.woff2") format("woff2"); }
+   Horizon is the light version of the UXPA Seattle poster: Inter Display for big headlines, Inter for text and Geist
+   Mono for times and numbers (all SIL Open Font License, in horizon/fonts/ with their licenses), ink on white, one
+   blue accent, and the poster's ordered-dither band on the home page's hero and in a thin strip on inner pages. */
 
 :root {
 	/* Type */
-	--font: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, "Helvetica Neue", Arial, sans-serif;
-	--font-display: "Inter Display", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
-	--mono: "Geist Mono", ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+	--font: var(--hz-font-text, "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif);
+	--font-display: var(--hz-font-display, "Inter Display", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif);
+	--mono: var(--hz-font-mono, ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace);
 	--text-size: 16px;
 	--text-leading: 1.6;
 	--weight-text: 400;
 	--weight-label: 500;
 	--weight-strong: 600;
-	--weight-display: 500;
+	--weight-display: 400;
 	--weight-hero: 400;
-	--tracking-display: -0.035em;
-	--tracking-heading: -0.015em;
-	--hero-size: clamp(54px, 7.6vw, 108px);
-	--title-size: clamp(36px, 4.6vw, 58px);
-	--lead-size: 20px;
-	--h2-size: 26px;
+	--tracking-display: var(--hz-track-display, -0.035em);
+	--tracking-heading: -0.02em;
+	--hero-size: var(--hz-size-display, clamp(54px, 7.6vw, 108px));
+	--title-size: var(--hz-size-h1, clamp(36px, 4.6vw, 56px));
+	--section-title-size: var(--hz-size-h2, clamp(30px, 3.2vw, 44px));
+	--lead-size: var(--hz-size-lede, 19px);
+	--h2-size: 28px;
 	--h3-size: 18px;
-	--small-size: 14px;
+	--small-size: var(--hz-size-small, 14px);
 	--tiny-size: 12px;
 	--prompt-size: 16px;
-	--section-title-size: 44px;
 	--code-size: 14px;
 
 	/* Color */
-	--bg: #ffffff;
+	--bg: var(--hz-ground, #ffffff);
 	--raised: #f6f7f9;
-	--raised-2: #eceff2;
+	--raised-2: #eceef1;
 	--code-bg: #f7f8fa;
-	--ink: #0d1014;
-	--heading: #0d1014;
+	--ink: var(--hz-ink, #0d1014);
+	--heading: var(--hz-ink, #0d1014);
 	--text: #262b31;
-	--muted: #5a626c;
-	--line: #e5e8ec;
-	--line-2: #d5d9df;
-	--edge: rgba(13, 16, 20, .13);
-	--accent: #1b6b9e;
-	--accent-strong: #124874;
-	--link: #1b6b9e;
-	--focus: #1b6b9e;
-	--primary-bg: #1b6b9e;
-	--primary-bg-hover: #124874;
-	--primary-text: #ffffff;
+	--muted: var(--hz-subtle, #69707a);
+	--line: var(--hz-hairline, #e5e8ec);
+	--line-2: var(--hz-hairline-strong, #d5d9df);
+	--edge: var(--hz-hairline-strong, #d5d9df);
+	--accent: var(--hz-accent, #1b6b9e);
+	--accent-strong: var(--hz-accent-strong, #124874);
+	--link: var(--hz-accent, #1b6b9e);
+	--focus: var(--hz-accent, #1b6b9e);
+	--primary-bg: var(--hz-accent, #1b6b9e);
+	--primary-bg-hover: var(--hz-accent-strong, #124874);
+	--primary-text: var(--hz-on-accent, #ffffff);
 	--hover: rgba(13, 16, 20, .045);
-	--selected: #eef6fa;
-	--tag-on-bg: rgba(27, 107, 158, .08);
-	--tag-on-text: #1b6b9e;
+	--selected: var(--hz-accent-tint, #eef6fa);
+	--tag-on-bg: var(--hz-accent-tint, #eef6fa);
+	--tag-on-text: var(--hz-accent, #1b6b9e);
 	--tag-on-line: rgba(27, 107, 158, .34);
-	--tag-done-bg: #eceff2;
+	--tag-done-bg: #eceef1;
 	--tag-done-text: #3a4149;
 	--tag-done-line: rgba(13, 16, 20, .14);
-	--copied: #1b6b9e;
+	--copied: var(--hz-accent, #1b6b9e);
 	--failed: #8a4b00;
-	--callout-line: #1b6b9e;
+	--callout-line: var(--hz-accent, #1b6b9e);
 	--video-bg: #0d1014;
 	--media-bg: #f1f3f5;
 	--play-bg: rgba(13, 16, 20, .78);
@@ -76,31 +70,30 @@
 
 	/* Shape and depth */
 	--radius-sm: 6px;
-	--radius: 8px;
-	--radius-lg: 12px;
+	--radius: var(--hz-radius, 8px);
+	--radius-lg: var(--hz-radius-lg, 12px);
 	--radius-pill: 999px;
 	--hairline: 1px;
-	--shadow: 0 1px 2px rgba(13, 16, 20, .05), 0 10px 28px rgba(13, 16, 20, .08);
-	--shadow-soft: 0 1px 2px rgba(13, 16, 20, .04);
+	--shadow: var(--hz-shadow-2, 0 1px 2px rgba(13, 16, 20, .05), 0 10px 30px rgba(13, 16, 20, .07));
+	--shadow-soft: var(--hz-shadow-1, 0 1px 2px rgba(13, 16, 20, .05));
 
 	/* Layout */
-	--page-max: 1200px;
+	--page-max: var(--hz-max, 1200px);
 	--measure: 760px;
-	--gutter: clamp(20px, 4vw, 48px);
-	--header-h: 60px;
+	--gutter: var(--hz-gutter, clamp(20px, 5vw, 64px));
+	--header-h: 64px;
 
 	/* Motion */
-	--ease-out: cubic-bezier(.2, .7, .2, 1);
-	--dur-fast: 160ms;
-	--dur: 260ms;
+	--ease-out: var(--hz-ease-out, cubic-bezier(.2, .7, .15, 1));
+	--dur-fast: var(--hz-dur-fast, 150ms);
+	--dur: var(--hz-dur, 300ms);
 
-	/* The flow diagram's two shades, as "r g b" so they can take an alpha: overnight and another computer. Both stay
-	   readable as text on white (AA). */
+	/* The flow diagram's two shades, as "r g b" so they can take an alpha: overnight (the accent) and another
+	   computer (a teal dark enough for text on white). */
 	--flow-night: 27 107 158;
 	--flow-box: 13 121 136;
 
-	/* The Horizon band (src/assets/horizon/, the kit, synced as is): its colors and motion come from the kit's own
-	   custom properties, set in site-horizon.css when they need to differ. The strip on inner pages is this tall. */
+	/* The Horizon strip under the header on inner pages. */
 	--strip-height: 28px;
 
 	color-scheme: light;

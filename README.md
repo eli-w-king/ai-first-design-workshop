@@ -32,7 +32,9 @@ GitHub Actions builds and publishes `main` to GitHub Pages (`.github/workflows/p
 | `content/videos.json` | The video for each module and the uninstall page |
 | `content/data/` | The workshop settings and the setup prompt (copied as they are into the setup page), and the pull request snapshot |
 | `content/wall/`, `content/intro/` | Images and clips the pages use |
-| `src/assets/theme.css` | Every color, font, size, radius, shadow and motion value |
+| `src/assets/horizon/` | The Horizon kit, the workshop's visual identity, copied as is by `tools/sync-horizon.mjs` (never edit it here) |
+| `src/assets/theme.css` | Every color, font, size, radius, shadow and motion value, taken from the kit's tokens |
+| `src/assets/site-horizon.js` | Mounts the kit: the home page's hero (with a pause button) and the strip on inner pages |
 | `src/assets/site.css` | The layout. It only uses the theme's values |
 | `src/assets/site.js` | Copy buttons, the phone menu, the wall's clips |
 | `src/flow.mjs` | The "How I work right now" diagram |
@@ -49,6 +51,16 @@ A page is Markdown with front matter (`title`, `description`, and for modules `s
 - ```` ```wall ```` is the wall of tiles on the Intro: `label`, `mark`, `still` or `loop` with its `poster`, `alt`, `text`, `link: url | label`.
 - ```` ```prs ```` lists the pull request snapshot. ```` ```clock ```` is a list of times. ```` ```callout ```` is a short note with a title. ```` ```figure ```` is one screenshot with a caption.
 - `## Heading {#id}` sets a heading's id, and `## Heading {collapsed}` starts a section closed. A `<!-- collapsed: label -->` comment puts the rest of its section in a closed disclosure.
+
+## The look
+
+The identity is the Horizon kit, the light version of the UXPA Seattle poster: `src/assets/horizon/` holds it exactly as it was made, with `src/horizon-sync.json` recording each file's hash. To update it, rerun:
+
+```sh
+node tools/sync-horizon.mjs <the kit's folder>
+```
+
+Theme through the kit's custom properties (`--hz-*`), which `src/assets/theme.css` maps to the site's own. The home page's hero has the kit's ambient loop, with a pause button; inner pages have a thin, still strip. Reduced motion and `?motion=off` show the still frame.
 
 ## Videos
 
@@ -71,5 +83,5 @@ It searches with the GitHub CLI, then checks every repository without signing in
 ## Credits
 
 - [Excalidraw](https://github.com/excalidraw/excalidraw) is open source under the MIT license. We're not affiliated with the Excalidraw team.
-- [Inter](https://github.com/rsms/inter), SIL Open Font License 1.1 (`src/assets/fonts/Inter-OFL.txt`).
+- [Inter](https://github.com/rsms/inter) and [Geist Mono](https://github.com/vercel/geist-font), SIL Open Font License 1.1 (licenses in `src/assets/horizon/fonts/`).
 - Icons: [Codicons](https://github.com/microsoft/vscode-codicons), CC BY 4.0.

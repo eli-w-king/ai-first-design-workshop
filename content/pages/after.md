@@ -38,4 +38,3 @@ The [uninstall guide](uninstall.html) shows how to remove everything the setup a
 - [VS Code Insiders](https://code.visualstudio.com/insiders/)
 - [VS Code's docs on agents](https://code.visualstudio.com/docs/agents/overview)
 - [Excalidraw](https://github.com/excalidraw/excalidraw), the open-source original
-- [UXPA Seattle](https://uxpaseattle.org/)

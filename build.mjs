@@ -945,8 +945,7 @@ ${base ? `<base href="${esc(base)}">\n` : ''}<title>${esc(fullTitle)}</title>
 <meta name="color-scheme" content="light">
 <meta name="theme-color" content="#ffffff">
 ${noindex ? '<meta name="robots" content="noindex, nofollow">\n' : ''}<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-<link rel="preload" href="assets/fonts/Inter-Regular.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/theme.css?v=${ASSET_V}">
+${HORIZON ? '<link rel="preload" href="assets/horizon/fonts/Inter-Regular.woff2" as="font" type="font/woff2" crossorigin>\n' : ''}${HORIZON ? `<link rel="stylesheet" href="assets/horizon/horizon.css?v=${ASSET_V}">\n` : ''}<link rel="stylesheet" href="assets/theme.css?v=${ASSET_V}">
 <link rel="stylesheet" href="assets/site.css?v=${ASSET_V}">
 <script>document.documentElement.classList.add('js');if(/[?&]motion=off\\b/.test(location.search))document.documentElement.dataset.motion='off';</script>
 <script src="assets/site.js?v=${ASSET_V}" defer></script>
@@ -1046,16 +1045,18 @@ function renderHome(page) {
 	const sections = buildSections(page, uniqueId);
 	const intro = sections.find(s => !s.heading);
 	const main = `<main id="main" class="home" tabindex="-1">
-<section class="hero" aria-labelledby="hero-title">
-<div class="hero-horizon" data-horizon="hero" aria-hidden="true"></div>
+<section class="hero" data-horizon="hero" aria-labelledby="hero-title">
 <div class="hero-text">
 <p class="hero-series">${esc(SITE.series)}</p>
 <h1 id="hero-title" class="hero-title">${SITE.titleLines.map(esc).join('<br>')}</h1>
+<div>
 <p class="hero-when">${esc(SITE.when)}</p>
 <p class="hero-host">${esc(SITE.host)}</p>
 ${intro?.html ? `<div class="hero-lede">${intro.html}</div>` : ''}
 <p class="actions">${(page.actions || SITE.actions || []).map((a, i) => `<a class="button${i === 0 ? ' button-primary' : ''}" href="${esc(a.href)}">${esc(a.label)}${i === 0 ? icon('arrow-right') : ''}</a>`).join('')}</p>
 </div>
+</div>
+<button class="hero-pause" type="button" hidden>${icon('debug-pause', 'when-playing')}${icon('play', 'when-paused')}<span class="hero-pause-label sr-only">Pause the animation</span></button>
 </section>
 <div class="home-body">
 ${sections.filter(sec => sec.heading && sec.html.trim()).map(sec => `<section class="home-section" aria-labelledby="${sec.id}"><div class="home-grid"><h2 class="home-title" id="${sec.id}">${sec.heading}</h2><div class="home-content">${sec.html}</div></div></section>`).join('\n')}
