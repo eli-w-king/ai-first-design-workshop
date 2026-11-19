@@ -6,7 +6,7 @@ description: Module {n}. Plan a long run with the session you've used all day, k
 
 ## Why
 
-There's no special overnight feature. Overnight is everything you've seen, stacked: skills, automations and sessions that start other sessions, running while you sleep. Your laptop keeps them going as long as it stays awake and plugged in.
+There's no special overnight feature. Overnight is everything you've seen, stacked: skills, automations and work handed off to sub-agents or other sessions, running while you sleep. Your laptop keeps them going as long as it stays awake and plugged in.
 
 The big part happens during the day: keep your decisions and feedback flowing into the session, so the agent has that context when it decides things overnight.
 
@@ -48,12 +48,12 @@ Good morning. What happened overnight? Show me the summary, the videos and the d
 
 - Give it any answers it will need before you leave. On Autopilot it can't ask you, so it stops or makes its best guess.
 - If the plan needs Computer Use, type `/computer on` first: an unattended chat can't turn it on.
-- Fewer sessions at once is kinder to a laptop overnight.
+- Fewer sessions or sub-agents at once is kinder to a laptop overnight.
 - Overnight runs use credits like any session. Check what's left before you start.
 
 ## You should see
 
-A status file that keeps updating, and new sessions doing the work. In the morning: a summary of what happened, the videos and a draft pull request. Nothing goes out until you say so.
+A status file that keeps updating while the agent runs the work in the background, as sub-agents or separate sessions. In the morning: a summary of what happened, the videos and a draft pull request. Nothing goes out until you say so.
 
 ## On your own work
 
