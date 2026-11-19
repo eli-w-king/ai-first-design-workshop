@@ -20,7 +20,7 @@ Open `workshop/pm-follow-up.md` in your copy. It's fictional practice material: 
 Then, in the same chat:
 
 ```text label="Prompt 4"
-The PM team came back with workshop/pm-follow-up.md. Use the autonomous-variations skill to build the four toolbars it asks for. Start four sessions under this one, one per direction. Each one starts from this branch, works on its own branch and adds only its own toolbar file. When all four are done, put them together in one lab I can switch between in the integrated browser, and give me the link.
+The PM team came back with workshop/pm-follow-up.md. Use the autonomous-variations skill to build the four toolbars it asks for. Start four sessions under this one, one per direction. Each one starts from this branch, works on its own branch, adds only its own toolbar file and keeps the canvas clear. When all four are done, put them together in one lab I can switch between in the integrated browser, and give me the link.
 ```
 
 Each direction gets its own file in `src/workshop/toolbars/`, so the four never collide.
@@ -30,7 +30,7 @@ Each direction gets its own file in `src/workshop/toolbars/`, so the four never 
 - Four new sessions nested under this one in the Sessions list, one per direction, all working at once.
 - Messages from the orchestrator marked as sent from another session, so you can tell them from your own.
 
-While they build, go on to [Variation labs](module:variation-labs): steer one, queue a message to another, and tour the Sessions list.
+As soon as they start, go on to [Variation labs](module:variation-labs): they can finish in about 3 minutes. Steer one and queue a message to another right away, then tour the Sessions list while they build.
 
 ## If it doesn't
 

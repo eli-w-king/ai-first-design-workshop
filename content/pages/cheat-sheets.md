@@ -53,6 +53,8 @@ Once a session is running, the **Send** button's menu has:
 - **Stop and Send:** stops the current work and starts on your message.
 - **Ask in Side Chat:** asks a question without interrupting.
 
+When a session is already done, plain **Send** sends your message as its next step.
+
 ## The integrated browser and Mark Up
 
 | You want to | Do this |

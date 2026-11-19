@@ -10,6 +10,8 @@ While the four sessions build, you're not waiting: you're directing. Steer one w
 
 ## On Excalidraw
 
+**Do this right after the four sessions start.** They can finish in about 3 minutes, so steer and queue while they're still working.
+
 **Steer a running session.** In the Sessions list, open one of the four. Type this, then open the menu on the **Send** button and choose **Steer with Message**. It reaches the session after its next step:
 
 ```text label="Prompt 5a, steer"
@@ -22,9 +24,11 @@ Give every button a tooltip with its name and keyboard shortcut.
 When you're done, tell me in three bullets what makes this toolbar different.
 ```
 
+**Already finished?** If a session is done before you get to it, just click **Send**. Your message goes in as its next step.
+
 **Add your own idea.** Watch a direction as it comes together, and steer it with one design note of your own.
 
-**Tour the Sessions list:**
+**Tour the Sessions list while they build:**
 
 - The four sessions sit nested under the orchestrator. Collapse it to tuck them away.
 - Each one shows whether it's working, waiting on you or done.

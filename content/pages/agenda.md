@@ -162,7 +162,7 @@ Now open my Excalidraw case study. Move this chat there, run it on localhost and
 **Say:** "Add to Chat, Add Area Screenshot to Chat, box the toolbar. Click the thumbnail, Mark Up. Circle what confused testers, an arrow, a note with your idea, crop. Done."
 
 ```text label="Prompt 2"
-Here's my marked-up screenshot. Use it and the user testing notes in workshop/brief.md to fix what confused people about the toolbar. Make the change on a new branch, and keep it small so I can see it right away.
+Here's my marked-up screenshot. Use it and the user testing notes in workshop/brief.md to fix what confused people about the toolbar. Make the change on a new branch, and keep it small so I can see it right away. Keep it small: just the toolbar change for this step. Don't test drawing yet, we'll do that next.
 ```
 
 **Watch for:** the change showing in the browser within a minute or so.
@@ -194,7 +194,7 @@ Draw a few shapes in the integrated browser to test it. If something's broken, f
 **Say:** "The PM team talked to customers. Open workshop/pm-follow-up.md: four very different toolbars. Minimal and calm, playful and expressive, dense for power users, big and touch friendly. One session starts four."
 
 ```text label="Prompt 4"
-The PM team came back with workshop/pm-follow-up.md. Use the autonomous-variations skill to build the four toolbars it asks for. Start four sessions under this one, one per direction. Each one starts from this branch, works on its own branch and adds only its own toolbar file. When all four are done, put them together in one lab I can switch between in the integrated browser, and give me the link.
+The PM team came back with workshop/pm-follow-up.md. Use the autonomous-variations skill to build the four toolbars it asks for. Start four sessions under this one, one per direction. Each one starts from this branch, works on its own branch, adds only its own toolbar file and keeps the canvas clear. When all four are done, put them together in one lab I can switch between in the integrated browser, and give me the link.
 ```
 
 **Watch for:** four sessions nested under the orchestrator.
@@ -207,7 +207,9 @@ The PM team came back with workshop/pm-follow-up.md. Use the autonomous-variatio
 
 **Module:** [8](module-08.html).
 
-**Do:** open one of the four, type, Send menu, **Steer with Message**:
+**Say:** "Do this right away, while they're working. They can finish in about 3 minutes."
+
+**Do:** right after the four start, open one, type, Send menu, **Steer with Message**:
 
 ```text label="Prompt 5a, steer"
 Give every button a tooltip with its name and keyboard shortcut.
@@ -219,16 +221,15 @@ Open another, Send menu, **Add to Queue**:
 When you're done, tell me in three bullets what makes this toolbar different.
 ```
 
-**Tour:** the Sessions list: four nested under the orchestrator, status on each, pin and archive.
+**Already done?** Just Send: it goes in as that session's next step.
 
-### Q&A ideas while they build
+**Tour, while they build:** the Sessions list: four nested under the orchestrator, status on each, pin and archive.
 
+### Q&A while they build, about 3 min
+
+- Critique a direction as it lands. What makes a toolbar feel calm?
 - What would you run in parallel at work? An accessibility review, a contrast check, phone width, a copy pass.
 - Sessions, subagents or Compare Models: when is each one right?
-- How do you know what it costs? Your picture, credits used.
-- Critique a direction as it lands. What makes a toolbar feel calm? Steer your own idea into one.
-- How does this land with engineers? Small pull requests in the same repo.
-- What would you never hand off? Talking to real people, and the final call.
 
 **If it fails:** a stuck session: "What's left? Finish the smallest version that works." Slow overall: steer the orchestrator, "Keep each one to one file and one screenshot."
 
@@ -253,6 +254,12 @@ My favorite is <name>. Make it the default toolbar. Then, in parallel where you 
 ```
 
 **Watch for:** the pull request in their own repo, never Excalidraw's.
+
+### Q&A while it ships, about 5 min
+
+- How does this land with engineers? Small pull requests in the same repo.
+- What would you never hand off? Talking to real people, and the final call.
+- How do you know what it costs? Your picture, credits used.
 
 **If it fails:** video fails: "Ship it without the video, then add the video in a second pull request." Sign-in: `gh auth login`. Pages: "Check the Pages workflow run, fix what failed and run it again."
 
