@@ -31,7 +31,7 @@ The skills you installed are light versions of the ones I use every day. They li
 
 ## Take it all out
 
-The [uninstall guide](uninstall.html) shows how to remove everything the setup added, with a video.
+The [uninstall guide](uninstall.html) shows how to remove everything the setup added.
 
 ## Links
 

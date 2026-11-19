@@ -3,7 +3,7 @@ title: Uninstall
 key: uninstall
 eyebrow: Take it all back out
 video: uninstall
-description: How to remove everything the workshop setup added, on a Mac or Windows, with one prompt or by hand. With a video.
+description: How to remove everything the workshop setup added, on a Mac or Windows, with one prompt or by hand.
 ---
 
 Everything the setup added lives in one folder, `ai-first-workshop` in your home folder, plus a few small things it put elsewhere: the workshop skills, the setup checklist, one line that lets your computer find the tools, and (if you turned it on) a weekly automation. The setup kept a list of exactly what it added, so you can take it all back out.
@@ -18,7 +18,7 @@ In VS Code Insiders, start a new chat in the Agents window and paste:
 Uninstall my AI-First Design Workshop setup. Follow https://github.com/eli-w-king/autonomous-output-skills/blob/main/autonomous-setup/references/ai-first-uninstall.md and show me the list before you remove anything.
 ```
 
-The agent reads the setup's list, shows you everything it will remove, and waits for your okay. It doesn't delete your GitHub repo or cancel your subscription; those two are yours to do ([steps 7 and 8](#7-optional-delete-your-excalidraw-repo-on-github)).
+The agent reads the setup's list, shows you everything it will remove, and waits for your okay. It doesn't touch your VS Code settings, delete your GitHub repo or cancel your subscription. Those are yours to do when it's finished: [steps 5, 7 and 8](#5-remove-the-workshop-settings) below.
 
 ## Or do it yourself
 
