@@ -55,12 +55,18 @@
 		"variation-labs": {
 			"file": "videos/variation-labs.mp4",
 			"captions": "videos/variation-labs.vtt",
-			"note": ""
+			"note": "A real run on GPT-6.2 Sol at High, from one continuous run of the use case recorded for this course. The four sessions ran at their default effort, Medium. Waits are sped up, and one short stretch is cut.",
+			"poster": "videos/variation-labs-poster.jpg",
+			"duration": 181.57,
+			"credits": 454.44
 		},
 		"demo-videos": {
 			"file": "videos/demo-videos.mp4",
 			"captions": "videos/demo-videos.vtt",
-			"note": ""
+			"note": "A real run on GPT-6.2 Sol at High, from one continuous run of the use case recorded for this course. Waits are sped up. The demo video in it was recorded by the agent.",
+			"poster": "videos/demo-videos-poster.jpg",
+			"duration": 75.96,
+			"credits": 121.83
 		},
 		"page-for-everyone": {
 			"file": "videos/page-for-everyone.mp4",
@@ -81,12 +87,18 @@
 		"self-improvement": {
 			"file": "videos/self-improvement.mp4",
 			"captions": "videos/self-improvement.vtt",
-			"note": ""
+			"note": "A real run on GPT-6.2 Sol at High, recorded for this course. Waits are sped up.",
+			"poster": "videos/self-improvement-poster.jpg",
+			"duration": 100.88,
+			"credits": 30.79
 		},
 		"automated-research": {
 			"file": "videos/automated-research.mp4",
 			"captions": "videos/automated-research.vtt",
-			"note": ""
+			"note": "A real run on GPT-6.2 Sol at High, recorded for this course. It stops at the draft: nothing was launched, and no one was recruited. Waits are sped up.",
+			"poster": "videos/automated-research-poster.jpg",
+			"duration": 76.85,
+			"credits": 71.71
 		},
 		"synthesis": {
 			"file": "videos/synthesis.mp4",

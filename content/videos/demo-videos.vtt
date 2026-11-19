@@ -1,0 +1,72 @@
+WEBVTT
+
+1
+00:00:04.300 --> 00:00:10.241
+In this video, we'll ship the favorite:
+make it the default, record a narrated
+
+2
+00:00:10.241 --> 00:00:15.724
+demo video, open a pull request,
+publish a page for everyone, and merge.
+
+3
+00:00:15.724 --> 00:00:19.000
+This is a real run, with the waits sped up.
+
+4
+00:00:24.699 --> 00:00:28.149
+One prompt asks for all of it,
+in parallel where it can.
+
+5
+00:00:30.880 --> 00:00:35.903
+It asks before it takes over the browser
+tab you're using. Let it open a new page.
+
+6
+00:00:37.326 --> 00:00:40.741
+It makes Big and touch friendly
+the default, and records the
+
+7
+00:00:40.741 --> 00:00:44.041
+demo with the demos skill while
+it opens the pull request.
+
+8
+00:00:45.528 --> 00:00:48.867
+It checks the video for sound
+and captions, adds it and
+
+9
+00:00:48.867 --> 00:00:52.327
+the page for everyone to the
+pull request, and merges it.
+
+10
+00:00:52.377 --> 00:00:54.644
+Then it waits for GitHub Pages to publish.
+
+11
+00:00:56.360 --> 00:00:56.659
+Done.
+
+12
+00:00:56.659 --> 00:00:59.469
+Big and touch friendly
+is the default, the pull
+
+13
+00:00:59.469 --> 00:01:02.339
+request is merged,
+and it checked the live site.
+
+14
+00:01:03.060 --> 00:01:05.678
+The links are right there: the live app,
+
+15
+00:01:05.678 --> 00:01:09.213
+all four toolbars side by side,
+and the narrated demo.
