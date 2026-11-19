@@ -282,7 +282,7 @@ blockquote {
 	position: relative;
 	max-width: var(--page-max);
 	margin: 0 auto;
-	padding: 56px var(--gutter) clamp(260px, 34vh, 380px);
+	padding: 56px var(--gutter) clamp(240px, 34vh, 380px);
 }
 .hero-text > * { max-width: 600px; }
 .hero-series {
@@ -319,7 +319,7 @@ blockquote {
 .hero-lede p:last-child { margin-bottom: 0; }
 
 @media (max-width: 719px) {
-	.hero-text { padding: 32px var(--gutter) 220px; }
+	.hero-text { padding: 32px var(--gutter) 240px; }
 	.hero-series { font-size: 18px; }
 	.hero-when { margin-top: 28px; font-size: 17px; }
 	.hero-lede { font-size: 17px; }
@@ -414,7 +414,7 @@ blockquote {
 	.clock-what, .makes li { font-size: 17px; }
 }
 
-/* The thin, still Horizon strip under the header on every inner page (the kit draws it). */
+/* The thin, still Horizon strip at the top of every inner page (the kit draws it). */
 .page-horizon {
 	position: relative;
 	height: var(--strip-height);

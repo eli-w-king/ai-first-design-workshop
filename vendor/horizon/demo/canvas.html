@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en" class="canvas-page">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Workshop setup · Welcome</title>
+<link rel="stylesheet" href="../horizon.css">
+<link rel="stylesheet" href="demo.css">
+<script src="../horizon.js"></script>
+</head>
+<body class="hz-base">
+<main class="panel" id="panel">
+  <section class="welcome" aria-label="Welcome">
+    <p class="hz-label w-label" data-hz-reveal="0.2">Welcome</p>
+    <h1 class="hz-headline w-title" data-hz-condense="0.4">AI-First<br>Design<br>Workshop</h1>
+    <p class="w-org" data-hz-reveal="1.2">UXPA Seattle</p>
+    <p class="w-host" data-hz-reveal="1.35">Eli King</p>
+  </section>
+
+  <section class="step hz-card" aria-labelledby="step-q" data-hz-reveal="1.9">
+    <p class="step-count hz-mono">Step 1 of 5</p>
+    <h2 id="step-q">Which workshop are you setting up for?</h2>
+    <div class="choices" role="radiogroup" aria-labelledby="step-q">
+      <label class="choice">
+        <input type="radio" name="workshop" value="ai-first-design">
+        <span>
+          <span class="choice-head"><span class="choice-title">AI-First Design</span><span class="tag">External</span></span>
+          <span class="choice-desc">UXPA Seattle with Eli King, on your own laptop.</span>
+        </span>
+      </label>
+      <label class="choice">
+        <input type="radio" name="workshop" value="overnight-delegation">
+        <span>
+          <span class="choice-head"><span class="choice-title">Overnight Delegation at Scale</span><span class="tag">Microsoft</span></span>
+          <span class="choice-desc">For Microsoft employees. You'll sign in with your Microsoft account.</span>
+        </span>
+      </label>
+    </div>
+    <div class="step-actions">
+      <button class="hz-button hz-button--primary hz-button--small" type="button" id="continue" disabled>Continue</button>
+    </div>
+  </section>
+</main>
+<script src="canvas.js"></script>
+</body>
+</html>

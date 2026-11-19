@@ -1,0 +1,136 @@
+{
+	"_readme": "Written by tools/sync-horizon.mjs. vendor/horizon/ is the Horizon kit as is, minus tools/ and stills/.",
+	"version": "1.0.1",
+	"synced": "2026-11-19T08:14:26.505Z",
+	"skipped": [
+		"stills/canvas-narrow.png",
+		"stills/canvas.png",
+		"stills/deck-demo-1.png",
+		"stills/deck-demo-2.png",
+		"stills/deck-demo-3.png",
+		"stills/motion-hero-15s.mp4",
+		"stills/motion-title-30s.mp4",
+		"stills/motion.mp4",
+		"stills/site-desktop.png",
+		"stills/site-phone.png",
+		"stills/slide-title-motion.png",
+		"stills/slide-title.png",
+		"stills/slide-tonight.png",
+		"tools/check.js",
+		"tools/record.js"
+	],
+	"files": {
+		"README.md": {
+			"bytes": 17032,
+			"sha256": "033e1bb1ab093910ca6a5a8511c508627f685366e32e9102c5f16e135238e7de"
+		},
+		"demo/canvas.html": {
+			"bytes": 1991,
+			"sha256": "763875a26c0a7541264da71e49639afea91bc09222117e65f4572cd1a2064a29"
+		},
+		"demo/canvas.js": {
+			"bytes": 780,
+			"sha256": "416cf33a06a3a3bb3db8555552a226e98a07f3661281b7b8b118611632b5e468"
+		},
+		"demo/course.html": {
+			"bytes": 796,
+			"sha256": "47abd1b4b30a8e4976b58acda24ed86d98f10a619dba45bd7e1c953c2dd4101f"
+		},
+		"demo/course.js": {
+			"bytes": 161,
+			"sha256": "b6e8312b947c7c5b6b20044958451d2f6b5fc1dd05eb11600a3669ed7b881b29"
+		},
+		"demo/deck-demo.html": {
+			"bytes": 2299,
+			"sha256": "b3eb8958a8ee6fe745637e2bae9c5253f7a6fd152c59f74d720c6e979f2fa060"
+		},
+		"demo/deck.js": {
+			"bytes": 2244,
+			"sha256": "0227f5781afb86655b0527f846c5a8d00d0e9d5567b89886eaf03aea8850ac31"
+		},
+		"demo/demo.css": {
+			"bytes": 8322,
+			"sha256": "f2945cc3152d49e2339332a21ce5a7ce09a7da987e7c66633b5a938d0d514d57"
+		},
+		"demo/site.html": {
+			"bytes": 3440,
+			"sha256": "5ef6232e1dec21efbae23bf283a6586706502dad45c1197edfd239b99922d69a"
+		},
+		"demo/site.js": {
+			"bytes": 1554,
+			"sha256": "95132cd6c08ee6acaf8883d1a720aea2b75dbc0d6c0b5ba8a545fd41407eda70"
+		},
+		"demo/slide-title.html": {
+			"bytes": 807,
+			"sha256": "28ac2f2c7aa5787ff9907f3aa0b0554fb2f54a62cae6cc51d85128d57149d4a4"
+		},
+		"demo/slide-title.js": {
+			"bytes": 363,
+			"sha256": "54496c312d70058391a3aa3ae9b54b55dda6851c42bd6bc65d1a664f6fa302f7"
+		},
+		"demo/slide-tonight.html": {
+			"bytes": 1486,
+			"sha256": "b25ae578b32e4f4920cb5978310991af1a68188e8a29184d6d026478fe4bb366"
+		},
+		"demo/slide-tonight.js": {
+			"bytes": 438,
+			"sha256": "8b944a66de12297cff81d4131fd3fe3f1ab56f3c832d82b6c2d0b85f411f7c5b"
+		},
+		"demo/stage.js": {
+			"bytes": 480,
+			"sha256": "1a9ce95f614f04a38bb937d5ce4878d0d03ed7de0d89165843a339adcfdb0b41"
+		},
+		"fonts/GeistMono-OFL.txt": {
+			"bytes": 4387,
+			"sha256": "1781d2806a07d91c4edf4740b88449fab7d0eadad53f7c351b94cd4d4eb8c00f"
+		},
+		"fonts/Inter-LICENSE.txt": {
+			"bytes": 4380,
+			"sha256": "262481e844521b326f5ecd053e59b98c8b2da78c8ee1bdbb6e8174305e54935a"
+		},
+		"fonts/Inter-Medium.woff2": {
+			"bytes": 114348,
+			"sha256": "0ff3e94614e1493eb556314fd247ae6c4a85a7783b4cc86be539940cf83f2a48"
+		},
+		"fonts/Inter-Regular.woff2": {
+			"bytes": 111268,
+			"sha256": "e06f6b1bc553aaea4e4668023ed0ab0a147129c3107f511bc7d03d361b0ae085"
+		},
+		"fonts/Inter-SemiBold.woff2": {
+			"bytes": 114812,
+			"sha256": "5cb7103e4e605989afebc03d989c79201e54b21b5183db33981f70db9178a301"
+		},
+		"fonts/InterDisplay-Medium.woff2": {
+			"bytes": 113476,
+			"sha256": "f1227907684853882ad00d7f97ce9f64bc17b89a2a291a7d4ec84fccfa442934"
+		},
+		"fonts/InterDisplay-Regular.woff2": {
+			"bytes": 108948,
+			"sha256": "3a9463a58c3e7ba1e3cd65b5dbff91a35c508ff78a104cd1121feff83efeb787"
+		},
+		"fonts/geist-mono-latin.woff2": {
+			"bytes": 23108,
+			"sha256": "5f3d6ad60f29d6cb708414ec6887163d63bf197377ef5417d2483ff31ace6c3b"
+		},
+		"horizon.css": {
+			"bytes": 6881,
+			"sha256": "4afa8a5087db961432fa3d853f5b66242b6ab701559bdf619506c439d6fc23f5"
+		},
+		"horizon.js": {
+			"bytes": 39221,
+			"sha256": "8be6d1ef790be8097d0e7260d49cd450d3ddcda6e5c7248eb7ac54c3d46b3671"
+		},
+		"print.css": {
+			"bytes": 86,
+			"sha256": "888e27916cfa8287d86c826bfd658531740f4e322e16b683c058d2afff6cc38c"
+		},
+		"print.html": {
+			"bytes": 303,
+			"sha256": "3ac3aa0a3cc68b839959e360b1c1b724b61f89ec3468f4a51799eefa5807165b"
+		},
+		"print.js": {
+			"bytes": 1064,
+			"sha256": "f1d021ca840db22d16072ba0c6b18d0b9d8dd00ad7b4897d02c4368a6ef95128"
+		}
+	}
+}

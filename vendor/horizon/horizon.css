@@ -14,16 +14,16 @@
   --hz-ground: #ffffff;
   --hz-ink: #0d1014;            /* 19:1 on ground */
   --hz-muted: #464c55;          /* 8.6:1 */
-  --hz-subtle: #69707a;         /* 4.9:1, AA for text */
+  --hz-subtle: #69707a;         /* 5.0:1, AA for text */
   --hz-hairline: #e5e8ec;
   --hz-hairline-strong: #d5d9df;
-  --hz-control-border: #848b95; /* 3.5:1, AA for UI components */
+  --hz-control-border: #848b95; /* 3.4:1, meets 3:1 for UI components */
   --hz-accent: #1b6b9e;         /* 5.8:1, AA for text; white on it is 5.8:1 */
-  --hz-accent-strong: #124874;  /* 9.6:1, hover and pressed */
+  --hz-accent-strong: #124874;  /* 9.5:1, hover and pressed */
   --hz-accent-tint: #eef6fa;
   --hz-on-accent: #ffffff;
   --hz-disabled-bg: #eceef1;
-  --hz-disabled-ink: #6b727c;   /* 4.6:1 on the disabled background */
+  --hz-disabled-ink: #5f6670;   /* 5.0:1 on the disabled background */
 
   /* The dither ramp, from the dissolving edge to the light core. Fills only; never text. */
   --hz-ramp-0: #124874;

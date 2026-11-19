@@ -909,9 +909,11 @@ ${paragraphs.map(p => `<p>${esc(p)}</p>`).join('\n')}
 // ------------------------------------------------------------------ layout
 
 let ASSET_V = '';
-// The Horizon kit (src/assets/horizon/, synced as is by tools/sync-horizon.mjs) draws the home page's hero and the
-// strip under the header on inner pages. Without it, the site builds and reads the same, with no band.
-const HORIZON = fs.existsSync(path.join(ROOT, 'src/assets/horizon/horizon.js')) && fs.existsSync(path.join(ROOT, 'src/assets/site-horizon.js'));
+// The Horizon kit (vendor/horizon/, synced as is by tools/sync-horizon.mjs) draws the home page's hero and a thin strip
+// at the top of inner pages. Only what runs is published: horizon.css, horizon.js and the fonts with their licenses.
+// Without the kit, the site builds and reads the same, with no band.
+const KIT = path.join(ROOT, 'vendor/horizon');
+const HORIZON = fs.existsSync(path.join(KIT, 'horizon.js')) && fs.existsSync(path.join(ROOT, 'src/assets/site-horizon.js'));
 
 function header(active) {
 	const items = SITE.nav.map(n => `<li><a href="${esc(n.href)}"${n.key === active ? ' aria-current="page"' : ''}>${esc(n.label)}</a></li>`).join('');
@@ -948,11 +950,11 @@ ${noindex ? '<meta name="robots" content="noindex, nofollow">\n' : ''}<link rel=
 ${HORIZON ? '<link rel="preload" href="assets/horizon/fonts/Inter-Regular.woff2" as="font" type="font/woff2" crossorigin>\n' : ''}${HORIZON ? `<link rel="stylesheet" href="assets/horizon/horizon.css?v=${ASSET_V}">\n` : ''}<link rel="stylesheet" href="assets/theme.css?v=${ASSET_V}">
 <link rel="stylesheet" href="assets/site.css?v=${ASSET_V}">
 <script>document.documentElement.classList.add('js');if(/[?&]motion=off\\b/.test(location.search))document.documentElement.dataset.motion='off';</script>
-<script src="assets/site.js?v=${ASSET_V}" defer></script>
-${HORIZON ? `<script src="assets/horizon/horizon.js?v=${ASSET_V}" defer></script>\n<script src="assets/site-horizon.js?v=${ASSET_V}" defer></script>\n` : ''}</head>
+${HORIZON ? `<script src="assets/horizon/horizon.js?v=${ASSET_V}"></script>\n` : ''}<script src="assets/site.js?v=${ASSET_V}" defer></script>
+${HORIZON ? `<script src="assets/site-horizon.js?v=${ASSET_V}" defer></script>\n` : ''}</head>
 <body class="${esc(bodyClass)}">
-${bare ? '' : header(active)}
-${strip ? '<div class="page-horizon" data-horizon="strip" aria-hidden="true"></div>\n' : ''}${main}
+${strip && HORIZON ? '<div class="page-horizon" data-horizon="strip" aria-hidden="true"></div>\n' : ''}${bare ? '' : header(active)}
+${main}
 ${bare ? '' : footer()}
 <div id="live" class="sr-only" aria-live="polite"></div>
 </body>
@@ -1047,9 +1049,9 @@ function renderHome(page) {
 	const main = `<main id="main" class="home" tabindex="-1">
 <section class="hero" data-horizon="hero" aria-labelledby="hero-title">
 <div class="hero-text">
-<p class="hero-series">${esc(SITE.series)}</p>
-<h1 id="hero-title" class="hero-title">${SITE.titleLines.map(esc).join('<br>')}</h1>
-<div>
+<p class="hero-series" data-hz-reveal="0.2">${esc(SITE.series)}</p>
+<h1 id="hero-title" class="hero-title" data-hz-condense="0.45">${SITE.titleLines.map(esc).join('<br>')}</h1>
+<div data-hz-reveal="1.35">
 <p class="hero-when">${esc(SITE.when)}</p>
 <p class="hero-host">${esc(SITE.host)}</p>
 ${intro?.html ? `<div class="hero-lede">${intro.html}</div>` : ''}
@@ -1114,10 +1116,20 @@ function main() {
 	mkdirp(OUT);
 	copyDir(path.join(ROOT, 'src/assets'), path.join(OUT, 'assets'));
 	pruneTo(path.join(ROOT, 'src/assets'), path.join(OUT, 'assets'));
-	ASSET_V = hash(['theme.css', 'site.css', 'site.js', 'site-horizon.js', 'horizon/horizon.js', 'horizon/horizon.css'].map(f => {
-		const p = path.join(ROOT, 'src/assets', f);
+	ASSET_V = hash(['src/assets/theme.css', 'src/assets/site.css', 'src/assets/site.js', 'src/assets/site-horizon.js', 'vendor/horizon/horizon.js', 'vendor/horizon/horizon.css'].map(f => {
+		const p = path.join(ROOT, f);
 		return fs.existsSync(p) ? fs.readFileSync(p) : '';
 	}).join('\n'));
+	if (HORIZON) {
+		for (const f of ['horizon.css', 'horizon.js']) {
+			copyIfChanged(path.join(KIT, f), path.join(OUT, 'assets/horizon', f));
+		}
+		for (const f of fs.readdirSync(path.join(KIT, 'fonts'))) {
+			if (/\.(woff2|txt)$/.test(f)) {
+				copyIfChanged(path.join(KIT, 'fonts', f), path.join(OUT, 'assets/horizon/fonts', f));
+			}
+		}
+	}
 	fs.writeFileSync(path.join(OUT, '.nojekyll'), '');
 	for (const c of SITE.copy || []) {
 		const from = contentFile(c.from, 'site.json', 'download');

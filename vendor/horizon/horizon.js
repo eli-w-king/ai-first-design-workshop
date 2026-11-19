@@ -1,10 +1,10 @@
-/* Horizon kit 1.0 · window.Horizon
+/* Horizon kit 1.0.1 · window.Horizon
    The Luma poster's ordered dither as a living horizon.
    Classic script: no modules, no network, no inline styles needed. Works from file:// and in a VS Code webview. */
 (function () {
   'use strict';
 
-  var VERSION = '1.0.0';
+  var VERSION = '1.0.1';
   var params = new URLSearchParams(location.search);
   var mql = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : null;
   var root = document.documentElement;
@@ -354,11 +354,11 @@
   function now() { return MANUAL ? clockNow : performance.now(); }
   function wake() {
     if (MANUAL || rafId) return;
-    lastNow = performance.now();
+    lastNow = -1;
     rafId = requestAnimationFrame(loop);
   }
   function step(dtMs) {
-    var dt = Math.min(dtMs, 64) / 1000, busy = false;
+    var dt = Math.max(0, Math.min(dtMs, 64)) / 1000, busy = false;
     for (var i = 0; i < instances.length; i++) {
       var inst = instances[i];
       if (inst._active()) { var t0 = performance.now(); inst._frame(dt); var ms = performance.now() - t0; stats.frames++; stats.total += ms; if (ms > stats.max) stats.max = ms; busy = true; }
@@ -367,7 +367,8 @@
   }
   function loop(ts) {
     rafId = 0;
-    var dt = ts - lastNow; lastNow = ts;
+    var dt = lastNow < 0 ? 16.7 : ts - lastNow; lastNow = ts;
+    if (dt < 0) dt = 0;
     if (step(dt)) rafId = requestAnimationFrame(loop);
   }
   document.addEventListener('visibilitychange', function () { if (!document.hidden) wake(); });
@@ -409,8 +410,9 @@
       var q = rects[i]; if (q.width < 1 || q.height < 1) continue;
       var x0 = (q.left - r.left) / sc, y0 = (q.top - r.top) / sc, x1 = (q.right - r.left) / sc, y1 = (q.bottom - r.top) / sc;
       var pad = (y1 - y0) * 0.08;
-      lines.push([x0 - pad, y0 - pad, x1 + pad, y1 + pad]);
-      minX = Math.min(minX, x0 - pad); minY = Math.min(minY, y0 - pad); maxX = Math.max(maxX, x1 + pad); maxY = Math.max(maxY, y1 + pad);
+      var top = Math.max(y0 - pad, -2);
+      lines.push([x0 - pad, top, x1 + pad, y1 + pad]);
+      minX = Math.min(minX, x0 - pad); minY = Math.min(minY, top); maxX = Math.max(maxX, x1 + pad); maxY = Math.max(maxY, y1 + pad);
     }
     if (!lines.length) { minX = 0; minY = 0; maxX = el.offsetWidth; maxY = el.offsetHeight; lines.push([0, 0, maxX, maxY]); }
     this.box = [minX, minY, maxX, maxY];
@@ -594,6 +596,7 @@
 
   Instance.prototype._frame = function (dt) {
     var o = this.o, S = this.S, i, k;
+    if (!(dt > 0)) dt = 0;
     for (k in this.tw) {
       var tw = this.tw[k]; if (!tw) continue;
       tw.t += dt; var p = clamp01(tw.t / tw.dur);
@@ -661,7 +664,7 @@
     try {
       this.renderer.render({ data: this.data, cols: this.cols, rows: this.rows, cellPx: this.cellPx, ramp: this.ramp });
     } catch (e) {
-      if (this.renderer.kind === 'webgl') { this._fallback(); } else throw e;
+      if (this.renderer.kind === 'webgl') { if (window.HZ_DEBUG) console.warn('Horizon: WebGL failed, using 2D', e && e.message); this._fallback(); } else throw e;
     }
     this.dirty = o.scrollLift > 0 && Math.abs(clamp01(-this.host.getBoundingClientRect().top / Math.max(1, this.H)) - this.scrollK) > 0.001;
   };
@@ -679,6 +682,7 @@
   Instance.prototype.setMotion = function (amount, opt) {
     if (!this.motion) return this;
     this.ambTarget = amount;
+    if (this.introT >= 0) { this.dirty = true; wake(); return this; }
     this._tween('amb', amount, opt || { duration: 1600 });
     return this;
   };

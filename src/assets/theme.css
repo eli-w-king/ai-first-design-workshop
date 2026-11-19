@@ -4,7 +4,7 @@
 
    Horizon is the light version of the UXPA Seattle poster: Inter Display for big headlines, Inter for text and Geist
    Mono for times and numbers (all SIL Open Font License, in horizon/fonts/ with their licenses), ink on white, one
-   blue accent, and the poster's ordered-dither band on the home page's hero and in a thin strip on inner pages. */
+   blue accent, and the poster's ordered-dither band on the home page's hero and in a thin strip atop inner pages. */
 
 :root {
 	/* Type */
@@ -93,8 +93,8 @@
 	--flow-night: 27 107 158;
 	--flow-box: 13 121 136;
 
-	/* The Horizon strip under the header on inner pages. */
-	--strip-height: 28px;
+	/* The thin, still Horizon strip at the top of inner pages. */
+	--strip-height: 40px;
 
 	color-scheme: light;
 }
